@@ -90,6 +90,4 @@ results_data/*
 FigureScripts/*
 .ipynb_checkpoints/*
 
-*.ipynb
-
 .vscode
