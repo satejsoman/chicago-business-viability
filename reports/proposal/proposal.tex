@@ -7,7 +7,6 @@
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{amssymb}
-%\usepackage{amsfonts}
 \usepackage{tikz}
 \usepackage[plain]{algorithm}
 \usepackage{algpseudocode}
@@ -27,6 +26,8 @@
 \usepackage{algpseudocode}
 \usepackage{mdframed}
 \usepackage{booktabs}
+\usepackage{endnotes}
+\let\footnote=\endnote
 
 \definecolor{sblue}{HTML}{5292c0}
 \definecolor{sgreen}{HTML}{93c47d}
@@ -87,58 +88,35 @@
 
 \newcommand{\op}[1]{\textrm{\small\printsubsection{\MakeUppercase{#1}}}\,}
 \newcommand{\opns}[1]{\textrm{\small\printsubsection{\MakeUppercase{#1}}}}
-\newcommand{\Partial}[1]{\partial\hspace{-0.2ex}{#1}}
-\newcommand{\D}[1]{\mathrm{d}#1}
-\newcommand{\E}[1]{\mathbb{E}{\left[\,#1\,\right]}}
-\newcommand{\var}[1]{\mathrm{var}\left( #1 \right)}
-\newcommand{\cov}[1]{\mathrm{cov}\left( #1 \right)}
-\newcommand{\pr}[1]{\mathrm{Pr}\left( #1 \right)}
-\newcommand{\given}{\,|\,}
-\renewcommand{\det}{\mathrm{det\,}}
-\renewcommand{\det}[1]{\op{det}\left(#1\right)}
-\renewcommand{\ker}{\mathrm{Ker\,}}
-\newcommand{\trace}[1]{\op{trace}\left(#1\right)}
-\newcommand{\nul}[1]{\op{nul}\left(#1\right)}
-\newcommand{\col}[1]{\op{col}\left(#1\right)}
-\newcommand{\row}[1]{\op{row}\left(#1\right)}
-\newcommand{\rank}[1]{\op{rank}\left(#1\right)}
-\renewcommand{\dim}[1]{\op{dim}\left(#1\right)}
-\newcommand{\im}{\op{Im\,}}
-\newcommand{\reals}{\mathbb{R}}
-\newcommand{\complex}{\mathbb{C}}
-\renewcommand{\vec}[1]{\mathbf{#1}}
-\newcommand*{\matr}[1]{\mathbfit{#1}}
-\newcommand*{\tran}{^{\mkern-1.5mu\mathsf{T}}}
-\newcommand*{\conj}[1]{\overline{#1}}
-\newcommand*{\hermconj}{^{\mathsf{H}}}
-\newcommand*{\inv}{^{-1}}
 
-\setlength\parindent{0pt}
+%\setlength\parindent{0pt}
 \pagecolor{gray!1}
 
 
 % header/footer
 \topmargin=-0.65in
 \pagestyle{fancy}\fancyhf{} 
-\lhead{\headerfontlt{\textcolor{darkgray}{CAPP30254, Spring 19 \textcolor{gray}{$\big/$} Project Proposal \textcolor{gray}{$\big/$}} Combating Economic Blight}}
+\lhead{\headerfontlt{\textcolor{darkgray}{CAPP30254, Spring 19 \textcolor{gray}{$\big/$} Project Proposal \textcolor{gray}{$\big/$}} Predicting Business Survival}}
 \rhead{\headerfontlt{\textcolor{gray}{$\big[$} \thepage\ \textcolor{gray}{$\big/$} \pageref{LastPage} \textcolor{gray}{$\big]$}}}
 
 \begin{document}
 \begin{titlepage}
 \raggedleft\huge\headerfontlt{
 \textcolor{darkgray}{
-Cecile Murray \\
-Jonathan Tan \\
-Satej Soman \\ \vspace{20pt}
+Cecile Murray, Jonathan Tan, Satej Soman \\ \vspace{20pt}
 CAPP30254: Machine Learning for Public Policy\\
 Spring 2019}}
 
-\vspace{240pt}
-\Huge\headerfontlt{\textcolor{darkgray}{COMBATING ECONOMIC BLIGHT}}
+\vspace{100pt}
+\textcolor{darkgray}{Project Proposal:}\\
+\Huge\headerfontlt{\textcolor{black}{PREDICTING THE SURVIVAL OF BUSINESSES IN CHICAGO USING BUSINESS LICENSE DATA}}
 \vfill
 \normalfont \normalsize
 \tableofcontents
 
 \end{titlepage}
 \input{proposal-content.tex}
+\pagebreak
+\theendnotes
+
 \end{document} 
