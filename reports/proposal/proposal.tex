@@ -1,0 +1,144 @@
+\documentclass[11pt]{article}
+
+% packages
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+%\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{lastpage}
+\usepackage{units}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\usepackage{sectsty}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usetikzlibrary{matrix}
+\usepackage{listings}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{mdframed}
+\usepackage{booktabs}
+
+\definecolor{sblue}{HTML}{5292c0}
+\definecolor{sgreen}{HTML}{93c47d}
+\definecolor{sorange}{HTML}{e69138}
+\definecolor{codeblue}{rgb}{0.29296875, 0.51953125, 0.68359375}
+\definecolor{codegreen}{rgb}{0.47265625, 0.62890625, 0.40234375}
+\definecolor{codegray}{rgb}{0.95703125, 0.95703125, 0.95703125}
+\definecolor{codecrimson}{rgb}{0.87109375,0.3984375,0.3984375}
+
+\lstset{frame=tb,
+  backgroundcolor=\color{codegray},
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{codeblue},
+  commentstyle=\color{codegreen},
+  stringstyle=\color{codecrimson},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4,
+  frame=tlbr,framesep=4pt,framerule=0pt,
+  literate={`}{\`}1,
+}
+
+% colors
+\definecolor{sblue}{HTML}{5292c0}
+\definecolor{sgreen}{HTML}{93c47d}
+\definecolor{sorange}{HTML}{e69138}
+
+% sectioning magic
+\counterwithin*{equation}{section}
+%\numberwithin{equation}{section}
+
+% fonts
+\usepackage{fontspec}
+\newfontfamily\headerfontlt{ITC Franklin Gothic Std Book}
+\newfontfamily\headerfont{ITC Franklin Gothic Std Demi}
+\usepackage[urw-garamond]{mathdesign}
+\usepackage{garamondx}
+\usepackage[italic]{mathastext}
+
+\newcommand{\printsection}[1]{\normalfont\headerfontlt{{{#1}}}}
+\newcommand{\printsubsection}[1]{\normalfont\headerfontlt\textcolor{darkgray}{{#1}}}
+\newcommand{\printsubsubsection}[1]{\normalfont\headerfontlt{{#1}}}
+\allsectionsfont{\printsection}
+\subsectionfont{\printsection}
+\subsectionfont{\printsubsection}
+\subsubsectionfont{\printsubsubsection}
+
+
+\renewcommand{\headrulewidth}{0.1pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{gray}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0.0pt}
+
+\newcommand{\op}[1]{\textrm{\small\printsubsection{\MakeUppercase{#1}}}\,}
+\newcommand{\opns}[1]{\textrm{\small\printsubsection{\MakeUppercase{#1}}}}
+\newcommand{\Partial}[1]{\partial\hspace{-0.2ex}{#1}}
+\newcommand{\D}[1]{\mathrm{d}#1}
+\newcommand{\E}[1]{\mathbb{E}{\left[\,#1\,\right]}}
+\newcommand{\var}[1]{\mathrm{var}\left( #1 \right)}
+\newcommand{\cov}[1]{\mathrm{cov}\left( #1 \right)}
+\newcommand{\pr}[1]{\mathrm{Pr}\left( #1 \right)}
+\newcommand{\given}{\,|\,}
+\renewcommand{\det}{\mathrm{det\,}}
+\renewcommand{\det}[1]{\op{det}\left(#1\right)}
+\renewcommand{\ker}{\mathrm{Ker\,}}
+\newcommand{\trace}[1]{\op{trace}\left(#1\right)}
+\newcommand{\nul}[1]{\op{nul}\left(#1\right)}
+\newcommand{\col}[1]{\op{col}\left(#1\right)}
+\newcommand{\row}[1]{\op{row}\left(#1\right)}
+\newcommand{\rank}[1]{\op{rank}\left(#1\right)}
+\renewcommand{\dim}[1]{\op{dim}\left(#1\right)}
+\newcommand{\im}{\op{Im\,}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\complex}{\mathbb{C}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand*{\matr}[1]{\mathbfit{#1}}
+\newcommand*{\tran}{^{\mkern-1.5mu\mathsf{T}}}
+\newcommand*{\conj}[1]{\overline{#1}}
+\newcommand*{\hermconj}{^{\mathsf{H}}}
+\newcommand*{\inv}{^{-1}}
+
+\setlength\parindent{0pt}
+\pagecolor{gray!1}
+
+
+% header/footer
+\topmargin=-0.65in
+\pagestyle{fancy}\fancyhf{} 
+\lhead{\headerfontlt{\textcolor{darkgray}{CAPP30254, Spring 19 \textcolor{gray}{$\big/$} Project Proposal \textcolor{gray}{$\big/$}} Combating Economic Blight}}
+\rhead{\headerfontlt{\textcolor{gray}{$\big[$} \thepage\ \textcolor{gray}{$\big/$} \pageref{LastPage} \textcolor{gray}{$\big]$}}}
+
+\begin{document}
+\begin{titlepage}
+\raggedleft\huge\headerfontlt{
+\textcolor{darkgray}{
+Cecile Murray \\
+Jonathan Tan \\
+Satej Soman \\ \vspace{20pt}
+CAPP30254: Machine Learning for Public Policy\\
+Spring 2019}}
+
+\vspace{240pt}
+\Huge\headerfontlt{\textcolor{darkgray}{COMBATING ECONOMIC BLIGHT}}
+\vfill
+\normalfont \normalsize
+\tableofcontents
+
+\end{titlepage}
+\input{proposal-content.tex}
+\end{document} 

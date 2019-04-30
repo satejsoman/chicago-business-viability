@@ -1,0 +1,14 @@
+\contentsline {section}{\numberline {1}Project Goals}{1}{section.1}
+\contentsline {subsection}{\numberline {1.1}What is the problem?}{1}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Why is it important? What impact will it have?}{1}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}Who cares about it?}{1}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.4}What are the policy goals? Who will take action based on our work?}{1}{subsection.1.4}
+\contentsline {section}{\numberline {2}Data \& Analysis}{1}{section.2}
+\contentsline {subsection}{\numberline {2.1}Data}{1}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Machine learning approach}{1}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}How will we evaluate our models?}{1}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Caveats and limitations}{1}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}Ethical issues, bias, and fairness}{1}{subsection.2.5}
+\contentsline {section}{\numberline {3}Recommendations for Policy}{1}{section.3}
+\contentsline {subsection}{\numberline {3.1}Summary of recommendations}{1}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Policy impact}{1}{subsection.3.2}
