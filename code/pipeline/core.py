@@ -99,6 +99,7 @@ class Pipeline:
         return self.run_transformations(self.feature_generators, purpose="feature generation")
 
     def generate_test_train(self):
+        self.logger.info("Columns: %s", self.dataframe.columns)
         self.train_sets = [{"X" : self.dataframe[self.features], "y": self.dataframe[self.target]}]
         self.test_sets  = [{"X" : self.dataframe[self.features], "y": self.dataframe[self.target]}]
         return self

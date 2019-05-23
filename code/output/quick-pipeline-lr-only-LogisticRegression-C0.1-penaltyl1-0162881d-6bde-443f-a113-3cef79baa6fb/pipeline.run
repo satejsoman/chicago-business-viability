@@ -1,0 +1,62 @@
+Starting pipeline quick-pipeline-lr-only-LogisticRegression-C0.1-penaltyl1 (0162881d-6bde-443f-a113-3cef79baa6fb) at 2019-05-16 12:07:44.366484
+Input data: /Users/satej/Documents/workspace/classwork/machine-learning/chicago-business-viability/data/imputed_failures.csv (SHA-256: ef466abfe3c13f24776c2d0ae1c11c0f24a19a1a5581f2f8b091a215c9cea7cb)
+Pipeline library version: badc6fb
+
+Pipeline settings:
+    summarize: False
+    data_preprocessors: [hashed-LEGAL NAME, hashed-DOING BUSINESS AS NAME, hashed-ADDRESS, categorize-CITY, categorize-STATE, hashed-LICENSE DESCRIPTION, hashed-BUSINESS ACTIVITY, categorize-APPLICATION TYPE, hashed-LICENSE STATUS, hashed-SSA]
+    feature_generators: None
+    model: LogisticRegression(C=0.1, class_weight=None, dual=False, fit_intercept=True,
+          intercept_scaling=1, max_iter=100, multi_class='warn',
+          n_jobs=None, penalty='l1', random_state=None, solver='warn',
+          tol=0.0001, verbose=0, warm_start=False)
+    name: quick-pipeline-lr-only-LogisticRegression-C0.1-penaltyl1
+    output_root_dir: /Users/satej/Documents/workspace/classwork/machine-learning/chicago-business-viability/code/output
+
+Loading data
+
+Running transformations for preprocessing
+    Applying transformation (1/10): hashed-LEGAL NAME 
+    ['LEGAL NAME'] -> LEGAL NAME_hashed
+    Applying transformation (2/10): hashed-DOING BUSINESS AS NAME 
+    ['DOING BUSINESS AS NAME'] -> DOING BUSINESS AS NAME_hashed
+    Applying transformation (3/10): hashed-ADDRESS 
+    ['ADDRESS'] -> ADDRESS_hashed
+    Applying transformation (4/10): categorize-CITY 
+    ['CITY'] -> CITY_categorical
+    Applying transformation (5/10): categorize-STATE 
+    ['STATE'] -> STATE_categorical
+    Applying transformation (6/10): hashed-LICENSE DESCRIPTION 
+    ['LICENSE DESCRIPTION'] -> LICENSE DESCRIPTION_hashed
+    Applying transformation (7/10): hashed-BUSINESS ACTIVITY 
+    ['BUSINESS ACTIVITY'] -> BUSINESS ACTIVITY_hashed
+    Applying transformation (8/10): categorize-APPLICATION TYPE 
+    ['APPLICATION TYPE'] -> APPLICATION TYPE_categorical
+    Applying transformation (9/10): hashed-LICENSE STATUS 
+    ['LICENSE STATUS'] -> LICENSE STATUS_hashed
+    Applying transformation (10/10): hashed-SSA 
+    ['SSA'] -> SSA_hashed
+
+Columns: Index(['LICENSE NUMBER', 'LICENSE TERM EXPIRATION DATE', 'ID', 'LICENSE ID',
+       'ACCOUNT NUMBER', 'SITE NUMBER', 'LEGAL NAME', 'DOING BUSINESS AS NAME',
+       'ADDRESS', 'CITY', 'STATE', 'ZIP CODE', 'WARD', 'PRECINCT',
+       'WARD PRECINCT', 'POLICE DISTRICT', 'LICENSE CODE',
+       'LICENSE DESCRIPTION', 'BUSINESS ACTIVITY ID', 'BUSINESS ACTIVITY',
+       'LICENSE NUMBER.1', 'APPLICATION TYPE', 'APPLICATION CREATED DATE',
+       'APPLICATION REQUIREMENTS COMPLETE', 'PAYMENT DATE',
+       'CONDITIONAL APPROVAL', 'LICENSE TERM START DATE',
+       'LICENSE TERM EXPIRATION DATE_orig', 'LICENSE APPROVED FOR ISSUANCE',
+       'DATE ISSUED', 'LICENSE STATUS', 'LICENSE STATUS CHANGE DATE', 'SSA',
+       'LATITUDE', 'LONGITUDE', 'LEGAL NAME_hashed',
+       'DOING BUSINESS AS NAME_hashed', 'ADDRESS_hashed', 'CITY_categorical',
+       'STATE_categorical', 'LICENSE DESCRIPTION_hashed',
+       'BUSINESS ACTIVITY_hashed', 'APPLICATION TYPE_categorical',
+       'LICENSE STATUS_hashed', 'SSA_hashed'],
+      dtype='object')
+Running model LogisticRegression(C=0.1, class_weight=None, dual=False, fit_intercept=True,
+          intercept_scaling=1, max_iter=100, multi_class='warn',
+          n_jobs=None, penalty='l1', random_state=None, solver='warn',
+          tol=0.0001, verbose=0, warm_start=False)
+Features: ['LEGAL NAME_hashed', 'DOING BUSINESS AS NAME_hashed', 'ADDRESS_hashed', 'CITY_categorical', 'STATE_categorical', 'LICENSE DESCRIPTION_hashed', 'BUSINESS ACTIVITY_hashed', 'APPLICATION TYPE_categorical', 'LICENSE STATUS_hashed', 'SSA_hashed', 'LICENSE TERM EXPIRATION DATE', 'ID', 'LICENSE ID', 'ACCOUNT NUMBER', 'SITE NUMBER', 'ZIP CODE', 'WARD', 'PRECINCT', 'WARD PRECINCT', 'POLICE DISTRICT', 'LICENSE CODE', 'BUSINESS ACTIVITY ID', 'LICENSE NUMBER', 'APPLICATION CREATED DATE', 'APPLICATION REQUIREMENTS COMPLETE', 'PAYMENT DATE', 'CONDITIONAL APPROVAL', 'LICENSE TERM START DATE', 'LICENSE APPROVED FOR ISSUANCE', 'DATE ISSUED', 'LICENSE STATUS CHANGE DATE', 'LATITUDE', 'LONGITUDE']
+Fitting: LICENSE TERM EXPIRATION DATE_orig
+    Training on training set (1/1)
