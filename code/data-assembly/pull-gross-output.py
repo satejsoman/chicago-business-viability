@@ -23,7 +23,7 @@ def make_api_call(dataset, component, industry_id, year, fips = "MSA", result_fo
 
 if __name__ == "__main__":
 
-    parser = argparse.ArgumentParser(description='wrapper for pulling ACS data off the API')
+    parser = argparse.ArgumentParser(description='wrapper for pulling BEA data off the API')
     parser.add_argument("--keyfile", help="file containing API keys", default = 'keys.json')
     args = parser.parse_args()
 
