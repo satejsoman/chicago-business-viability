@@ -4,11 +4,9 @@
 # Cecile Murray
 #==============================================================================#
 
-import pandas as pd
+import json
 import pybea
 import argparse
-
-USER_ID = '5BACE2AA-6D06-4D89-997C-539ED5463C16'
 
 
 def make_api_call(dataset, component, industry_id, year, fips = "MSA", result_format = 'JSON'):
@@ -24,11 +22,24 @@ def make_api_call(dataset, component, industry_id, year, fips = "MSA", result_fo
     
 
 if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser(description='wrapper for pulling ACS data off the API')
+    parser.add_argument("--keyfile", help="file containing API keys", default = 'keys.json')
+    args = parser.parse_args()
+
+    with open(args.keyfile) as f:
+        keys = json.load(f)
     
-    data = pybea.get_data(USER_ID,
-                        DataSetName = 'Regional',
-                        Component = "RGDP_MAN",
-                        IndustryId = 1,
-                        GeoFips = "MSA",
-                        Year = "ALL",
-                        ResultFormat = "JSON")
+    USER_ID = keys['BEA']
+
+    try:
+        data = pybea.get_data(USER_ID,
+                            DataSetName = 'Regional',
+                            Component = "RGDP_MAN",
+                            IndustryId = 1,
+                            GeoFips = "MSA",
+                            Year = "ALL",
+                            ResultFormat = "JSON")
+    except Exception as e:
+        print("API call failed")
+        print(e)
