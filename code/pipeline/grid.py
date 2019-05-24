@@ -43,6 +43,12 @@ class Grid():
     def from_config(models_dict):
         return Grid.from_dict(models_dict)
 
+    def __repr__(self):
+        return self.models.__repr__()
+
+    def __iter__(self):
+        return iter(self.models.items())
+
 if __name__ == "__main__":
     with open('config.yaml') as config_file:
         config = yaml.safe_load(config_file)

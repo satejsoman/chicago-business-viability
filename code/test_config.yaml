@@ -1,0 +1,27 @@
+data: 
+  input_path: "../data/test_pipeline_data.csv"
+  output_dir: "output/"
+
+pipeline:
+  name : "test_pipeline"
+  target: 'target'
+  features: ['sepal length', 'sepal width', 'petal length', 'petal width']
+
+models: 
+  LogisticRegression:
+    C: [0.01, 0.1, 1, 10, 100]
+    penalty: ["l1", "l2"]
+
+  KNeighborsClassifier: 
+    n_neighbors: [1, 10, 25]
+
+  DecisionTreeClassifier:
+    max_depth: [null, 5, 10, 100]
+
+  GradientBoostingClassifier:
+    learning_rate: [0.1, 0.5, 2.0]
+  
+  BaggingClassifier:
+    max_samples: [0.1, 0.5, 1.0]
+
+  RandomForestClassifier: {}
