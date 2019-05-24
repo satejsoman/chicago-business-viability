@@ -22,12 +22,12 @@ def main(config_path):
     with open(config_path, 'rb') as config_file:
         config = yaml.safe_load(config_file.read())
     
-    input_path = Path(config["data"]["input_path"])
-    target = config["pipeline"]["target"]
-    model_grid = Grid.from_config(config["models"])
+    input_path    = config["data"]["input_path"]
+    output_dir    = config["data"]["output_dir"]
     pipeline_name = config["pipeline"]["name"]
-    features = config["pipeline"]["features"]
-    output_dir = Path(config["data"]["output_dir"])
+    target        = config["pipeline"]["target"]
+    features      = config["pipeline"]["features"]
+    models        = config["models"]
     
     if not input_path.exists():
         iris = sklearn.datasets.load_iris()
@@ -37,12 +37,12 @@ def main(config_path):
         ).to_csv(input_path)
 
     pipeline = Pipeline(
-        csv_path        = input_path, 
+        csv_path        = Path(input_path), 
         target          = target, 
-        model_grid      = model_grid,
+        model_grid      = Grid.from_config(models),
         name            = pipeline_name,
         features        = features,
-        output_root_dir = output_dir)
+        output_root_dir = Path(output_dir))
     pipeline.run()
 
 if __name__ == "__main__":
