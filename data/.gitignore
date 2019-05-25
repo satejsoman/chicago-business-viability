@@ -1,4 +1,1 @@
-# data should be stored in this directory
-# this file ensures its contents are not synced to github
-*.csv
-!.gitignore
+Business_Licenses.csv
