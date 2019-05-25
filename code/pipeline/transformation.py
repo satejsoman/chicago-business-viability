@@ -13,6 +13,15 @@ class Transformation:
     def __repr__(self):
         return self.name
 
+def hash_string(column):
+    input_col  = column
+    output_col = column + "_hashed"
+    return Transformation(
+        name="hashed-" + input_col,
+        input_column_names=[input_col],
+        output_column_name=output_col,
+        function=lambda df: df[input_col].apply(hash))
+
 def categorize(column):
     input_col  = column
     output_col = column + "_categorical"

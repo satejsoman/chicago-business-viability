@@ -90,3 +90,6 @@ FigureScripts/*
 */.ipynb_checkpoints/*
 
 .vscode
+
+# data files
+.geojson
