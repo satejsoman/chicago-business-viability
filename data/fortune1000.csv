@@ -1,0 +1,1001 @@
+﻿Latitude,Longitude,Company,2018 Rank,Years on List,City,State
+36.3648645,-94.2176775,Walmart Inc.,1,24,Bentonville,AR
+32.8900057,-96.9499086,Exxon Mobil Corporation,2,24,Irving,TX
+41.2571794,-95.965619,Berkshire Hathaway Inc.,3,24,Omaha,NE
+37.3316756,-122.030189,"Apple, Inc.",4,24,Cupertino,CA
+44.8977868,-93.4413911,UnitedHealth Group Incorporated,5,24,Minnetonka,MN
+37.788766,-122.402747,McKesson Corporation,6,24,San Francisco,CA
+41.990756,-71.477265,CVS Health Corporation,7,24,Woonsocket,RI
+47.6222881,-122.3364939,"Amazon.com, Inc.",8,17,Seattle,WA
+32.779295,-96.800014,AT&T Inc.,9,24,Dallas,TX
+42.3295852,-83.039529,General Motors Company,10,24,Detroit,MI
+42.2968973,-83.2359823,Ford Motor Company,11,24,Dearborn,MI
+40.0686079,-75.4683046,AmerisourceBergen Corp.,12,24,Chesterbrook,PA
+37.7581031,-121.9593596,Chevron Corporation,13,24,San Ramon,CA
+40.1092374,-83.1210978,"Cardinal Health, Inc.",14,24,Dublin,OH
+47.5486092,-122.0506496,Costco Wholesale Corporation,15,24,Issaquah,WA
+40.6895119,-73.9807077,Verizon Communications Inc.,16,24,New York,NY
+39.1067628,-84.513954,The Kroger Company,17,24,Cincinnati,OH
+42.351941,-71.047847,General Electric Company,18,24,Boston,MA
+42.1555553,-87.868761,"Walgreens Boots Alliance, Inc",19,24,Deerfield,IL
+40.7558818,-73.9755845,JPMorgan Chase & Co.,20,24,New York,NY
+38.9404825,-77.0765632,Federal National Mortgage Association,21,21,Washington,DC
+37.4219999,-122.0840575,Alphabet Inc.,22,13,Mountain View,CA
+33.865325,-84.481408,"The Home Depot, Inc.",23,24,Atlanta,GA
+35.2273417,-80.8419168,Bank of America Corporation,24,24,Charlotte,NC
+38.7182901,-90.3106186,Express Scripts Holding Company,25,19,St. Louis,MO
+37.7892447,-122.4022503,Wells Fargo & Company,26,24,San Francisco,CA
+41.8835793,-87.6389344,The Boeing Company,27,24,Chicago,IL
+29.6843591,-95.254304,Phillips 66,28,6,Houston,TX
+39.7691299,-86.158805,"Anthem, Inc.",29,24,Indianapolis,IN
+47.6423318,-122.1369302,Microsoft Corporation,30,24,Redmond,WA
+29.4844329,-98.4309326,Valero Energy Corporation,31,20,San Antonio,TX
+40.7211322,-74.0109186,Citigroup Inc.,32,24,New York,NY
+39.9547564,-75.1685345,Comcast Corporation,33,23,Philadelphia,PA
+41.1082453,-73.7204032,International Business Machines Corporation,34,24,Armonk,NY
+30.4883856,-97.6704209,Dell Technologies Inc.,35,21,Round Rock,TX
+40.4828017,-88.9424447,State Farm Insurance Cos.,36,24,Bloomington,IL
+40.4979518,-74.4430559,Johnson & Johnson,37,24,New Brunswick,NJ
+38.932839,-77.2273311,Federal Home Loan Mortgage Corporation,38,21,McLean,VA
+44.9748915,-93.2743017,Target Corporation,39,24,Minneapolis,MN
+35.592873,-80.866409,"Lowe's Companies, Inc.",40,24,Mooresville,NC
+41.036057,-83.64921,Marathon Petroleum Corporation,41,7,Findlay,OH
+39.1032195,-84.5052772,The Procter & Gamble Company,42,24,Cincinnati,OH
+40.7138351,-73.998399,"MetLife, Inc.",43,24,New York,NY
+33.9391366,-84.3593664,"United Parcel Service, Inc.",44,24,Atlanta,GA
+41.0365188,-73.695213,"PepsiCo, Inc.",45,24,Purchase,NY
+37.3875909,-121.9637869,Intel Corporation,46,24,Santa Clara,CA
+43.6161467,-84.2002385,DowDuPont Inc.,47,24,Midland,MI
+41.8878212,-87.6590804,Archer-Daniels-Midland Company,48,24,Chicago,IL
+41.7678127,-72.6909539,Aetna Inc.,49,18,Hartford,CT
+35.0511748,-89.7927333,FedEx Corporation,50,24,Memphis,TN
+41.7122183,-72.8040708,United Technologies Corporation,51,24,Farmington,CT
+40.7322155,-74.1403143,"Prudential Financial, Inc.",52,24,Newark,NJ
+43.5994756,-116.1802787,"Albertsons Companies, Inc.",53,14,Boise,ID
+29.7591048,-95.6197026,Sysco Corporation,54,24,Houston,TX
+34.156207,-118.325189,The Walt Disney Company,55,24,Burbank,CA
+38.2569412,-85.7554157,Humana Inc.,56,24,Louisville,KY
+40.7503024,-73.9726573,Pfizer Inc.,57,24,New York,NY
+37.4123389,-122.1479595,HP Inc.,58,24,Palo Alto,CA
+39.0309432,-77.1390122,Lockheed Martin Corporation,59,24,Bethesda,MD
+40.7063759,-74.0051564,"American International Group, Inc.",60,24,New York,NY
+38.6495116,-90.3345013,Centene Corporation,61,9,St. Louis,MO
+37.4084383,-121.9539644,"Cisco Systems, Inc.",62,22,San Jose,CA
+36.1537498,-86.8137613,"HCA Healthcare, Inc.",63,24,Nashville,TN
+32.8614286,-96.8070119,"Energy Transfer Equity, L.P.",64,12,Dallas,TX
+42.1559733,-87.8410708,Caterpillar Inc.,65,24,Deerfield,IL
+39.9684015,-83.0023365,Nationwide Mutual Insurance Co.,66,24,Columbus,OH
+40.7020858,-74.0121514,Morgan Stanley,67,24,New York,NY
+42.34911,-71.0718557,Liberty Mutual Holding Company Inc.,68,24,Boston,MA
+40.7339028,-73.8695297,New York Life Insurance Company,69,24,New York,NY
+40.714828,-74.0144025,"The Goldman Sachs Group, Inc.",70,19,New York,NY
+32.8252948,-97.0506621,American Airlines Group Inc.,71,24,Fort Worth,TX
+44.8632573,-93.2927947,"Best Buy Co., Inc.",72,24,Richfield,MN
+41.8129391,-72.7431484,CIGNA Corporation,73,24,Bloomfield,CT
+41.1233378,-73.5258084,"Charter Communications, Inc.",74,18,Stamford,CT
+33.6562298,-84.4221987,"Delta Air Lines, Inc.",75,24,Atlanta,GA
+37.4850711,-122.1474242,"Facebook, Inc.",76,6,Menlo Park,CA
+40.8358456,-74.4771041,Honeywell International Inc.,77,24,Morris Plains,NJ
+40.6776273,-74.2736489,"Merck & Co., Inc.",78,24,Kenilworth,NJ
+42.1009461,-87.8711055,The Allstate Corporation,79,23,Northbrook,IL
+36.190375,-94.1256874,"Tyson Foods, Inc.",80,24,Springdale,AR
+41.8865252,-87.6306005,"United Continental Holdings, Inc.",81,24,Chicago,IL
+37.528581,-122.2646347,Oracle Corporation,82,23,Redwood City,CA
+27.9207237,-82.7085164,Tech Data Corporation,83,24,Clearwater,FL
+40.7531634,-73.9732781,Teachers Insurance and Annuity Association,84,21,New York,NY
+42.310488,-71.3819495,"The TJX Companies, Inc.",85,24,Framingham,MA
+40.7134455,-74.0152721,American Express Company,86,24,New York,NY
+33.7704809,-84.3973221,The Coca-Cola Company,87,24,Atlanta,GA
+28.1120466,-81.9452096,"Publix Super Markets, Inc.",88,24,Lakeland,FL
+45.5077764,-122.8281466,"Nike, Inc.",89,24,Beaverton,OR
+29.6159513,-98.4589556,Andeavor,90,19,San Antonio,TX
+25.8105331,-80.355523,World Fuel Services Corporation,91,14,Miami,FL
+41.8835198,-87.6416513,Exelon Corporation,92,24,Chicago,IL
+42.116805,-72.54735,Massachusetts Mutual Life Insurance Company,93,24,Springfield,MA
+40.2401756,-76.9353966,Rite Aid Corporation,94,24,Camp Hill,PA
+29.7882303,-95.613463,ConocoPhillips,95,24,Houston,TX
+44.86948,-93.062548,CHS Inc.,96,19,Inver Grove Heights,MN
+44.9384927,-93.0915405,3M Company,97,24,St. Paul,MN
+40.7684692,-73.9827313,Time Warner Inc.,98,19,New York,NY
+38.8683985,-77.2133362,General Dynamics Corporation,99,24,Falls Church,VA
+29.5344204,-98.5746487,United Services Automobile Association,100,24,San Antonio,TX
+38.9242,-77.213291,Capital One Financial Corporation,101,19,McLean,VA
+41.4709,-90.4739334,Deere & Company,102,24,Moline,IL
+40.75243,-73.9737387,INTL FCStone Inc.,103,10,New York,NY
+43.040201,-87.9001131,"Northwestern Mutual Life Insurance Company, Inc.",104,24,Milwaukee,WI
+29.9076509,-95.5544407,Enterprise Products Partners L.P.,105,13,Houston,TX
+40.754204,-73.9736114,"The Travelers Companies, Inc.",106,24,New York,NY
+37.4158716,-122.1465855,Hewlett Packard Enterprise Company,107,2,Palo Alto,CA
+40.7517405,-73.9783375,Philip Morris International Inc.,108,10,New York,NY
+40.7586113,-73.9822089,"Twenty-First Century Fox, Inc.",109,14,New York,NY
+42.3339581,-87.8387519,AbbVie Inc.,110,5,North Chicago,IL
+42.3027586,-87.8962464,Abbott Laboratories,111,24,Abbott Park,IL
+41.545662,-81.4438179,The Progressive Corporation,112,24,Mayfield Village,OH
+39.5814958,-104.8822406,"Arrow Electronics, Inc",113,24,Centennial,CO
+40.4398818,-80.0037001,The Kraft Heinz Company,114,24,Pittsburgh,PA
+29.757349,-95.3719383,"Plains GP Holdings, L.P.",115,5,Houston,TX
+37.5669611,-122.2816328,"Gilead Sciences, Inc.",116,10,Foster City,CA
+42.1623977,-87.8797916,"Mondelez International, Inc.",117,11,Deerfield,IL
+38.8671114,-77.2148893,Northrop Grumman Corporation,118,24,Falls Church,VA
+42.4057975,-71.282688,Raytheon Company,119,24,Waltham,MA
+39.103259,-84.514131,"Macy's, Inc.",120,24,Cincinnati,OH
+41.988673,-87.857805,US Foods Holding Corp.,121,7,Rosemont,IL
+44.9755792,-93.2738797,U.S. Bancorp,122,20,Minneapolis,MN
+36.3090261,-86.699065,Dollar General Corporation,123,20,Goodlettsville,TN
+35.0622579,-89.7876891,International Paper Company,124,24,Memphis,TN
+35.2771322,-80.9161972,Duke Energy Corporation,125,24,Charlotte,NC
+33.76432,-84.388259,The Southern Company,126,24,Atlanta,GA
+39.024758,-77.138038,"Marriott International, Inc.",127,20,Bethesda,MD
+33.4274453,-111.9799387,"Avnet, Inc.",128,24,Phoenix,AZ
+39.7585156,-86.1553712,Eli Lilly and Company,129,24,Indianapolis,IN
+34.1920022,-118.9197819,Amgen Inc.,130,19,Thousand Oaks,CA
+41.8475242,-87.9718154,McDonald's Corporation,131,24,Oak Brook,IL
+47.5807515,-122.3353619,Starbucks Corporation,132,16,Seattle,WA
+32.8971641,-117.2186353,Qualcomm Incorporated,133,19,San Diego,CA
+36.7685815,-76.2419894,"Dollar Tree, Inc.",134,10,Chesapeake,VA
+40.8474943,-74.4546895,PBF Energy Inc.,135,6,Parsippany,NJ
+40.7635843,-73.9723967,Icahn Enterprises L.P.,136,10,New York,NY
+32.5140574,-84.9214078,Aflac Incorporated,137,24,Columbus,GA
+26.119866,-80.144103,"AutoNation, Inc.",138,21,Fort Lauderdale,FL
+42.60254,-83.287959,"Penske Automotive Group, Inc.",139,20,Bloomfield Hills,MI
+42.1152828,-86.4663943,Whirlpool Corporation,140,24,Benton Harbor,MI
+41.2591878,-95.9351366,Union Pacific Corporation,141,24,Omaha,NE
+32.8452861,-96.8623949,Southwest Airlines Co.,142,24,Dallas,TX
+43.0492403,-87.9129945,ManpowerGroup Inc.,143,24,Milwaukee,WI
+42.3924448,-71.2614226,Thermo Fisher Scientific Inc.,144,16,Waltham,MA
+40.7580858,-73.9728271,Bristol-Myers Squibb Company,145,24,New York,NY
+29.9377567,-95.3404419,Halliburton Company,146,24,Houston,TX
+32.7847875,-96.8026417,Tenet Healthcare Corporation,147,24,Dallas,TX
+42.4515799,-83.280703,Lear Corporation,148,24,Southfield,MI
+39.2048964,-85.9237645,Cummins Inc.,149,24,Columbus,IN
+43.5308775,-116.1493734,"Micron Technology, Inc.",150,21,Boise,ID
+35.1588511,-80.8347671,Nucor Corporation,151,24,Charlotte,NC
+33.8273814,-118.2121893,"Molina Healthcare, Inc.",152,7,Long Beach,CA
+32.901127,-96.952382,Fluor Corporation,153,17,Irving,TX
+37.6024176,-77.5178714,"Altria Group, Inc.",154,24,Richmond,VA
+47.6454883,-122.1974248,PACCAR Inc,155,24,Bellevue,WA
+41.7696634,-72.6870864,"The Hartford Financial Services Group, Inc.",156,23,Hartford,CT
+43.1909566,-88.1333537,Kohl's Corporation,157,21,Menomonee Falls,WI
+37.2479526,-121.7920282,Western Digital Corporation,158,15,San Jose,CA
+27.8687431,-82.648327,Jabil Inc,159,17,St. Petersburg,FL
+35.9517599,-86.8106066,"Community Health Systems, Inc.",160,12,Franklin,TN
+37.7933502,-122.3942298,Visa Inc.,161,10,San Francisco,CA
+38.901756,-77.0493404,Danaher Corporation,162,20,Washington,DC
+32.8700521,-96.9505585,Kimberly-Clark Corporation,163,24,Irving,TX
+34.058739,-118.4165669,AECOM,164,10,Los Angeles,CA
+40.441313,-80.00048,"The PNC Financial Services Group, Inc.",165,24,Pittsburgh,PA
+32.5891034,-92.0664406,"CenturyLink, Inc.",166,9,Monroe,LA
+26.8599116,-80.061568,"NextEra Energy, Inc.",167,24,Juno Beach,FL
+37.7842501,-122.4177217,PG&E Corporation,168,24,San Francisco,CA
+37.5058754,-121.9739873,Synnex Corporation,169,12,Fremont,CA
+27.9797361,-82.5531437,"WellCare Health Plans, Inc.",170,10,Tampa,FL
+37.6045133,-77.6437351,Performance Food Group Company,171,10,Richmond,VA
+42.0772969,-88.2153351,Sears Holdings Corporation,172,24,Hoffman Estates,IL
+41.097221,-73.561771,Synchrony Financial,173,2,Stamford,CT
+37.5334648,-77.4340196,"CarMax, Inc.",174,15,Richmond,VA
+40.714291,-74.0117809,The Bank of New York Mellon Corporation,175,24,New York,NY
+33.4516712,-112.073049,Freeport-McMoRan Inc.,176,13,Phoenix,AZ
+33.7520359,-84.54761,Genuine Parts Company,177,24,Atlanta,GA
+38.7315866,-90.2790342,Emerson Electric Co.,178,24,St. Louis,MO
+39.7536296,-105.0041203,DaVita Inc.,179,12,Denver,CO
+44.8721679,-93.4254888,Supervalu Inc.,180,24,Eden Prairie,MN
+37.7906888,-122.391538,"The Gap, Inc.",181,24,San Francisco,CA
+44.9350698,-93.2275214,"General Mills, Inc.",182,24,Minneapolis,MN
+47.6123411,-122.336287,"Nordstrom, Inc.",183,24,Seattle,WA
+40.7570209,-73.9746695,Colgate-Palmolive Company,184,24,New York,NY
+39.9651773,-83.0060034,"American Electric Power Company, Inc.",185,24,Columbus,OH
+41.0992549,-73.7197724,"XPO Logistics, Inc.",186,3,Greenwich,CT
+41.058397,-81.47589,The Goodyear Tire & Rubber Company,187,24,Akron,OH
+40.7573566,-73.9753734,Omnicom Group Inc.,188,22,New York,NY
+42.1973796,-87.8886482,CDW Corporation,189,14,Lincolnshire,IL
+41.5103313,-81.6760717,The Sherwin-Williams Company,190,24,Cleveland,OH
+40.4401115,-80.0037671,"PPG Industries, Inc.",191,24,Pittsburgh,PA
+32.9111908,-96.7523154,Texas Instruments Incorporated,192,24,Dallas,TX
+44.820863,-93.460822,"C. H. Robinson Worldwide, Inc.",193,17,Eden Prairie,MN
+33.9345391,-84.3546833,WestRock Company,194,7,Atlanta,GA
+40.8729475,-74.0069886,Cognizant Technology Solutions Corporation,195,8,Teaneck,NJ
+40.7386606,-74.0277171,Newell Brands Inc.,196,23,Hoboken,NJ
+40.7611804,-73.9788194,CBS Corporation,197,24,New York,NY
+36.096707,-86.823221,Envision Healthcare Corporation,198,1,Nashville,TN
+38.7031011,-90.4198916,Monsanto Company,199,15,St. Louis,MO
+40.0090867,-75.1165458,Aramark,200,24,Philadelphia,PA
+37.3776247,-121.9787818,"Applied Materials, Inc.",201,23,Santa Clara,CA
+29.7561602,-95.3648818,"Waste Management, Inc.",202,20,Houston,TX
+39.6610071,-105.0102156,DISH Network Corporation,203,17,Englewood,CO
+42.0902811,-87.8467011,Illinois Tool Works Inc.,204,24,Glenview,IL
+40.043008,-75.3656481,Lincoln National Corporation,205,24,Radnor,PA
+32.794481,-96.8081869,HollyFrontier Corporation,206,11,Dallas,TX
+34.046896,-118.4451056,"CBRE Group, Inc.",207,11,Los Angeles,CA
+41.8249211,-71.4091872,Textron Inc.,208,24,Providence,RI
+37.7103011,-121.8899081,"Ross Stores, Inc.",209,16,Dublin,CA
+41.5886935,-93.6275465,"Principal Financial Group, Inc.",210,24,Des Moines,IA
+32.7609582,-97.0907316,"D.R. Horton, Inc.",211,16,Arlington,TX
+40.7568981,-73.9822067,"Marsh & McLennan Companies, Inc.",212,24,New York,NY
+35.4671013,-97.518127,Devon Energy Corporation,213,17,Oklahoma City,OK
+38.8796165,-77.1127474,The AES Corporation,214,18,Arlington,VA
+44.946551,-93.0977331,Ecolab Inc.,215,16,St. Paul,MN
+45.0622923,-93.1512264,"Land O'Lakes, Inc.",216,16,Arden Hills,MN
+40.7645223,-73.9702939,Loews Corporation,217,24,New York,NY
+29.7430899,-95.1550803,"Kinder Morgan, Inc.",218,15,Houston,TX
+41.0834275,-81.5185695,FirstEnergy Corp.,219,23,Akron,OH
+29.7305064,-95.4321022,Occidental Petroleum Corporation,220,24,Houston,TX
+40.7579353,-73.9861885,Viacom Inc.,221,13,New York,NY
+37.3763719,-121.9226185,"PayPal Holdings, Inc.",222,3,San Jose,CA
+36.0742323,-95.9250989,NGL Energy Partners LP,223,4,Tulsa,OK
+40.7090186,-74.3452692,Celgene Corporation,224,7,Summit,NJ
+40.7595975,-73.972845,Arconic Inc.,225,24,New York,NY
+42.3175175,-85.1521885,Kellogg Company,226,24,Battle Creek,MI
+36.1220757,-115.1670577,Las Vegas Sands Corp.,227,9,Las Vegas,NV
+41.6934178,-72.8082988,"Stanley Black & Decker, Inc.",228,11,New Britain,CT
+41.117744,-73.4081575,Booking Holdings Inc,229,6,Norwalk,CT
+25.7769431,-80.3703976,Lennar Corporation,230,14,Miami,FL
+40.0543384,-82.8968815,"L Brands, Inc.",231,24,Columbus,OH
+42.3336164,-83.0575473,DTE Energy Company,232,24,Detroit,MI
+37.4665203,-77.4475226,"Dominion Energy, Inc.",233,24,Richmond,VA
+38.661306,-90.56653,"Reinsurance Group of America, Incorporated",234,9,Chesterfield,MO
+33.0822936,-96.8325923,"J.C. Penney Company, Inc.",235,24,Plano,TX
+41.0233282,-73.7140828,Mastercard Incorporated,236,10,Purchase,NY
+40.7590777,-73.9736148,"BlackRock, Inc.",237,11,New York,NY
+40.7677654,-73.4175771,"Henry Schein, Inc.",238,15,Melville,NY
+40.7040749,-74.0095084,Guardian Life Ins. Co. of America,239,24,New York,NY
+42.2428207,-85.5553397,Stryker Corporation,240,16,Kalamazoo,MI
+40.7602017,-73.9743782,Leucadia National Corporation,241,6,New York,NY
+36.122155,-79.798901,V.F. Corporation,242,24,Greensboro,NC
+40.8155809,-74.31007,"Automatic Data Processing, Inc.",243,24,Roseland,NJ
+34.0540475,-118.0806461,Edison International,244,24,Rosemead,CA
+42.3662897,-71.0857637,Biogen Inc.,245,9,Cambridge,MA
+40.4424701,-79.995298,United States Steel Corporation,246,16,Pittsburgh,PA
+37.667174,-122.382752,"Core-Mark Holding Company, Inc.",247,9,South San Francisco,CA
+40.697362,-74.304033,Bed Bath & Beyond Inc.,248,15,Union,NJ
+36.1506247,-95.9917964,"ONEOK, Inc.",249,16,Tulsa,OK
+36.0956646,-80.2451009,BB&T Corporation,250,20,Winston-Salem,NC
+41.0163291,-74.2085777,"Becton, Dickinson and Company",251,24,Franklin Lakes,NJ
+44.9778911,-93.2708198,"Ameriprise Financial, Inc.",252,12,Minneapolis,MN
+34.1845383,-118.6020845,Farmers Insurance Exchange,253,4,Woodland Hills,CA
+40.713571,-73.8359272,First Data Corporation,254,24,New York,NY
+40.7086181,-74.0113406,"Consolidated Edison, Inc.",255,24,New York,NY
+41.506534,-81.4610714,Parker-Hannifin Corporation,256,24,Cleveland,OH
+30.1606971,-95.4538201,Anadarko Petroleum Corporation,257,18,The Woodlands,TX
+40.7127753,-74.0059728,,258,23,New York,NY
+42.3527258,-71.0584443,State Street Corporation,259,23,Boston,MA
+37.3947057,-122.1503251,"Tesla, Inc.",260,2,Palo Alto,CA
+37.259585,-121.962695,"Netflix, Inc.",261,4,Los Gatos,CA
+40.4477863,-80.0011965,Alcoa Corporation,262,2,Pittsburgh,PA
+42.1567624,-87.8901097,Discover Financial Services,263,10,Riverwoods,IL
+41.4251797,-73.4101413,"Praxair, Inc.",264,24,Danbury,CT
+30.3245211,-81.6640579,CSX Corporation,265,24,Jacksonville,FL
+44.9795754,-93.2705091,Xcel Energy Inc.,266,22,Minneapolis,MN
+35.0504326,-85.3073211,Unum Group,267,23,Chattanooga,TN
+40.078207,-75.36959,"Universal Health Services, Inc.",268,15,King of Prussia,PA
+40.3193925,-74.6546731,"NRG Energy, Inc.",269,12,Princeton,NJ
+29.7587886,-95.3708019,"EOG Resources, Inc.",270,10,Houston,TX
+32.8772916,-117.1666183,Sempra Energy,271,20,San Diego,CA
+40.960991,-74.2396667,"Toys ""R"" Us, Inc.",272,24,Wayne,NJ
+29.7777447,-95.5438873,"Group 1 Automotive, Inc.",273,18,Houston,TX
+29.9537517,-90.0805706,Entergy Corporation,274,24,New Orleans,LA
+39.7476733,-104.9898183,Molson Coors Brewing Company,275,8,Denver,CO
+40.7492599,-73.975865,"L3 Technologies, Inc.",276,16,New York,NY
+39.9105846,-105.1023248,Ball Corporation,277,22,Broomfield,CO
+35.1420009,-90.0561333,"AutoZone, Inc.",278,20,Memphis,TN
+33.2146653,-92.6622907,Murphy USA Inc.,279,5,El Dorado,AR
+36.1308814,-115.1729919,MGM Resorts International,280,18,Las Vegas,NV
+26.4047985,-80.1201088,"Office Depot, Inc.",281,24,Boca Raton,FL
+30.1596297,-95.4564633,Huntsman Corporation,282,13,The Woodlands,TX
+42.1593374,-87.8793282,Baxter International Inc.,283,24,Deerfield,IL
+36.8454996,-76.2880966,Norfolk Southern Corporation,284,24,Norfolk,VA
+37.7918328,-122.3944315,"salesforce.com, inc.",285,4,San Francisco,CA
+36.0917949,-79.43918,Laboratory Corporation of America Holdings,286,9,Burlington,NC
+42.2367488,-87.9127392,"W.W. Grainger, Inc.",287,24,Lake Forest,IL
+39.6477653,-104.9877597,"Qurate Retail, Inc.",288,14,Englewood,CO
+42.6944224,-83.274261,"Autoliv, Inc.",289,20,Auburn Hills,MI
+34.065524,-118.400498,"Live Nation Entertainment, Inc.",290,9,Beverly Hills,CA
+41.1449042,-73.428685,Xerox Corporation,291,24,Norwalk,CT
+38.9590083,-77.3592745,"Leidos Holdings, Inc.",292,18,Reston,VA
+42.1453767,-77.0558823,Corning Incorporated,293,23,Corning,NY
+42.3286339,-122.8720577,"Lithia Motors, Inc.",294,4,Medford,OR
+47.6134818,-122.1966308,"Expedia Group, Inc.",295,4,Bellevue,WA
+33.6541784,-111.930024,"Republic Services, Inc.",296,9,Phoenix,AZ
+32.7847426,-96.7970072,Jacobs Engineering Group Inc.,297,18,Dallas,TX
+35.184495,-80.754423,"Sonic Automotive, Inc",298,19,Charlotte,NC
+42.3300859,-83.0451339,Ally Financial Inc.,299,11,Detroit,MI
+41.8822757,-87.640459,LKQ Corporation,300,5,Chicago,IL
+42.6458447,-83.2107925,BorgWarner Inc.,301,12,Auburn Hills,MI
+30.3181782,-81.6764314,"Fidelity National Financial, Inc.",302,11,Jacksonville,FL
+33.7627645,-84.3865653,"SunTrust Banks, Inc.",303,24,Atlanta,GA
+35.8807907,-78.8406611,IQVIA Holdings Inc.,304,5,Durham,NC
+34.051473,-118.2514575,Reliance Steel & Aluminum Co.,305,12,Los Angeles,CA
+37.3706254,-121.9671894,NVIDIA Corporation,306,2,Santa Clara,CA
+40.7544703,-73.9759853,"Voya Financial, Inc.",306,4,New York,NY
+29.7410888,-94.960743,"CenterPoint Energy, Inc.",306,24,Houston,TX
+37.295469,-121.9275096,eBay Inc.,309,13,San Jose,CA
+36.5354221,-82.5509302,Eastman Chemical Company,310,24,Kingsport,TN
+43.1562216,-89.2880086,American Family Insurance Group,311,22,Madison,WI
+41.041105,-85.23743,"Steel Dynamics, Inc.",312,9,Fort Wayne,IN
+33.6193163,-117.8780155,Pacific Life,313,22,Newport Beach,CA
+35.5348019,-97.5285261,Chesapeake Energy Corporation,314,13,Oklahoma City,OK
+34.4723374,-84.937825,"Mohawk Industries, Inc.",315,19,Calhoun,GA
+29.7371507,-95.4612324,"Quanta Services, Inc.",316,6,Houston,TX
+37.2830294,-79.9550655,"Advance Auto Parts, Inc.",317,16,Roanoke,VA
+37.6443945,-77.4085792,"Owens & Minor, Inc.",318,24,Mechanicsville,VA
+41.8286845,-71.4316989,"United Natural Foods, Inc.",319,6,Providence,RI
+42.2486115,-87.8992858,Tenneco Inc.,320,24,Lake Forest,IL
+41.8885198,-87.6354481,"Conagra Brands, Inc.",321,24,Chicago,IL
+32.9026401,-97.0874996,GameStop Corp.,322,12,Grapevine,TX
+43.6824203,-92.9684034,Hormel Foods Corporation,323,24,Austin,MN
+38.9280922,-77.2151231,Hilton Worldwide Holdings Inc.,324,15,McLean,VA
+41.148396,-73.427084,Frontier Communications Corporation,325,5,Norwalk,CT
+30.3181782,-81.6764314,"Fidelity National Information Services, Inc.",326,9,Jacksonville,FL
+40.7369278,-74.1684117,Public Service Enterprise Group Incorporated,327,24,Newark,NJ
+42.3611457,-71.5615488,Boston Scientific Corporation,328,15,Marlborough,MA
+37.2413508,-93.3027206,"O'Reilly Automotive, Inc.",329,9,Springfield,MO
+37.7905969,-122.3927896,The Charles Schwab Corporation,330,20,San Francisco,CA
+42.3547248,-71.2624797,Global Partners LP,331,12,Waltham,MA
+40.7489466,-73.9826768,PVH Corp.,332,8,New York,NY
+40.8486045,-74.450679,"Avis Budget Group, Inc.",333,21,Parsippany,NJ
+29.7593094,-95.366483,Targa Resources Corp.,334,10,Houston,TX
+26.4163846,-81.8110832,"Hertz Global Holdings, Inc.",335,11,Estero,FL
+29.7613419,-95.3643842,Calpine Corporation,336,17,Houston,TX
+41.2676159,-96.0987799,Mutual of Omaha Insurance Company,337,22,Omaha,NE
+40.2226162,-74.8833322,"Crown Holdings, Inc.",338,24,Philadelphia,PA
+41.2572028,-95.9654637,"Peter Kiewit Sons', Inc.",339,19,Omaha,NE
+40.5076307,-80.2658323,"Dick's Sporting Goods, Inc.",340,9,Coraopolis,PA
+33.8476215,-84.3680924,"PulteGroup, Inc.",341,16,Atlanta,GA
+41.809967,-88.107655,Navistar International Corporation,342,22,Lisle,IL
+44.9749387,-93.2658792,Thrivent Financial for Lutherans,343,24,Minneapolis,MN
+39.743468,-104.9885753,"DCP Midstream, LP",344,1,Denver,CO
+40.6,-75.47,"Air Products & Chemicals, Inc.",345,24,Allentown,PA
+33.9348551,-84.3546072,Veritiv Corp,346,3,Atlanta,GA
+34.0173802,-84.1645539,AGCO Corporation,347,17,Duluth,GA
+37.6029623,-77.5134614,"Genworth Financial, Inc.",348,13,Richmond,VA
+41.8326412,-88.0055254,Univar Inc.,349,3,Downers Grove,IL
+40.7585425,-73.9821342,News Corporation,350,4,New York,NY
+42.825551,-85.684614,SpartanNash Company,351,8,Byron Center,MI
+29.7375088,-95.4604207,Westlake Chemical Corporation,352,1,Houston,TX
+36.155117,-95.9906814,"The Williams Companies, Inc.",353,24,Tulsa,OK
+37.4886066,-121.957034,Lam Research Corporation,354,3,Fremont,CA
+47.6157528,-122.3511293,"Alaska Air Group, Inc.",355,5,Seattle,WA
+41.8835198,-87.6416513,Jones Lang LaSalle Incorporated,356,4,Chicago,IL
+42.0974698,-87.8239375,Anixter International Inc.,357,16,Glenview,IL
+39.9390315,-75.1080212,Campbell Soup Company,358,24,Camden,NJ
+40.7583114,-73.9679267,"The Interpublic Group of Companies, Inc.",359,21,New York,NY
+41.8332067,-88.0075585,Dover Corporation,360,24,Downers Grove,IL
+41.2394166,-85.8541213,"Zimmer Biomet Holdings, Inc.",361,3,Warsaw,IN
+32.8055096,-96.7923794,Dean Foods Company,362,20,Dallas,TX
+40.7525899,-73.9951693,"Foot Locker, Inc.",363,24,New York,NY
+42.150861,-72.547591,Eversource Energy,364,23,Springfield,MA
+33.081018,-96.8235733,Alliance Data Systems Corporation,365,4,Plano,TX
+39.1327265,-84.5094819,Fifth Third Bancorp,366,19,Cincinnati,OH
+40.7878337,-74.0449297,Quest Diagnostics Incorporated,367,18,Secaucus,NJ
+41.1493739,-73.4269254,"EMCOR Group, Inc.",368,18,Norwalk,CT
+41.018681,-73.6223224,W.R. Berkley Corporation,369,15,Greenwich,CT
+40.4337234,-80.0057853,"WESCO International, Inc.",370,20,Pittsburgh,PA
+40.7484874,-73.9853882,Coty Inc.,371,1,New York,NY
+43.0370248,-87.9138514,"WEC Energy Group, Inc.",372,9,Milwaukee,WI
+42.4154801,-83.4260215,Masco Corporation,373,24,Livonia,MI
+38.9233855,-77.2214581,DXC Technology Company,374,1,Tysons,VA
+42.698666,-84.646595,Auto-Owners Insurance Group,375,16,Lansing,MI
+38.6026514,-90.4366909,"The Jones Financial Companies, L.L.L.P.",376,6,Des Peres,MO
+39.553121,-104.846177,Liberty Media Corporation,377,2,Englewood,CO
+42.130601,-80.083889,Erie Insurance Group,378,15,Erie,PA
+40.3010092,-76.6484458,The Hershey Company,379,24,Hershey,PA
+40.5929777,-75.5566002,PPL Corporation,380,24,Allentown,PA
+36.9882362,-76.4371783,"Huntington Ingalls Industries, Inc.",381,6,Newport News,VA
+45.0154671,-93.4546099,The Mosaic Company,382,13,Plymouth,MN
+40.8470663,-81.7621164,The J.M. Smucker Company,383,8,Orrville,OH
+35.971056,-86.809402,"Delek US Holdings, Inc.",384,4,Brentwood,TN
+39.6012257,-104.8925437,Newmont Mining Corporation,385,15,Greenwood Village,CO
+43.0284222,-77.4348227,"Constellation Brands, Inc.",386,6,Victor,NY
+25.8111422,-80.3138856,"Ryder System, Inc.",387,24,Miami,FL
+29.9543357,-95.5201814,"National Oilwell Varco, Inc.",388,13,Houston,TX
+37.3307703,-121.8940951,Adobe Systems Incorporated,389,2,San Jose,CA
+36.0416066,-86.7691697,"LifePoint Health, Inc.",390,4,Brentwood,TN
+36.0324822,-86.8123201,Tractor Supply Company,391,5,Brentwood,TN
+41.6927108,-85.9689126,"Thor Industries, Inc.",392,1,Elkhart,IN
+41.5677315,-83.6933969,Dana Incorporated,393,24,Maumee,OH
+47.6004408,-122.332628,Weyerhaeuser Company,394,24,Seattle,WA
+36.2447313,-94.1494438,"J.B. Hunt Transport Services, Inc.",395,6,Lowell,AR
+28.4180207,-81.4248443,"Darden Restaurants, Inc.",396,22,Orlando,FL
+33.075221,-96.8349298,"Yum China Holdings, Inc.",397,2,Plano,TX
+40.7581073,-73.9726262,The Blackstone Group L.P.,398,3,New York,NY
+37.9796804,-87.5736147,"Berry Global Group, Inc.",399,2,Evansville,IN
+32.78536,-96.796337,"Builders FirstSource, Inc.",400,2,Dallas,TX
+34.0198026,-118.4524457,"Activision Blizzard, Inc.",401,2,Santa Monica,CA
+40.7509337,-73.9385978,JetBlue Airways Corporation,402,6,Long Island City,NY
+41.460139,-72.833322,Amphenol Corporation,403,4,Wallingford,CT
+33.902344,-118.38731,"A-Mark Precious Metals, Inc.",403,4,El Segundo,CA
+37.6220764,-97.2808584,"Spirit AeroSystems Holdings, Inc.",405,4,Wichita,KS
+41.8864494,-87.629079,R.R. Donnelley & Sons Company,406,24,Chicago,IL
+28.0907203,-80.6384575,Harris Corporation,407,14,Melbourne,FL
+47.605838,-122.334683,"Expeditors International of Washington, Inc.",408,11,Seattle,WA
+38.9947766,-77.0276063,"Discovery, Inc.",409,5,Silver Spring,MD
+41.5285372,-83.6479919,"Owens-Illinois, Inc.",410,24,Perrysburg,OH
+37.390754,-121.930046,Sanmina Corporation,411,18,San Jose,CA
+41.5011565,-81.6941787,KeyCorp,412,20,Cleveland,OH
+39.0998489,-84.5069861,"American Financial Group, Inc.",413,19,Cincinnati,OH
+43.9928377,-88.5427575,Oshkosh Corporation,414,11,Oshkosh,WI
+42.0319988,-91.6394176,"Rockwell Collins, Inc.",415,7,Cedar Rapids,IA
+38.2464551,-85.7594525,"Kindred Healthcare, Inc.",416,15,Louisville,KY
+33.3422522,-111.9527302,"Insight Enterprises, Inc.",417,10,Tempe,AZ
+33.077788,-96.8060585,"Dr Pepper Snapple Group, Inc.",418,10,Plano,TX
+42.346449,-71.079981,American Tower Corporation,419,2,Boston,MA
+47.8764259,-122.2452539,Fortive Corporation,420,1,Everett,WA
+40.7630828,-73.9713783,Ralph Lauren Corporation,421,10,New York,NY
+40.7615931,-73.9710965,"HRG Group, Inc.",422,5,New York,NY
+41.0738813,-74.171283,"Ascena Retail Group, Inc.",423,2,Mahwah,NJ
+41.0409336,-73.5570997,"United Rentals, Inc.",424,5,Stamford,CT
+41.693711,-93.57317,"Casey's General Stores, Inc.",425,8,Ankeny,IA
+38.6514204,-90.3388005,"Graybar Electric Company, Inc.",426,24,St. Louis,MO
+34.1570786,-118.256822,Avery Dennison Corporation,427,24,Glendale,CA
+25.7632876,-80.2567796,"MasTec, Inc.",428,1,Coral Gables,FL
+42.2466617,-84.4022463,CMS Energy Corporation,429,24,Jackson,MI
+33.8784793,-84.4538673,"HD Supply Holdings, Inc.",430,6,Atlanta,GA
+27.892204,-82.6695587,"Raymond James Financial, Inc.",431,3,St. Petersburg,FL
+33.7792561,-84.3895212,NCR Corporation,432,21,Atlanta,GA
+36.1889711,-80.2639139,Hanesbrands Inc.,433,4,Winston-Salem,NC
+34.0057975,-84.0932488,"Asbury Automotive Group, Inc.",434,12,Duluth,GA
+41.8274346,-71.4107334,"Citizens Financial Group, Inc.",435,3,Providence,RI
+42.2431056,-87.8945164,Packaging Corporation of America,436,4,Lake Forest,IL
+40.7542881,-73.9876105,Alleghany Corporation,437,4,New York,NY
+29.744689,-95.4616265,Apache Corporation,438,15,Houston,TX
+34.754637,-92.2877741,"Dillard's, Inc.",439,24,Little Rock,AR
+40.7077916,-74.0089405,"Assurant, Inc.",440,14,New York,NY
+37.5441657,-122.2939401,"Franklin Resources, Inc.",441,13,San Mateo,CA
+41.6461679,-83.5342454,Owens Corning,442,24,Toledo,OH
+41.8809559,-87.6406245,"Motorola Solutions, Inc.",443,24,Chicago,IL
+38.9519446,-77.3502091,"NVR, Inc.",444,9,Reston,VA
+43.0185625,-87.9133706,"Rockwell Automation, Inc.",445,24,Milwaukee,WI
+41.8494532,-87.9473067,"TreeHouse Foods, Inc.",446,2,Oak Brook,IL
+36.1265953,-115.1653652,"Wynn Resorts, Limited",447,5,Las Vegas,NV
+38.6482951,-90.333205,Olin Corporation,448,5,Clayton,MO
+42.3886657,-83.0637691,"American Axle & Manufacturing Holdings, Inc.",449,4,Detroit,MI
+41.887068,-87.6241579,Old Republic International Corporation,450,7,Chicago,IL
+39.7462432,-75.5479241,The Chemours Company,451,2,Wilmington,DE
+29.4850404,-98.5425283,"iHeartMedia, Inc.",452,18,San Antonio,TX
+38.6224443,-90.2095588,Ameren Corporation,453,21,St. Louis,MO
+42.0535852,-88.0168425,Arthur J. Gallagher & Co.,454,3,Rolling Meadows,IL
+32.871208,-96.943557,Celanese Corporation,455,13,Irving,TX
+35.198959,-80.91812,Sealed Air Corporation,456,21,Charlotte,NC
+40.0885417,-75.4070304,UGI Corporation,457,14,King of Prussia,PA
+40.7716197,-74.4231855,Realogy Holdings Corp.,458,8,Madison,NJ
+40.092503,-74.8076916,"Burlington Stores, Inc.",459,3,Burlington,NJ
+33.5180599,-86.8090118,Regions Financial Corporation,460,20,Birmingham,AL
+39.3274276,-84.4281267,AK Steel Holding Corporation,461,18,West Chester,OH
+44.9488987,-93.0914442,"Securian Financial Group, Inc.",462,1,St. Paul,MN
+40.7502557,-73.9919964,S&P Global Inc.,463,24,New York,NY
+37.661594,-77.576847,Markel Corporation,464,3,Glen Allen,VA
+41.4570445,-81.8938896,TravelCenters of America LLC,465,11,Westlake,OH
+40.7827717,-74.4263051,Conduent Incorporated,466,1,Florham Park,NJ
+42.8837479,-78.8743016,M&T Bank Corporation,467,3,Buffalo,NY
+37.803487,-122.272377,The Clorox Company,468,19,Oakland,CA
+40.708772,-74.007906,"AmTrust Financial Services, Inc.",469,2,New York,NY
+40.763765,-73.975014,KKR & Co. L.P.,470,6,New York,NY
+41.7199756,-88.0420246,"Ulta Beauty, Inc.",471,1,Bolingbrook,IL
+38.1979017,-85.6956502,"Yum! Brands, Inc.",472,20,Louisville,KY
+41.0767773,-73.8263889,"Regeneron Pharmaceuticals, Inc.",473,1,Tarrytown,NY
+34.7872893,-92.3979922,"Windstream Holdings, Inc.",474,6,Little Rock,AR
+33.5084918,-111.9271907,"Magellan Health, Inc.",475,1,Scottsdale,AZ
+39.101754,-84.505839,Western & Southern Mutual Holding Company,476,14,Cincinnati,OH
+33.9088822,-84.4307488,"Intercontinental Exchange, Inc.",477,2,Atlanta,GA
+41.8453955,-87.9052856,Ingredion Incorporated,478,7,Westchester,IL
+40.8466866,-74.4404735,"Wyndham Destinations, Inc.",479,5,Parsippany,NJ
+40.1747046,-75.1358449,"Toll Brothers, Inc.",480,6,Horsham,PA
+39.0081599,-94.690957,Seaboard Corporation,481,8,Merriam,KS
+38.9218202,-77.2319233,Booz Allen Hamilton Holding Corp.,482,8,McLean,VA
+33.7019896,-117.8601399,First American Financial Corporation,483,4,Santa Ana,CA
+39.3078548,-84.5203568,Cincinnati Financial Corporation,484,4,Fairfield,OH
+40.9865712,-73.6756752,"Avon Products, Inc.",485,24,Rye,NY
+41.7219317,-87.6256179,Northern Trust Corporation,486,7,Chicago,IL
+43.0338183,-88.1408569,"Fiserv, Inc.",487,8,Brookfield,WI
+43.0460968,-87.9599862,"Harley-Davidson, Inc.",488,17,Milwaukee,WI
+29.7601536,-95.3653756,"Cheniere Energy, Inc.",489,1,Houston,TX
+44.8667548,-93.1425567,"Patterson Companies, Inc.",490,2,St. Paul,MN
+38.626689,-90.1925651,Peabody Energy Corporation,491,13,St. Louis,MO
+33.4636186,-111.9701255,ON Semiconductor Corporation,492,1,Phoenix,AZ
+39.7668367,-86.1623174,"Simon Property Group, Inc.",493,5,Indianapolis,IN
+39.6558182,-104.9893468,The Western Union Company,494,12,Englewood,CO
+37.4149198,-122.0095976,"NetApp, Inc.",495,7,Sunnyvale,CA
+45.057507,-93.5765367,Polaris Industries Inc.,496,1,Medina,MN
+32.8705881,-96.9397359,Pioneer Natural Resources Company,497,2,Irving,TX
+40.70968,-74.010962,ABM Industries Incorporated,498,3,New York,NY
+32.898375,-96.9642376,Vistra Energy Corp.,499,2,Irving,TX
+39.3411816,-84.282986,Cintas Corporation,500,1,Cincinnati,OH
+40.7578343,-73.9824195,Hess Corporation,501,,New York,NY
+39.0273151,-77.1398734,"Host Hotels & Resorts, Inc.",502,,Bethesda,MD
+42.5607669,-83.1664912,"Kelly Services, Inc.",503,,Troy,MI
+39.8471587,-75.7116804,"Genesis Healthcare, Inc.",504,,Kennett Square,PA
+32.909817,-96.961533,"The Michaels Companies, Inc.",505,,Irving,TX
+37.3829254,-121.9703842,"Advanced Micro Devices, Inc.",506,,Santa Clara,CA
+40.8470715,-74.4447772,Zoetis Inc.,507,,Parsippany,NJ
+37.8072933,-122.4095588,"Williams-Sonoma, Inc.",508,,San Francisco,CA
+42.1560928,-87.8427502,"Fortune Brands Home & Security, Inc.",509,,Deerfield,IL
+39.9591965,-83.109347,"Big Lots, Inc.",510,,Columbus,OH
+37.4219278,-122.2150952,Robert Half International Inc.,511,,Menlo Park,CA
+38.6165266,-90.334968,"Post Holdings, Inc.",512,,St. Louis,MO
+41.8836325,-71.3522598,"Hasbro, Inc.",513,,Pawtucket,RI
+42.2926472,-71.7830993,"The Hanover Insurance Group, Inc.",514,,Worcester,MA
+39.7382681,-75.559152,Navient Corporation,515,,Wilmington,DE
+37.4311188,-122.0980033,Intuit Inc.,516,,Mountain View,CA
+35.0242594,-80.9642816,Domtar Corporation,517,,Fort Mill,SC
+29.7493374,-95.4718244,Marathon Oil Corporation,518,,Houston,TX
+39.149929,-94.5458166,Cerner Corporation,519,,North Kansas City,MO
+42.2104866,-71.1806236,"Analog Devices, Inc.",520,,Norwood,MA
+41.8828131,-87.6329898,"Telephone and Data Systems, Inc.",521,,Chicago,IL
+42.1639468,-87.8767361,Essendant Inc.,522,,Deerfield,IL
+34.3814307,-80.0666708,Sonoco Products Company,523,,Hartsville,SC
+37.4075923,-122.0292407,"Juniper Networks, Inc.",524,,Sunnyvale,CA
+32.898232,-96.959885,Commercial Metals Company,525,,Irving,TX
+38.86191,-77.214489,CSRA Inc.,526,,Falls Church,VA
+39.282376,-76.6012335,"Under Armour, Inc.",527,,Baltimore,MD
+41.202366,-81.844115,RPM International Inc.,528,,Medina,OH
+32.4749904,-84.9924032,"Total System Services, Inc.",529,,Columbus,GA
+37.801791,-122.402309,Levi Strauss & Co.,530,,San Francisco,CA
+42.2420119,-87.9040649,Brunswick Corporation,531,,Mettawa,IL
+38.930528,-94.640721,YRC Worldwide Inc.,532,,Overland Park,KS
+33.920575,-118.3914183,"Mattel, Inc.",533,,El Segundo,CA
+41.808561,-71.484082,Factory Mutual Insurance Company,534,,Johnston,RI
+41.4614667,-87.325459,NiSource Inc.,535,,Merrillville,IN
+36.1165658,-115.1752403,Caesars Entertainment Corporation,536,,Las Vegas,NV
+37.5232794,-122.2541438,Electronic Arts Inc.,537,,Redwood City,CA
+29.759798,-95.363542,Dynegy Inc.,538,,Houston,TX
+39.520315,-76.64976,"McCormick & Company, Incorporated",539,,Sparks,MD
+39.2869256,-76.6127939,"T. Rowe Price Group, Inc.",540,,Baltimore,MD
+39.0122648,-77.4315387,"Orbital ATK, Inc.",541,,Dulles,VA
+34.3125079,-118.4773291,Tutor Perini Corporation,542,,Sylmar,CA
+36.036134,-86.8065888,Brookdale Senior Living Inc.,543,,Brentwood,TN
+39.9610692,-83.0008326,Huntington Bancshares Incorporated,544,,Columbus,OH
+42.347118,-71.078357,Wayfair Inc.,545,,Boston,MA
+29.687926,-98.117391,"Rush Enterprises, Inc.",546,,New Braunfels,TX
+41.0501239,-73.6879769,Xylem Inc.,547,,Rye Brook,NY
+32.7806295,-96.7973219,Neiman Marcus Group LTD LLC,548,,Dallas,TX
+41.8848648,-87.6386472,Hyatt Hotels Corporation,549,,Chicago,IL
+33.4959774,-112.0197914,"Sprouts Farmers Market, Inc.",550,,Phoenix,AZ
+40.907369,-81.4230658,"Diebold Nixdorf, Incorporated",551,,North Canton,OH
+27.3838405,-82.4320625,"Roper Technologies, Inc.",552,,Sarasota,FL
+34.0057264,-118.1514192,"Smart & Final Stores, Inc.",553,,Commerce,CA
+35.7151844,-81.3175065,"CommScope Holding Company, Inc.",554,,Hickory,NC
+40.7411629,-73.9921063,"Tapestry, Inc.",555,,New York,NY
+42.9861295,-83.6777782,"Diplomat Pharmacy, Inc.",556,,Flint,MI
+39.7504997,-105.0031883,"Chipotle Mexican Grill, Inc.",557,,Denver,CO
+37.3248859,-121.998857,"Agilent Technologies, Inc.",558,,Santa Clara,CA
+38.9463374,-77.3402357,Science Applications International Corporation,559,,Reston,VA
+46.8358387,-100.8126265,"MDU Resources Group, Inc.",560,,Bismarck,ND
+40.2132535,-76.9603149,Select Medical Holdings Corporation,561,,Mechanicsburg,PA
+43.6194842,-116.205995,Boise Cascade Company,562,,Boise,ID
+40.70871,-74.0079322,National General Holdings Corp.,563,,New York,NY
+33.9360787,-81.0485009,SCANA Corporation,564,,Cayce,SC
+33.9084708,-84.4357919,Graphic Packaging Holding Company,565,,Atlanta,GA
+44.06284,-91.687555,Fastenal Company,566,,Winona,MN
+44.4597475,-88.0868611,"Schneider National, Inc.",567,,Green Bay,WI
+39.1690974,-76.8087518,"Laureate Education, Inc.",568,,Baltimore,MD
+38.9634821,-77.3815185,"Beacon Roofing Supply, Inc.",569,,Herndon,VA
+34.0575225,-118.4471231,KB Home,570,,Los Angeles,CA
+37.527412,-122.26131,"Equinix, Inc.",571,,Redwood City,CA
+41.1230335,-73.3272018,Terex Corporation,572,,Westport,CT
+29.7546665,-95.4831109,Crown Castle International Corp.,573,,Houston,TX
+38.8834307,-77.1180226,CACI International Inc.,574,,Arlington,VA
+25.731232,-80.236793,"Watsco, Inc.",575,,Miami,FL
+35.2827039,-80.8807325,Coca-Cola Bottling Co. Consolidated,576,,Charlotte,NC
+41.655963,-83.646004,Welltower Inc.,577,,Toledo,OH
+26.395142,-80.117658,ADT Inc.,578,,Boca Raton,FL
+40.0618853,-75.4635457,"AMETEK, Inc.",579,,Berwyn,PA
+39.962502,-86.1510509,"CNO Financial Group, Inc.",580,,Carmel,IN
+42.179383,-87.928017,"Camping World Holdings, Inc.",581,,Lincolnshire,IL
+42.3586616,-71.0550652,LPL Financial Holdings Inc.,582,,Boston,MA
+29.9946086,-95.5808027,"Noble Energy, Inc.",583,,Houston,TX
+27.9604972,-82.5247827,"Bloomin' Brands, Inc.",584,,Tampa,FL
+40.7134088,-74.011926,Moody's Corporation,585,,New York,NY
+37.3981961,-122.0544663,Symantec Corporation,586,,Mountain View,CA
+33.3355393,-111.8989716,"Amkor Technology, Inc.",587,,Tempe,AZ
+33.8845317,-118.410871,"Skechers U.S.A., Inc.",588,,Manhattan Beach,CA
+29.753237,-95.372353,"KBR, Inc.",589,,Houston,TX
+40.7626931,-73.9739144,Tiffany & Co.,590,,New York,NY
+33.1717418,-96.7284935,Torchmark Corporation,591,,McKinney,TX
+40.7620101,-73.6907153,"Broadridge Financial Solutions, Inc.",592,,Lake Success,NY
+43.130613,-88.2043492,"Quad/Graphics, Inc.",593,,Sussex,WI
+42.1626083,-87.8810834,"CF Industries Holdings, Inc.",594,,Deerfield,IL
+33.6355322,-111.9266523,Carlisle Companies Incorporated,595,,Scottsdale,AZ
+41.0547217,-73.5383112,Silgan Holdings Inc.,596,,Stamford,CT
+44.1860429,-88.4599966,"Bemis Company, Inc.",597,,Neenah,WI
+40.7601366,-73.9744629,"CA, Inc.",598,,New York,NY
+41.8505218,-87.9303123,"Hub Group, Inc.",599,,Oak Brook,IL
+39.2807348,-84.3173878,"Worldpay, Inc.",600,,Symmes Township,OH
+35.6088048,-82.3212095,"Ingles Markets, Incorporated",601,,Black Mountain,NC
+42.5570789,-87.8433107,Snap-on Incorporated,602,,Kenosha,WI
+39.9857136,-76.7572323,DENTSPLY SIRONA Inc.,603,,York,PA
+39.8056336,-86.2786234,"Calumet Specialty Products Partners, L.P.",604,,Indianapolis,IN
+33.9362532,-84.3613229,Global Payments Inc.,605,,Atlanta,GA
+33.4775054,-86.7041985,Encompass Health Corporation,606,,Birmingham,AL
+35.819643,-78.691097,"Martin Marietta Materials, Inc.",607,,Raleigh,NC
+40.7097157,-74.0108933,"Nasdaq, Inc.",608,,New York,NY
+37.2009451,-94.3319318,"Leggett & Platt, Incorporated",609,,Carthage,MO
+43.0139455,-85.5917888,"Universal Forest Products, Inc.",610,,Grand Rapids,MI
+33.1846339,-97.0994633,"Sally Beauty Holdings, Inc.",611,,Denton,TX
+30.8110512,-83.936898,"Flowers Foods, Inc.",612,,Thomasville,GA
+40.7383643,-73.9923886,"Barnes & Noble, Inc.",613,,New York,NY
+41.5944859,-93.7916559,American Equity Investment Life Holding Company,614,,West Des Moines,IA
+33.482255,-86.7052808,Vulcan Materials Company,615,,Birmingham,AL
+33.508409,-111.9285822,Taylor Morrison Home Corporation,616,,Scottsdale,AZ
+40.3940617,-79.808552,Westinghouse Air Brake Technologies Corporation,617,,Wilmerding,PA
+29.757981,-95.3631851,Crestwood Equity Partners LP,618,,Houston,TX
+42.3483171,-71.064721,Iron Mountain Incorporated,619,,Boston,MA
+32.9803874,-96.7603576,Lennox International Inc.,620,,Richardson,TX
+39.0436533,-84.4622223,General Cable Corporation,621,,Highland Heights,KY
+40.4269004,-79.9634049,"American Eagle Outfitters, Inc.",622,,Pittsburgh,PA
+40.2868977,-74.7870701,"Church & Dwight Co., Inc.",623,,Ewing,NJ
+26.6935618,-80.0739438,Platform Specialty Products Corporation,624,,West Palm Beach,FL
+35.1377847,-80.9286827,"JELD-WEN Holding, Inc.",625,,Charlotte,NC
+37.976238,-87.578861,"OneMain Holdings, Inc.",626,,Evansville,IN
+39.1353937,-76.7693109,Colfax Corporation,627,,Annapolis Junction,MD
+42.187546,-87.9337157,Zebra Technologies Corporation,628,,Lincolnshire,IL
+41.5856871,-83.6945515,"The Andersons, Inc.",629,,Maumee,OH
+41.233427,-96.083236,TD Ameritrade Holding Corporation,630,,Omaha,NE
+38.8954257,-77.0265163,The Carlyle Group L.P.,631,,Washington,DC
+41.2958883,-73.0806317,Hubbell Incorporated,632,,Shelton,CT
+32.8054838,-96.8399815,"Trinity Industries, Inc.",633,,Dallas,TX
+32.8673539,-96.9511726,Darling Ingredients Inc.,634,,Irving,TX
+32.9217277,-97.0058285,Flowserve Corporation,635,,Irving,TX
+39.7524597,-105.0010988,Antero Resources Corporation,636,,Denver,CO
+42.499489,-71.164715,"Skyworks Solutions, Inc.",637,,Woburn,MA
+30.2533999,-81.4624093,"Landstar System, Inc.",638,,Jacksonville,FL
+29.7322695,-95.4324325,"Buckeye Partners, L.P.",639,,Houston,TX
+29.7556361,-95.3615236,MRC Global Inc.,640,,Houston,TX
+41.8777321,-87.6322643,CME Group Inc.,641,,Chicago,IL
+40.224724,-83.050172,Greif,642,,Delaware,OH
+30.1609216,-95.45624,"Nexeo Solutions, Inc.",643,,The Woodlands,TX
+42.4451193,-83.4388402,Cooper-Standard Holdings Inc.,644,,Novi,MI
+39.8894689,-75.1761526,"Urban Outfitters, Inc.",645,,Philadelphia,PA
+41.8855329,-87.6366585,"LSC Communications, Inc.",646,,Chicago,IL
+32.9826089,-97.1608815,Sabre Corporation,647,,Southlake,TX
+41.2420242,-96.0176164,Green Plains Inc.,648,,Omaha,NE
+39.9632226,-82.9958583,Hexion Inc.,649,,Columbus,OH
+42.2716848,-87.9023784,"Stericycle, Inc.",650,,Lake Forest,IL
+40.7621563,-73.9847873,Warner Music Group Corp.,651,,New York,NY
+41.8889409,-87.6303076,"Ventas, Inc.",652,,Chicago,IL
+34.855322,-82.2468478,"ScanSource, Inc.",653,,Greenville,SC
+33.4524787,-112.0677898,Pinnacle West Capital Corporation,654,,Phoenix,AZ
+35.9152549,-84.1089379,"Scripps Networks Interactive, Inc.",655,,Knoxville,TN
+41.304215,-72.9317535,"Alexion Pharmaceuticals, Inc.",656,,New Haven,CT
+41.0707504,-73.5486067,Pitney Bowes Inc.,657,,Stamford,CT
+40.7541476,-73.9818586,CIT Group Inc.,658,,New York,NY
+40.497499,-88.956627,COUNTRY Financial,659,,Bloomington,IL
+43.0618879,-89.4826743,CMFG Life Insurance Company,660,,Madison,WI
+40.0629051,-75.4592537,"Triumph Group, Inc.",661,,Berwyn,PA
+41.5050126,-81.6896905,TransDigm Group Incorporated,662,,Cleveland,OH
+40.4393677,-80.0037947,Allegheny Technologies Incorporated,663,,Pittsburgh,PA
+34.8449831,-80.8935116,Resolute Forest Products Inc.,664,,Catawba,SC
+33.7863208,-84.3836726,"Acuity Brands, Inc.",665,,Atlanta,GA
+40.0864409,-82.7720408,Abercrombie & Fitch Co.,666,,New Albany,OH
+37.4207877,-121.924156,KLA-Tencor Corporation,667,,Milpitas,CA
+40.8487847,-76.8008201,"Weis Markets, Inc.",668,,Sunbury,PA
+47.613251,-122.1939876,"Puget Energy, Inc.",669,,Bellevue,WA
+26.1390137,-80.3410808,"MEDNAX, Inc.",670,,Sunrise,FL
+39.9769307,-86.1607893,"KAR Auction Services, Inc.",671,,Carmel,IN
+41.493403,-82.052581,PolyOne Corporation,672,,Avon Lake,OH
+39.9520288,-75.1837205,FMC Corporation,673,,Philadelphia,PA
+33.6982662,-117.8515983,Edwards Lifesciences Corporation,674,,Irvine,CA
+33.3048273,-111.8820106,Microchip Technology Incorporated,675,,Chandler,AZ
+39.4633607,-119.7889298,Amerco,676,,Reno,NV
+34.061661,-118.3270897,Mercury General Corporation,677,,Los Angeles,CA
+29.3067625,-94.7899136,American National Insurance Company,678,,Galveston,TX
+33.8191226,-84.3868575,"Carter's, Inc.",679,,Atlanta,GA
+40.7697436,-73.9894483,International Flavors & Fragrances Inc.,680,,New York,NY
+33.6915237,-84.4882535,"Aaron's, Inc.",681,,Atlanta,GA
+43.1507311,-89.2960709,Alliant Energy Corporation,682,,Madison,WI
+40.4423445,-80.0008267,EQT Corporation,683,,Pittsburgh,PA
+33.8866423,-117.5132044,Monster Beverage Corporation,684,,Corona,CA
+33.9197614,-84.3563962,"BMC Stock Holdings, Inc.",685,,Atlanta,GA
+41.8802854,-87.6347111,Ryerson Holding Corporation,686,,Chicago,IL
+33.7963282,-84.3885861,Equifax Inc.,687,,Atlanta,GA
+42.4984045,-89.0368685,Regal Beloit Corporation,688,,Beloit,WI
+35.8606143,-80.0610066,"Old Dominion Freight Line, Inc.",689,,Thomasville,NC
+39.8449138,-74.9735025,"American Water Works Company, Inc.",690,,Voorhees,NJ
+40.7068739,-74.0043844,"BGC Partners, Inc.",691,,New York,NY
+37.6078137,-77.5318452,The Brink's Company,692,,Richmond,VA
+42.5543692,-83.1589538,Meritor Inc.,693,,Troy,MI
+44.5435093,-89.572163,Sentry Insurance Group,694,,Stevens Point,WI
+31.7175308,-89.1569873,"Sanderson Farms, Inc.",695,,Laurel,MS
+42.1322734,-87.7862956,KapStone Paper and Packaging Corporation,696,,Northbrook,IL
+41.0304821,-73.5503024,"Gartner, Inc.",697,,Stamford,CT
+40.7455794,-74.0076983,IAC/InterActiveCorp,698,,New York,NY
+29.7086805,-95.5624704,"Tailored Brands, Inc.",699,,Houston,TX
+42.639184,-83.19145,WABCO Holdings Inc.,700,,Rochester Hills,MI
+30.049731,-95.249956,"Insperity, Inc.",701,,Kingwood,TX
+32.7815695,-96.7964548,Comerica Incorporated,702,,Dallas,TX
+37.7248746,-122.1615176,"TriNet Group, Inc.",703,,San Leandro,CA
+37.3981366,-121.9774095,Avaya Holdings Corp.,704,,Santa Clara,CA
+39.090159,-84.51071,Ashland Global Holdings Inc.,705,,Covington,KY
+33.6188045,-111.890009,Meritage Homes Corporation,706,,Scottsdale,AZ
+37.1004245,-113.5565942,"SkyWest, Inc.",707,,St. George,UT
+41.8795135,-87.6417287,USG Corporation,708,,Chicago,IL
+30.0988966,-95.4384362,Southwestern Energy Company,709,,Spring,TX
+38.4816603,-122.7103898,"Keysight Technologies, Inc.",710,,Santa Rosa,CA
+36.0790724,-83.9242823,Regal Entertainment Group,711,,Knoxville,TN
+40.7575374,-73.9741793,Mutual of America Life Insurance Company,712,,New York,NY
+43.064763,-77.640086,"Paychex, Inc.",713,,Rochester,NY
+32.9239242,-96.7876043,"Brinker International, Inc.",714,,Dallas,TX
+40.350758,-75.968997,"Penn National Gaming, Inc.",715,,Wyomissing,PA
+38.932307,-77.219392,"Gannett Co., Inc.",716,,McLean,VA
+42.2419935,-83.4327859,Visteon Corporation,717,,Van Buren Township,MI
+40.852662,-74.416012,Pinnacle Foods Inc.,718,,Parsippany,NJ
+37.372939,-122.003967,"Intuitive Surgical, Inc",719,,Sunnyvale,CA
+35.46,-97.52,"Continental Resources, Inc.",720,,Oklahoma City,OK
+29.7606876,-95.3869663,Service Corporation International,721,,Houston,TX
+36.0684881,-115.2282739,Scientific Games Corporation,722,,Las Vegas,NV
+35.1541251,-80.8379267,Albemarle Corporation,723,,Charlotte,NC
+32.9224922,-96.8175393,Atmos Energy Corporation,724,,Dallas,TX
+42.324951,-71.583244,"Hologic, Inc.",725,,Marlborough,MA
+39.098401,-94.583054,"H&R Block, Inc.",726,,Kansas City,MO
+36.072157,-79.966992,"Qorvo, Inc.",727,,Greensboro,NC
+42.8850322,-85.643035,Steelcase Inc.,728,,Grand Rapids,MI
+40.8729475,-74.006989,Univision Communications Inc.,729,,New York,NY
+40.1109975,-83.0212835,"Worthington Industries, Inc.",730,,Columbus,OH
+40.905862,-81.433021,The Timken Company,731,,North Canton,OH
+43.1514819,-88.0516268,A.O. Smith Corporation,732,,Milwaukee,WI
+32.897128,-117.2031515,"PriceSmart, Inc.",733,,San Diego,CA
+38.629715,-90.18897,Stifel Financial Corp.,734,,St. Louis,MO
+38.2446583,-85.7853246,Brown-Forman Corporation,735,,Louisville,KY
+33.0512319,-96.8277025,"Cinemark Holdings, Inc.",736,,Plano,TX
+36.905154,-121.766138,Granite Construction Incorporated,737,,Watsonville,CA
+26.8496857,-80.0583552,"Dycom Industries, Inc.",738,,Palm Beach Gardens,FL
+42.1603973,-70.8839929,"Clean Harbors, Inc.",739,,Norwell,MA
+33.437902,-111.9439264,"First Solar, Inc.",740,,Tempe,AZ
+40.2060808,-83.3167612,The Scotts Miracle-Gro Company,741,,Marysville,OH
+36.1902767,-86.29435,"Cracker Barrel Old Country Store, Inc.",742,,Lebanon,TN
+18.4135642,-66.0965308,Triple-S Management Corporation,743,,San Juan,PR
+37.7922174,-122.3988536,First Republic Bank,744,,San Francisco,CA
+35.1074135,-89.8662787,"ServiceMaster Global Holdings, Inc.",745,,Memphis,TN
+42.8030639,-71.5488515,"PC Connection, Inc.",746,,Merrimack,NH
+36.1131751,-86.6923297,Genesco Inc.,747,,Nashville,TN
+41.4990615,-81.6864936,Medical Mutual of Ohio,748,,Cleveland,OH
+40.7772267,-73.4113312,"MSC Industrial Direct Co., Inc.",749,,Melville,NY
+39.2825127,-76.6014471,"Legg Mason, Inc.",750,,Baltimore,MD
+41.504568,-81.4706115,"Hyster-Yale Materials Handling, Inc.",751,,Cleveland,OH
+40.7638293,-73.975297,"Apollo Global Management, LLC",752,,New York,NY
+26.205695,-80.1385117,"Citrix Systems, Inc.",753,,Fort Lauderdale,FL
+35.934595,-86.813938,"Acadia Healthcare Company, Inc.",754,,Franklin,TN
+37.4159317,-122.1431202,"Varian Medical Systems, Inc.",755,,Palo Alto,CA
+41.8975722,-87.6437512,"Groupon, Inc.",756,,Chicago,IL
+41.4713233,-81.4940033,Aleris Corporation,757,,Cleveland,OH
+43.087602,-70.809181,Sprague Resources LP,758,,Portsmouth,NH
+41.024384,-83.6619814,Cooper Tire & Rubber Company,759,,Findlay,OH
+40.7579311,-73.7002865,"The Hain Celestial Group, Inc.",760,,Lake Success,NY
+40.1702927,-75.1449951,Penn Mutual Life Insurance Co.,761,,Horsham,PA
+34.0514139,-118.2567698,"Colony NorthStar, Inc.",762,,Los Angeles,CA
+35.3460807,-94.3923954,ArcBest Corporation,763,,Fort Smith,AR
+40.7511838,-73.9921394,"Presidio, Inc.",764,,New York,NY
+33.6589595,-117.8604462,"TRI Pointe Group, Inc.",765,,Irvine,CA
+40.7586113,-73.9822089,"Annaly Capital Management, Inc.",766,,New York,NY
+40.7534215,-73.9892156,"G-III Apparel Group, Ltd.",767,,New York,NY
+40.749576,-73.9929235,AMC Networks Inc.,768,,New York,NY
+35.469612,-97.517086,"Enable Midstream Partners, LP",769,,Oklahoma City,OK
+39.1920301,-76.7005641,Ciena Corporation,770,,Hanover,MD
+39.988592,-82.895084,DSW Inc.,771,,Columbus,OH
+39.1001819,-84.5088636,Convergys Corporation,772,,Cincinnati,OH
+38.9235896,-77.2204864,Park Hotels & Resorts Inc.,773,,McLean,VA
+30.4417459,-90.0875365,Pool Corporation,774,,Covington,LA
+32.9378327,-96.7449563,"Fossil Group, Inc.",775,,Richardson,TX
+42.2704018,-83.7403856,"Domino's Pizza, Inc.",776,,Ann Arbor,MI
+41.0445448,-73.5481845,Crane Co.,777,,Stamford,CT
+38.652509,-90.346826,"Caleres, Inc.",778,,St. Louis,MO
+38.0982244,-84.494077,"Tempur Sealy International, Inc.",779,,Lexington,KY
+34.1505893,-118.0783471,"Tetra Tech, Inc.",780,,Pasadena,CA
+32.8875924,-117.1730577,"Illumina, Inc.",781,,San Diego,CA
+41.265461,-96.1314011,"Valmont Industries, Inc.",782,,Omaha,NE
+41.8849835,-87.6231392,"Hill-Rom Holdings, Inc.",783,,Chicago,IL
+40.1416877,-75.2869704,Unisys Corporation,784,,Blue Bell,PA
+40.7297816,-111.9381404,Zions Bancorporation,785,,Salt Lake City,UT
+39.4768415,-76.653766,"Sinclair Broadcast Group, Inc.",786,,Hunt Valley,MD
+36.1649521,-86.7808526,Louisiana-Pacific Corporation,787,,Nashville,TN
+40.1438288,-82.9689843,Mettler-Toledo International Inc.,788,,Columbus,OH
+37.3944965,-122.0503914,"Synopsys, Inc.",789,,Mountain View,CA
+41.8852827,-87.6215123,Kemper Corporation,790,,Chicago,IL
+42.3488519,-71.0409079,Cabot Corporation,791,,Boston,MA
+39.0996975,-94.5837271,Great Plains Energy Incorporated,792,,Kansas City,MO
+33.0296163,-96.6831302,"Rent-A-Center, Inc.",793,,Plano,TX
+21.335678,-157.917855,"Hawaiian Holdings, Inc.",794,,Honolulu,HI
+40.7020841,-74.01188,"Revlon, Inc.",795,,New York,NY
+35.8208566,-78.6095935,"Syneos Health, Inc.",796,,Raleigh,NC
+34.1527871,-118.2744906,Public Storage,797,,Glendale,CA
+33.6989936,-117.9269459,"TTM Technologies, Inc.",798,,Costa Mesa,CA
+37.9788993,-87.5634029,Vectren Corporation,799,,Evansville,IN
+37.3849747,-122.0055034,Trimble Inc.,800,,Sunnyvale,CA
+29.885711,-95.606521,NOW INC.,801,,Houston,TX
+25.9831826,-80.288058,"Spirit Airlines, Inc.",802,,Miramar,FL
+34.1383518,-118.7062248,ASGN Incorporated,803,,Calabasas,CA
+41.5881277,-81.5199529,"Lincoln Electric Holdings, Inc.",804,,Cleveland,OH
+37.7973319,-122.3942501,"Prologis, Inc.",805,,San Francisco,CA
+32.755833,-97.334729,Range Resources Corporation,806,,Fort Worth,TX
+34.1982613,-118.9058244,Teledyne Technologies Incorporated,807,,Thousand Oaks,CA
+40.0446251,-75.5278643,"Vishay Intertechnology, Inc.",808,,Malvern,PA
+42.3470711,-71.0835921,"Boston Properties, Inc.",809,,Boston,MA
+41.4257096,-81.8056546,"Applied Industrial Technologies, Inc.",810,,Cleveland,OH
+38.893755,-77.072568,Graham Holdings Company,811,,Arlington,VA
+41.9392782,-71.4682176,Amica Mutual Insurance Co.,812,,Lincoln,RI
+31.9998809,-102.0809697,Concho Resources Inc.,813,,Midland,TX
+41.0115544,-73.7272481,ITT Inc.,814,,White Plains,NY
+39.0995574,-94.5897335,Kansas City Southern,815,,Kansas City,MO
+39.6355958,-104.9107339,"M.D.C. Holdings, Inc.",816,,Denver,CO
+39.0480107,-95.6744447,"Evergy, Inc.",817,,Topeka,KS
+30.2073644,-93.258799,Pinnacle Entertainment Inc.,818,,Las Vegas,NV
+21.308102,-157.8606864,"Hawaiian Electric Industries, Inc.",819,,Honolulu,HI
+38.932307,-77.219392,TEGNA Inc.,820,,McLean,VA
+36.2192918,-115.1602341,"Southwest Gas Holdings, Inc.",821,,Las Vegas,NV
+40.9849708,-111.910002,Vista Outdoor Inc.,822,,Farmington,UT
+39.9473702,-76.7475307,"The Bon-Ton Stores, Inc.",823,,York,PA
+37.3785073,-121.8998393,"Super Micro Computer, Inc.",824,,San Jose,CA
+44.18864,-88.464244,Plexus Corp.,825,,Neenah,WI
+47.2539346,-122.436841,"TrueBlue, Inc.",826,,Tacoma,WA
+36.1551708,-95.9906587,"Magellan Midstream Partners, L.P.",827,,Tulsa,OK
+44.8576485,-93.2870579,The Toro Company,828,,Bloomington,MN
+42.3644243,-71.0890504,"Akamai Technologies, Inc.",829,,Cambridge,MA
+42.8050116,-78.6620297,Moog Inc.,830,,Elma,NY
+42.3533985,-71.0463824,Vertex Pharmaceuticals Incorporated,831,,Boston,MA
+41.8825622,-87.6391332,Equity Residential,832,,Chicago,IL
+41.152243,-74.744651,"Selective Insurance Group, Inc.",833,,Branchville,NJ
+42.2348464,-88.3004669,"AptarGroup, Inc.",834,,Crystal Lake,IL
+33.3934985,-111.949734,"Benchmark Electronics, Inc.",835,,Scottsdale,AZ
+45.5179189,-122.6806569,Columbia Sportswear Company,836,,Portland,OR
+41.1109747,-81.6431814,"A. Schulman, Inc.",837,,Fairlawn,OH
+39.6241693,-84.2142489,Verso Corporation,838,,Miamisburg,OH
+37.795309,-122.396231,"Digital Realty Trust, Inc.",839,,San Francisco,CA
+40.4419168,-79.9993084,"GNC Holdings, Inc.",840,,Pittsburgh,PA
+40.7513034,-73.9751738,E*Trade Financial Corporation,841,,New York,NY
+40.4314271,-74.2490202,"Hovnanian Enterprises, Inc.",842,,Red Bank,NJ
+38.9492634,-77.3407942,"MAXIMUS, INC.",843,,Reston,VA
+37.7767964,-122.4166041,"Twitter, Inc.",844,,San Francisco,CA
+29.7817237,-95.5594841,"Par Pacific Holdings, Inc.",845,,Houston,TX
+42.39249,-71.272935,PAREXEL International Corporation,846,,Waltham,MA
+37.9298096,-122.5141283,RH,847,,Corte Madera,CA
+32.8593234,-96.9328203,"Nexstar Media Group, Inc.",848,,Irving,TX
+33.667545,-112.103354,Knight-Swift Transportation Holdings Inc.,849,,Phoenix,AZ
+35.7753217,-78.6380311,"Red Hat, Inc.",850,,Raleigh,NC
+38.6508281,-90.3417013,Belden Inc.,851,,St. Louis,MO
+36.071799,-115.24468,Boyd Gaming Corporation,852,,Las Vegas,NV
+32.7917574,-96.8025701,Primoris Services Corporation,853,,Dallas,TX
+43.031814,-87.908701,"Gardner Denver Holdings, Inc.",854,,Milwaukee,WI
+44.8341022,-93.2971691,"Donaldson Company, Inc.",855,,Minneapolis,MN
+41.0416329,-73.8003734,Party City Holdco Inc.,856,,Elmsford,NY
+40.7545683,-73.9777756,"J.Crew Group, Inc.",857,,New York,NY
+40.3701729,-75.9649204,EnerSys,858,,Reading,PA
+34.0234608,-118.2367529,"Guess?, Inc.",859,,Los Angeles,CA
+29.920691,-95.558009,"Patterson-UTI Energy, Inc.",860,,Houston,TX
+38.880808,-77.026731,"WGL Holdings, Inc.",861,,Washington,DC
+43.1352383,-85.5443816,"Wolverine World Wide, Inc.",862,,Rockford,MI
+37.2527727,-121.9340743,"Xilinx, Inc.",863,,San Jose,CA
+40.7610632,-73.9748997,Vornado Realty Trust,864,,New York,NY
+42.0641649,-88.2479897,The Middleby Corporation,865,,Elgin,IL
+42.813449,-73.6668364,MPM Holdings Inc.,866,,Waterford,NY
+41.4999723,-81.6921916,Cleveland-Cliffs Inc.,867,,Cleveland,OH
+41.8880751,-87.6378112,GGP Inc.,868,,Chicago,IL
+37.4102163,-121.9509445,Cypress Semiconductor Corporation,869,,San Jose,CA
+38.6732455,-90.4399003,"Arch Coal, Inc.",870,,St. Louis,MO
+33.8379573,-84.2469921,GMS Inc.,871,,Tucker,GA
+42.136884,-71.481104,Waters Corporation,872,,Milford,MA
+45.0454315,-93.0516256,H.B. Fuller Company,873,,St. Paul,MN
+42.5629835,-70.8259602,"Affiliated Managers Group, Inc.",874,,West Palm Beach,FL
+42.404359,-71.2736428,"PerkinElmer, Inc.",875,,Waltham,MA
+38.6481405,-90.5269746,Edgewell Personal Care Company,876,,Chesterfield,MO
+37.4056894,-121.9494163,"Maxim Integrated Products, Inc.",877,,San Jose,CA
+41.302759,-72.92753,Knights of Columbus,878,,New Haven,CT
+42.2442304,-87.8932069,IDEX Corporation,879,,Lake Forest,IL
+39.1009392,-94.5880178,"DST Systems, Inc.",880,,Kansas City,MO
+26.5803361,-81.8504315,"Chico's FAS, Inc.",881,,Fort Myers,FL
+40.2335081,-111.660724,"Nu Skin Enterprises, Inc.",882,,Provo,UT
+42.8144431,-85.9959594,"Herman Miller, Inc.",883,,Zeeland,MI
+44.2557314,-72.5844151,NLV Financial Corporation,884,,Montpelier,VT
+35.059975,-80.854939,Curtiss-Wright Corporation,885,,Charlotte,NC
+40.2101433,-74.1282981,New Jersey Resources Corporation,886,,Wall,NJ
+43.0299396,-87.903877,"REV Group, Inc.",887,,Milwaukee,WI
+35.055935,-89.786089,"Mueller Industries, Inc.",888,,Memphis,TN
+26.3972391,-80.0951049,"The GEO Group, Inc.",889,,Boca Raton,FL
+39.7801759,-86.236951,"Allison Transmission Holdings, Inc.",890,,Indianapolis,IN
+35.4697886,-97.6750742,OGE Energy Corp.,891,,Oklahoma City,OK
+34.1370977,-118.711321,The Cheesecake Factory Incorporated,892,,Calabasas Hills,CA
+35.8352738,-78.6883361,"PRA Health Sciences, Inc.",893,,Raleigh,NC
+28.3464512,-81.4019482,Tupperware Brands Corporation,894,,Orlando,FL
+38.9283669,-94.6269506,"Euronet Worldwide, Inc.",895,,Leawood,KS
+33.9731748,-84.2242019,"FLEETCOR Technologies, Inc.",896,,Peachtree Corners,GA
+32.9282957,-96.9886105,Nationstar Mortgage Holdings Inc.,897,,Coppell,TX
+33.6172584,-111.9050735,GoDaddy Inc.,898,,Scottsdale,AZ
+37.6954788,-121.9218157,"Blackhawk Network Holdings, Inc.",899,,Pleasanton,CA
+41.8764396,-87.6321957,"Cboe Global Markets, Inc.",900,,Chicago,IL
+35.1217163,-80.8841301,"Snyder's-Lance, Inc.",901,,Charlotte,NC
+33.2140703,-92.6614571,Murphy Oil Corporation,902,,El Dorado,AR
+42.0632639,-88.128095,"CDK Global, Inc.",903,,Hoffman Estates,IL
+38.135664,-85.700735,"Texas Roadhouse, Inc.",904,,Louisville,KY
+29.7671408,-95.3975031,Kirby Corporation,905,,Houston,TX
+37.775771,-122.4181159,"Square, Inc.",906,,San Francisco,CA
+41.0778267,-73.4708802,Genesee & Wyoming Inc.,907,,Darien,CT
+40.0187817,-105.2564546,"Zayo Group Holdings, Inc.",908,,Boulder,CO
+37.5379107,-77.4443828,NewMarket Corporation,909,,Richmond,VA
+34.0158275,-118.1891993,99 Cents Only Stores LLC,910,,Commerce,CA
+33.923013,-118.393576,"PCM, Inc",911,,El Segundo,CA
+44.0844619,-93.2238794,Federated Mutual Insurance Company,912,,Owatonna,MN
+41.4240295,-91.0395377,HNI Corporation,913,,Muscatine,IA
+42.3578967,-71.1839768,Hospitality Properties Trust,914,,Newton,MA
+45.4215405,-122.738859,"The Greenbrier Companies, Inc.",915,,Lake Oswego,OR
+38.024888,-122.2788023,"Bio-Rad Laboratories, Inc.",916,,Hercules,CA
+38.8786257,-77.1114515,"AvalonBay Communities, Inc.",917,,Arlington,VA
+42.0185525,-93.5733309,"Renewable Energy Group, Inc.",918,,Ames,IA
+41.016802,-73.7111528,"Atlas Air Worldwide Holdings, Inc.",919,,Purchase,NY
+39.6022679,-84.2333787,Teradata Corporation,920,,Dayton,OH
+41.723647,-85.9194221,LCI Industries,921,,Elkhart,IN
+40.0773358,-75.417767,Teleflex Incorporated,922,,Wayne,PA
+40.727805,-74.0351406,"Verisk Analytics, Inc.",923,,Jersey City,NJ
+18.427128,-66.058535,"Popular, Inc.",924,,Hato Rey,PR
+37.6977879,-121.9255215,"Workday, Inc.",925,,Pleasanton,CA
+37.6976664,-121.9232041,"The Cooper Companies, Inc.",926,,Pleasanton,CA
+39.9179785,-82.9379893,"Express, Inc.",927,,Columbus,OH
+42.5561214,-71.1350329,"Teradyne, Inc.",928,,North Reading,MA
+41.1580316,-96.1427107,"Werner Enterprises, Inc.",929,,Omaha,NE
+34.0528299,-118.2519101,"Oaktree Capital Group, LLC",930,,Los Angeles,CA
+40.5867269,-105.0588454,"Woodward, Inc.",931,,Fort Collins,CO
+47.6223477,-122.3633,"F5 Networks, Inc.",932,,Seattle,WA
+38.0002299,-84.432411,"Valvoline, Inc.",933,,Lexington,KY
+41.8281574,-88.0230617,"Roadrunner Transportation Systems, Inc.",934,,Downers Grove,IL
+36.0747904,-95.9252609,SemGroup Corporation,935,,Tulsa,OK
+40.5279138,-74.5472437,"Catalent, Inc.",936,,Somerset,NJ
+35.978596,-86.806575,Quorum Health Corporation,937,,Brentwood,TN
+37.539853,-77.565149,Universal Corporation,938,,Richmond,VA
+41.4684962,-81.9393149,Nordson Corporation,939,,Westlake,OH
+32.8257882,-117.1345012,ResMed Inc.,940,,San Diego,CA
+42.4147132,-83.4170534,"Tower International, Inc.",941,,Livonia,MI
+35.1281229,-90.018692,"Fred's, Inc.",942,,Memphis,TN
+33.715134,-117.8059,"Foundation Building Materials, Inc.",943,,Tustin,CA
+40.2952483,-79.6678031,Kennametal Inc.,944,,Pittsburgh,PA
+38.0054203,-122.5306773,"Autodesk, Inc.",945,,San Rafael,CA
+35.8317586,-78.7850708,"Ply Gem Holdings, Inc.",946,,Cary,NC
+37.9255253,-122.0582943,Central Garden & Pet Company,947,,Walnut Creek,CA
+21.3096634,-157.8846802,"Matson, Inc.",948,,Honolulu,HI
+39.5762259,-104.8674136,EchoStar Corporation,949,,Englewood,CO
+29.7580582,-95.3659038,"Genesis Energy, L.P.",950,,Houston,TX
+37.4042491,-121.9833173,SVB Financial Group,951,,Santa Clara,CA
+47.6752507,-117.091469,"Itron, Inc.",952,,Liberty Lake,WA
+45.4949959,-122.6479182,Portland General Electric Company,953,,Portland,OR
+34.2386737,-118.565945,California Resources Corporation,954,,Los Angeles,CA
+47.6149317,-122.1959241,Esterline Technologies Corporation,955,,Bellevue,WA
+38.8623567,-77.2145674,"Delta Tucker Holdings, Inc.",956,,McLean,VA
+32.943824,-117.240504,"AMN Healthcare Services, Inc.",957,,San Diego,CA
+40.7622822,-73.9750365,Griffon Corp.,958,,New York,NY
+32.9225761,-96.8175221,"Valhi, Inc.",959,,Dallas,TX
+41.0519832,-73.5340668,Hexcel Corporation,960,,Stamford,CT
+43.6616946,-70.3735961,"IDEXX Laboratories, Inc.",961,,Westbrook,ME
+45.0540255,-93.1279412,Deluxe Corporation,962,,Shoreview,MN
+40.046593,-82.905294,"M/I Homes, Inc.",963,,Columbus,OH
+29.9467709,-95.3308308,Kraton Corporation,964,,Houston,TX
+29.7283497,-95.4435327,Stewart Information Services Corporation,965,,Houston,TX
+28.4167364,-81.4727291,Marriott Vacations Worldwide Corporation,966,,Orlando,FL
+35.213064,-80.929995,"SPX FLOW, INC.",967,,Charlotte,NC
+42.202274,-88.036351,ACCO Brands Corporation,968,,Lake Zurich,IL
+41.8969173,-87.6435474,"Echo Global Logistics, Inc.",969,,Chicago,IL
+37.395149,-121.9200212,"Cadence Design Systems, Inc.",970,,San Jose,CA
+42.4839813,-71.1936848,"Nuance Communications, Inc.",971,,Burlington,MA
+39.8167718,-85.9936577,"The Finish Line, Inc.",972,,Indianapolis,IN
+41.8789444,-87.6415185,TransUnion,973,,Chicago,IL
+37.3758029,-121.962734,"ServiceNow, Inc.",974,,Santa Clara,CA
+39.751327,-105.0011375,"Summit Materials, Inc.",975,,Denver,CO
+38.8821419,-77.4592671,"Engility Holdings, Inc.",976,,Chantilly,VA
+38.9291599,-94.6732045,"Ferrellgas Partners, L.P.",977,,Overland Park,KS
+41.0305944,-73.625462,"Interactive Brokers Group, Inc.",978,,Greenwich,CT
+42.09133,-87.762309,Stepan Company,979,,Northfield,IL
+29.7883891,-95.6648077,"Oceaneering International, Inc.",980,,Houston,TX
+39.743633,-104.985467,Cimarex Energy Co.,981,,Denver,CO
+43.0284524,-87.917162,Rexnord Corporation,982,,Milwaukee,WI
+33.9347767,-84.3545825,"Beazer Homes USA, Inc.",983,,Atlanta,GA
+42.6883113,-71.2112722,"MKS Instruments, Inc.",984,,Andover,MA
+39.9253759,-105.1151576,"Vail Resorts, Inc.",985,,Broomfield,CO
+39.24798,-84.364401,"Ohio National Mutual Holdings, Inc.",986,,Cincinnati,OH
+29.1965101,-81.0851716,TopBuild Corp.,987,,Daytona Beach,FL
+29.207893,-81.021717,"Brown & Brown, Inc.",988,,Daytona Beach,FL
+38.6302487,-121.1844297,"Aerojet Rocketdyne Holdings, Inc.",989,,El Segundo,CA
+40.6419447,-74.5845643,"Barnes & Noble Education, Inc.",990,,Basking Ridge,NJ
+29.8330657,-95.5651763,"Superior Energy Services, Inc.",991,,Houston,TX
+37.3899498,-121.9335335,"VeriFone Systems, Inc.",992,,San Jose,CA
+40.788166,-74.044968,"The Children's Place, Inc.",993,,Secaucus,NJ
+41.890422,-87.623702,Tribune Media Company,994,,Chicago,IL
+40.1143712,-74.9621875,"Healthcare Services Group, Inc.",995,,Bensalem,PA
+34.0438371,-84.3251688,"SiteOne Landscape Supply, Inc.",996,,Roswell,GA
+42.5943689,-71.1604477,"Charles River Laboratories International, Inc.",997,,Wilmington,MA
+33.6506307,-117.7514339,"CoreLogic, Inc.",998,,Irvine,CA
+33.5683153,-117.6713908,"The Ensign Group, Inc.",999,,Mission Viejo,CA
+33.6841413,-117.8526429,"HCP, Inc.",1000,,Irvine,CA
