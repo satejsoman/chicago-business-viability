@@ -12,7 +12,7 @@ AGE_CSV = "ACS_09_5YR_S0101_with_ann.csv"
 EDU_CSV = "ACS_09_5YR_S1501_with_ann.csv"
 
 EDU_VAR = "HC01_EST_VC12"
-
+TOTAL_POP_VAR = "HC01_EST_VC01"
 
 
 def generate_age_vars(var_index_list):
@@ -26,7 +26,7 @@ def generate_age_vars(var_index_list):
 
 if __name__ == "__main__":
     
-    age_vars = generate_age_vars([(1, 1)] + [(1, x) for x in range(10, 16)])
+    age_vars = generate_age_vars([(1, x) for x in range(10, 16)])
     age_vars.insert(0, "GEO.id2")
 
     # drop first row containing only descriptive names
@@ -43,7 +43,7 @@ if __name__ == "__main__":
     df = pd.merge(edudf, agedf, on = "GEO.id2")    
     df.replace("-", np.nan, inplace = True)
 
-
-    df['a35to64'] = df[age_vars[1:]].astype(float).apply(sum, 1)
+    # summing across the shares
+    df['a35to64_share'] = df[age_vars[2:]].astype(float).apply(sum, 1)
 
     df.to_csv("Cook_tract_subject_vars_2005-09.csv")

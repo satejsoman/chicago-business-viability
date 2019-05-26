@@ -44,10 +44,16 @@ def make_api_varlist(table_id, var_range, tabletype = "detail"):
     
     if tabletype == "detail":
         return list(map(lambda x: table_id + '_' + str(x).zfill(3) + 'E', var_range))
+
     elif tabletype == "subject":
         return list(map(lambda x: table_id + '_' + str(x).zfill(3) + 'E', var_range))
+
+    elif tabletype == "decennial":
+        return list(map(lambda x: table_id + str(x).zfill(3), var_range))
+
     else:
-        "data profiles not yet supported"
+        print("table type not yet supported")
+
 
 def construct_geolist(state = "", county = "", tract = ""):
     ''' Takes FIPS codes for geographies 
@@ -99,8 +105,11 @@ def main(args, vardict):
     varlist = []
     for d in vardict:
 
-        if args.tabletype != "detail":
+        if args.tabletype != "detail" and args.survey !=  "sf3":
             d['tabletype'] = args.tabletype
+        
+        if args.survey == "sf3":
+            d['tabletype'] = "decennial"
 
         varlist = varlist + make_api_varlist(**d)
     
