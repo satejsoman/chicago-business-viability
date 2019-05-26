@@ -25,6 +25,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='wrapper for pulling BEA data off the API')
     parser.add_argument("--keyfile", help="file containing API keys", default = 'keys.json')
+    parser.add_argument("--outfile", help = "where to save the resulting csv")
     args = parser.parse_args()
 
     with open(args.keyfile) as f:
@@ -43,3 +44,5 @@ if __name__ == "__main__":
     except Exception as e:
         print("API call failed")
         print(e)
+    
+    data.to_csv(args.outfile)

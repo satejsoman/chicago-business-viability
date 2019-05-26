@@ -28,7 +28,7 @@ def get_user_input():
                          'var_range':  list(range(start, stop))})
         
         more = input("Type 'done' if you have no more tables to query.\n")
-        if more == 'done':
+        if more.lower() == 'done':
             done_entering = True
     
     # with open("query.json", 'w') as f:
@@ -37,13 +37,17 @@ def get_user_input():
     return dictlist
 
 
-def make_api_varlist(table_id, var_range):
+def make_api_varlist(table_id, var_range, tabletype = "detail"):
     ''' Takes a table id string and indices for variable selection
         Returns: list of variables for census API call
     '''
     
-    return list(map(lambda x: table_id + '_' + str(x).zfill(3) + 'E', var_range))
-
+    if tabletype == "detail":
+        return list(map(lambda x: table_id + '_' + str(x).zfill(3) + 'E', var_range))
+    elif tabletype == "subject":
+        return list(map(lambda x: table_id + '_' + str(x).zfill(3) + 'E', var_range))
+    else:
+        "data profiles not yet supported"
 
 def construct_geolist(state = "", county = "", tract = ""):
     ''' Takes FIPS codes for geographies 
@@ -65,7 +69,7 @@ def construct_geolist(state = "", county = "", tract = ""):
     return rv
 
 
-def make_api_call(varlist, survey, year, geo):
+def make_api_call(varlist, survey, year, geo, tabletype = "detail"):
     ''' Takes list of variables, survey to query, year to query, 
         and list of tuples specifying geography
         Returns: data frame with resulting data
@@ -79,7 +83,8 @@ def make_api_call(varlist, survey, year, geo):
         
         try:
             dfs.append(census.download(survey, year, census.censusgeo(geo),
-                                        list(islice(varlist, i, j))).reset_index())
+                                        list(islice(varlist, i, j)),
+                                        tabletype = tabletype).reset_index())
             i = j
 
         except Exception as e:
@@ -93,14 +98,18 @@ def main(args, vardict):
 
     varlist = []
     for d in vardict:
+
+        if args.tabletype != "detail":
+            d['tabletype'] = args.tabletype
+
         varlist = varlist + make_api_varlist(**d)
     
     geos = construct_geolist(state = args.state, county = args.county, tract = args.tract)
 
-    data = make_api_call(varlist, args.survey, args.year, geos)
+    data = make_api_call(varlist, args.survey, args.year, geos, args.tabletype)
 
     # this is sensitive to failure, need to improve
-    data['geoid'] = data['index'].apply(lambda x: args.state + args.county + x.geo[TRACTCODE][1])
+    # data['geoid'] = data['index'].apply(lambda x: args.state + args.county + x.geo[TRACTCODE][1])
 
     if args.outfile:
         data.to_csv(args.outfile)
@@ -115,7 +124,8 @@ if __name__ == "__main__":
 
     parser.add_argument("--varfile", help = "file containing list of dicts mapping tables to variables") # this could be better
     parser.add_argument("--survey", help = "survey string")
-    parser.add_argument("--year", help = "year to query", default = 2017)
+    parser.add_argument("--tabletype", help = "Specify whether tables are detail, subject, or data profile", default = "detail")
+    parser.add_argument("--year", help = "year to query", default = 2017, type = int)
     parser.add_argument("--state", help = "state", default = "17")
     parser.add_argument("--county", help = "county", default = "031")
     parser.add_argument("--tract", help = "tract", default = "*")

@@ -93,3 +93,6 @@ FigureScripts/*
 
 # data files
 .geojson
+
+# api keys
+keys.json
