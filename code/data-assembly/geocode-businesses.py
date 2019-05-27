@@ -1,44 +1,53 @@
 #==============================================================================#
-# ASSIGN BUSINESSES TO CENSUS TRACTS
+# GEOCODE BUSINESSES WITHOUT COORDINATE INFORMATION
 #
 # Cecile Murray
 #==============================================================================#
 
+import argparse
+import geocoder
 import pandas as pd
 import geopandas as gpd 
-import fiona.crs
-from shapely.geometry import Point    
-
-BUSINESS_LICENSE_DATA_LOCATION = "../../data/Business_Licenses.csv"
-BLOCK_SHAPEFILE_LOCATION = "../../data/Cook_bg.geojson"
-COLS = ['LICENSE ID', 'LEGAL NAME', 'ACCOUNT NUMBER', 'SITE NUMBER', 'ADDRESS',
-         'CITY', 'STATE', 'ZIP', 'LATITUDE', 'LONGITUDE', 'LOCATION']
 
 
-def convert_to_Point(df):
-    '''Takes business licenses data frame and converts lat/lon fields to Point'''
-
-    df['coords'] = list(zip(df.LONGITUDE, df.LATITUDE))
-    df['coords'] = df['coords'].apply(Point)
-    return gpd.GeoDataFrame(df, geometry = 'coords', crs = fiona.crs.from_epsg(4269))
+INDEX_VARS = ['LICENSE ID', 'LICENSE NUMBER', 'ACCOUNT NUMBER', 'SITE NUMBER', 'DATE ISSUED']
+ADDRESS_VARS = ['ADDRESS', 'CITY', 'STATE', 'ZIP CODE']
+GEO_VARS = ['LATITUDE', 'LONGITUDE', 'LOCATION']
 
 
-def join_to_blkgrp(df):
-    ''' Joins business license points to block group polygons'''
 
-    blks = gpd.read_file(BLOCK_SHAPEFILE_LOCATION)
-    return gpd.sjoin(df, blks, op = "within", how = 'inner')
+def select_missing(df):
+    ''' Prepare a dataframe with all the records we need to submit to geocoder '''
+
+    missing = df.loc[df['LATITUDE'].isna()][['LICENSE ID'] + ADDRESS_VARS]
+    missing['FULL_ADDRESS'] = missing[ADDRESS_VARS].apply( ???/, axis = 1)
 
 
-def main():
+def read_keys(keyfile):
+    ''' get list of keys out of key file'''
 
-    df = pd.read_csv(BUSINESS_LICENSE_DATA_LOCATION)[COLS]
+    with open(keyfile, 'rb') as k:
+        keys = yaml.safe_load(k.read())
     
-    df = convert_to_Point(df)
-    df = join_to_blkgrp(df)
-    
-    return df
+    return keys["Google"]
+
+
+def batch_geocode(df, key):
+
+
 
 if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser(description='Locate business records in Census block groups')
+
+    parser.add_argument("--infile", help = "business records file to join to block groups", default = BUSINESS_LICENSE_DATA_LOCATION)
+    parser.add_argument("--outfile", help = "file location for geocoded records", default = "../../data/geocoded_records.csv")
+    parser.add_argument("--key", help = "API key for Google geocoder")
+
+    args = parser.parse_args()
+
+    df = pd.read_csv(args.infile)[COLS]
+    df = select_missing(df)
+
     
-    df = main()
+    
