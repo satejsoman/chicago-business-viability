@@ -27,10 +27,10 @@ class Splitter():
     def from_config(config_dict):
         column = config_dict["split_column"]
         train_splits, test_splits, names = [], [], []
-        for split in config_dict["splits"]:
+        for (i, split) in enumerate(config_dict["splits"]):
             train_splits.append(Bounds(**parse_datetimes(split["train"])))
             test_splits.append(Bounds(**parse_datetimes(split["test"])))
-            names.append(split["name"])
+            names.append(split.get("name", "split " + str(i)))
 
         return Splitter(
             column       = column,
