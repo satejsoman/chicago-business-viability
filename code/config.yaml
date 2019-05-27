@@ -1,14 +1,53 @@
 data: 
-  original_path: "../data/Business_Licenses.csv"
-  imputed_path: "../data/imputed_failures.csv"
-
-split:
-  training_set_period: 365 
-
+  input_path: "../data/license_features.csv"
 
 pipeline:
-  #target: business_failed 
-  target: 'LICENSE TERM EXPIRATION DATE_orig'
+  target: business_failed 
+  test_train:
+    split_column: "license_date"
+    splits: 
+      - name: exists as of 12/31/2008 
+        train: 
+          start: 01/01/2002 
+          end:   12/31/2004 
+        test: 
+          start: 01/01/2002 
+          end:   12/31/2006
+      - name: exists as of 12/31/2010 
+        train: 
+          start: 01/01/2002 
+          end:   12/31/2006 
+        test: 
+          start: 01/01/2002 
+          end:   12/31/2008
+      - name: exists as of 12/31/2012 
+        train: 
+          start: 01/01/2002 
+          end:   12/31/2008 
+        test: 
+          start: 01/01/2002 
+          end:   12/31/2010
+      - name: exists as of 12/31/2014 
+        train: 
+          start: 01/01/2002 
+          end:   12/31/2010 
+        test: 
+          start: 01/01/2002 
+          end:   12/31/2012
+      - name: exists as of 12/31/2016 
+        train: 
+          start: 01/01/2002 
+          end:   12/31/2012 
+        test: 
+          start: 01/01/2002 
+          end:   12/31/2014
+      - name: exists as of 12/31/2018 
+        train: 
+          start: 01/01/2002 
+          end:   12/31/2014 
+        test: 
+          start: 01/01/2002 
+          end:   12/31/2016
 
 models: 
   LogisticRegression:

@@ -23,6 +23,7 @@ class Pipeline:
         data_preprocessors=None,
         feature_generators=None,
         model_grid=None,
+        splitter=None,
         name=None,
         output_root_dir=".", 
         features=None):
@@ -32,6 +33,7 @@ class Pipeline:
         self.data_preprocessors = data_preprocessors
         self.feature_generators = feature_generators
         self.model_grid = model_grid
+        self.splitter=splitter
 
         self.dataframe = None
 
@@ -48,8 +50,9 @@ class Pipeline:
         else:
             self.features = features
 
-        self.train_sets = []
-        self.test_sets  = []
+        self.train_sets   = []
+        self.test_sets    = []
+        self.split_names  = []
 
         self.trained_models    = OrderedDict()
         self.model_evaluations = []
@@ -85,7 +88,9 @@ class Pipeline:
         for (i, transformation) in enumerate(transformations):
             self.logger.info("    Applying transformation (%s/%s): %s ",  i+1, n, transformation.name)
             self.logger.info("    %s -> %s", transformation.input_column_names, transformation.output_column_name)
-            self.dataframe[transformation.output_column_name] = transformation(self.dataframe[transformation.input_column_names])
+            for dataset in (self.test_sets, self.train_sets):
+                for dataframe in dataset:
+                    dataframe[transformation.output_column_name] = transformation(dataframe[transformation.input_column_names])
             generated_columns.append(transformation.output_column_name)
         self.logger.info("")
         if purpose == "feature generation":
@@ -100,30 +105,37 @@ class Pipeline:
         return self.run_transformations(self.feature_generators, purpose="feature generation")
 
     def generate_test_train(self):
+        if self.splitter is None:
+            return self.test_train_all()  
+        self.train_sets, self.test_sets, self.split_names = splitter.split(self.dataframe)
+
+        return self 
+
+    def test_train_all(self, dataframe):
         self.logger.info("Columns: %s", self.dataframe.columns)
-        self.train_sets = [{"X" : self.dataframe[self.features], "y": self.dataframe[self.target]}]
-        self.test_sets  = [{"X" : self.dataframe[self.features], "y": self.dataframe[self.target]}]
+        self.train_sets = [self.dataframe]
+        self.test_sets  = [self.dataframe]
         return self
 
     def run_model(self, description, model):
         self.logger.info("    Training model %s", description)
         n = len(self.train_sets)
-        for (index, train_set) in enumerate(self.train_sets):
-            self.logger.info("        Training on training set (%s/%s)", index + 1, n)
+        for (index, (split_name, train_set)) in enumerate(zip(split_names, self.train_sets)):
+            self.logger.info("        Training on training set \"%s\" (%s/%s)", split_name, index + 1, n)
             if description in self.trained_models.keys():
-                self.trained_models[description]+= [model.fit(**train_set)]
+                self.trained_models[description]+= [model.fit(X=train_set[self.features], y=train_set[self.target])]
             else:
-                self.trained_models[description] = [model.fit(**train_set)]
+                self.trained_models[description] = [model.fit(**train_set[self.features], y=train_set[self.target])]
         return self
 
     def evaluate_models(self, description, models):
-        X, y = "X", "y"
+        X, y = self.features, self.target
         thresholds = [1, 2, 5, 10, 20, 20, 50]
         self.logger.info("    Evaluating model %s", description)
         n = len(self.test_sets)
-        for (index, (model, test_set)) in enumerate(zip(models, self.test_sets)):
-            self.logger.info("        Evaluating on testing set (%s/%s)", index + 1, n)
-            score = model.score(**test_set)
+        for (index, (model, split_name, test_set)) in enumerate(zip(models, self.split_names, self.test_sets)):
+            self.logger.info("        Evaluating on testing set \"%s\" (%s/%s):", split_name, index + 1, n)
+            score = model.score(X=test_set[X], y=test_set[y])
             y_true = test_set[y]
             y_score = np.array([_[1] for _ in model.predict_proba(test_set[X])])
             auc_roc = roc_auc_score(y_true, y_score)
@@ -188,9 +200,10 @@ class Pipeline:
         (self
             .load_data()
             .summarize_data()
+            .clean_data()
+            .generate_test_train()
             .preprocess_data()
             .generate_features()
-            .generate_test_train()
             .run_model_grid()
             .evaluate_model_grid()
         )
