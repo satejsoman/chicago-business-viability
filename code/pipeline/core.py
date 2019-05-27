@@ -115,6 +115,7 @@ class Pipeline:
         self.logger.info("Columns: %s", self.dataframe.columns)
         self.train_sets = [self.dataframe]
         self.test_sets  = [self.dataframe]
+        self.split_names = ["entire dataset"]
         return self
 
     def run_model(self, description, model):
