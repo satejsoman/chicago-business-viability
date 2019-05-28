@@ -1,0 +1,8 @@
+data: 
+  input_path: "test_pipeline_data.csv"
+  output_dir: "./output/"
+
+pipeline:
+  name : "test_pipeline"
+  target: 'target'
+  features: ['sepal length', 'sepal width', 'petal length', 'petal width']

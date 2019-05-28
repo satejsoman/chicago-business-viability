@@ -133,7 +133,8 @@ class Pipeline:
 
         return self
 
-    def test_train_all(self, dataframe):
+    def test_train_all(self):
+        self.logger.info("Using entire dataset for training and testing.")
         self.logger.info("Columns: %s", self.dataframe.columns)
         self.train_sets = [self.dataframe]
         self.test_sets  = [self.dataframe]
@@ -143,12 +144,12 @@ class Pipeline:
     def run_model(self, description, model):
         self.logger.info("    Training model %s", description)
         n = len(self.train_sets)
-        for (index, (split_name, train_set)) in enumerate(zip(split_names, self.train_sets)):
+        for (index, (split_name, train_set)) in enumerate(zip(self.split_names, self.train_sets)):
             self.logger.info("        Training on training set \"%s\" (%s/%s)", split_name, index + 1, n)
             if description in self.trained_models.keys():
                 self.trained_models[description]+= [model.fit(X=train_set[self.features], y=train_set[self.target])]
             else:
-                self.trained_models[description] = [model.fit(**train_set[self.features], y=train_set[self.target])]
+                self.trained_models[description] = [model.fit(X=train_set[self.features], y=train_set[self.target])]
         return self
 
     def evaluate_models(self, description, models):
