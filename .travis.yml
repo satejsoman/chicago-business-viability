@@ -6,4 +6,4 @@ cache: pip
 install:
   - pip install -r code/requirements.txt
 script:
-  - cd code && python unit_tests/test_splitting.py
+  - cd code ; python unit_tests/test_splitting.py
