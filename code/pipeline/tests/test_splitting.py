@@ -48,7 +48,7 @@ def get_pipeline():
     })
     
     return Pipeline(
-        input_source       = Path('unit_tests/test_split_mock_data.csv'), 
+        input_source       = Path(__file__).parent/'test_split_mock_data.csv', 
         target             = "label", 
         data_cleaning      = [to_datetime("date")],
         data_preprocessors = [replace_missing_with_mean("raw1")],
