@@ -37,7 +37,7 @@ class Pipeline:
         else: 
             self.in_memory = True 
         self.input_source = input_source
-        self.target = input_source
+        self.target = target
         self.summarize = summarize
         self.data_cleaning = data_cleaning
         self.data_preprocessors = data_preprocessors
