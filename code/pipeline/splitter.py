@@ -1,9 +1,7 @@
-from collections import namedtuple
-import yaml
 import datetime
-from pandas import date_range
 
-Bounds = namedtuple('Bounds', ["start", "end"])
+import yaml
+from pandas import date_range
 
 date_format = "%m/%d/%Y"
 
@@ -20,8 +18,8 @@ class Splitter():
     def split(self, df):
         train_sets, test_sets = [], []
         for (train, test) in zip(self.train_splits, self.test_splits):
-            train_sets.append(df[df[self.column].isin(date_range(train.start, train.end))])
-            test_sets.append(df[df[self.column].isin(date_range(test.start, test.end))])
+            train_sets.append(df[df[self.column].isin(train)])
+            test_sets.append(df[df[self.column].isin(test)])
         return (train_sets, test_sets, self.split_names)
 
     @staticmethod
@@ -29,8 +27,8 @@ class Splitter():
         column = config_dict["split_column"]
         train_splits, test_splits, names = [], [], []
         for (i, split) in enumerate(config_dict["splits"]):
-            train_splits.append(Bounds(**parse_datetimes(split["train"])))
-            test_splits.append(Bounds(**parse_datetimes(split["test"])))
+            train_splits.append(date_range(**parse_datetimes(split["train"])))
+            test_splits.append(date_range(**parse_datetimes(split["test"])))
             names.append(split.get("name", "split " + str(i)))
 
         return Splitter(
