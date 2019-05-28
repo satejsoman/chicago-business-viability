@@ -4,8 +4,9 @@ import os
 import shutil
 import sys
 import uuid
-from pathlib import Path
+import warnings
 from collections import OrderedDict
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -17,19 +18,28 @@ from .utils import get_git_hash, get_sha256_sum
 
 class Pipeline:
     def __init__(self, 
-        csv_path,
+        input_source,
         target,
         summarize=False,
+        data_cleaning=None,
         data_preprocessors=None,
         feature_generators=None,
+        features=None,
         model_grid=None,
         splitter=None,
         name=None,
         output_root_dir=".", 
-        features=None):
-        self.csv_path = csv_path 
-        self.target = target
+        verbose=True):
+        warnings.filterwarnings("ignore")
+        
+        if isinstance(input_source, Path):
+            self.in_memory = False 
+        else: 
+            self.in_memory = True 
+        self.input_source = input_source
+        self.target = input_source
         self.summarize = summarize
+        self.data_cleaning = data_cleaning
         self.data_preprocessors = data_preprocessors
         self.feature_generators = feature_generators
         self.model_grid = model_grid
@@ -61,12 +71,18 @@ class Pipeline:
 
         self.logger = logging.getLogger(self.name)
         self.logger.setLevel(logging.INFO)
-        if not self.logger.hasHandlers():
+        if verbose and not self.logger.hasHandlers():
             self.logger.addHandler(logging.StreamHandler(sys.stdout))
+        else: 
+            self.logger.addHandler(logging.NullHandler())
+
     
     def load_data(self):
         self.logger.info("Loading data")
-        self.dataframe = pd.read_csv(self.csv_path)
+        if self.in_memory:
+            self.dataframe = self.input_source
+        else: 
+            self.dataframe = pd.read_csv(self.input_source)
         if self.all_columns_are_features:
             self.features = list([col for col in self.dataframe.columns if col != self.target])
         return self
@@ -88,15 +104,21 @@ class Pipeline:
         for (i, transformation) in enumerate(transformations):
             self.logger.info("    Applying transformation (%s/%s): %s ",  i+1, n, transformation.name)
             self.logger.info("    %s -> %s", transformation.input_column_names, transformation.output_column_name)
-            for dataset in (self.test_sets, self.train_sets):
-                for dataframe in dataset:
-                    dataframe[transformation.output_column_name] = transformation(dataframe[transformation.input_column_names])
-            generated_columns.append(transformation.output_column_name)
+            if not self.test_sets or purpose == "cleaning":
+                self.dataframe[transformation.output_column_name] = transformation(self.dataframe[transformation.input_column_names])
+            else: 
+                for dataset in (self.test_sets, self.train_sets):
+                    for dataframe in dataset:
+                        dataframe[transformation.output_column_name] = transformation(dataframe[transformation.input_column_names])
+                generated_columns.append(transformation.output_column_name)
         self.logger.info("")
         if purpose == "feature generation":
             self.feature_generators = list(set(self.features + generated_columns))
         
         return self
+
+    def clean_data(self):
+        return self.run_transformations(self.data_cleaning, purpose="cleaning")
 
     def preprocess_data(self):
         return self.run_transformations(self.data_preprocessors, purpose="preprocessing")
@@ -107,7 +129,7 @@ class Pipeline:
     def generate_test_train(self):
         if self.splitter is None:
             return self.test_train_all()  
-        self.train_sets, self.test_sets, self.split_names = splitter.split(self.dataframe)
+        self.train_sets, self.test_sets, self.split_names = self.splitter.split(self.dataframe)
 
         return self 
 
@@ -186,7 +208,10 @@ class Pipeline:
         self.logger.addHandler(run_handler)
 
         self.logger.info("Starting pipeline %s (%s) at %s", self.name, run_id, datetime.datetime.now())
-        self.logger.info("Input data: %s (SHA-256: %s)", self.csv_path.resolve(), get_sha256_sum(self.csv_path))
+        if self.in_memory:
+            self.logger.info("Input data: (in-memory dataframe)")
+        else: 
+            self.logger.info("Input data: %s (SHA-256: %s)", self.input_source.resolve(), get_sha256_sum(self.input_source))
         self.logger.info("Pipeline library version: %s", get_git_hash())
         self.logger.info("")
         self.logger.info("Pipeline settings:")

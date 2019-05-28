@@ -1,4 +1,6 @@
+import pandas as pd
 import numpy as np
+
 
 class Transformation:
     def __init__(self, name, input_column_names, function, output_column_name=None):
@@ -76,3 +78,11 @@ def replace_missing_with_mean(column):
         input_column_names=[input_col],
         output_column_name=output_col, 
         function=replace)
+
+
+def to_datetime(column):
+    return Transformation(
+        name = "convert-" + column + "-to-datetime",
+        input_column_names=column,
+        output_column_name=column,
+        function = pd.to_datetime)

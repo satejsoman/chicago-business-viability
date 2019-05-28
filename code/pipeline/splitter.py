@@ -1,6 +1,7 @@
 from collections import namedtuple
 import yaml
-import datetime 
+import datetime
+from pandas import date_range
 
 Bounds = namedtuple('Bounds', ["start", "end"])
 
@@ -18,10 +19,10 @@ class Splitter():
 
     def split(self, df):
         train_sets, test_sets = [], []
-        for (train, test) in zip(train_splits, test_splits):
-            train_sets.append(df[df.where((train.start <= df[self.column]) & (df[self.column] <= train.end))])
-            test_sets.append(df[df.where((test.start  <= df[self.column]) & (df[self.column] <= test.end))])
-        return (train_sets, test_sets, self.names)
+        for (train, test) in zip(self.train_splits, self.test_splits):
+            train_sets.append(df[df[self.column].isin(date_range(train.start, train.end))])
+            test_sets.append(df[df[self.column].isin(date_range(test.start, test.end))])
+        return (train_sets, test_sets, self.split_names)
 
     @staticmethod
     def from_config(config_dict):
