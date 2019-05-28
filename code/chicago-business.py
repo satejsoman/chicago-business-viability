@@ -101,4 +101,4 @@ def main(config_path):
     pd.DataFrame(evaluations).to_csv("evaluations.csv")
 
 if __name__ == "__main__":
-    main("config.yaml")
+    main("config.yml")
