@@ -32,7 +32,7 @@ def test():
 
 if __name__ == "__main__":
     data = Path("./data")
-    input_filenames = ['not_renewed_2yrs']
+    input_filenames = []
     output_filename = "joined_table.csv"
 
     input_paths = [data/filename for filename in input_filenames]

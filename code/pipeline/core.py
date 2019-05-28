@@ -16,7 +16,7 @@ from .utils import get_git_hash, get_sha256_sum
 
 
 class Pipeline:
-    def __init__(self, 
+    def __init__(self,
         csv_path,
         target,
         summarize=False,
@@ -24,9 +24,9 @@ class Pipeline:
         feature_generators=None,
         model_grid=None,
         name=None,
-        output_root_dir=".", 
+        output_root_dir=".",
         features=None):
-        self.csv_path = csv_path 
+        self.csv_path = csv_path
         self.target = target
         self.summarize = summarize
         self.data_preprocessors = data_preprocessors
@@ -60,7 +60,7 @@ class Pipeline:
         self.logger.setLevel(logging.INFO)
         if not self.logger.hasHandlers():
             self.logger.addHandler(logging.StreamHandler(sys.stdout))
-    
+
     def load_data(self):
         self.logger.info("Loading data")
         self.dataframe = pd.read_csv(self.csv_path)
@@ -90,14 +90,50 @@ class Pipeline:
         self.logger.info("")
         if purpose == "feature generation":
             self.feature_generators = list(set(self.features + generated_columns))
-        
+
         return self
 
     def preprocess_data(self):
         return self.run_transformations(self.data_preprocessors, purpose="preprocessing")
 
-    def generate_features(self):
-        return self.run_transformations(self.feature_generators, purpose="feature generation")
+    def generate_features(self, feature_generators):
+        '''
+        Usage: add names of feature-generating functions to Pipeline at init.
+        feature_generator arg is a list of functions that take 2 dfs as
+            inputs and return features at an account-site-year level.
+            These features are merged onto a base df.
+        '''
+        if not feature_generators:
+            return self
+        self.logger.info("")
+        self.logger.info("Creating features ")
+        n = len(feature_generators)
+        for dataset in (self.test_sets, self.train_sets):
+            for dataframe in dataset:
+
+                original = dataframe.copy(deep=True) # license-level data
+                base = reshape_and_create_label(dataframe) # business-year data
+                generated_features = base.copy(deep=True) # accumulate features
+
+                for (i, feature_generator) in enumerate(feature_generators):
+                    self.logger.info("    Creating feature (%s/%s): %s ",  i+1, n, str(feature_generator))
+
+                    feature = feature_generator(base, original)
+                    generated_features = generated_features.merge(feature,
+                        how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR'])
+
+                # Finally, merge on all generated feature onto the base
+                #   and overwrite the dataframe
+                dataframe = base.merge(generated_features,
+                    how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR'])
+                # TODO: Check that this actually overwrites the df stored
+                # in the object
+
+        self.logger.info("")
+        self.feature_generators = list(set(self.features + generated_features))
+
+
+        return self
 
     def generate_test_train(self):
         self.logger.info("Columns: %s", self.dataframe.columns)
@@ -137,8 +173,8 @@ class Pipeline:
             for k in thresholds:
                 report = classification_report(y_true, apply_threshold(k/100.0, y_score), output_dict=True)
                 evaluation.update({
-                    metric + "-" + str(k): value 
-                    for (metric, value) 
+                    metric + "-" + str(k): value
+                    for (metric, value)
                     in report['1.0'].items()})
 
             self.model_evaluations.append(evaluation)
@@ -147,12 +183,12 @@ class Pipeline:
     def run_model_grid(self):
         if self.model_grid is None:
             return self
-        self.logger.info("Training models.")    
+        self.logger.info("Training models.")
         self.logger.info("Features: %s", self.features)
         self.logger.info("Fitting: %s", self.target)
         for (description, model) in self.model_grid:
             self.run_model(description, model)
-        return self 
+        return self
 
     def evaluate_model_grid(self):
         if self.model_grid is None:
@@ -161,14 +197,14 @@ class Pipeline:
         for (description, models) in self.trained_models.items():
             self.evaluate_models(description, models)
         pd.DataFrame(self.model_evaluations).to_csv(self.output_dir/"evaluations.csv")
-        return self 
+        return self
 
     def run(self):
         run_id = str(uuid.uuid4())
         self.output_dir = self.output_root_dir/(self.name + "-" + run_id)
         if not self.output_dir.exists():
             os.makedirs(self.output_dir)
-        
+
         run_handler = logging.FileHandler(self.output_dir/"pipeline.run")
         self.logger.addHandler(run_handler)
 
@@ -204,6 +240,6 @@ class Pipeline:
         self.logger.info("Finished at %s", datetime.datetime.now())
         self.logger.removeHandler(run_handler)
 
-# utils 
+# utils
 def apply_threshold(threshold, scores):
     return np.where(scores > threshold, 1, 0)
