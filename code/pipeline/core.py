@@ -14,23 +14,27 @@ from sklearn.metrics import (classification_report, confusion_matrix,
                              roc_auc_score)
 
 from .utils import get_git_hash, get_sha256_sum
+from .evaluation import apply_threshold, metrics_at_k
 
 
 class Pipeline:
     def __init__(self,
-        input_source,
-        target,
-        summarize=False,
-        data_cleaning=None,
-        data_preprocessors=None,
-        feature_generators=None,
-        features=None,
-        model_grid=None,
-        splitter=None,
-        name=None,
-        output_root_dir=".",
-        verbose=True):
+                input_source,
+                target,
+                name="ML Pipeline",
+                summarize=False,
+                data_cleaning=None,
+                data_preprocessors=None,
+                feature_generators=None,
+                features=None,
+                model_grid=None,
+                splitter=None,
+                evaluation_key='1.0',
+                output_root_dir=".",
+                verbose=True):
         warnings.filterwarnings("ignore")
+
+        self.name = name
 
         if isinstance(input_source, Path):
             self.in_memory = False
@@ -43,14 +47,10 @@ class Pipeline:
         self.data_preprocessors = data_preprocessors
         self.feature_generators = feature_generators
         self.model_grid = model_grid
-        self.splitter=splitter
+        self.splitter = splitter
+        self.evaluation_key = evaluation_key
 
         self.dataframe = None
-
-        if not name:
-            self.name = "ML Pipeline"
-        else:
-            self.name = name
 
         self.all_columns_are_features = False
         if not features:
@@ -154,7 +154,8 @@ class Pipeline:
 
     def evaluate_models(self, description, models):
         X, y = self.features, self.target
-        thresholds = [1, 2, 5, 10, 20, 20, 50]
+        k_values = [1, 2, 5, 10, 50]
+        
         self.logger.info("    Evaluating model %s", description)
         n = len(self.test_sets)
         for (index, (model, split_name, test_set)) in enumerate(zip(models, self.split_names, self.test_sets)):
@@ -170,12 +171,16 @@ class Pipeline:
                 "auc_roc"          : auc_roc
             }
 
-            for k in thresholds:
-                report = classification_report(y_true, apply_threshold(k/100.0, y_score), output_dict=True)
+            evaluation = None
+            for k in k_values:
+                report = classification_report(y_true, apply_threshold(t, y_score), output_dict=True)
                 evaluation.update({
-                    metric + "-" + str(k): value
+                    metric + "-t" + str(t): value
                     for (metric, value)
-                    in report['1.0'].items()})
+                    in report[self.evaluation_key].items()})
+
+                for k in k_values:
+                    evaluation.update(metrics_at_k(y_true, y_score, k, t))
 
             self.model_evaluations.append(evaluation)
             self.logger.info("    Model score: %s", score)
@@ -243,7 +248,3 @@ class Pipeline:
 
         self.logger.info("Finished at %s", datetime.datetime.now())
         self.logger.removeHandler(run_handler)
-
-# utils
-def apply_threshold(threshold, scores):
-    return np.where(scores > threshold, 1, 0)
