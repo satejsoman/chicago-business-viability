@@ -24,7 +24,6 @@ AGE_VARS_2000 = list(map(lambda x: "P008" + str(x).zfill(3), range(28, 35))) + \
                 list(map(lambda x: "P008" + str(x).zfill(3), range(67, 74)))
 
 
-
 def compute_population_density():
     '''Compute population per square mile '''
 
@@ -54,7 +53,7 @@ def fix_fips(df):
 
     df['GEOID'] = df['index'].apply(lambda x: extract_geoid(x), 1)
     df.drop(columns = "index", inplace=True)
-    
+
     return move_last_col_to_front(df)
 
 
@@ -89,6 +88,19 @@ def concatenate_years(file_pattern, years):
     return pd.concat(l)
 
 
+def expand_across_years(df, year_range):
+    ''' Takes: data frame with ACS-style year ranges, list of years
+        Returns: data frame with duplicated row, one for each year in the range
+    '''
+
+    years = list(range(int(year_range.split("-")[0]),
+                int(year_range.split("-")[1]) + 2000))
+
+    year_df = pd.DataFrame(data = [years, [year_range] * len(years),
+                           columns = ["year", "year_range"]).T
+    cp = pd.merge(df, year_df, left_on = "year", right_on = "year_range")
+
+
 def compute_share(df, varname, total_var, numerator_vars, denom = False):
     ''' Compute share of population within given age range'''
 
@@ -96,7 +108,7 @@ def compute_share(df, varname, total_var, numerator_vars, denom = False):
         df[varname] = (df[numerator_vars].apply(sum, 1) / df[total_var]) * 100
     else:
         df[varname] = df[numerator_vars].apply(sum, 1)
-    
+
     return df
 
 
@@ -111,7 +123,7 @@ def process_2010s():
     subj_vars = compute_share(subj_vars, 'a35to64_share', 'S0101_C01_001E', AGE_VARS)
     subj_vars = subj_vars.drop(columns = S0101_VARS).rename(columns = {BA_SHARE_VAR: "share_BA+"})
     detail_vars.rename(columns = {TOTAL_POP_VAR: 'total_pop',
-                                  MEDINC_VAR: 'medhhinc'}, inplace = True)    
+                                  MEDINC_VAR: 'medhhinc'}, inplace = True)
     acs_2010s = pd.merge(detail_vars, subj_vars, on=['GEOID', 'year'], how = 'outer')
 
     return acs_2010s
@@ -147,14 +159,35 @@ def process_2000():
 
     return cdf
 
+
+def merge_with_licenses(bl, data, bl_geoid_col, data_geoid_col):
+    ''' steps to merge data df into business license data '''
+
+
+    bl[bl_geoid_col] = bl[bl_geoid_col].astype(str)
+    # data[data_geoid_col] = data[data_geoid_col].astype(str)
+    # data['year'] = data['year'].astype(int)
+
+    cols_to_keep = ['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR', bl_geoid_col]
+     # bl['GEOID_2010'] = bl['GEOID_2010'].astype(str).apply(lambda x: x[0:11])
+     bl['year'] = pd.to_datetime(bl['DATE ISSUE']).dt.year
+
+
+     merged = pd.merge(bl, data, left_on = bl_geoid_col, right_on = data_geoid_col)
+
+
+
 if __name__ == "__main__":
-    
+
     acs_2010s = process_2010s()
     acs_2000s = process_2005_09()
     census_2000 = process_2000()
-    
+
     # write to file
     acs_2000s.to_csv("../../data/0509_clean_ACS.csv")
     acs_2010s.to_csv("../../data/2010s_clean_ACS.csv")
     census_2000.to_csv("../../data/2000_clean_Census.csv")
 
+    bl = pd.read_csv("../../data/business_licenses_with_tracts.csv")
+
+    # bl = merge_with_licenses
