@@ -35,7 +35,7 @@ class PipelineSmoketest(unittest.TestCase):
         if not input_path.exists():
             iris = sklearn.datasets.load_iris()
             pd.DataFrame(
-                data = np.c_[iris['data'], (iris['target'] > 1).astype(int)],
+                data    = np.c_[iris['data'], (iris['target'] > 1).astype(int)],
                 columns = [_.replace(' (cm)', '') for _ in iris['feature_names']] + ['target']
             ).to_csv(input_path)
 
@@ -46,7 +46,8 @@ class PipelineSmoketest(unittest.TestCase):
             name            = pipeline_name,
             features        = features,
             output_root_dir = output_dir,
-            verbose         = False)
+            verbose         = False,
+            positive_label  = 1)
         pipeline.run()
 
 if __name__ == "__main__":
