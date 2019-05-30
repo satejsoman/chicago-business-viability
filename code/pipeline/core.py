@@ -10,32 +10,35 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-from sklearn.metrics import (classification_report, confusion_matrix,
-                             roc_auc_score)
+import matplotlib.pyplot as plt
 
 from .utils import get_git_hash, get_sha256_sum
+from .evaluation import evaluate
 
+DEFAULT_K_VALUES = [_/100.0 for _ in [1, 2, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90]]
 
 class Pipeline:
     def __init__(self,
-        input_source,
-        target,
-        summarize=False,
-        data_cleaning=None,
-        data_preprocessors=None,
-        feature_generators=None,
-        features=None,
-        model_grid=None,
-        splitter=None,
-        name=None,
-        output_root_dir=".",
-        verbose=True):
+                input_source,
+                target,
+                name="ML Pipeline",
+                summarize=False,
+                data_cleaning=None,
+                data_preprocessors=None,
+                feature_generators=None,
+                features=None,
+                model_grid=None,
+                splitter=None,
+                positive_label=1,
+                k_values=None,
+                output_root_dir=".",
+                verbose=True):
         warnings.filterwarnings("ignore")
 
-        if isinstance(input_source, Path):
-            self.in_memory = False
-        else:
-            self.in_memory = True
+        self.name = name
+
+        self.in_memory = not isinstance(input_source, Path)
+
         self.input_source = input_source
         self.target = target
         self.summarize = summarize
@@ -43,14 +46,10 @@ class Pipeline:
         self.data_preprocessors = data_preprocessors
         self.feature_generators = feature_generators
         self.model_grid = model_grid
-        self.splitter=splitter
+        self.splitter = splitter
+        self.positive_label = positive_label
 
         self.dataframe = None
-
-        if not name:
-            self.name = "ML Pipeline"
-        else:
-            self.name = name
 
         self.all_columns_are_features = False
         if not features:
@@ -76,6 +75,7 @@ class Pipeline:
         else:
             self.logger.addHandler(logging.NullHandler())
 
+        self.k_values = k_values if k_values else DEFAULT_K_VALUES 
 
     def load_data(self):
         self.logger.info("Loading data")
@@ -154,31 +154,33 @@ class Pipeline:
 
     def evaluate_models(self, description, models):
         X, y = self.features, self.target
-        thresholds = [1, 2, 5, 10, 20, 20, 50]
+        
         self.logger.info("    Evaluating model %s", description)
         n = len(self.test_sets)
         for (index, (model, split_name, test_set)) in enumerate(zip(models, self.split_names, self.test_sets)):
             self.logger.info("        Evaluating on testing set \"%s\" (%s/%s):", split_name, index + 1, n)
             score = model.score(X=test_set[X], y=test_set[y])
             y_true = test_set[y]
-            y_score = np.array([_[1] for _ in model.predict_proba(test_set[X])])
-            auc_roc = roc_auc_score(y_true, y_score)
-            evaluation = {
-                "name"             : description,
-                "test_train_index" : index + 1,
-                "score"            : score,
-                "auc_roc"          : auc_roc
-            }
+            y_score = np.array([_[self.positive_label] for _ in model.predict_proba(test_set[X])])
 
-            for k in thresholds:
-                report = classification_report(y_true, apply_threshold(k/100.0, y_score), output_dict=True)
-                evaluation.update({
-                    metric + "-" + str(k): value
-                    for (metric, value)
-                    in report['1.0'].items()})
+            evaluation, (precision, recall, _) = evaluate(self.positive_label, self.k_values, y_true, y_score)
+            evaluation["name"] = description
+            evaluation["test_train_index"] = index + 1
 
             self.model_evaluations.append(evaluation)
-            self.logger.info("    Model score: %s", score)
+            plt.figure()
+            plt.step(recall, precision, color='b', alpha=0.2, where='post')
+            plt.fill_between(recall, precision, alpha=0.2, color='b')
+            plt.xlabel('Recall')
+            plt.ylabel('Precision')
+            plt.ylim([0.0, 1.05])
+            plt.xlim([0.0, 1.0])
+            plt.title('2-class Precision-Recall curve')
+            png_filename = description + "_" + str(index + 1) + "_prcurve.png"
+            svg_filename = description + "_" + str(index + 1) + "_prcurve.svg"
+            plt.savefig(self.output_dir/png_filename, dpi=300)
+            plt.savefig(self.output_dir/svg_filename, dpi=300)
+        return self 
 
     def run_model_grid(self):
         if self.model_grid is None:
@@ -243,7 +245,3 @@ class Pipeline:
 
         self.logger.info("Finished at %s", datetime.datetime.now())
         self.logger.removeHandler(run_handler)
-
-# utils
-def apply_threshold(threshold, scores):
-    return np.where(scores > threshold, 1, 0)
