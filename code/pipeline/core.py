@@ -10,12 +10,12 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-from sklearn.metrics import (classification_report, confusion_matrix,
-                             roc_auc_score)
+import matplotlib.pyplot as plt
 
 from .utils import get_git_hash, get_sha256_sum
-from .evaluation import apply_threshold, metrics_at_k
+from .evaluation import evaluate
 
+DEFAULT_K_VALUES = [_/100.0 for _ in [1, 2, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90]]
 
 class Pipeline:
     def __init__(self,
@@ -29,17 +29,16 @@ class Pipeline:
                 features=None,
                 model_grid=None,
                 splitter=None,
-                evaluation_key='1.0',
+                positive_label=1,
+                k_values=None,
                 output_root_dir=".",
                 verbose=True):
         warnings.filterwarnings("ignore")
 
         self.name = name
 
-        if isinstance(input_source, Path):
-            self.in_memory = False
-        else:
-            self.in_memory = True
+        self.in_memory = not isinstance(input_source, Path)
+
         self.input_source = input_source
         self.target = target
         self.summarize = summarize
@@ -48,7 +47,7 @@ class Pipeline:
         self.feature_generators = feature_generators
         self.model_grid = model_grid
         self.splitter = splitter
-        self.evaluation_key = evaluation_key
+        self.positive_label = positive_label
 
         self.dataframe = None
 
@@ -76,6 +75,7 @@ class Pipeline:
         else:
             self.logger.addHandler(logging.NullHandler())
 
+        self.k_values = k_values if k_values else DEFAULT_K_VALUES 
 
     def load_data(self):
         self.logger.info("Loading data")
@@ -154,7 +154,6 @@ class Pipeline:
 
     def evaluate_models(self, description, models):
         X, y = self.features, self.target
-        k_values = [1, 2, 5, 10, 50]
         
         self.logger.info("    Evaluating model %s", description)
         n = len(self.test_sets)
@@ -162,28 +161,26 @@ class Pipeline:
             self.logger.info("        Evaluating on testing set \"%s\" (%s/%s):", split_name, index + 1, n)
             score = model.score(X=test_set[X], y=test_set[y])
             y_true = test_set[y]
-            y_score = np.array([_[1] for _ in model.predict_proba(test_set[X])])
-            auc_roc = roc_auc_score(y_true, y_score)
-            evaluation = {
-                "name"             : description,
-                "test_train_index" : index + 1,
-                "score"            : score,
-                "auc_roc"          : auc_roc
-            }
+            y_score = np.array([_[self.positive_label] for _ in model.predict_proba(test_set[X])])
 
-            evaluation = None
-            for k in k_values:
-                report = classification_report(y_true, apply_threshold(t, y_score), output_dict=True)
-                evaluation.update({
-                    metric + "-t" + str(t): value
-                    for (metric, value)
-                    in report[self.evaluation_key].items()})
-
-                for k in k_values:
-                    evaluation.update(metrics_at_k(y_true, y_score, k, t))
+            evaluation, (precision, recall, _) = evaluate(self.positive_label, self.k_values, y_true, y_score)
+            evaluation["name"] = description
+            evaluation["test_train_index"] = index + 1
 
             self.model_evaluations.append(evaluation)
-            self.logger.info("    Model score: %s", score)
+            plt.figure()
+            plt.step(recall, precision, color='b', alpha=0.2, where='post')
+            plt.fill_between(recall, precision, alpha=0.2, color='b')
+            plt.xlabel('Recall')
+            plt.ylabel('Precision')
+            plt.ylim([0.0, 1.05])
+            plt.xlim([0.0, 1.0])
+            plt.title('2-class Precision-Recall curve')
+            png_filename = description + "_" + str(index + 1) + "_prcurve.png"
+            svg_filename = description + "_" + str(index + 1) + "_prcurve.svg"
+            plt.savefig(self.output_dir/png_filename, dpi=300)
+            plt.savefig(self.output_dir/svg_filename, dpi=300)
+        return self 
 
     def run_model_grid(self):
         if self.model_grid is None:

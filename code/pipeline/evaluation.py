@@ -1,7 +1,16 @@
 import numpy as np
-from sklearn.metrics import precision_score, recall_score
+from sklearn.metrics import (accuracy_score, f1_score, precision_recall_curve,
+                             precision_score, recall_score, roc_auc_score)
 
 # taken in large part from rayid ghani's magicloops 
+
+metrics = {
+    "precision": precision_score,
+    "recall"   : recall_score,
+    "accuracy" : accuracy_score,
+    "f1_score" : f1_score
+    # auc_roc run on scores, not binarized predictions
+} 
 
 def apply_threshold(threshold, scores):
     return np.where(scores > threshold, 1, 0)
@@ -14,22 +23,18 @@ def joint_sort_descending(l1, l2):
 def generate_binary_at_k(y_score, k):
     cutoff_index = int(len(y_score) * (k / 100.0))
     predictions_binary = [1 if x < cutoff_index else 0 for x in range(len(y_score))]
-    return predictions_binary
+    # return binarized predictions and score threshold
+    return (predictions_binary, y_score[cutoff_index])
 
-def metrics_at_k(name, index, k, y_true, y_score):
+def evaluate(positive_label, k_values, y_true, y_score):
     y_score_sorted, y_true_sorted = joint_sort_descending(np.array(y_score), np.array(y_true))
-    preds_at_k = generate_binary_at_k(y_score_sorted, k)
-
-    report = classification_report(y_true, preds_at_k, output_dict=True)
-    evaluation.update({
-    metric + "-k" + str(k): value
-    for (metric, value)
-    in report[self.evaluation_key].items()})
-
-    precision = precision_score(y_true_sorted, preds_at_k)
-    recall = recall_score(y_true_sorted, preds_at_k)
-
-    return { 
-        "precision-at-k{}-t{}".format(k, t): precision,
-        "recall-at-k{}-t{}".format(k, t) : recall
-    }
+    evaluation = {"roc-auc-score" : roc_auc_score(y_true, y_score)}
+    for k in k_values:
+        (preds_at_k, threshold) = generate_binary_at_k(y_score_sorted, k)
+        evaluation["threshold-at-" + str(k)] = threshold
+        evaluation["accuracy-at-"  + str(k)] = accuracy_score( y_true, preds_at_k)
+        evaluation["precision-at-" + str(k)] = precision_score(y_true, preds_at_k, pos_label=positive_label)
+        evaluation["recall-at-"    + str(k)] = recall_score(   y_true, preds_at_k, pos_label=positive_label)
+        evaluation["f1-at-"        + str(k)] = f1_score(       y_true, preds_at_k, pos_label=positive_label)
+    
+    return (evaluation, precision_recall_curve(y_true, y_score, positive_label))
