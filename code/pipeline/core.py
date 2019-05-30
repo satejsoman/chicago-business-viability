@@ -228,8 +228,8 @@ class Pipeline:
 
         (self
             .load_data()
-            .summarize_data()
             .clean_data()
+            .summarize_data()
             .generate_test_train()
             .preprocess_data()
             .generate_features()
