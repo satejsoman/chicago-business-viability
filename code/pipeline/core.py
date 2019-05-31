@@ -10,6 +10,8 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import matplotlib
+matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 
 from .utils import get_git_hash, get_sha256_sum
@@ -75,7 +77,7 @@ class Pipeline:
         else:
             self.logger.addHandler(logging.NullHandler())
 
-        self.k_values = k_values if k_values else DEFAULT_K_VALUES 
+        self.k_values = k_values if k_values else DEFAULT_K_VALUES
 
     def load_data(self):
         self.logger.info("Loading data")
@@ -154,7 +156,7 @@ class Pipeline:
 
     def evaluate_models(self, description, models):
         X, y = self.features, self.target
-        
+
         self.logger.info("    Evaluating model %s", description)
         n = len(self.test_sets)
         for (index, (model, split_name, test_set)) in enumerate(zip(models, self.split_names, self.test_sets)):
@@ -164,17 +166,17 @@ class Pipeline:
             if type(model) in score_function_overrides.keys():
                 score_function = score_function_overrides[type(model)]
                 y_score = score_function(self=model, X=test_set[X])
-            else: 
+            else:
                 y_score = np.array([_[self.positive_label] for _ in model.predict_proba(test_set[X])])
 
             evaluation, (precision, recall, _) = evaluate(self.positive_label, self.k_values, y_true, y_score)
             evaluation["name"] = description
             evaluation["test_train_index"] = index + 1
-            
-            # save raw PR data 
+
+            # save raw PR data
             pd.DataFrame({"precision": precision, "recall": recall}).to_csv(self.output_dir/(description+"_pr-data_" + str(index + 1) + ".csv"))
             self.model_evaluations.append(evaluation)
-            
+
             # save PR curve for model as a figure
             plt.figure()
             plt.step(recall, precision, color='b', alpha=0.2, where='post')
@@ -188,7 +190,7 @@ class Pipeline:
             svg_filename = description + "_" + str(index + 1) + "_prcurve.svg"
             plt.savefig(self.output_dir/png_filename, dpi=300)
             plt.savefig(self.output_dir/svg_filename, dpi=300)
-        return self 
+        return self
 
     def run_model_grid(self):
         if self.model_grid is None:
