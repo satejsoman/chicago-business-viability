@@ -22,31 +22,36 @@ from pipeline.transformation import (Transformation, binarize, categorize,
                                      scale_by_max)
 from pipeline.grid import Grid
 
+from feature_generation import (make_features, reshape_and_create_label,
+                                count_by_zip_year, count_by_dist_radius)
+
 def explore():
-    pass 
+    pass
 
 def clean():
-    pass 
+    pass
 
 def predict():
     pass
 
-def evaluate_models(grid, pipeline_generator):
-    evaluations = []
-    for (description, model) in grid.models.items():
-        pipeline = pipeline_generator(description, model)
-        pipeline.run()
-        evaluations += pipeline.model_evaluations
-    return evaluations
+
+def make_chicago_business_features(self):
+    for df_list in (self.test_sets, self.train_sets):
+        for i in range(len(df_list)):
+
+            self.logger.info("    Creating %s features on test-train set %s", n, i+1)
+            df_list[i] = make_features(df_list[i], self.feature_generators)
+
+    return self
+
 
 def main(config_path):
     with open(config_path, 'rb') as config_file:
         config = yaml.safe_load(config_file.read())
-    
-    def model_parametrized_pipeline(description, model):
-        return Pipeline(
-            Path(config["data"]["imputed_path"]), 
-            config["pipeline"]["target"], 
+
+    pipeline = Pipeline(
+            Path(config["data"]["imputed_path"]),
+            config["pipeline"]["target"],
             data_preprocessors=[
                 hash_string('LEGAL NAME'),
                 hash_string('DOING BUSINESS AS NAME'),
@@ -59,46 +64,19 @@ def main(config_path):
                 hash_string('LICENSE STATUS'),
                 hash_string('SSA'),
             ],
-            features=[
-                'LEGAL NAME_hashed',
-                'DOING BUSINESS AS NAME_hashed',
-                'ADDRESS_hashed',
-                'CITY_categorical',
-                'STATE_categorical',
-                'LICENSE DESCRIPTION_hashed',
-                'BUSINESS ACTIVITY_hashed',
-                'APPLICATION TYPE_categorical',
-                'LICENSE STATUS_hashed',
-                'SSA_hashed',
-                'LICENSE TERM EXPIRATION DATE',
-                'ID',
-                'LICENSE ID',
-                'ACCOUNT NUMBER',
-                'SITE NUMBER',
-                'ZIP CODE',
-                'WARD',
-                'PRECINCT',
-                'WARD PRECINCT',
-                'POLICE DISTRICT',
-                'LICENSE CODE',
-                'BUSINESS ACTIVITY ID',
-                'LICENSE NUMBER',
-                'APPLICATION CREATED DATE',
-                'APPLICATION REQUIREMENTS COMPLETE',
-                'PAYMENT DATE',
-                'CONDITIONAL APPROVAL',
-                'LICENSE TERM START DATE',
-                'LICENSE APPROVED FOR ISSUANCE',
-                'DATE ISSUED',
-                'LICENSE STATUS CHANGE DATE',
-                'LATITUDE',
-                'LONGITUDE'],
+            feature_generators=[
+                count_by_zip_year,
+                count_by_dist_radius
+            ],
             summarize=False,
             model=model,
             name="quick-pipeline-lr-only-" + description,
             output_root_dir=Path("output/"))
-    evaluations = evaluate_models(Grid.from_config(config["models"]), model_parametrized_pipeline)
-    pd.DataFrame(evaluations).to_csv("evaluations.csv")
+
+    pipeline.generate_features = MethodType(make_chicago_business_features, pipeline)
+
+    pipeline.run()
+
 
 if __name__ == "__main__":
     main("config.yml")
