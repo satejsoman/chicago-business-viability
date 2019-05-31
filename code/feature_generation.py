@@ -3,6 +3,30 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics.pairwise import haversine_distances
 
+def make_features(input_df, feature_generators):
+    '''
+    Takes an input dataframe and a list of feature generation functions to
+    apply, and returns a dataframe of transformed data.
+    make_features() will be called on every test and train dataset separately.
+    '''
+
+    base = reshape_and_create_label(input_df) # business-year data
+
+    generated_features = base.copy(deep=True) # accumulate features
+    for i in feature_generators:
+        feature = feature_generator(base, input_df)
+        generated_features = generated_features.merge(feature,
+            how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR'])
+
+    # Finally, merge on all generated feature onto the base and overwrite df
+    result_df = base.merge(generated_features,
+        how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR'])
+    # TODO: Check that this actually overwrites the df stored
+    # in the object
+
+    return result_df
+
+
 # Reshape license data to business-year data, create label
 def reshape_and_create_label(input_df):
     '''
@@ -154,7 +178,7 @@ def count_by_zip_year(input_df, license_data):
 
 
 # Count nonrenewals by distance radius
-def count_by_dist_radius(input_df, license_data=None):
+def count_by_dist_radius(input_df, license_data):
     '''
     Counts the number of business nonrenewals within a specified distance in km for each business-year.
 

@@ -10,6 +10,8 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import matplotlib
+matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 
 from .utils import get_git_hash, get_sha256_sum
@@ -123,44 +125,8 @@ class Pipeline:
     def preprocess_data(self):
         return self.run_transformations(self.data_preprocessors, purpose="preprocessing")
 
-    def generate_features(self, feature_generators):
-        '''
-        Usage: add names of feature-generating functions to Pipeline at init.
-        feature_generator arg is a list of functions that take 2 dfs as
-            inputs and return features at an account-site-year level.
-            These features are merged onto a base df.
-        '''
-        if not feature_generators:
-            return self
-        self.logger.info("")
-        self.logger.info("Creating features ")
-        n = len(feature_generators)
-        for dataset in (self.test_sets, self.train_sets):
-            for dataframe in dataset:
-
-                original = dataframe.copy(deep=True) # license-level data
-                base = reshape_and_create_label(dataframe) # business-year data
-                generated_features = base.copy(deep=True) # accumulate features
-
-                for (i, feature_generator) in enumerate(feature_generators):
-                    self.logger.info("    Creating feature (%s/%s): %s ",  i+1, n, str(feature_generator))
-
-                    feature = feature_generator(base, original)
-                    generated_features = generated_features.merge(feature,
-                        how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR'])
-
-                # Finally, merge on all generated feature onto the base
-                #   and overwrite the dataframe
-                dataframe = base.merge(generated_features,
-                    how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR'])
-                # TODO: Check that this actually overwrites the df stored
-                # in the object
-
-        self.logger.info("")
-        self.feature_generators = list(set(self.features + generated_features))
-
-
-        return self
+    def generate_features(self):
+        return self.run_transformations(self.feature_generators, purpose="feature generation")
 
     def generate_test_train(self):
         if self.splitter is None:
