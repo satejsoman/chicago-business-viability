@@ -13,7 +13,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 from .utils import get_git_hash, get_sha256_sum
-from .evaluation import evaluate
+from .evaluation import evaluate, score_function_overrides
 
 DEFAULT_K_VALUES = [_/100.0 for _ in [1, 2, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90]]
 
@@ -113,7 +113,7 @@ class Pipeline:
                 generated_columns.append(transformation.output_column_name)
         self.logger.info("")
         if purpose == "feature generation":
-            self.feature_generators = list(set(self.features + generated_columns))
+            self.features = list(set(self.features + generated_columns))
 
         return self
 
@@ -161,13 +161,21 @@ class Pipeline:
             self.logger.info("        Evaluating on testing set \"%s\" (%s/%s):", split_name, index + 1, n)
             score = model.score(X=test_set[X], y=test_set[y])
             y_true = test_set[y]
-            y_score = np.array([_[self.positive_label] for _ in model.predict_proba(test_set[X])])
+            if type(model) in score_function_overrides.keys():
+                score_function = score_function_overrides[type(model)]
+                y_score = score_function(self=model, X=test_set[X])
+            else: 
+                y_score = np.array([_[self.positive_label] for _ in model.predict_proba(test_set[X])])
 
             evaluation, (precision, recall, _) = evaluate(self.positive_label, self.k_values, y_true, y_score)
             evaluation["name"] = description
             evaluation["test_train_index"] = index + 1
-
+            
+            # save raw PR data 
+            pd.DataFrame({"precision": precision, "recall": recall}).to_csv(self.output_dir/(description+"_pr-data_" + str(index + 1) + ".csv"))
             self.model_evaluations.append(evaluation)
+            
+            # save PR curve for model as a figure
             plt.figure()
             plt.step(recall, precision, color='b', alpha=0.2, where='post')
             plt.fill_between(recall, precision, alpha=0.2, color='b')
