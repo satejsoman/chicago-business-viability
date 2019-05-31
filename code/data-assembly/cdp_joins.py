@@ -7,21 +7,34 @@
 # [x] Number of business owned by owner
 # [ ] received TIF
 # [ ] Received Small Business Improvement Fund (SBIF) grant
-# [ ] is national chain
+# [d] is national chain
 
 from pathlib import Path
+
 import pandas as pd
+from tqdm import tqdm
+
+tqdm.pandas()
+
+# national_chain_list = [
+#     "WALGREEN CO.", "BOND DRUG COMPANY OF ILLINOIS, LLC", "SP PLUS CORPORATION", 
+#     "STARBUCKS CORPORATION", "AMERICAN DRUG STORES LLC", "FAMILY DOLLAR, INC.", 
+#     "HIGHLAND PARK CVS, L.L.C."
+# ]
+
+# def is_national_chain(df):
+#     df["is_national_chain"] = df["LEGAL NAME"].isin(national_chain_list)
 
 def process_datetimes(df):
     # dt_cols = [col for col in df.columns if 'DATE' in col]
-    dt_cols = ['LICENSE APPROVED FOR ISSUANCE', 'DATE ISSUED']
-    df[dt_cols] = pd.to_datetime(df[dt_cols])
+    # dt_cols = ['LICENSE APPROVED FOR ISSUANCE', 'DATE ISSUED']
+    df["YEAR"] = df["DATE ISSUED"].progress_apply(lambda row: pd.to_datetime(row).year)
     return df
 
 def process_business_owners(df):
     df[["Owner First Name", "Owner Middle Initial", "Owner Last Name"]] = df[["Owner First Name", "Owner Middle Initial", "Owner Last Name"]].fillna(" ")
     df["full_name"] = df["Owner First Name"] + " " + df["Owner Middle Initial"] + " " + df["Owner Last Name"]
-    df["num_accounts"] = df["full_name"].map(df["full_name"].value_counts())
+    df["num_accounts"] = df["full_name"].progress_map(df["full_name"].value_counts())
     return df 
  
 def get_num_renewals_map(df):
@@ -37,12 +50,12 @@ def non_join_transformations(df):
 
     return df 
 
-def main(licenses, owners):
+def main(data_path, licenses, owners):
     # licenses = process_datetimes(licenses)
-    licenses = non_join_transformations(licenses)
-    owners = process_business_owners(owners)
-    owners.rename(str.upper, axis="columns", inplace=True)
-    # licenses = licenses.
+    licenses = non_join_transformations(process_datetimes(licenses))
+    # owners = process_business_owners(owners)
+    # owners.rename(str.upper, axis="columns", inplace=True)
+    licenses[["ACCOUNT NUMBER", "SITE NUMBER", "YEAR",'which_ssa', 'in_ssa', 'num_sites']].to_csv(data_path/'licenses_joined.csv')
 
 if __name__ == "__main__":
     data = Path("./data")
@@ -51,5 +64,6 @@ if __name__ == "__main__":
     fortune1k_path  = data/"fortune1000.csv"
     
     main(
-        licenses = pd.read_csv(licenses_path), 
-        owners   = pd.read_csv(owners_path))
+        data_path = data,
+        licenses  = pd.read_csv(licenses_path), 
+        owners    = pd.read_csv(owners_path))
