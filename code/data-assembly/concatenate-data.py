@@ -179,14 +179,13 @@ def prep_license_data(bl):
 
 
 
-def merge_with_licenses(bl, data, year_range, bl_geoid_col, data_geoid_col):
+def merge_with_licenses(bl, data, year_ranges, bl_geoid_col, data_geoid_col):
     ''' steps to merge data df into business license data '''
 
     data[data_geoid_col] = data[data_geoid_col].astype(str)
 
-
-    # for y in year_ranges:
-    data = expand_across_years(data, year_range)
+    for y in year_ranges:
+        data = expand_across_years(data, y)
     
     merged = pd.merge(bl, data, left_on = [bl_geoid_col, "year"], right_on = ["GEOID", "year"])
 
@@ -209,10 +208,13 @@ if __name__ == "__main__":
     acs_2010s = pd.read_csv("../../data/2010s_clean_ACS.csv")
     census_2000 = pd.read_csv("../../data/2000_clean_Census.csv")
 
+    bls = pd.read_csv("../../data/Cook_annual_unemployment.csv")
+    bea = pd.read_csv("../../data/chicago_rgdp_2001-17.csv")
+
 
     bl = pd.read_csv("../../data/business_licenses_with_tracts.csv")[INDEX_VARS + ["GEOID_2010"]]
     bl = prep_license_data(bl)
 
-    test = merge_with_licenses(bl, acs_2010s, "2013-17", "GEOID_2010", "GEOID")
+    test = merge_with_licenses(bl, acs_2010s, ["2010-14", "2013-17"], "GEOID_2010", "GEOID")
     test.drop(columns = ["Unnamed: 0"], inplace = True)
-    test.to_csv("../../data/merged_business_acs_test_file.csv")
+    # test.to_csv("../../data/merged_business_acs_test_file.csv")
