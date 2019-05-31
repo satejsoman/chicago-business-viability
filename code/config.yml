@@ -1,0 +1,69 @@
+data: 
+  input_path: "../data/license_features.csv"
+
+pipeline:
+  target: business_failed 
+  test_train:
+    split_column: "license_date"
+    splits: 
+      - name: exists as of 12/31/2008 
+        train: 
+          start: 01/01/2002 
+          end:   12/31/2004 
+        test: 
+          start: 01/01/2002 
+          end:   12/31/2006
+      - name: exists as of 12/31/2010 
+        train: 
+          start: 01/01/2002 
+          end:   12/31/2006 
+        test: 
+          start: 01/01/2002 
+          end:   12/31/2008
+      - name: exists as of 12/31/2012 
+        train: 
+          start: 01/01/2002 
+          end:   12/31/2008 
+        test: 
+          start: 01/01/2002 
+          end:   12/31/2010
+      - name: exists as of 12/31/2014 
+        train: 
+          start: 01/01/2002 
+          end:   12/31/2010 
+        test: 
+          start: 01/01/2002 
+          end:   12/31/2012
+      - name: exists as of 12/31/2016 
+        train: 
+          start: 01/01/2002 
+          end:   12/31/2012 
+        test: 
+          start: 01/01/2002 
+          end:   12/31/2014
+      - name: exists as of 12/31/2018 
+        train: 
+          start: 01/01/2002 
+          end:   12/31/2014 
+        test: 
+          start: 01/01/2002 
+          end:   12/31/2016
+
+models: 
+  LogisticRegression:
+    C: [0.01, 0.1, 1, 10, 100]
+    penalty: ["l1", "l2"]
+
+  KNeighborsClassifier: 
+    n_neighbors: [10, 50, 100]
+
+  DecisionTreeClassifier:
+    max_depth: [null, 1, 5, 10, 50, 100]
+
+  GradientBoostingClassifier:
+    learning_rate: [0.1, 0.5, 2.0]
+  
+  BaggingClassifier:
+    max_samples: [0.1, 0.5, 1.0]
+
+  RandomForestClassifier: {}

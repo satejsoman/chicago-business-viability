@@ -32,16 +32,12 @@ class Grid():
         ])
 
     @staticmethod
-    def from_dict(models_dict):
+    def from_config(config_dict):
         model_parameters = []
-        for (model, params) in models_dict.items():
+        for (model, params) in config_dict.items():
             constructor = globals()[model]
             model_parameters += [{generate_name(model, params.keys(), vals): constructor(**dict(zip(params.keys(), vals)))} for vals in product(*params.values())]
         return Grid(model_parameters)
-
-    @staticmethod
-    def from_config(models_dict):
-        return Grid.from_dict(models_dict)
 
     def __repr__(self):
         return self.models.__repr__()
