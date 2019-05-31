@@ -12,8 +12,8 @@ from shapely.geometry import Point
 
 
 BUSINESS_LICENSE_DATA_LOCATION = "../../data/Business_Licenses.csv"
-BLOCK_2010_SHAPEFILE_LOCATION = "../../data/Cook_bg_2010.geojson"
-BLOCK_2000_SHAPEFILE_LOCATION = "../../data/Cook_bg_2000.geojson"
+BLOCK_2010_SHAPEFILE_LOCATION = "../../data/Cook_tract_2010.geojson"
+BLOCK_2000_SHAPEFILE_LOCATION = "../../data/Cook_tract_2000.geojson"
 COLS = ['LICENSE ID', 'LICENSE NUMBER', 'LEGAL NAME', 'ACCOUNT NUMBER',
          'SITE NUMBER', 'ADDRESS', 'CITY', 'STATE', 'ZIP CODE',
          'LATITUDE', 'LONGITUDE', 'LOCATION', 'DATE ISSUED']
@@ -35,7 +35,7 @@ def join_to_blkgrp(gdf, block_filepath, year):
     blks = gpd.read_file(block_filepath)
 
     if year == 2000:
-        blks.rename(columns = {'BKGPIDFP00': "GEOID"}, inplace = True)
+        blks.rename(columns = {'TRACTCE00': "GEOID"}, inplace = True)
 
     gdf = gpd.sjoin(gdf, blks, op = "within", how = 'inner')
     gdf.drop(columns = list(set(blks.columns).difference(["GEOID", "geometry"])), inplace=True)
@@ -61,7 +61,7 @@ def perform_basic_join(df, outfile):
 
     gdf = join_records_to_blocks(df, BLOCK_2010_SHAPEFILE_LOCATION, 2010)
     gdf = join_records_to_blocks(gdf, BLOCK_2000_SHAPEFILE_LOCATION, 2000)
-    drop_cols = list(set(INDEX_VARS + ['GEOID_2000', 'GEOID_2010']).difference(gdf.columns))
+    drop_cols = list(set(gdf.columns).difference(set(INDEX_VARS + ['GEOID_2000', 'GEOID_2010'])))
     gdf.drop(columns = drop_cols, inplace = True) 
 
     gdf.to_csv(outfile)
@@ -80,7 +80,6 @@ if __name__ == "__main__":
 
     df = pd.read_csv(args.infile)[COLS]
     gdf = perform_basic_join(df, args.outfile)
-
     
     
     

@@ -23,6 +23,9 @@ BA_VARS_2000 = ["P037015", "P037032"]
 AGE_VARS_2000 = list(map(lambda x: "P008" + str(x).zfill(3), range(28, 35))) + \
                 list(map(lambda x: "P008" + str(x).zfill(3), range(67, 74)))
 
+INDEX_VARS = ['LICENSE ID', 'LICENSE NUMBER', 'ACCOUNT NUMBER', 'SITE NUMBER', 'DATE ISSUED']
+FIPS_VARS = ["GEOID_2000", "GEOID_2010"]
+
 
 def compute_population_density():
     '''Compute population per square mile '''
@@ -94,11 +97,15 @@ def expand_across_years(df, year_range):
     '''
 
     years = list(range(int(year_range.split("-")[0]),
-                int(year_range.split("-")[1]) + 2000))
+                int(year_range.split("-")[1]) + 2001))
 
-    year_df = pd.DataFrame(data = [years, [year_range] * len(years),
-                           columns = ["year", "year_range"]).T
+    year_df = pd.DataFrame(data = [years, [year_range] * len(years)]).T
+    year_df.columns = ["year", "year_range"]
     cp = pd.merge(df, year_df, left_on = "year", right_on = "year_range")
+    cp = cp.drop(columns = ["year_x", "year_range"]).rename(columns = {'year_y':'year'})
+    cp['year'] = cp['year'].astype(int) 
+
+    return cp
 
 
 def compute_share(df, varname, total_var, numerator_vars, denom = False):
@@ -160,34 +167,52 @@ def process_2000():
     return cdf
 
 
-def merge_with_licenses(bl, data, bl_geoid_col, data_geoid_col):
+def prep_license_data(bl):
+    
+    # for geoid in ["GEOID_2000", "GEOID_2010"]:
+    for geoid in ["GEOID_2010"]:
+        bl[geoid] = bl[geoid].astype(str)
+
+    bl['year'] = pd.to_datetime(bl['DATE ISSUED']).dt.year.astype(int)
+
+    return bl    
+
+
+
+def merge_with_licenses(bl, data, year_range, bl_geoid_col, data_geoid_col):
     ''' steps to merge data df into business license data '''
 
-
-    bl[bl_geoid_col] = bl[bl_geoid_col].astype(str)
-    # data[data_geoid_col] = data[data_geoid_col].astype(str)
-    # data['year'] = data['year'].astype(int)
-
-    cols_to_keep = ['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR', bl_geoid_col]
-     # bl['GEOID_2010'] = bl['GEOID_2010'].astype(str).apply(lambda x: x[0:11])
-     bl['year'] = pd.to_datetime(bl['DATE ISSUE']).dt.year
+    data[data_geoid_col] = data[data_geoid_col].astype(str)
 
 
-     merged = pd.merge(bl, data, left_on = bl_geoid_col, right_on = data_geoid_col)
+    # for y in year_ranges:
+    data = expand_across_years(data, year_range)
+    
+    merged = pd.merge(bl, data, left_on = [bl_geoid_col, "year"], right_on = ["GEOID", "year"])
+
+    return merged
 
 
 
 if __name__ == "__main__":
 
-    acs_2010s = process_2010s()
-    acs_2000s = process_2005_09()
-    census_2000 = process_2000()
+    # acs_2010s = process_2010s()
+    # acs_2000s = process_2005_09()
+    # census_2000 = process_2000()
 
-    # write to file
-    acs_2000s.to_csv("../../data/0509_clean_ACS.csv")
-    acs_2010s.to_csv("../../data/2010s_clean_ACS.csv")
-    census_2000.to_csv("../../data/2000_clean_Census.csv")
+    # # write to file
+    # acs_2000s.to_csv("../../data/0509_clean_ACS.csv")
+    # acs_2010s.to_csv("../../data/2010s_clean_ACS.csv")
+    # census_2000.to_csv("../../data/2000_clean_Census.csv")
 
-    bl = pd.read_csv("../../data/business_licenses_with_tracts.csv")
+    acs_2000s = pd.read_csv("../../data/0509_clean_ACS.csv")
+    acs_2010s = pd.read_csv("../../data/2010s_clean_ACS.csv")
+    census_2000 = pd.read_csv("../../data/2000_clean_Census.csv")
 
-    # bl = merge_with_licenses
+
+    bl = pd.read_csv("../../data/business_licenses_with_tracts.csv")[INDEX_VARS + ["GEOID_2010"]]
+    bl = prep_license_data(bl)
+
+    test = merge_with_licenses(bl, acs_2010s, "2013-17", "GEOID_2010", "GEOID")
+    test.drop(columns = ["Unnamed: 0"], inplace = True)
+    test.to_csv("../../data/merged_business_acs_test_file.csv")

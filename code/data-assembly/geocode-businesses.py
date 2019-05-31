@@ -9,6 +9,9 @@ import geocoder
 import pandas as pd
 import geopandas as gpd 
 
+BUSINESS_LICENSE_DATA_LOCATION = "../../data/Business_Licenses.csv"
+MISSING_LOCATION_RECORDS_FILE = "../../data/licenses_without_geocode.csv"
+
 
 INDEX_VARS = ['LICENSE ID', 'LICENSE NUMBER', 'ACCOUNT NUMBER', 'SITE NUMBER', 'DATE ISSUED']
 ADDRESS_VARS = ['ADDRESS', 'CITY', 'STATE', 'ZIP CODE']
@@ -19,8 +22,9 @@ GEO_VARS = ['LATITUDE', 'LONGITUDE', 'LOCATION']
 def select_missing(df):
     ''' Prepare a dataframe with all the records we need to submit to geocoder '''
 
-    missing = df.loc[df['LATITUDE'].isna()][['LICENSE ID'] + ADDRESS_VARS]
-    missing['FULL_ADDRESS'] = missing[ADDRESS_VARS].apply( ???/, axis = 1)
+    missing = df.loc[df['LATITUDE'].isna()]
+    missing.to_csv(MISSING_LOCATION_RECORDS_FILE)
+    # missing['FULL_ADDRESS'] = missing[ADDRESS_VARS].apply( ???/, axis = 1)
 
 
 def read_keys(keyfile):
@@ -33,7 +37,7 @@ def read_keys(keyfile):
 
 
 def batch_geocode(df, key):
-
+    pass
 
 
 if __name__ == "__main__":
@@ -46,8 +50,8 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    df = pd.read_csv(args.infile)[COLS]
-    df = select_missing(df)
+    df = pd.read_csv(args.infile)[INDEX_VARS + ADDRESS_VARS + GEO_VARS]
+    # df = select_missing(df)
 
     
     
