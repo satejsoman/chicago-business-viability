@@ -23,10 +23,12 @@ BA_VARS_2000 = ["P037015", "P037032"]
 AGE_VARS_2000 = list(map(lambda x: "P008" + str(x).zfill(3), range(28, 35))) + \
                 list(map(lambda x: "P008" + str(x).zfill(3), range(67, 74)))
 
-INDEX_VARS = ['LICENSE ID', 'LICENSE NUMBER', 'ACCOUNT NUMBER', 'SITE NUMBER', 'DATE ISSUED']
+BUSINESS_VARS = ['LICENSE ID', 'LICENSE NUMBER', 'ACCOUNT NUMBER', 'SITE NUMBER', 'DATE ISSUED']
 FIPS_VARS = ["GEOID_2000", "GEOID_2010"]
-
 BEA_COLS = ['DataValue', 'TimePeriod']
+
+INDEX_VARS = ['LICENSE NUMBER', 'ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR']
+FINAL_FEATURE_COLS = ['total_pop', 'medhhinc', 'share_BA+', 'a35to64_share', 'metro_GDP', 'Cook_U3_ann_avg']
 
 def compute_population_density():
     '''Compute population per square mile '''
@@ -226,12 +228,14 @@ if __name__ == "__main__":
     bea = pd.read_csv("../../data/chicago_rgdp_2001-17.csv")
 
 
-    bl = pd.read_csv("../../data/business_licenses_with_tracts.csv")[INDEX_VARS + FIPS_VARS]
+    bl = pd.read_csv("../../data/business_licenses_with_tracts.csv")[BUSINESS_VARS + FIPS_VARS]
     bl = prep_license_data(bl)
 
     df1 = merge_with_licenses(bl, acs_2010s, ["2010-14", "2013-17"], "GEOID_2010", "GEOID")
     df2 = merge_with_licenses(bl, acs_2000s, ["2005-09"], "GEOID_2000", "GEOID")
     df3 = merge_with_licenses(bl, census_2000, ["2002-04"], "GEOID_2000", "GEOID")
-    df4 = merge_on_bls_bea(pd.concat([df1, df2, df3]), bls, bea)
+    df4 = merge_on_bls_bea(pd.concat([df1, df2, df3]), bls, bea).rename(columns = {'year':'YEAR'})
 
-    df4.to_csv("../../data/merged_business_govtdata.csv")
+    final_df = df4[INDEX_VARS + FINAL_FEATURE_COLS]
+
+    final_df.to_csv("../../data/merged_business_govtdata.csv")
