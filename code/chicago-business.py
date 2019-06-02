@@ -39,7 +39,8 @@ def make_chicago_business_features(self):
     for df_list in (self.test_sets, self.train_sets):
         for i in range(len(df_list)):
 
-            self.logger.info("    Creating %s features on test-train set %s", n, i+1)
+            self.logger.info("    Creating features on test-train set %s", i+1) 
+            # Cecile deleted n in the above log line because she can't tell what it's supposed to be
             df_list[i] = make_features(df_list[i], self.feature_generators)
 
     return self
@@ -50,7 +51,7 @@ def main(config_path):
         config = yaml.safe_load(config_file.read())
 
     pipeline = Pipeline(
-            Path(config["data"]["imputed_path"]),
+            Path(config["data"]["input_path"]),
             config["pipeline"]["target"],
             data_preprocessors=[
                 hash_string('LEGAL NAME'),
@@ -69,8 +70,8 @@ def main(config_path):
                 count_by_dist_radius
             ],
             summarize=False,
-            model=model,
-            name="quick-pipeline-lr-only-" + description,
+            model_grid=config["models"],
+            name="quick-pipeline-lr-only-" + config["description"],
             output_root_dir=Path("output/"))
 
     pipeline.generate_features = MethodType(make_chicago_business_features, pipeline)

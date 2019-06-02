@@ -1,5 +1,5 @@
 data: 
-  input_path: "../data/license_features.csv"
+  input_path: "../data/licenses_joined.csv"
 
 pipeline:
   target: business_failed 
@@ -49,16 +49,37 @@ pipeline:
           start: 01/01/2002 
           end:   12/31/2016
 
+description: "cmm-test"
+
+# models: 
+#   LogisticRegression:
+#     C: [0.01, 0.1, 1, 10, 100]
+#     penalty: ["l1", "l2"]
+
+#   KNeighborsClassifier: 
+#     n_neighbors: [10, 50, 100]
+
+#   DecisionTreeClassifier:
+#     max_depth: [null, 1, 5, 10, 50, 100]
+
+#   GradientBoostingClassifier:
+#     learning_rate: [0.1, 0.5, 2.0]
+  
+#   BaggingClassifier:
+#     max_samples: [0.1, 0.5, 1.0]
+
+#   RandomForestClassifier: {}
+
 models: 
   LogisticRegression:
-    C: [0.01, 0.1, 1, 10, 100]
+    C: [0.01, 0.1]
     penalty: ["l1", "l2"]
 
-  KNeighborsClassifier: 
-    n_neighbors: [10, 50, 100]
+  # KNeighborsClassifier: 
+  #   n_neighbors: [10, 50, 100]
 
   DecisionTreeClassifier:
-    max_depth: [null, 1, 5, 10, 50, 100]
+    max_depth: [null, 1, 5, 10]
 
   GradientBoostingClassifier:
     learning_rate: [0.1, 0.5, 2.0]
