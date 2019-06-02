@@ -22,6 +22,7 @@ from pipeline.transformation import (Transformation, binarize, categorize,
                                      scale_by_max)
 from pipeline.grid import Grid
 
+from data_cleaning import (clean_data, filter_out_2019_data)
 from feature_generation import (make_features, reshape_and_create_label,
                                 count_by_zip_year, count_by_dist_radius)
 
@@ -33,6 +34,12 @@ def clean():
 
 def predict():
     pass
+
+
+def clean_chicago_business_data(self):
+    self.logger.info("    Running cleaning steps on raw data")
+    self.dataframe = clean_data(self.dataframe, self.data_cleaning)
+    return self
 
 
 def make_chicago_business_features(self):
@@ -52,6 +59,9 @@ def main(config_path):
     pipeline = Pipeline(
             Path(config["data"]["imputed_path"]),
             config["pipeline"]["target"],
+            data_cleaning=[
+                filter_out_2019_data
+            ],
             data_preprocessors=[
                 hash_string('LEGAL NAME'),
                 hash_string('DOING BUSINESS AS NAME'),
@@ -71,6 +81,7 @@ def main(config_path):
             name="quick-pipeline-lr-only-" + description,
             output_root_dir=Path("output/"))
 
+    pipeline.clean_data = Methodtype(clean_chicago_business_data, pipeline)
     pipeline.generate_features = MethodType(make_chicago_business_features, pipeline)
 
     pipeline.run()
