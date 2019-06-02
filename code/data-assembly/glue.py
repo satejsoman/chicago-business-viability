@@ -4,7 +4,7 @@ from pathlib import Path
 import pandas as pd
 
 INDEX = [
-    "ACCOUNT NUMBER", 
+    "ACCOUNT NUMBER",
     "SITE NUMBER",
     "YEAR"
 ]
@@ -34,7 +34,7 @@ if __name__ == "__main__":
     data = Path("./data")
     input_filenames = []
     output_filename = "joined_table.csv"
-    
+
     input_paths = [data/filename for filename in input_filenames]
     dataframes = [pd.read_csv(path) for path in input_paths]
 
