@@ -81,8 +81,8 @@ def replace_missing_with_mean(column):
 
 
 def to_datetime(column):
-    return Transformation(
-        name = "convert-" + column + "-to-datetime",
-        input_column_names=column,
-        output_column_name=column,
-        function = pd.to_datetime)
+   return Transformation(
+       name = "convert-" + column + "-to-datetime",
+       input_column_names=column,
+       output_column_name=column,
+       function = lambda df: pd.to_datetime(df[column], format="%m/%d/%Y"))

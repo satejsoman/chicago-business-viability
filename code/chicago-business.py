@@ -19,7 +19,7 @@ from sklearn.tree import DecisionTreeClassifier
 from pipeline.core import Pipeline
 from pipeline.transformation import (Transformation, binarize, categorize,
                                      hash_string, replace_missing_with_value,
-                                     scale_by_max)
+                                     scale_by_max, to_datetime)
 from pipeline.grid import Grid
 
 from feature_generation import (make_features, reshape_and_create_label,
@@ -53,17 +53,9 @@ def main(config_path):
     pipeline = Pipeline(
             Path(config["data"]["input_path"]),
             config["pipeline"]["target"],
-            data_preprocessors=[
-                hash_string('LEGAL NAME'),
-                hash_string('DOING BUSINESS AS NAME'),
-                hash_string('ADDRESS'),
-                categorize('CITY'),
-                categorize('STATE'),
-                hash_string('LICENSE DESCRIPTION'),
-                hash_string('BUSINESS ACTIVITY'),
-                categorize('APPLICATION TYPE'),
-                hash_string('LICENSE STATUS'),
-                hash_string('SSA'),
+            data_cleaning=[
+                to_datetime("LICENSE TERM EXPIRATION DATE"),
+                to_datetime("DATE ISSUED")
             ],
             feature_generators=[
                 count_by_zip_year,
