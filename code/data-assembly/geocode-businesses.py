@@ -24,6 +24,7 @@ def select_missing(df):
 
     missing = df.loc[df['LATITUDE'].isna()]
     missing.to_csv(MISSING_LOCATION_RECORDS_FILE)
+
     # missing['FULL_ADDRESS'] = missing[ADDRESS_VARS].apply( ???/, axis = 1)
 
 
@@ -51,6 +52,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     df = pd.read_csv(args.infile)[INDEX_VARS + ADDRESS_VARS + GEO_VARS]
+    df['year'] = pd.to_datetime(df['DATE ISSUED'])
     # df = select_missing(df)
 
     

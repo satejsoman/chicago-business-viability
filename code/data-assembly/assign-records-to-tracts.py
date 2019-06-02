@@ -35,7 +35,7 @@ def join_to_blkgrp(gdf, block_filepath, year):
     blks = gpd.read_file(block_filepath)
 
     if year == 2000:
-        blks.rename(columns = {'TRACTCE00': "GEOID"}, inplace = True)
+        blks.rename(columns = {'CTIDFP00': "GEOID"}, inplace = True)
 
     gdf = gpd.sjoin(gdf, blks, op = "within", how = 'inner')
     gdf.drop(columns = list(set(blks.columns).difference(["GEOID", "geometry"])), inplace=True)
