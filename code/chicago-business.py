@@ -56,17 +56,15 @@ def main(config_path):
                 hash_string('LEGAL NAME'),
                 hash_string('DOING BUSINESS AS NAME'),
                 hash_string('ADDRESS'),
-                categorize('CITY'),
-                categorize('STATE'),
                 hash_string('LICENSE DESCRIPTION'),
                 hash_string('BUSINESS ACTIVITY'),
-                categorize('APPLICATION TYPE'),
                 hash_string('LICENSE STATUS'),
                 hash_string('SSA'),
             ],
             feature_generators=[
-                count_by_zip_year,
-                count_by_dist_radius
+                count_by_zip_year,      # num_not_renewed_zip
+                count_by_dist_radius,   # num_not_renewed_1km
+                make_dummy_vars         # CITY, STATE, APPLICATION TYPE
             ],
             summarize=False,
             model=model,

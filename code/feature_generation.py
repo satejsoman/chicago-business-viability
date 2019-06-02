@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics.pairwise import haversine_distances
 
+
 def make_features(input_df, feature_generators):
     '''
     Takes an input dataframe and a list of feature generation functions to
@@ -21,10 +22,23 @@ def make_features(input_df, feature_generators):
     # Finally, merge on all generated feature onto the base and overwrite df
     result_df = base.merge(generated_features,
         how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR'])
-    # TODO: Check that this actually overwrites the df stored
-    # in the object
 
     return result_df
+
+
+def make_dummy_vars(input_df):
+    '''
+    Wrapper for the pandas get_dummies() method. Takes a pandas DataFrame and
+    a string variable label as inputs, and returns a new DataFrame with new
+    binary variables for every unique value in var.
+    Inputs: df - pandas DataFrame
+    Output: new_df - pandas DataFrame with new variables named "[var]_[value]"
+    '''
+    VARS_TO_DUMMIFY = ['CITY', 'STATE', 'APPLICATION TYPE']
+    new_df = pd.get_dummies(input_df, columns=VARS_TO_DUMMIFY, dtype=np.int64)
+
+    return new_df
+
 
 
 # Reshape license data to business-year data, create label
@@ -164,12 +178,12 @@ def count_by_zip_year(input_df, license_data):
         .reset_index() \
         .rename(columns={'level_0': 'ZIP CODE',
                          'level_1': 'YEAR',
-                         0: 'count'}) \
+                         0: 'num_not_renewed_zip'}) \
         .fillna(0) \
         .sort_values(by=['ZIP CODE', 'YEAR'])
 
     # Merge zip-year level data onto base
-    result_df = df[['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR', 'ZIP CODE']] \
+    results_df = df[['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR', 'ZIP CODE']] \
         .merge(counts_by_zip, how='left', on=['ZIP CODE', 'YEAR']) \
         .drop(labels=['ZIP CODE'], axis=1) \
         .sort_values(by=['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR'])
@@ -218,13 +232,10 @@ def count_by_dist_radius(input_df, license_data):
     # Concatenate all year-specific dfs to get counts for all business-years
     # Then merge onto original df by business-year id cols
     all_years_df = pd.concat(year_dfs)
-    result = input_df.merge(all_years_df, how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR']) \
+    results_df = input_df.merge(all_years_df, how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR']) \
         .rename(columns={0: 'num_not_renewed_1km'}) \
         [['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR', 'num_not_renewed_1km' ]]
 
-    return result
-
-
-
+    return results_df
 
 #
