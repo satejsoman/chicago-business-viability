@@ -16,9 +16,6 @@ from tqdm import tqdm
 
 tqdm.pandas()
 
-# def is_national_chain(df):
-#     df["is_national_chain"] = df["LEGAL NAME"].isin(national_chain_list)
-
 def process_datetimes(df):
     dt_cols = ['LICENSE APPROVED FOR ISSUANCE', 'DATE ISSUED']
     for col in dt_cols:
@@ -28,7 +25,7 @@ def process_datetimes(df):
     return df
 
 def process_business_owners(df):
-    df[["Owner First Name", "Owner Middle Initial", "Owner Last Name", "Legal Entity Owner"]] = df[["Owner First Name", "Owner Middle Initial", "Owner Last Name", "Legal Entity Owner"]].fillnan("")
+    df[["Owner First Name", "Owner Middle Initial", "Owner Last Name", "Legal Entity Owner"]] = df[["Owner First Name", "Owner Middle Initial", "Owner Last Name", "Legal Entity Owner"]].fillna("")
     df["full_name"] = (df["Owner First Name"] + " " + df["Owner Middle Initial"] + " " + df["Owner Last Name"] + " " + df["Legal Entity Owner"]).replace('\s+', ' ', regex=True)
     df_filtered = df[~(df["full_name"].isin(["Business Owner", ""]))]
     df_filtered["num_businesses_on_account"] = df_filtered["full_name"].map(df["full_name"].value_counts())
@@ -47,23 +44,28 @@ def non_join_transformations(df):
 
     return df 
 
-def main(data_path, licenses, owners):
+def main(data_path, licenses, owners, tif):
     # licenses = process_datetimes(licenses)
     licenses = non_join_transformations(process_datetimes(licenses))
     renewal_counts = get_num_renewals_map(licenses)
     licenses["num_renewals"] = licenses["license_site"].map(renewal_counts).fillna(0)
     
     licenses = licenses.merge(process_business_owners(owners), left_on="ACCOUNT NUMBER", right_on="Account Number")
+
+    # tif_relevant_columns = tif[['APPROVED AMOUNT', 'TOTAL PROJECT COST', 'LOCATION']].fillna(-1)
+    # lmerge = licenses.merge(tif_relevant_columns, on="LOCATION")
+    # licenses[['tif_approved_amount', 'tif_total_cost']] = tif[['APPROVED AMOUNT', 'TOTAL PROJECT COST']].fillna(0)
     
     licenses[["ACCOUNT NUMBER", "SITE NUMBER", "YEAR",'which_ssa', 'in_ssa', 'num_sites', 'num_renewals']].to_csv(data_path/'licenses_joined.csv')
 
-# if __name__ == "__main__":
-#     data = Path("./data")
-#     licenses_path   = data/"Business_Licenses.csv"
-#     owners_path     = data/"Business_Owners.csv"
-#     fortune1k_path  = data/"fortune1000.csv"
+if __name__ == "__main__":
+    data = Path("./data")
+    licenses_path   = data/"Business_Licenses.csv"
+    owners_path     = data/"Business_Owners.csv"
+    tif_path        = data/"TIF.csv"
+    fortune1k_path  = data/"fortune1000.csv"
     
-#     main(
-#         data_path = data,
-#         licenses  = pd.read_csv(licenses_path), 
-#         owners    = pd.read_csv(owners_path))
+    main(
+        data_path = data,
+        licenses  = pd.read_csv(licenses_path, low_memory=False), 
+        owners    = pd.read_csv(owners_path,   low_memory=False))
