@@ -32,8 +32,8 @@ def test():
 
 if __name__ == "__main__":
     data = Path("./data")
-    input_filenames = []
-    output_filename = "joined_table.csv"
+    input_filenames = ["Business_Licenses2.csv", "licenses_joined.csv"]
+    output_filename = "data/joined_table.csv"
 
     input_paths = [data/filename for filename in input_filenames]
     dataframes = [pd.read_csv(path) for path in input_paths]
