@@ -6,6 +6,14 @@ the `.gitignore` file here excludes all CSVs so we don't clog up git
 - https://data.cityofchicago.org/Community-Economic-Development/Business-Licenses/r5kz-chrr
 - `Business_Licenses.csv`
 
+### CDP / Community & Economic Development / Business Owners
+- https://data.cityofchicago.org/Community-Economic-Development/Business-Owners/ezma-pppn
+- `Business_Owners.csv`
+
+### CDP / Community & Economic Development / TIF Projects
+- https://data.cityofchicago.org/Community-Economic-Development/Tax-Increment-Financing-TIF-Projects/mex4-ppfc
+- `TIF.csv`
+
 ### Fortune 1000 
 - https://www.geolounge.com/map-and-list-of-fortune-1000-companies-for-2018/
 - 'fortune1000.csv'
