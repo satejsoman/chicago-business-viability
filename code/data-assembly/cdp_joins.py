@@ -44,7 +44,7 @@ def non_join_transformations(df):
 
     return df 
 
-def main(data_path, licenses, owners, tif):
+def main(data_path, licenses, owners):
     # licenses = process_datetimes(licenses)
     licenses = non_join_transformations(process_datetimes(licenses))
     renewal_counts = get_num_renewals_map(licenses)
