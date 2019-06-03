@@ -1,5 +1,6 @@
 data: 
-  input_path: "../data/joined_table.csv"
+  #input_path: "../data/joined_table.csv"
+  input_path: "../data/joined_table100.csv"
 
 pipeline:
   target: business_failed 

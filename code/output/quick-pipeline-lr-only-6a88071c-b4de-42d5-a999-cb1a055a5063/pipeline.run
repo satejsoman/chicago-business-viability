@@ -1,0 +1,59 @@
+Starting pipeline quick-pipeline-lr-only (6a88071c-b4de-42d5-a999-cb1a055a5063) at 2019-06-02 19:35:55.969421
+Input data: (in-memory dataframe)
+Pipeline library version: 4666d15
+
+Pipeline settings:
+    summarize: False
+    data_preprocessors: None
+    feature_generators: [<function count_by_zip_year at 0x122638c80>, <function count_by_dist_radius at 0x122638d08>]
+    models: {'LogisticRegression-C0.01': LogisticRegression(C=0.01, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=None, penalty='l2',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False)}
+    name: quick-pipeline-lr-only
+    output_root_dir: /Users/satej/Documents/workspace/classwork/machine-learning/chicago-business-viability/code/output
+
+Loading data
+
+Running transformations for cleaning
+    Applying transformation (1/2): convert-LICENSE TERM EXPIRATION DATE-to-datetime 
+    LICENSE TERM EXPIRATION DATE -> LICENSE TERM EXPIRATION DATE
+    Applying transformation (2/2): convert-DATE ISSUED-to-datetime 
+    DATE ISSUED -> DATE ISSUED
+
+Using entire dataset for training and testing.
+Columns: Index(['Unnamed: 0', 'ID', 'LICENSE ID', 'ACCOUNT NUMBER', 'SITE NUMBER',
+       'LEGAL NAME', 'DOING BUSINESS AS NAME', 'ADDRESS', 'CITY', 'STATE',
+       'ZIP CODE', 'WARD', 'PRECINCT', 'WARD PRECINCT', 'POLICE DISTRICT',
+       'LICENSE CODE', 'LICENSE DESCRIPTION', 'BUSINESS ACTIVITY ID',
+       'BUSINESS ACTIVITY', 'LICENSE NUMBER', 'APPLICATION TYPE',
+       'APPLICATION CREATED DATE', 'APPLICATION REQUIREMENTS COMPLETE',
+       'PAYMENT DATE', 'CONDITIONAL APPROVAL', 'LICENSE TERM START DATE',
+       'LICENSE TERM EXPIRATION DATE', 'LICENSE APPROVED FOR ISSUANCE',
+       'DATE ISSUED', 'LICENSE STATUS', 'LICENSE STATUS CHANGE DATE', 'SSA',
+       'LATITUDE', 'LONGITUDE', 'LOCATION', 'YEAR', 'Unnamed: 0.1',
+       'which_ssa', 'in_ssa', 'num_sites', 'num_renewals'],
+      dtype='object')
+    Creating features on test-train set 1
+Starting pipeline quick-pipeline-lr-only (dbf69322-190d-4bb3-b95f-b3bba9295378) at 2019-06-02 19:41:57.855600
+Input data: (in-memory dataframe)
+Pipeline library version: 4666d15
+
+Pipeline settings:
+    summarize: False
+    data_preprocessors: None
+    feature_generators: [<function count_by_zip_year at 0x122638c80>, <function count_by_dist_radius at 0x122638d08>]
+    models: {'LogisticRegression-C0.01': LogisticRegression(C=0.01, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=None, penalty='l2',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False)}
+    name: quick-pipeline-lr-only
+    output_root_dir: /Users/satej/Documents/workspace/classwork/machine-learning/chicago-business-viability/code/output
+
+Loading data
+
+Running transformations for cleaning
+    Applying transformation (1/2): convert-LICENSE TERM EXPIRATION DATE-to-datetime 
+    LICENSE TERM EXPIRATION DATE -> LICENSE TERM EXPIRATION DATE

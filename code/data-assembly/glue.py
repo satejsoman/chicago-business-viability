@@ -32,10 +32,14 @@ def test():
 
 if __name__ == "__main__":
     data = Path("./data")
-    input_filenames = ["Business_Licenses2.csv", "licenses_joined.csv"]
+
+    # add year to business licenses 
+    orig_business_licenses = pd.read_csv(data/"Business_Licenses.csv")
+    orig_business_licenses["YEAR"] = pd.to_datetime(orig_business_licenses["DATE ISSUED"]).dt.year
+    input_filenames = ["licenses_joined.csv"]
     output_filename = "data/joined_table.csv"
 
     input_paths = [data/filename for filename in input_filenames]
-    dataframes = [pd.read_csv(path) for path in input_paths]
+    dataframes = [orig_business_licenses] + [pd.read_csv(path) for path in input_paths]
 
     join_together(dataframes).to_csv(output_filename)

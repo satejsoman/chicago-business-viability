@@ -13,7 +13,7 @@ def make_features(input_df, feature_generators):
     base = reshape_and_create_label(input_df) # business-year data
 
     generated_features = base.copy(deep=True) # accumulate features
-    for i in feature_generators:
+    for feature_generator in feature_generators:
         feature = feature_generator(base, input_df)
         generated_features = generated_features.merge(feature,
             how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR'])
@@ -169,11 +169,12 @@ def count_by_zip_year(input_df, license_data):
         .sort_values(by=['ZIP CODE', 'YEAR'])
 
     # Merge zip-year level data onto base
-    result_df = df[['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR', 'ZIP CODE']] \
+    results_df = df[['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR', 'ZIP CODE']] \
         .merge(counts_by_zip, how='left', on=['ZIP CODE', 'YEAR']) \
         .drop(labels=['ZIP CODE'], axis=1) \
         .sort_values(by=['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR'])
 
+    print(results_df)
     return results_df
 
 
@@ -191,9 +192,11 @@ def count_by_dist_radius(input_df, license_data):
     df = input_df.copy(deep=True)
 
     # Select columns, transforms lat/long in degrees to radians
+    print(input_df)
+    print(df)
     df = df[['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR', 'LATITUDE', 'LONGITUDE', 'not_renewed_2yrs']]
-    df['LATITUDE_rad'] = np.radians(df['LATITUDE'])
-    df['LONGITUDE_rad'] = np.radians(df['LONGITUDE'])
+    df['LATITUDE_rad'] = np.radians(input_df['LATITUDE'])
+    df['LONGITUDE_rad'] = np.radians(input_df['LONGITUDE'])
     R = 6371 # circumference of the Earth in km
 
     year_dfs = []
