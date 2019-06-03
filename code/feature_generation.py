@@ -238,4 +238,39 @@ def count_by_dist_radius(input_df, license_data):
 
     return results_df
 
+
+# Balance features between test and train sets
+def balance_features(train_df, test_df):
+    '''
+    Making dummy variables from categorical features may result in different
+    dummy features occuring between test and training sets if different values
+    are present. This takes 2 dataframes, checks for feature balance, then
+    applies the following:
+
+    1. If a feature is in train but not in test, its value did not occur in the
+    categorical feature in test and can be added as 0s to test.
+    2. If a feature is in test but not in train, a classifier would not have
+    been trained on it and it can be safely dropped from test.
+
+    Inputs: train_df - pandas Dataframe of training data
+            test_df - pandas Dataframe of test data
+    Output: train_df - unchanged from input
+            test_df - pandas Dataframe with above corrections made
+    '''
+
+    train_cols = set(train_df.columns)
+    test_cols = set(test_df.columns)
+    in_train_not_test = train_cols - test_cols # set difference
+    in_test_not_train = test_cols - train_cols # set difference
+
+    # Drop cols in test but not train
+    new_test_df = test_df.copy(deep=True) \
+        .drop(labels=list(in_test_not_train), axis=1)
+
+    # Add cols in train but not test as 0s
+    for i in in_train_not_test:
+        new_test_df[i] = np.zeros(len(df))
+
+    return train_df, new_test_df
+    
 #
