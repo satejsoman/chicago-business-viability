@@ -211,8 +211,8 @@ def count_by_dist_radius(input_df, license_data):
     print(input_df)
     print(df)
     df = df[['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR', 'LATITUDE', 'LONGITUDE', 'not_renewed_2yrs']]
-    df['LATITUDE_rad'] = np.radians(input_df['LATITUDE'])
-    df['LONGITUDE_rad'] = np.radians(input_df['LONGITUDE'])
+    df['LATITUDE_rad'] = np.radians(df['LATITUDE'])
+    df['LONGITUDE_rad'] = np.radians(df['LONGITUDE'])
     R = 6371 # circumference of the Earth in km
 
     year_dfs = []
