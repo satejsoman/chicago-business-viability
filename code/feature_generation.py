@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics.pairwise import haversine_distances
 
+
 def make_features(input_df, feature_generators):
     '''
     Takes an input dataframe and a list of feature generation functions to
@@ -21,10 +22,22 @@ def make_features(input_df, feature_generators):
     # Finally, merge on all generated feature onto the base and overwrite df
     result_df = base.merge(generated_features,
         how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR'])
-    # TODO: Check that this actually overwrites the df stored
-    # in the object
 
     return result_df
+
+
+def make_dummy_vars(input_df):
+    '''
+    Wrapper for the pandas get_dummies() method. Takes a pandas DataFrame and
+    a string variable label as inputs, and returns a new DataFrame with new
+    binary variables for every unique value in var.
+    Inputs: df - pandas DataFrame
+    Output: new_df - pandas DataFrame with new variables named "[var]_[value]"
+    '''
+    VARS_TO_DUMMIFY = ['CITY', 'STATE', 'APPLICATION TYPE']
+    new_df = pd.get_dummies(input_df, columns=VARS_TO_DUMMIFY, dtype=np.int64)
+
+    return new_df
 
 
 # Reshape license data to business-year data, create label
@@ -164,12 +177,12 @@ def count_by_zip_year(input_df, license_data):
         .reset_index() \
         .rename(columns={'level_0': 'ZIP CODE',
                          'level_1': 'YEAR',
-                         0: 'count'}) \
+                         0: 'num_not_renewed_zip'}) \
         .fillna(0) \
         .sort_values(by=['ZIP CODE', 'YEAR'])
 
     # Merge zip-year level data onto base
-    result_df = df[['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR', 'ZIP CODE']] \
+    results_df = df[['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR', 'ZIP CODE']] \
         .merge(counts_by_zip, how='left', on=['ZIP CODE', 'YEAR']) \
         .drop(labels=['ZIP CODE'], axis=1) \
         .sort_values(by=['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR'])
@@ -188,7 +201,10 @@ def count_by_dist_radius(input_df, license_data):
     Output: input_df with count column appended to it.
     '''
 
-    df = input_df.copy(deep=True)
+    # Get locations from license data and merge onto business-year data
+    addresses = get_locations(license_data)
+    df = input_df.copy(deep=True) \
+        .merge(addresses, how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER'])
 
     # Select columns, transforms lat/long in degrees to radians
     df = df[['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR', 'LATITUDE', 'LONGITUDE', 'not_renewed_2yrs']]
@@ -218,13 +234,45 @@ def count_by_dist_radius(input_df, license_data):
     # Concatenate all year-specific dfs to get counts for all business-years
     # Then merge onto original df by business-year id cols
     all_years_df = pd.concat(year_dfs)
-    result = input_df.merge(all_years_df, how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR']) \
+    results_df = input_df.merge(all_years_df, how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR']) \
         .rename(columns={0: 'num_not_renewed_1km'}) \
         [['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR', 'num_not_renewed_1km' ]]
 
-    return result
+    return results_df
 
 
+# Balance features between test and train sets
+def balance_features(train_df, test_df):
+    '''
+    Making dummy variables from categorical features may result in different
+    dummy features occuring between test and training sets if different values
+    are present. This takes 2 dataframes, checks for feature balance, then
+    applies the following:
 
+    1. If a feature is in train but not in test, its value did not occur in the
+    categorical feature in test and can be added as 0s to test.
+    2. If a feature is in test but not in train, a classifier would not have
+    been trained on it and it can be safely dropped from test.
+
+    Inputs: train_df - pandas Dataframe of training data
+            test_df - pandas Dataframe of test data
+    Output: train_df - unchanged from input
+            test_df - pandas Dataframe with above corrections made
+    '''
+
+    train_cols = set(train_df.columns)
+    test_cols = set(test_df.columns)
+    in_train_not_test = train_cols - test_cols # set difference
+    in_test_not_train = test_cols - train_cols # set difference
+
+    # Drop cols in test but not train
+    new_test_df = test_df.copy(deep=True) \
+        .drop(labels=list(in_test_not_train), axis=1)
+
+    # Add cols in train but not test as 0s
+    for i in in_train_not_test:
+        new_test_df[i] = np.zeros(len(df))
+
+    return train_df, new_test_df
 
 #

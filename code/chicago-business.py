@@ -22,8 +22,10 @@ from pipeline.transformation import (Transformation, binarize, categorize,
                                      scale_by_max)
 from pipeline.grid import Grid
 
+from data_cleaning import (clean_data, filter_out_2019_data)
 from feature_generation import (make_features, reshape_and_create_label,
-                                count_by_zip_year, count_by_dist_radius)
+                                count_by_zip_year, count_by_dist_radius,
+                                balance_features)
 
 def explore():
     pass
@@ -35,12 +37,26 @@ def predict():
     pass
 
 
+def clean_chicago_business_data(self):
+    self.logger.info("    Running cleaning steps on raw data")
+    self.dataframe = clean_data(self.dataframe, self.data_cleaning)
+    return self
+
+
 def make_chicago_business_features(self):
+
+    # Make features for each dataset in train_sets, test_sets
     for df_list in (self.test_sets, self.train_sets):
         for i in range(len(df_list)):
-
             self.logger.info("    Creating %s features on test-train set %s", n, i+1)
             df_list[i] = make_features(df_list[i], self.feature_generators)
+
+    # Check for feature balance on each test-train pair
+    for i in range(len(self.test_sets)):
+        self.logger.info("    Balancing features for test-train set %s", i+1)
+        self.train_sets[i], self.test_sets[i] = balance_features(
+            self.train_sets[i], self.test_sets[i]
+        )
 
     return self
 
@@ -52,27 +68,29 @@ def main(config_path):
     pipeline = Pipeline(
             Path(config["data"]["imputed_path"]),
             config["pipeline"]["target"],
+            data_cleaning=[
+                filter_out_2019_data
+            ],
             data_preprocessors=[
                 hash_string('LEGAL NAME'),
                 hash_string('DOING BUSINESS AS NAME'),
                 hash_string('ADDRESS'),
-                categorize('CITY'),
-                categorize('STATE'),
                 hash_string('LICENSE DESCRIPTION'),
                 hash_string('BUSINESS ACTIVITY'),
-                categorize('APPLICATION TYPE'),
                 hash_string('LICENSE STATUS'),
                 hash_string('SSA'),
             ],
             feature_generators=[
-                count_by_zip_year,
-                count_by_dist_radius
+                count_by_zip_year,      # num_not_renewed_zip
+                count_by_dist_radius,   # num_not_renewed_1km
+                make_dummy_vars         # CITY, STATE, APPLICATION TYPE
             ],
             summarize=False,
             model=model,
             name="quick-pipeline-lr-only-" + description,
             output_root_dir=Path("output/"))
 
+    pipeline.clean_data = Methodtype(clean_chicago_business_data, pipeline)
     pipeline.generate_features = MethodType(make_chicago_business_features, pipeline)
 
     pipeline.run()
