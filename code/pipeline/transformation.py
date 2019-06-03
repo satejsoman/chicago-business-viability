@@ -40,7 +40,7 @@ def binarize(column, true_value):
         name="binarize-" + input_col,
         input_column_names=[input_col],
         output_column_name=output_col,
-        function=lambda df: np.where(df[input_col] == true_value, 0, 1))
+        function=lambda df: np.where(df[input_col] == true_value, 1, 0))
 
 def replace_missing_with_value(column, value):
     input_col  = column

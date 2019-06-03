@@ -22,8 +22,10 @@ from pipeline.transformation import (Transformation, binarize, categorize,
                                      scale_by_max, to_datetime)
 from pipeline.grid import Grid
 
+from data_cleaning import (clean_data, filter_out_2019_data)
 from feature_generation import (make_features, reshape_and_create_label,
-                                count_by_zip_year, count_by_dist_radius)
+                                count_by_zip_year, count_by_dist_radius,
+                                balance_features)
 
 def explore():
     pass
@@ -35,13 +37,29 @@ def predict():
     pass
 
 
+def clean_chicago_business_data(self):
+    self.logger.info("    Running cleaning steps on raw data")
+    self.dataframe = clean_data(self.dataframe, self.data_cleaning)
+    return self
+
+
 def make_chicago_business_features(self):
+
+    # Make features for each dataset in train_sets, test_sets
     for df_list in (self.test_sets, self.train_sets):
         for i in range(len(df_list)):
             self.logger.info("    Creating features on test-train set %s", i+1) 
             # Cecile deleted n in the above log line because she can't tell what it's supposed to be
+
             df_list[i] = make_features(df_list[i], self.feature_generators)
             print(self.feature_generators)
+
+    # Check for feature balance on each test-train pair
+    for i in range(len(self.test_sets)):
+        self.logger.info("    Balancing features for test-train set %s", i+1)
+        self.train_sets[i], self.test_sets[i] = balance_features(
+            self.train_sets[i], self.test_sets[i]
+        )
 
     return self
 

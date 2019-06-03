@@ -11,12 +11,12 @@ from pipeline.transformation import replace_missing_with_mean, to_datetime
 
 
 def get_pipeline():
-    splitter = Splitter.from_config({ 
+    splitter = Splitter.from_config({
         "split_column": "date",
         "splits" : [
             {
-                "name": "initial", 
-                "train": { 
+                "name": "initial",
+                "train": {
                     "start": "01/01/2000",
                     "end":   "01/31/2000"
                 },
@@ -25,7 +25,7 @@ def get_pipeline():
                     "end"  : "03/31/2000"
                 }
             }, {
-                "train": { 
+                "train": {
                     "start": "04/01/2000",
                     "end":   "04/30/2000"
                 },
@@ -35,7 +35,7 @@ def get_pipeline():
                 }
             }, {
                 "name" : "overlapping",
-                "train": { 
+                "train": {
                     "start": "01/01/2000",
                     "end":   "01/31/2000"
                 },
@@ -46,10 +46,10 @@ def get_pipeline():
             }
         ]
     })
-    
+
     return Pipeline(
-        input_source       = Path(__file__).parent/'test_split_mock_data.csv', 
-        target             = "label", 
+        input_source       = Path(__file__).parent/'test_split_mock_data.csv',
+        target             = "label",
         data_cleaning      = [to_datetime("date")],
         data_preprocessors = [replace_missing_with_mean("raw1")],
         feature_generators = [replace_missing_with_mean("raw2")],
@@ -81,8 +81,8 @@ class TestTemporalSplits(unittest.TestCase):
 
         # test names picked up correctly
         self.assertEqual(pipeline.split_names, ["initial", "split 1", "overlapping"])
-    
-        # test generated splits match known split indices 
+
+        # test generated splits match known split indices
         for (dataset, sl) in zip(pipeline.train_sets + pipeline.test_sets, slices):
             self.assertTrue(dataset.equals(df[sl]))
 
@@ -93,23 +93,23 @@ class TestTemporalSplits(unittest.TestCase):
                                   .preprocess_data()
                                   .generate_features())
         df = pipeline.dataframe
-        
+
         datasets = pipeline.train_sets + pipeline.test_sets
 
         # make sure columns generated in test/train sets
         for dataset in datasets:
             self.assertIn("raw1_clean", dataset.columns)
             self.assertIn("raw2_clean", dataset.columns)
-        
-        # make sure value imputation occurred per-set 
+
+        # make sure value imputation occurred per-set
         for col in ("raw1", "raw2"):
             missing_index = df[col].isna()
             col_clean = col+"_clean"
             for (dataset, sl) in zip(datasets, slices):
                 imputed_values = dataset[missing_index][col_clean].unique()
-                if len(imputed_values) > 0: 
-                    # some roundoff error during imputation 
+                if len(imputed_values) > 0:
+                    # some roundoff error during imputation
                     self.assertAlmostEqual(imputed_values[0], df[col][sl][df[col][sl].notna()].mean())
-                
+
 if __name__ == "__main__":
     unittest.main()
