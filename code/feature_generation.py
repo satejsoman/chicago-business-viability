@@ -40,7 +40,6 @@ def make_dummy_vars(input_df):
     return new_df
 
 
-
 # Reshape license data to business-year data, create label
 def reshape_and_create_label(input_df):
     '''
@@ -202,7 +201,10 @@ def count_by_dist_radius(input_df, license_data):
     Output: input_df with count column appended to it.
     '''
 
-    df = input_df.copy(deep=True)
+    # Get locations from license data and merge onto business-year data
+    addresses = get_locations(license_data)
+    df = input_df.copy(deep=True) \
+        .merge(addresses, how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER'])
 
     # Select columns, transforms lat/long in degrees to radians
     df = df[['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR', 'LATITUDE', 'LONGITUDE', 'not_renewed_2yrs']]
@@ -272,5 +274,5 @@ def balance_features(train_df, test_df):
         new_test_df[i] = np.zeros(len(df))
 
     return train_df, new_test_df
-    
+
 #
