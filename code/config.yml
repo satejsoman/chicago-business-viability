@@ -2,52 +2,66 @@ data:
   input_path: "../data/license_features.csv"
 
 pipeline:
-  target: business_failed 
+  target: not_renewed_2yrs 
   test_train:
-    split_column: "license_date"
+    split_column: "YEAR"
     splits: 
-      - name: exists as of 12/31/2008 
-        train: 
-          start: 01/01/2002 
-          end:   12/31/2004 
-        test: 
-          start: 01/01/2002 
-          end:   12/31/2006
-      - name: exists as of 12/31/2010 
-        train: 
-          start: 01/01/2002 
-          end:   12/31/2006 
-        test: 
-          start: 01/01/2002 
-          end:   12/31/2008
-      - name: exists as of 12/31/2012 
-        train: 
-          start: 01/01/2002 
-          end:   12/31/2008 
-        test: 
-          start: 01/01/2002 
+      - name: exists as of 12/31/2007
+        train:
+          start: 01/01/2007
+          end:   12/31/2007
+        test:
+          start: 01/01/2010
           end:   12/31/2010
-      - name: exists as of 12/31/2014 
-        train: 
-          start: 01/01/2002 
-          end:   12/31/2010 
-        test: 
-          start: 01/01/2002 
+      - name: exists as of 12/31/2008
+        train:
+          start: 01/01/2008
+          end:   12/31/2008
+        test:
+          start: 01/01/2011
+          end:   12/31/2011
+      - name: exists as of 12/31/2009
+        train:
+          start: 01/01/2009
+          end:   12/31/2009
+        test:
+          start: 01/01/2012
           end:   12/31/2012
-      - name: exists as of 12/31/2016 
-        train: 
-          start: 01/01/2002 
-          end:   12/31/2012 
-        test: 
-          start: 01/01/2002 
+      - name: exists as of 12/31/2010
+        train:
+          start: 01/01/2010
+          end:   12/31/2010
+        test:
+          start: 01/01/2013
+          end:   12/31/2013
+      - name: exists as of 12/31/2011
+        train:
+          start: 01/01/2011
+          end:   12/31/2011
+        test:
+          start: 01/01/2014
           end:   12/31/2014
-      - name: exists as of 12/31/2018 
-        train: 
-          start: 01/01/2002 
-          end:   12/31/2014 
-        test: 
-          start: 01/01/2002 
+      - name: exists as of 12/31/2012
+        train:
+          start: 01/01/2012
+          end:   12/31/2012
+        test:
+          start: 01/01/2015
+          end:   12/31/2015
+      - name: exists as of 12/31/2013
+        train:
+          start: 01/01/2013
+          end:   12/31/2013
+        test:
+          start: 01/01/2016
           end:   12/31/2016
+      - name: exists as of 12/31/2014
+        train:
+          start: 01/01/2014
+          end:   12/31/2014
+        test:
+          start: 01/01/2017
+          end:   12/31/2017
 
 models: 
   LogisticRegression:
