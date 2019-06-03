@@ -1,63 +1,63 @@
-data: 
+data:
   #input_path: "../data/joined_table.csv"
   input_path: "../data/joined_table100.csv"
 
 pipeline:
-  target: business_failed 
+  target: "not_renewed_2yrs"
   test_train:
     split_column: "license_date"
-    splits: 
-      - name: exists as of 12/31/2008 
-        train: 
-          start: 01/01/2002 
-          end:   12/31/2004 
-        test: 
-          start: 01/01/2002 
+    splits:
+      - name: exists as of 12/31/2008
+        train:
+          start: 01/01/2002
+          end:   12/31/2004
+        test:
+          start: 01/01/2002
           end:   12/31/2006
-      - name: exists as of 12/31/2010 
-        train: 
-          start: 01/01/2002 
-          end:   12/31/2006 
-        test: 
-          start: 01/01/2002 
+      - name: exists as of 12/31/2010
+        train:
+          start: 01/01/2002
+          end:   12/31/2006
+        test:
+          start: 01/01/2002
           end:   12/31/2008
-      - name: exists as of 12/31/2012 
-        train: 
-          start: 01/01/2002 
-          end:   12/31/2008 
-        test: 
-          start: 01/01/2002 
+      - name: exists as of 12/31/2012
+        train:
+          start: 01/01/2002
+          end:   12/31/2008
+        test:
+          start: 01/01/2002
           end:   12/31/2010
-      - name: exists as of 12/31/2014 
-        train: 
-          start: 01/01/2002 
-          end:   12/31/2010 
-        test: 
-          start: 01/01/2002 
+      - name: exists as of 12/31/2014
+        train:
+          start: 01/01/2002
+          end:   12/31/2010
+        test:
+          start: 01/01/2002
           end:   12/31/2012
-      - name: exists as of 12/31/2016 
-        train: 
-          start: 01/01/2002 
-          end:   12/31/2012 
-        test: 
-          start: 01/01/2002 
+      - name: exists as of 12/31/2016
+        train:
+          start: 01/01/2002
+          end:   12/31/2012
+        test:
+          start: 01/01/2002
           end:   12/31/2014
-      - name: exists as of 12/31/2018 
-        train: 
-          start: 01/01/2002 
-          end:   12/31/2014 
-        test: 
-          start: 01/01/2002 
+      - name: exists as of 12/31/2018
+        train:
+          start: 01/01/2002
+          end:   12/31/2014
+        test:
+          start: 01/01/2002
           end:   12/31/2016
 
 description: "cmm-test"
 
-models: 
+models:
   LogisticRegression:
     C: [0.01]
     # penalty: ["l1", "l2"]
 
-  # KNeighborsClassifier: 
+  # KNeighborsClassifier:
   #   n_neighbors: [10, 50, 100]
 
   # DecisionTreeClassifier:
@@ -65,7 +65,7 @@ models:
 
   # GradientBoostingClassifier:
   #   learning_rate: [0.1, 0.5]
-  
+
   # BaggingClassifier:
   #   max_samples: [0.1, 0.5]
 

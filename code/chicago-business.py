@@ -4,6 +4,8 @@ from itertools import cycle
 from pathlib import Path
 from types import MethodType
 
+import matplotlib
+matplotlib.use('TkAgg')
 import matplotlib2tikz
 import matplotlib.pyplot as plt
 import numpy as np
@@ -45,14 +47,15 @@ def clean_chicago_business_data(self):
 
 def make_chicago_business_features(self):
 
+    old_cols = set(self.test_sets[0].columns)
+
     # Make features for each dataset in train_sets, test_sets
     for df_list in (self.test_sets, self.train_sets):
         for i in range(len(df_list)):
-            self.logger.info("    Creating features on test-train set %s", i+1) 
+            self.logger.info("    Creating features on test-train set %s", i+1)
             # Cecile deleted n in the above log line because she can't tell what it's supposed to be
 
             df_list[i] = make_features(df_list[i], self.feature_generators)
-            print(self.feature_generators)
 
     # Check for feature balance on each test-train pair
     for i in range(len(self.test_sets)):
@@ -60,6 +63,11 @@ def make_chicago_business_features(self):
         self.train_sets[i], self.test_sets[i] = balance_features(
             self.train_sets[i], self.test_sets[i]
         )
+
+    # Add newly-generated features to self.features
+    new_cols = set(self.test_sets[0].columns)
+    self.features = list(new_cols - old_cols) # set difference
+    print(self.features)
 
     return self
 
@@ -87,7 +95,7 @@ def main(config_path):
     with open(config_path, 'rb') as config_file:
         config = yaml.safe_load(config_file.read())
 
-    pipeline = Pipeline(  
+    pipeline = Pipeline(
         Path(config["data"]["input_path"]),
         config["pipeline"]["target"],
         data_cleaning=[
@@ -99,7 +107,7 @@ def main(config_path):
             count_by_dist_radius
         ],
         summarize=False,
-        model_grid=config["models"],
+        model_grid=Grid.from_config(config["models"]),
         name="quick-pipeline-lr-only-" + config["description"],
         output_root_dir=Path("output/"))
     pipeline.generate_features = MethodType(make_chicago_business_features, pipeline)

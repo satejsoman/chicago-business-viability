@@ -151,6 +151,7 @@ class Pipeline:
             if description in self.trained_models.keys():
                 self.trained_models[description]+= [model.fit(X=train_set[self.features], y=train_set[self.target])]
             else:
+                print(train_set)
                 self.trained_models[description] = [model.fit(X=train_set[self.features], y=train_set[self.target])]
         return self
 
