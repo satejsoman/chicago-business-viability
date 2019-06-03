@@ -2,6 +2,7 @@
 
 from pathlib import Path
 import pandas as pd
+from sklearn.utils import shuffle 
 
 INDEX = [
     "ACCOUNT NUMBER",
@@ -9,10 +10,24 @@ INDEX = [
     "YEAR"
 ]
 
-def join_together(dataframes):
+def join_together(dataframes, cols_to_drop):
+    ''' Takes: list of dataframes, columns to drop from any input dataframe
+
+        Returns: merged data frame
+    '''
+
     merged, *dfs = dataframes
+
     for df in dfs:
-        merged = merged.merge(df, on=INDEX)
+
+        df.drop(columns = cols_to_drop, inplace=True, errors='ignore')
+        
+        print("df shape before dropping dups", df.shape)
+        df.drop_duplicates(INDEX, inplace=True)
+        print("df shape after dropping dups", df.shape)
+
+        merged = merged.merge(shuffle(df), on=INDEX, how = "left", validate = 'many_to_one')
+
     return merged
 
 def test():
@@ -31,11 +46,19 @@ def test():
     print(join_together([df1, df2, df3]))
 
 if __name__ == "__main__":
-    data = Path("./data")
-    input_filenames = ["Business_Licenses2.csv", "licenses_joined.csv"]
-    output_filename = "data/joined_table.csv"
+
+    data = Path("../../data")
+
+    orig_business_df = pd.read_csv(data/"Business_Licenses.csv")
+    orig_business_df['YEAR'] = pd.to_datetime(orig_business_df['DATE ISSUED']).dt.year
+
+    input_filenames = ["merged_business_govtdata.csv", "licenses_joined.csv"]
+    output_filename = data/"joined_table3.csv"
 
     input_paths = [data/filename for filename in input_filenames]
-    dataframes = [pd.read_csv(path) for path in input_paths]
+    dataframes = [orig_business_df] + [pd.read_csv(path) for path in input_paths]
 
-    join_together(dataframes).to_csv(output_filename)
+    cols_to_drop = ['Unnamed: 0']
+
+    merged = join_together(dataframes, cols_to_drop)
+    merged.to_csv(output_filename)

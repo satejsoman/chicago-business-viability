@@ -23,7 +23,7 @@ BA_VARS_2000 = ["P037015", "P037032"]
 AGE_VARS_2000 = list(map(lambda x: "P008" + str(x).zfill(3), range(28, 35))) + \
                 list(map(lambda x: "P008" + str(x).zfill(3), range(67, 74)))
 
-BUSINESS_VARS = ['LICENSE ID', 'LICENSE NUMBER', 'ACCOUNT NUMBER', 'SITE NUMBER', 'DATE ISSUED']
+BUSINESS_VARS = ['LICENSE NUMBER', 'ACCOUNT NUMBER', 'SITE NUMBER', 'DATE ISSUED']
 FIPS_VARS = ["GEOID_2000", "GEOID_2010"]
 BEA_COLS = ['DataValue', 'TimePeriod']
 
@@ -237,5 +237,7 @@ if __name__ == "__main__":
     df4 = merge_on_bls_bea(pd.concat([df1, df2, df3]), bls, bea).rename(columns = {'year':'YEAR'})
 
     final_df = df4[INDEX_VARS + FINAL_FEATURE_COLS]
+
+    final_df.drop_duplicates(inplace=True)
 
     final_df.to_csv("../../data/merged_business_govtdata.csv")
