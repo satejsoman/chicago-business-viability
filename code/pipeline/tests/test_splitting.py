@@ -93,7 +93,6 @@ class TestTemporalSplits(unittest.TestCase):
                                   .preprocess_data()
                                   .generate_features())
         df = pipeline.dataframe
-
         datasets = pipeline.train_sets + pipeline.test_sets
 
         # make sure columns generated in test/train sets

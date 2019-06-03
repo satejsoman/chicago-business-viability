@@ -3,7 +3,6 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics.pairwise import haversine_distances
 
-
 def make_features(input_df, feature_generators):
     '''
     Takes an input dataframe and a list of feature generation functions to
@@ -22,6 +21,8 @@ def make_features(input_df, feature_generators):
     # Finally, merge on all generated feature onto the base and overwrite df
     result_df = base.merge(generated_features,
         how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR'])
+    # TODO: Check that this actually overwrites the df stored
+    # in the object
 
     return result_df
 
@@ -187,7 +188,6 @@ def count_by_zip_year(input_df, license_data):
         .drop(labels=['ZIP CODE'], axis=1) \
         .sort_values(by=['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR'])
 
-    print(results_df)
     return results_df
 
 
@@ -208,8 +208,6 @@ def count_by_dist_radius(input_df, license_data):
         .merge(addresses, how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER'])
 
     # Select columns, transforms lat/long in degrees to radians
-    print(input_df)
-    print(df)
     df = df[['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR', 'LATITUDE', 'LONGITUDE', 'not_renewed_2yrs']]
     df['LATITUDE_rad'] = np.radians(df['LATITUDE'])
     df['LONGITUDE_rad'] = np.radians(df['LONGITUDE'])
