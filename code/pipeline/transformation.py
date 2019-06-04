@@ -90,7 +90,7 @@ def to_datetime(column):
 
 
 def standardize(columns):
-    def standardize:
+    def standardize(dataframe):
         return scale(dataframe[column])
     return Transformation(
             name = "standardize-" + column + "-mean-0-stdev-1",
