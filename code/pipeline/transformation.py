@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from sklearn.preprocessing import scale
 
 
 class Transformation:
@@ -86,3 +87,14 @@ def to_datetime(column):
        input_column_names=column,
        output_column_name=column,
        function = lambda df: pd.to_datetime(df, format="%m/%d/%Y"))
+
+
+def standardize(columns):
+    def standardize:
+        return scale(dataframe[column])
+    return Transformation(
+            name = "standardize-" + column + "-mean-0-stdev-1",
+            input_column_names=column,
+            output_column_name=column,
+            function = standardize
+    )
