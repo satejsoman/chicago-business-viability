@@ -121,7 +121,7 @@ def reshape_and_create_label(input_df):
             (df['expiry'].dt.year >= threshold_year) &
             (df['expiry'].dt.year <= threshold_year + 1),
             ~df['account_site'].isin(buffer_ids),
-            np.nan)) # expiry after buffer
+            0)) # expiry after buffer
 
     # Drop unnecessary columns
     df = df.drop(labels=['account_site', 'min_license_date','max_license_date',
@@ -139,16 +139,16 @@ def get_locations(input_df):
     '''
     # Columns to return
     LOCATION_COLS = ['ACCOUNT NUMBER', 'SITE NUMBER', 'ADDRESS', 'CITY',
-                     'STATE', 'ZIP CODE', 'WARD', 'POLICE DISTRICT',
-                     'LATITUDE', 'LONGITUDE', 'LOCATION']
+                     'STATE', 'ZIP CODE', 'LATITUDE', 'LONGITUDE']
 
     # Drop rows if these columns have NA
-    NA_COLS = ['LATITUDE', 'LONGITUDE', 'LOCATION']
+    NA_COLS = ['LATITUDE', 'LONGITUDE']
 
     df = input_df.copy(deep=True)[LOCATION_COLS] \
         .dropna(subset=NA_COLS) \
         .drop_duplicates() \
-        .sort_values(by=['ACCOUNT NUMBER', 'SITE NUMBER'])
+        .sort_values(by=['ACCOUNT NUMBER', 'SITE NUMBER']) \
+        .reset_index(drop=True)
 
     return df
 
