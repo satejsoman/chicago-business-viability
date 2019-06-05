@@ -65,10 +65,10 @@ def main(config_path):
         target          = target,
         name            = pipeline_name,
         output_root_dir = output_dir,
-        model           = model_grid,
+        model_grid      = model_grid,
         data_cleaning   = [
             to_datetime("LICENSE TERM EXPIRATION DATE"),
-            to_datetime("DATE ISSUED").
+            to_datetime("DATE ISSUED"),
             filter_out_2019_data
         ],
         feature_generators = [

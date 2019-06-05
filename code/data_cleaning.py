@@ -9,8 +9,8 @@ def clean_data(input_df, cleaning_steps):
     Output: result_df - input_df after applying all functions in cleaning_steps
     '''
     result_df = input_df.copy(deep=True)
-    for i in cleaning_steps:
-        result_df = i(result_df)
+    for step in cleaning_steps:
+        result_df = step(result_df)
     return result_df
 
 
