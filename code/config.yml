@@ -3,6 +3,7 @@ data:
   output_dir: "output/"
 
 pipeline:
+  name: "quick"
   target: "not_renewed_2yrs"
   test_train:
     split_column: "license_date"
@@ -56,8 +57,6 @@ pipeline:
         test:
           start: 01/01/2017
           end:   12/31/2017
-
-description: "cmm-test"
 
 models:
   LogisticRegression:

@@ -5,7 +5,6 @@ from pathlib import Path
 from types import MethodType
 
 import matplotlib
-matplotlib.use('TkAgg')
 import matplotlib2tikz
 import matplotlib.pyplot as plt
 import numpy as np
@@ -79,7 +78,7 @@ def main(config_path):
         data_cleaning   = [
             to_datetime("LICENSE TERM EXPIRATION DATE"),
             to_datetime("DATE ISSUED"),
-            filter_out_2019_data
+            # filter_out_2019_data
         ],
         feature_generators = [
             count_by_zip_year,      # num_not_renewed_zip
@@ -87,7 +86,7 @@ def main(config_path):
             make_dummy_vars         # CITY, STATE, APPLICATION TYPE
         ])
 
-    pipeline.clean_data        = MethodType(clean_chicago_business_data, pipeline)
+    # pipeline.clean_data        = MethodType(clean_chicago_business_data, pipeline)
     pipeline.generate_features = MethodType(make_chicago_business_features, pipeline)
     pipeline.run()
 
