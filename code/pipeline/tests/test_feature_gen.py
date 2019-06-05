@@ -8,7 +8,6 @@ from feature_generation import (make_dummy_vars, reshape_and_create_label,
                                 count_by_dist_radius, balance_features)
 
 # Methods to test:
-# 4. count_by_zip_year()
 # 5. count_by_dist_radius()
 # 6. balance_features()
 
@@ -163,6 +162,49 @@ class TestFeatureGeneration(unittest.TestCase):
         })
         self.assertTrue(all(count_by_zip_year(input, lic_data) == output))
 
+
+    def test_count_by_dist_radius(self):
+
+        DATE_COLS = ['DATE ISSUED', 'LICENSE TERM EXPIRATION DATE']
+        lic_data = pd.read_csv(Path(__file__).parent/'test_feature_data.csv',
+                            low_memory=False,
+                            parse_dates=DATE_COLS)
+
+        input = reshape_and_create_label(lic_data)
+
+        output = pd.DataFrame(data={
+            'ACCOUNT NUMBER': [
+                1, 1, 1, 1, 1,
+                1,
+                2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+                4, 4,
+                6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6
+            ],
+            'SITE NUMBER': [
+                1, 1, 1, 1, 1,
+                2,
+                2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+                1, 1,
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+            ],
+            'YEAR': [
+                2002, 2003, 2004, 2005, 2006,
+                2016,
+                2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011,
+                    2012, 2013, 2014, 2015, 2016,
+                2002, 2003,
+                2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011,
+                    2012, 2013, 2014, 2015, 2016
+            ],
+            'num_not_renewed_1km': [
+                0, 0, 0, 0, 1,
+                0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+            ]
+        })
+        self.assertTrue(all(count_by_dist_radius(input, lic_data) == output))
 
 
 

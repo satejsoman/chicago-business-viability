@@ -251,6 +251,10 @@ def count_by_dist_radius(input_df, license_data):
         year_df = df.loc[df['YEAR'] == i]
         fails_only = year_df.loc[year_df['not_renewed_2yrs'] == 1]
 
+        # if no failures that year, label = 0
+        # TODO
+
+
         # Get pairwise distance between all businesses that year and all
         # nonrenewals that year, Then count number of nonrenewals within
         # threshold distance (using row-wise sum) and join back on year_df
