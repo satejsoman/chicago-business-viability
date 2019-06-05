@@ -1,7 +1,9 @@
 data: 
   input_path: "../data/license_features.csv"
+  output_path: "output/"
 
 pipeline:
+  name: "quick"
   target: not_renewed_2yrs 
   test_train:
     split_column: "YEAR"

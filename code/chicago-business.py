@@ -17,25 +17,13 @@ from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 
 from pipeline.core import Pipeline
-from pipeline.transformation import (Transformation, binarize, categorize,
-                                     hash_string, replace_missing_with_value,
-                                     scale_by_max)
+from pipeline.transformation import (Transformation, to_datetime)
 from pipeline.grid import Grid
 
 from data_cleaning import (clean_data, filter_out_2019_data)
 from feature_generation import (make_features, reshape_and_create_label,
                                 count_by_zip_year, count_by_dist_radius,
-                                balance_features)
-
-def explore():
-    pass
-
-def clean():
-    pass
-
-def predict():
-    pass
-
+                                balance_features, make_dummy_vars)
 
 def clean_chicago_business_data(self):
     self.logger.info("    Running cleaning steps on raw data")
@@ -46,6 +34,7 @@ def clean_chicago_business_data(self):
 def make_chicago_business_features(self):
 
     # Make features for each dataset in train_sets, test_sets
+    n = len(self.feature_generators)
     for df_list in (self.test_sets, self.train_sets):
         for i in range(len(df_list)):
             self.logger.info("    Creating %s features on test-train set %s", n, i+1)
@@ -54,43 +43,41 @@ def make_chicago_business_features(self):
     # Check for feature balance on each test-train pair
     for i in range(len(self.test_sets)):
         self.logger.info("    Balancing features for test-train set %s", i+1)
-        self.train_sets[i], self.test_sets[i] = balance_features(
-            self.train_sets[i], self.test_sets[i]
-        )
+        self.train_sets[i], self.test_sets[i] = balance_features(self.train_sets[i], self.test_sets[i])
 
     return self
 
 
 def main(config_path):
-    with open(config_path, 'rb') as config_file:
+    script_dir = Path(__file__).parent
+
+    with open(script_dir.resolve()/config_path, 'rb') as config_file:
         config = yaml.safe_load(config_file.read())
 
-    pipeline = Pipeline(
-            Path(config["data"]["imputed_path"]),
-            config["pipeline"]["target"],
-            data_cleaning=[
-                filter_out_2019_data
-            ],
-            data_preprocessors=[
-                hash_string('LEGAL NAME'),
-                hash_string('DOING BUSINESS AS NAME'),
-                hash_string('ADDRESS'),
-                hash_string('LICENSE DESCRIPTION'),
-                hash_string('BUSINESS ACTIVITY'),
-                hash_string('LICENSE STATUS'),
-                hash_string('SSA'),
-            ],
-            feature_generators=[
-                count_by_zip_year,      # num_not_renewed_zip
-                count_by_dist_radius,   # num_not_renewed_1km
-                make_dummy_vars         # CITY, STATE, APPLICATION TYPE
-            ],
-            summarize=False,
-            model=model,
-            name="quick-pipeline-lr-only-" + description,
-            output_root_dir=Path("output/"))
+    input_path    = script_dir/config["data"]["input_path"]
+    output_dir    = script_dir/config["data"]["output_dir"]
+    target        = config["pipeline"]["target"]
+    pipeline_name = config["pipeline"]["name"]
+    model_grid    = Grid.from_config(config["models"])
 
-    pipeline.clean_data = Methodtype(clean_chicago_business_data, pipeline)
+    pipeline = Pipeline(
+        input_source    = input_path,
+        target          = target,
+        name            = pipeline_name,
+        output_root_dir = output_dir,
+        model           = model_grid,
+        data_cleaning   = [
+            to_datetime("LICENSE TERM EXPIRATION DATE"),
+            to_datetime("DATE ISSUED").
+            filter_out_2019_data
+        ],
+        feature_generators = [
+            count_by_zip_year,      # num_not_renewed_zip
+            count_by_dist_radius,   # num_not_renewed_1km
+            make_dummy_vars         # CITY, STATE, APPLICATION TYPE
+        ])
+
+    pipeline.clean_data        = MethodType(clean_chicago_business_data, pipeline)
     pipeline.generate_features = MethodType(make_chicago_business_features, pipeline)
 
     pipeline.run()
