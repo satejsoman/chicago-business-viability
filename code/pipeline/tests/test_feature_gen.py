@@ -7,8 +7,6 @@ from feature_generation import (make_dummy_vars, reshape_and_create_label,
                                 get_locations, count_by_zip_year,
                                 count_by_dist_radius, balance_features)
 
-# Methods to test:
-# 6. balance_features()
 
 class TestFeatureGeneration(unittest.TestCase):
 
@@ -204,6 +202,33 @@ class TestFeatureGeneration(unittest.TestCase):
             ]
         })
         self.assertTrue(all(count_by_dist_radius(input, lic_data) == output))
+
+
+    def test_balance_features(self):
+        '''
+        Test that balance_features() drops features in test but not in train
+        from test, and adds features in train but not in test to test as 0s.
+        Fixes feature imbalance from making dummy variables on features with
+        different unique categorical values.
+        '''
+
+        train_input = pd.DataFrame({
+            'CITY': ['New York', 'San Francisco', 'Evanston'],
+            'STATE': ['NY', 'CA', 'IL'],
+            'APPLICATION TYPE': ['RENEW', 'EXPAND', 'EXPAND']
+        })
+
+        test_input = pd.DataFrame({
+            'CITY': ['New York', 'San Francisco', 'Chicago'],
+            'STATE': ['NY', 'CA', 'IL'],
+            'APPLICATION TYPE': ['RENEW', 'EXPAND', 'EXPAND']
+        })
+
+        train_df = make_dummy_vars(train_input)
+        test_df = make_dummy_vars(test_input)
+        train_out, test_out = balance_features(train_df, test_df)
+
+        self.assertTrue(set(train_out.columns) == set(test_out.columns))
 
 
 
