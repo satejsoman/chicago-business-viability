@@ -23,6 +23,7 @@ from pipeline.transformation import (Transformation, binarize, categorize,
                                      hash_string, replace_missing_with_value,
                                      scale_by_max, to_datetime)
 from pipeline.grid import Grid
+from pipeline.splitter import Splitter
 
 from data_cleaning import (clean_data, filter_out_2019_data)
 from feature_generation import (make_features, reshape_and_create_label,
@@ -103,11 +104,11 @@ def main(config_path):
             to_datetime("DATE ISSUED")
         ],
         feature_generators=[
-            count_by_zip_year,
-            count_by_dist_radius
+            count_by_zip_year
         ],
-        summarize=False,
+        summarize=True,
         model_grid=Grid.from_config(config["models"]),
+        splitter=Splitter.from_config(config["pipeline"]["test_train"]),
         name="quick-pipeline-lr-only-" + config["description"],
         output_root_dir=Path("output/"))
     pipeline.generate_features = MethodType(make_chicago_business_features, pipeline)
