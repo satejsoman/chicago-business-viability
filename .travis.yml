@@ -6,4 +6,4 @@ cache: pip
 install:
   - pip install -r code/requirements.txt
 script:
-  - python code/chicago-business.py
+  - cd code && python chicago-business.py && cat output/*-LATEST/evaluations.csv
