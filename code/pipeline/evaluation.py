@@ -50,9 +50,14 @@ def find_best_model(model_evaluations, metric_type, k, num_results = 5):
         return the associated model name and the stat
     '''
 
-    metric = metric_type + "-at-" + k
+    metric = metric_type + "-at-" + str(k)
+    cols = ['name', metric]
 
-    return model_evaluations.groupby('name')[metric] \
-                                .mean(metric) \
-                                    .sort_values(metric, ascending = False) \
-                                        .iloc[0:num_results-1]
+    if model_evaluations.name.nunique() == 1:
+        return model_evaluations.mean()[cols]
+
+    else:
+        return model_evaluations.groupby('name')[cols] \
+                                    .mean() \
+                                        .sort_values(metric, ascending = False) \
+                                            .iloc[0:num_results-1]

@@ -46,7 +46,7 @@ def test():
 
 if __name__ == "__main__":
     
-    data = Path("./data")
+    data = Path("../data")
     
     orig_business_df = pd.read_csv(data/"Business_Licenses.csv")
     orig_business_df['YEAR'] = pd.to_datetime(orig_business_df['DATE ISSUED']).dt.year
@@ -57,7 +57,7 @@ if __name__ == "__main__":
     input_paths = [data/filename for filename in input_filenames]
     dataframes = [orig_business_df] + [pd.read_csv(path) for path in input_paths]
 
-    cols_to_drop = ['Unnamed: 0']
+    cols_to_drop = ['Unnamed: 0', 'LICENSE NUMBER']
 
     merged = join_together(dataframes, cols_to_drop)
     merged.to_csv(output_filename)
