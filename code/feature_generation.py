@@ -6,9 +6,14 @@ from sklearn.metrics.pairwise import haversine_distances
 
 def make_features(input_df, feature_generators):
     '''
-    Takes an input dataframe and a list of feature generation functions to
-    apply, and returns a dataframe of transformed data.
+    Takes an input license-level dataframe and a list of feature generation
+    functions to apply, and returns a df of transformed business-year data.
     make_features() will be called on every test and train dataset separately.
+
+    Input:  input_df - raw licence-level data, after test-train split
+            feature_generators - a list of functions to apply to each test
+                or train df that return the transformed df
+    Output: result_df - df of business-year data with all features created
     '''
 
     base = reshape_and_create_label(input_df) # business-year data
@@ -26,12 +31,15 @@ def make_features(input_df, feature_generators):
     return result_df
 
 
-def make_dummy_vars(input_df):
+def make_dummy_vars(base, input_df):
     '''
     Wrapper for the pandas get_dummies() method. Takes a pandas DataFrame and
     a string variable label as inputs, and returns a new DataFrame with new
     binary variables for every unique value in var.
-    Inputs: df - pandas DataFrame
+
+    Currently hardcoded to make dummies for CITY, STATE, and APPLICATION TYPE
+
+    Input:  df - pandas DataFrame with categorical columns
     Output: new_df - pandas DataFrame with new variables named "[var]_[value]"
     '''
     VARS_TO_DUMMIFY = ['CITY', 'STATE', 'APPLICATION TYPE']
@@ -47,13 +55,14 @@ def reshape_and_create_label(input_df):
      dataframe. Extracts years from min/max year and expands dataframe into
      account-site-year level.
 
-    Input df must have cols: ACCOUNT NUMBER, SITE NUMBER, DATE ISSUED,
-        LICENSE TERM EXPIRATION DATE
+    Currently hardcoded to require columns for ACCOUNT NUMBER, SITE NUMBER,
+     DATE ISSUED, and LICENSE TERM EXPIRATION DATE
 
-    Returns transformed dataframe.
+    Input:  input_df - license-level dataframe
+    Output: result_df - business-year-level df with not_renewed_2yrs label
     '''
 
-    # Aggregate by account-site and get min/max issue + expiry dates for licenses
+    # Aggregate by account-site and get min/max/expiry dates for licenses
     df = input_df.copy(deep=True) \
         .groupby(['ACCOUNT NUMBER', 'SITE NUMBER']) \
         .agg({'DATE ISSUED': ['min', 'max'],
@@ -81,13 +90,14 @@ def reshape_and_create_label(input_df):
     df = df.drop(labels=['account', 'site'], axis=1)
 
     # Expand list of years_open into one row for each account-site-year
-    # # https://mikulskibartosz.name/how-to-split-a-list-inside-a-dataframe-cell-into-rows-in-pandas-9849d8ff2401
+    # https://mikulskibartosz.name/how-to-split-a-list-inside-a-dataframe-cell-into-rows-in-pandas-9849d8ff2401
     df = df \
         .years_open \
         .apply(pd.Series) \
         .merge(df, left_index=True, right_index=True) \
         .drop(labels=['years_open'], axis=1) \
-        .melt(id_vars=['account_site', 'min_license_date', 'max_license_date', 'expiry'],
+        .melt(id_vars=['account_site', 'min_license_date', 'max_license_date',
+                       'expiry'],
               value_name='YEAR') \
         .drop(labels=['variable'], axis=1) \
         .dropna() \
@@ -105,7 +115,6 @@ def reshape_and_create_label(input_df):
         .sort_values(by=['ACCOUNT NUMBER', 'SITE NUMBER'])
 
     # Assume buffer period is last 2 years of input data
-    # Currently uses 1 buffer for trainind and 1 buffer for test.
     threshold_year = input_df['DATE ISSUED'].dt.year.max() - 1
     buffer_df = input_df.loc[input_df['DATE ISSUED'].dt.year >= threshold_year]
 
@@ -114,18 +123,23 @@ def reshape_and_create_label(input_df):
         + '-' + buffer_df['SITE NUMBER'].astype('str')
 
     # Generate label
-    df['not_renewed_2yrs'] = np.where(
-        df['expiry'].dt.year < threshold_year, # expiry before buffer start
-            np.where(df['YEAR'] >= df['max_license_date'].dt.year + 1, 1, 0),
-        np.where( # expiry within buffer
-            (df['expiry'].dt.year >= threshold_year) &
-            (df['expiry'].dt.year <= threshold_year + 1),
-            ~df['account_site'].isin(buffer_ids),
-            np.nan)) # expiry after buffer
+    # If expiry before buffer, label = 1 if year is 1 year after last license,
+    #   else 0
+    # If expiry within or after buffer, AND buffer contains renewal, label = 0,
+    #   else 0 except for year after last license
+    df['not_renewed_2yrs'] = np.where(df['expiry'].dt.year < threshold_year,
+        np.where(df['YEAR'] >= df['max_license_date'].dt.year + 1, 1, 0),
+        np.where(df['account_site'].isin(buffer_ids),
+            0,
+            np.where(df['YEAR'] >= df['max_license_date'].dt.year + 1, 1, 0)
+            )
+        )
 
     # Drop unnecessary columns
+    # Drop all years that we can't predict on, i.e. buffer years onwards
     df = df.drop(labels=['account_site', 'min_license_date','max_license_date',
                          'expiry'], axis=1) \
+        .loc[df['YEAR'] < threshold_year] \
         .reset_index(drop=True)
 
     return df
@@ -136,19 +150,22 @@ def get_locations(input_df):
     '''
     Takes license-level data and returns a dataframe with location attributes
         for each account-site.
+
+    Input:  input_df - license-level data with specified location columns.
+    Output: df - unique addresses for each account-site.
     '''
     # Columns to return
     LOCATION_COLS = ['ACCOUNT NUMBER', 'SITE NUMBER', 'ADDRESS', 'CITY',
-                     'STATE', 'ZIP CODE', 'WARD', 'POLICE DISTRICT',
-                     'LATITUDE', 'LONGITUDE', 'LOCATION']
+                     'STATE', 'ZIP CODE', 'LATITUDE', 'LONGITUDE']
 
     # Drop rows if these columns have NA
-    NA_COLS = ['LATITUDE', 'LONGITUDE', 'LOCATION']
+    NA_COLS = ['LATITUDE', 'LONGITUDE']
 
     df = input_df.copy(deep=True)[LOCATION_COLS] \
         .dropna(subset=NA_COLS) \
         .drop_duplicates() \
-        .sort_values(by=['ACCOUNT NUMBER', 'SITE NUMBER'])
+        .sort_values(by=['ACCOUNT NUMBER', 'SITE NUMBER']) \
+        .reset_index(drop=True)
 
     return df
 
@@ -156,8 +173,16 @@ def get_locations(input_df):
 # Count nonrenewals by zipcode
 def count_by_zip_year(input_df, license_data):
     '''
-    Takes business-year-level data and returns a dataframe of the number of
-        nonrenewals in a given categorical location column.
+    Takes business-year-level data from reshape_and_create_label(), counts the
+    number of nonrenewals in the same zipcode-year, and returns the original
+    df with num_not_renewed_zip.
+
+    Currently hardcoded to require columns for ACCOUNT NUMBER, SITE NUMBER,
+     YEAR, and ZIP CODE.
+
+    Input:  input_df - business-year level data with label.
+            license_data - licence-level data that provides locational info
+    Output: results_df - input_df with num_not_renewed_zip appended.
     '''
 
     # Get locations from license data and merge onto business-year data
@@ -181,6 +206,10 @@ def count_by_zip_year(input_df, license_data):
         .fillna(0) \
         .sort_values(by=['ZIP CODE', 'YEAR'])
 
+    # Change from float to int
+    counts_by_zip['num_not_renewed_zip'] = \
+        counts_by_zip['num_not_renewed_zip'].astype('int')
+
     # Merge zip-year level data onto base
     results_df = df[['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR', 'ZIP CODE']] \
         .merge(counts_by_zip, how='left', on=['ZIP CODE', 'YEAR']) \
@@ -193,12 +222,14 @@ def count_by_zip_year(input_df, license_data):
 # Count nonrenewals by distance radius
 def count_by_dist_radius(input_df, license_data):
     '''
-    Counts the number of business nonrenewals within a specified distance in km for each business-year.
+    Counts the number of business nonrenewals within a specified distance in km
+    for each business-year.
 
-    Input: input_df - df of business-year level data with binary feature for "not renewed in 2 years".
-        Dataframe must also have these cols: ACCOUNT NUMBER, SITE NUMBER, YEAR, LATITUDE, LONGITUDE
+    Currently hardcoded to require columns for ACCOUNT NUMBER, SITE NUMBER,
+     YEAR, LATITUDE, and LONGITUDE.
 
-    Output: input_df with count column appended to it.
+    Input: input_df - business-year level data with label.
+    Output: results_df - input df with num_not_renewed_1km appended.
     '''
 
     # Get locations from license data and merge onto business-year data
@@ -207,7 +238,8 @@ def count_by_dist_radius(input_df, license_data):
         .merge(addresses, how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER'])
 
     # Select columns, transforms lat/long in degrees to radians
-    df = df[['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR', 'LATITUDE', 'LONGITUDE', 'not_renewed_2yrs']]
+    df = df[['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR', 'LATITUDE', 'LONGITUDE',
+             'not_renewed_2yrs']]
     df['LATITUDE_rad'] = np.radians(df['LATITUDE'])
     df['LONGITUDE_rad'] = np.radians(df['LONGITUDE'])
     R = 6371 # circumference of the Earth in km
@@ -219,22 +251,35 @@ def count_by_dist_radius(input_df, license_data):
         year_df = df.loc[df['YEAR'] == i]
         fails_only = year_df.loc[year_df['not_renewed_2yrs'] == 1]
 
-        # Get pairwise distance between all businesses that year and all nonrenewals that year
-        # Then count number of nonrenewals within threshold distance (using row-wise sum)
-        #  and join back on year_df
-        dist_df = haversine_distances(year_df[['LATITUDE_rad', 'LONGITUDE_rad']],
-                                      fails_only[['LATITUDE_rad', 'LONGITUDE_rad']]) * R
-        dist_df = pd.DataFrame(np.where(dist_df <= 1, 1, 0).sum(axis=1))
-        year_df = year_df \
-            .reset_index(drop=True) \
-            .join(dist_df) \
-            .drop(labels=['LATITUDE', 'LONGITUDE', 'LATITUDE_rad', 'LONGITUDE_rad', 'not_renewed_2yrs'], axis=1)
+        # if no businesses failed that year, return a count of 0 for all
+        if len(fails_only) == 0:
+            year_df[0] = np.zeros(len(year_df)).astype('int')
+            year_df = year_df \
+                .reset_index(drop=True) \
+                .drop(labels=['LATITUDE', 'LONGITUDE', 'LATITUDE_rad',
+                              'LONGITUDE_rad', 'not_renewed_2yrs'], axis=1)
+        else:
+            # Get pairwise distance between all businesses that year and all
+            # nonrenewals that year. Then count number of nonrenewals within
+            # threshold distance (using row-wise sum) and join back on year_df
+            dist_df = R * haversine_distances(
+                year_df[['LATITUDE_rad', 'LONGITUDE_rad']],
+                fails_only[['LATITUDE_rad', 'LONGITUDE_rad']]
+            )
+            dist_df = pd.DataFrame(np.where(dist_df <= 1, 1, 0).sum(axis=1))
+            year_df = year_df \
+                .reset_index(drop=True) \
+                .join(dist_df) \
+                .drop(labels=['LATITUDE', 'LONGITUDE', 'LATITUDE_rad',
+                              'LONGITUDE_rad', 'not_renewed_2yrs'], axis=1)
 
         year_dfs.append(year_df)
     # Concatenate all year-specific dfs to get counts for all business-years
     # Then merge onto original df by business-year id cols
     all_years_df = pd.concat(year_dfs)
-    results_df = input_df.merge(all_years_df, how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR']) \
+    results_df = input_df.merge(all_years_df,
+                                how='left',
+                                on=['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR']) \
         .rename(columns={0: 'num_not_renewed_1km'}) \
         [['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR', 'num_not_renewed_1km' ]]
 
@@ -257,7 +302,7 @@ def balance_features(train_df, test_df):
     Inputs: train_df - pandas Dataframe of training data
             test_df - pandas Dataframe of test data
     Output: train_df - unchanged from input
-            test_df - pandas Dataframe with above corrections made
+            test_df - pandas Dataframe with feature balancing corrections.
     '''
 
     train_cols = set(train_df.columns)
@@ -271,7 +316,7 @@ def balance_features(train_df, test_df):
 
     # Add cols in train but not test as 0s
     for i in in_train_not_test:
-        new_test_df[i] = np.zeros(len(df))
+        new_test_df[i] = np.zeros(len(test_df))
 
     return train_df, new_test_df
 
