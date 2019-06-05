@@ -251,21 +251,27 @@ def count_by_dist_radius(input_df, license_data):
         year_df = df.loc[df['YEAR'] == i]
         fails_only = year_df.loc[year_df['not_renewed_2yrs'] == 1]
 
-        # if no failures that year, label = 0
-        # TODO
-
-
-        # Get pairwise distance between all businesses that year and all
-        # nonrenewals that year, Then count number of nonrenewals within
-        # threshold distance (using row-wise sum) and join back on year_df
-        dist_df = haversine_distances(year_df[['LATITUDE_rad', 'LONGITUDE_rad']],
-                                      fails_only[['LATITUDE_rad', 'LONGITUDE_rad']]) * R
-        dist_df = pd.DataFrame(np.where(dist_df <= 1, 1, 0).sum(axis=1))
-        year_df = year_df \
-            .reset_index(drop=True) \
-            .join(dist_df) \
-            .drop(labels=['LATITUDE', 'LONGITUDE', 'LATITUDE_rad',
-                          'LONGITUDE_rad', 'not_renewed_2yrs'], axis=1)
+        # if no businesses failed that year, return a count of 0 for all
+        if len(fails_only) == 0:
+            year_df[0] = np.zeros(len(year_df)).astype('int')
+            year_df = year_df \
+                .reset_index(drop=True) \
+                .drop(labels=['LATITUDE', 'LONGITUDE', 'LATITUDE_rad',
+                              'LONGITUDE_rad', 'not_renewed_2yrs'], axis=1)
+        else:
+            # Get pairwise distance between all businesses that year and all
+            # nonrenewals that year. Then count number of nonrenewals within
+            # threshold distance (using row-wise sum) and join back on year_df
+            dist_df = R * haversine_distances(
+                year_df[['LATITUDE_rad', 'LONGITUDE_rad']],
+                fails_only[['LATITUDE_rad', 'LONGITUDE_rad']]
+            )
+            dist_df = pd.DataFrame(np.where(dist_df <= 1, 1, 0).sum(axis=1))
+            year_df = year_df \
+                .reset_index(drop=True) \
+                .join(dist_df) \
+                .drop(labels=['LATITUDE', 'LONGITUDE', 'LATITUDE_rad',
+                              'LONGITUDE_rad', 'not_renewed_2yrs'], axis=1)
 
         year_dfs.append(year_df)
     # Concatenate all year-specific dfs to get counts for all business-years

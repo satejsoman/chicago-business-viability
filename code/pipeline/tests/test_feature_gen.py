@@ -8,7 +8,6 @@ from feature_generation import (make_dummy_vars, reshape_and_create_label,
                                 count_by_dist_radius, balance_features)
 
 # Methods to test:
-# 5. count_by_dist_radius()
 # 6. balance_features()
 
 class TestFeatureGeneration(unittest.TestCase):
