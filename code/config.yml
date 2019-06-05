@@ -1,6 +1,6 @@
 data: 
   input_path: "../data/license_features.csv"
-  output_path: "output/"
+  output_dir: "output/"
 
 pipeline:
   name: "quick"
