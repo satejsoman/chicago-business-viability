@@ -32,9 +32,9 @@ class TestFeatureGeneration(unittest.TestCase):
         }, dtype=np.int64)
         self.assertTrue(all(make_dummy_vars(input) == output))
 
-
     def test_reshape_and_create_label(self):
-        '''Input df must have cols: ACCOUNT NUMBER, SITE NUMBER, DATE ISSUED,
+        '''
+        Input df must have cols: ACCOUNT NUMBER, SITE NUMBER, DATE ISSUED,
         LICENSE TERM EXPIRATION DATE
         '''
 
@@ -77,9 +77,9 @@ class TestFeatureGeneration(unittest.TestCase):
         })
         self.assertTrue(all(reshape_and_create_label(input) == output))
 
-
     def test_get_locations(self):
-        '''Transforms license data to unique locations for account-site data.
+        '''
+        Transforms license data to unique locations for account-site data.
         Output cols: 'ACCOUNT NUMBER', 'SITE NUMBER', 'ADDRESS', 'CITY',
                      'STATE', 'ZIP CODE', 'WARD', 'POLICE DISTRICT',
                      'LATITUDE', 'LONGITUDE', 'LOCATION'
@@ -93,7 +93,7 @@ class TestFeatureGeneration(unittest.TestCase):
 
         output = pd.DataFrame(data={
             'ACCOUNT NUMBER': [1, 1, 2, 4, 6],
-            'SITE NUMBER': [1, 2, 2, 1, 1,],
+            'SITE NUMBER': [1, 2, 2, 1, 1],
             'ADDRESS': ['17 W ADAMS ST # 1ST',
                         '17 W ADAMS ST BSMT & 1ST',
                         '11601 W TOUHY AVE  T1 CO',
@@ -115,8 +115,8 @@ class TestFeatureGeneration(unittest.TestCase):
         })
         self.assertTrue(all(get_locations(input) == output))
 
-
     def test_count_by_zip_year(self):
+        '''Tests count_by_zip_year()'''
 
         DATE_COLS = ['DATE ISSUED', 'LICENSE TERM EXPIRATION DATE']
         lic_data = pd.read_csv(Path(__file__).parent/'test_feature_data.csv',
@@ -159,8 +159,8 @@ class TestFeatureGeneration(unittest.TestCase):
         })
         self.assertTrue(all(count_by_zip_year(input, lic_data) == output))
 
-
     def test_count_by_dist_radius(self):
+        '''Tests count_by_dist_radius()'''
 
         DATE_COLS = ['DATE ISSUED', 'LICENSE TERM EXPIRATION DATE']
         lic_data = pd.read_csv(Path(__file__).parent/'test_feature_data.csv',
@@ -203,7 +203,6 @@ class TestFeatureGeneration(unittest.TestCase):
         })
         self.assertTrue(all(count_by_dist_radius(input, lic_data) == output))
 
-
     def test_balance_features(self):
         '''
         Test that balance_features() drops features in test but not in train
@@ -229,7 +228,6 @@ class TestFeatureGeneration(unittest.TestCase):
         train_out, test_out = balance_features(train_df, test_df)
 
         self.assertTrue(set(train_out.columns) == set(test_out.columns))
-
 
 
 if __name__ == '__main__':

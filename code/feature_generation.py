@@ -11,8 +11,8 @@ def make_features(input_df, feature_generators):
     make_features() will be called on every test and train dataset separately.
 
     Input:  input_df - raw licence-level data, after test-train split
-            feature_generators - a list of functions to apply to each test/train
-                df that return the transformed df
+            feature_generators - a list of functions to apply to each test
+                or train df that return the transformed df
     Output: result_df - df of business-year data with all features created
     '''
 
@@ -37,7 +37,7 @@ def make_dummy_vars(input_df):
     a string variable label as inputs, and returns a new DataFrame with new
     binary variables for every unique value in var.
 
-    Currently hardcoded to make dummy vars for CITY, STATE, and APPLICATION TYPE
+    Currently hardcoded to make dummies for CITY, STATE, and APPLICATION TYPE
 
     Input:  df - pandas DataFrame with categorical columns
     Output: new_df - pandas DataFrame with new variables named "[var]_[value]"
@@ -62,7 +62,7 @@ def reshape_and_create_label(input_df):
     Output: result_df - business-year-level df with not_renewed_2yrs label
     '''
 
-    # Aggregate by account-site and get min/max issue, expiry dates for licenses
+    # Aggregate by account-site and get min/max/expiry dates for licenses
     df = input_df.copy(deep=True) \
         .groupby(['ACCOUNT NUMBER', 'SITE NUMBER']) \
         .agg({'DATE ISSUED': ['min', 'max'],
@@ -132,8 +132,8 @@ def reshape_and_create_label(input_df):
         np.where(df['account_site'].isin(buffer_ids),
             0,
             np.where(df['YEAR'] >= df['max_license_date'].dt.year + 1, 1, 0)
+            )
         )
-    )
 
     # Drop unnecessary columns
     # Drop all years that we can't predict on, i.e. buffer years onwards
