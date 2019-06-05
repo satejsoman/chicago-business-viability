@@ -1,0 +1,3 @@
+- need to build in the ability to geocode missing addresses
+- need to decide what to do about [REDACTED FOR PRIVACY] addresses 
+- think about how to make this work in a production context

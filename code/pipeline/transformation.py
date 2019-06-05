@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from sklearn.preprocessing import scale
 
 
 class Transformation:
@@ -82,7 +83,18 @@ def replace_missing_with_mean(column):
 
 def to_datetime(column):
     return Transformation(
-        name = "convert-" + column + "-to-datetime",
-        input_column_names=column,
-        output_column_name=column,
-        function = pd.to_datetime)
+       name = "convert-" + column + "-to-datetime",
+       input_column_names=column,
+       output_column_name=column,
+       function = lambda df: pd.to_datetime(df, format="%m/%d/%Y"))
+
+
+def standardize(columns):
+    def standardize(dataframe):
+        return scale(dataframe[column])
+    return Transformation(
+            name = "standardize-" + column + "-mean-0-stdev-1",
+            input_column_names=column,
+            output_column_name=column,
+            function = standardize
+    )

@@ -94,4 +94,8 @@ FigureScripts/*
 .vscode
 
 # data files
-.geojson
+*.geojson
+
+# api keys
+keys.json
+keys.yaml

@@ -3,7 +3,6 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics.pairwise import haversine_distances
 
-
 def make_features(input_df, feature_generators):
     '''
     Takes an input dataframe and a list of feature generation functions to
@@ -14,14 +13,15 @@ def make_features(input_df, feature_generators):
     base = reshape_and_create_label(input_df) # business-year data
 
     generated_features = base.copy(deep=True) # accumulate features
-    for i in feature_generators:
+    for feature_generator in feature_generators:
         feature = feature_generator(base, input_df)
         generated_features = generated_features.merge(feature,
             how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR'])
 
     # Finally, merge on all generated feature onto the base and overwrite df
-    result_df = base.merge(generated_features,
-        how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR'])
+    result_df = base \
+        .drop(labels=['not_renewed_2yrs'], axis=1) \
+        .merge(generated_features, how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR'])
 
     return result_df
 
@@ -121,7 +121,8 @@ def reshape_and_create_label(input_df):
             (df['expiry'].dt.year >= threshold_year) &
             (df['expiry'].dt.year <= threshold_year + 1),
             ~df['account_site'].isin(buffer_ids),
-            np.nan)) # expiry after buffer
+            0)) # expiry after buffer
+            # June 2, 2019: changed expiry after buffer to 0 from np.nan
 
     # Drop unnecessary columns
     df = df.drop(labels=['account_site', 'min_license_date','max_license_date',
@@ -185,6 +186,7 @@ def count_by_zip_year(input_df, license_data):
     results_df = df[['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR', 'ZIP CODE']] \
         .merge(counts_by_zip, how='left', on=['ZIP CODE', 'YEAR']) \
         .drop(labels=['ZIP CODE'], axis=1) \
+        .fillna(0) \
         .sort_values(by=['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR'])
 
     return results_df
@@ -219,16 +221,25 @@ def count_by_dist_radius(input_df, license_data):
         year_df = df.loc[df['YEAR'] == i]
         fails_only = year_df.loc[year_df['not_renewed_2yrs'] == 1]
 
-        # Get pairwise distance between all businesses that year and all nonrenewals that year
-        # Then count number of nonrenewals within threshold distance (using row-wise sum)
-        #  and join back on year_df
-        dist_df = haversine_distances(year_df[['LATITUDE_rad', 'LONGITUDE_rad']],
-                                      fails_only[['LATITUDE_rad', 'LONGITUDE_rad']]) * R
-        dist_df = pd.DataFrame(np.where(dist_df <= 1, 1, 0).sum(axis=1))
-        year_df = year_df \
-            .reset_index(drop=True) \
-            .join(dist_df) \
-            .drop(labels=['LATITUDE', 'LONGITUDE', 'LATITUDE_rad', 'LONGITUDE_rad', 'not_renewed_2yrs'], axis=1)
+        # if no businesses failed that year, return a count of 0 for all
+        if len(fails_only) == 0:
+            year_df[0] = np.zeros(len(year_df)).astype('int')
+            year_df = year_df \
+                .reset_index(drop=True) \
+                .drop(labels=['LATITUDE', 'LONGITUDE', 'LATITUDE_rad', 'LONGITUDE_rad', 'not_renewed_2yrs'], axis=1)
+        else:
+            # Get pairwise distance between all businesses that year and all nonrenewals that year
+            # Then count number of nonrenewals within threshold distance (using row-wise sum)
+            #  and join back on year_df
+            dist_df = R * haversine_distances(
+                year_df[['LATITUDE_rad', 'LONGITUDE_rad']],
+                fails_only[['LATITUDE_rad', 'LONGITUDE_rad']]
+            )
+            dist_df = pd.DataFrame(np.where(dist_df <= 1, 1, 0).sum(axis=1))
+            year_df = year_df \
+                .reset_index(drop=True) \
+                .join(dist_df) \
+                .drop(labels=['LATITUDE', 'LONGITUDE', 'LATITUDE_rad', 'LONGITUDE_rad', 'not_renewed_2yrs'], axis=1)
 
         year_dfs.append(year_df)
     # Concatenate all year-specific dfs to get counts for all business-years
