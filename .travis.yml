@@ -6,4 +6,4 @@ cache: pip
 install:
   - pip install -r code/requirements.txt
 script:
-  - pytest
+  - python code/chicago-business.py
