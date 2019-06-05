@@ -31,7 +31,7 @@ def make_features(input_df, feature_generators):
     return result_df
 
 
-def make_dummy_vars(input_df):
+def make_dummy_vars(base, input_df):
     '''
     Wrapper for the pandas get_dummies() method. Takes a pandas DataFrame and
     a string variable label as inputs, and returns a new DataFrame with new
