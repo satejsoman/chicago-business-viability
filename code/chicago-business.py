@@ -42,8 +42,7 @@ def make_chicago_business_features(self):
     n = len(self.feature_generators)
     for df_list in (self.test_sets, self.train_sets):
         for i in range(len(df_list)):
-            self.logger.info("    Creating features on test-train set %s", i+1)
-            # Cecile deleted n in the above log line because she can't tell what it's supposed to be
+            self.logger.info("    Creating %s features on test-train set %s", n, i+1)
 
             df_list[i] = make_features(df_list[i], self.feature_generators)
 
@@ -55,6 +54,8 @@ def make_chicago_business_features(self):
     # Add newly-generated features to self.features
     new_cols = set(self.test_sets[0].columns)
     self.features += list(new_cols - old_cols) # set difference
+
+    self.features = list(set(self.features) - set([self.target]))
 
     return self
 
@@ -86,15 +87,12 @@ def get_pipeline(config_path):
         features        = features,
         data_cleaning   = [
             to_datetime("LICENSE TERM EXPIRATION DATE"),
-            to_datetime("DATE ISSUED"),
-            # filter_out_2019_data
+            to_datetime("DATE ISSUED")
         ],
-        feature_generators = [
-            count_by_zip_year,      # num_not_renewed_zip
-            #count_by_dist_radius,   # num_not_renewed_1km
-            #make_dummy_vars         # CITY, STATE, APPLICATION TYPE
-        ], 
-        )
+        feature_generators=[
+            count_by_zip_year,
+            make_dummy_vars
+        ])
 
     # pipeline.clean_data        = MethodType(clean_chicago_business_data, pipeline)
     pipeline.generate_features = MethodType(make_chicago_business_features, pipeline)

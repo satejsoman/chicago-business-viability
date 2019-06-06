@@ -31,23 +31,6 @@ def make_features(input_df, feature_generators):
     return result_df
 
 
-def make_dummy_vars(base, input_df):
-    '''
-    Wrapper for the pandas get_dummies() method. Takes a pandas DataFrame and
-    a string variable label as inputs, and returns a new DataFrame with new
-    binary variables for every unique value in var.
-
-    Currently hardcoded to make dummies for CITY, STATE, and APPLICATION TYPE
-
-    Input:  df - pandas DataFrame with categorical columns
-    Output: new_df - pandas DataFrame with new variables named "[var]_[value]"
-    '''
-    VARS_TO_DUMMIFY = ['CITY', 'STATE', 'APPLICATION TYPE']
-    new_df = pd.get_dummies(input_df, columns=VARS_TO_DUMMIFY, dtype=np.int64)
-
-    return new_df.fillna(0)
-
-
 # Reshape license data to business-year data, create label
 def reshape_and_create_label(input_df):
     '''
@@ -285,6 +268,29 @@ def count_by_dist_radius(input_df, license_data):
         [['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR', 'num_not_renewed_1km' ]]
 
     return results_df
+
+
+def make_dummy_vars(base, license_data):
+    '''
+    Wrapper for the pandas get_dummies() method. Takes a pandas DataFrame and
+    a string variable label as inputs, and returns a new DataFrame with new
+    binary variables for every unique value in var.
+    Inputs: df - pandas DataFrame
+    Output: new_df - pandas DataFrame with new variables named "[var]_[value]"
+    '''
+    VARS_TO_DUMMIFY = ['CITY', 'STATE']
+
+    # Get locations from license data and merge onto business-year data
+    addresses = get_locations(license_data)
+    df = base.copy(deep=True) \
+        .merge(addresses, how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER'])
+
+    # Select only relevant features to dummify
+    df = df[base.columns.tolist() + VARS_TO_DUMMIFY]
+
+    new_df = pd.get_dummies(df, columns=VARS_TO_DUMMIFY, dtype=np.int64)
+
+    return new_df
 
 
 # Balance features between test and train sets
