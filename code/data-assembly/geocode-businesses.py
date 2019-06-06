@@ -9,9 +9,10 @@ import geocoder
 import pandas as pd
 import geopandas as gpd 
 from itertools import islice
+from functools import reduce
 
 BUSINESS_LICENSE_DATA_LOCATION = "../../data/Business_Licenses.csv"
-MISSING_LOCATION_RECORDS_FILE = "../../data/licenses_without_geocode.csv"
+MISSING_LOCATION_RECORDS_FILE = "../../data/geocode/licenses_without_geocode.csv"
 
 
 INDEX_VARS = ['LICENSE ID', 'LICENSE NUMBER', 'ACCOUNT NUMBER', 'SITE NUMBER', 'DATE ISSUED']
@@ -24,28 +25,54 @@ def select_missing(df):
     ''' Prepare a dataframe with all the records we need to submit to geocoder '''
 
     missing = df.loc[df['LATITUDE'].isna()]
-    missing.to_csv(MISSING_LOCATION_RECORDS_FILE)
+
+    missing = missing.loc[missing['YEAR'] > 2006]
+    missing = missing.loc[missing['ADDRESS'] != "[REDACTED FOR PRIVACY]"]
+
+    missing.drop(columns = ['LICENSE NUMBER', 'LICENSE NUMBER', 'ACCOUNT NUMBER',
+                             'SITE NUMBER', 'DATE ISSUED', 'LATITUDE',
+                            'LONGITUDE', 'LOCATION'], inplace=True)
+
+    # missing.rename(columns = {'LICENSE NUMBER': })
+
+    # missing.to_csv(MISSING_LOCATION_RECORDS_FILE)
 
     return missing
 
-    # missing['FULL_ADDRESS'] = missing[ADDRESS_VARS].apply( ???/, axis = 1)
 
 
-def read_keys(keyfile):
+def read_keys(keyfile, key_name):
     ''' get list of keys out of key file'''
 
     with open(keyfile, 'rb') as k:
         keys = yaml.safe_load(k.read())
     
-    return keys["Google"]
+    return keys[key_name]
 
 
-def batch_geocode(df, google_key):
+def chunk_df(df, chunk_size, base_filename = "../../data/geocode/licenses_to_geocode"):
     
-    df['FULL_ADDRESS'] = df['ADDRESS'] + " " + df['CITY'] + " " + df['STATE'] + " " + df['ZIP CODE'].astype(str)
+    
+    i = 0
+    df_list = []
+    for j in range(chunk_size, df.shape[0], chunk_size):
+        df_list.append(df.iloc[i:j])
+        df.iloc[i:j].to_csv(base_filename + "_{}-{}.csv".format(i, j))
+        i = j
+        
+    return df_list
 
-    for chunk in enumerate(df):
-        g = geocoder.google(df['FULL_ADDRESS'], key = google_key, method = "batch")
+
+def prep_query(df):
+    ''' Takes: dataframe of missing queries, concatenates fields
+        Returns: list of address to query
+    '''
+
+    missing['full_address'] = reduce(lambda x, y: x + " " + y, )
+
+
+def query_mapquest():
+    pass
 
 
 if __name__ == "__main__":
@@ -61,10 +88,11 @@ if __name__ == "__main__":
     df = pd.read_csv(args.infile)[INDEX_VARS + ADDRESS_VARS + GEO_VARS]
     df['DATE ISSUED'] = pd.to_datetime(df['DATE ISSUED'])
     df['YEAR'] = df['DATE ISSUED'].dt.year
-    missing = select_missing(df)
 
-    missing = missing.loc[missing['YEAR'] > 2006]
-    missing = missing.loc[missing['ADDRESS'] != "[REDACTED FOR PRIVACY]"]
+    missing = select_missing(df)
+    df_list = chunk_df(missing)
+
+
 
     
     
