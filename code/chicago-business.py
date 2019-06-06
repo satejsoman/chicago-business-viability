@@ -1,5 +1,6 @@
 import configparser
 import datetime
+import os
 from itertools import cycle
 from pathlib import Path
 from types import MethodType
@@ -17,14 +18,14 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 
+from data_cleaning import clean_data, filter_out_2019_data
+from feature_generation import (balance_features, count_by_dist_radius,
+                                count_by_zip_year, make_dummy_vars,
+                                make_features, reshape_and_create_label)
 from pipeline.core import Pipeline
-from pipeline.transformation import (Transformation, to_datetime)
 from pipeline.grid import Grid
+from pipeline.transformation import Transformation, to_datetime
 
-from data_cleaning import (clean_data, filter_out_2019_data)
-from feature_generation import (make_features, reshape_and_create_label,
-                                count_by_zip_year, count_by_dist_radius,
-                                balance_features, make_dummy_vars)
 
 def clean_chicago_business_data(self):
     self.logger.info("    Running cleaning steps on raw data")
@@ -57,8 +58,11 @@ def make_chicago_business_features(self):
     return self
 
 
-def main(config_path):
-    script_dir = Path(__file__).parent
+def get_pipeline(config_path):
+    try: 
+        script_dir = Path(__file__).parent
+    except NameError:
+        script_dir = Path(os.path.abspath(''))
 
     with open(script_dir.resolve()/config_path, 'rb') as config_file:
         config = yaml.safe_load(config_file.read())
@@ -88,7 +92,8 @@ def main(config_path):
 
     # pipeline.clean_data        = MethodType(clean_chicago_business_data, pipeline)
     pipeline.generate_features = MethodType(make_chicago_business_features, pipeline)
-    pipeline.run()
+    return pipeline
 
 if __name__ == "__main__":
-    main("config.yml")
+    pipeline = get_pipeline("config.yml")
+    pipeline.run()
