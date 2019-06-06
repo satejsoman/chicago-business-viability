@@ -1,0 +1,5 @@
+name,recall-at-0.1
+DecisionTreeClassifier-max_depth1,0.0007779408552500145
+DecisionTreeClassifier-max_depth5,0.0007779408552500145
+DecisionTreeClassifier-max_depthNone,0.0007779408552500145
+LogisticRegression-C0.01,0.0007779408552500145

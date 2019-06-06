@@ -28,7 +28,7 @@ from pipeline.splitter import Splitter
 from data_cleaning import (clean_data, filter_out_2019_data)
 from feature_generation import (make_features, reshape_and_create_label,
                                 count_by_zip_year, count_by_dist_radius,
-                                balance_features)
+                                balance_features, make_dummy_vars)
 
 def explore():
     pass
@@ -51,10 +51,10 @@ def make_chicago_business_features(self):
     old_cols = set(self.test_sets[0].columns)
 
     # Make features for each dataset in train_sets, test_sets
+    n = len(self.feature_generators)
     for df_list in (self.test_sets, self.train_sets):
         for i in range(len(df_list)):
-            self.logger.info("    Creating features on test-train set %s", i+1)
-            # Cecile deleted n in the above log line because she can't tell what it's supposed to be
+            self.logger.info("    Creating %s features on test-train set %s", n, i+1)
 
             df_list[i] = make_features(df_list[i], self.feature_generators)
 
@@ -67,7 +67,7 @@ def make_chicago_business_features(self):
 
     # Add newly-generated features to self.features
     new_cols = set(self.test_sets[0].columns)
-    self.features = list(new_cols - old_cols) # set difference
+    self.features += list(new_cols - old_cols) # set difference
     print(self.features)
 
     return self
@@ -104,7 +104,8 @@ def main(config_path):
             to_datetime("DATE ISSUED")
         ],
         feature_generators=[
-            count_by_zip_year
+            count_by_zip_year,
+            make_dummy_vars
         ],
         summarize=True,
         model_grid=Grid.from_config(config["models"]),
