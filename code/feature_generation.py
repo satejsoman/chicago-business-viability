@@ -52,8 +52,6 @@ def reshape_and_create_label(input_df):
     Output: result_df - business-year-level df with not_renewed_2yrs label
     '''
 
-    # print(48, input_df.columns)
-
     # Aggregate by account-site and get min/max/expiry dates for licenses
     df = input_df.copy(deep=True) \
         .groupby(['ACCOUNT NUMBER', 'SITE NUMBER']) \
@@ -64,8 +62,6 @@ def reshape_and_create_label(input_df):
     # Flatten column names into something usable
     df.columns = df.columns.to_flat_index()
 
-    # print(60, df.columns)
-
     df = df.rename(columns={
         ('', 'ACCOUNT NUMBER'): "account",
         ('' , 'SITE NUMBER'): 'site',
@@ -73,22 +69,16 @@ def reshape_and_create_label(input_df):
         ('DATE ISSUED', 'max'): 'max_license_date',
         ('LICENSE TERM EXPIRATION DATE', 'max'): 'expiry'})
 
-    # print(df.columns)
-
     # Extract min/max license dates into list of years_open
     df['years_open'] = pd.Series(map(lambda x, y: [z for z in range(x, y+2)],
                                      df['min_license_date'].dt.year,
                                      df['max_license_date'].dt.year))
-
-    # print(76, df.columns)
 
     # make account-site id var
     # melt step below doesn't work well without merging these two cols
     df['account_site'] = df['account'].astype('str') + "-" + df['site'].astype('str')
     df = df[df.columns.tolist()[-1:] + df.columns.tolist()[:-1]]
     df = df.drop(labels=['account', 'site'], axis=1)
-
-    # print(84, df.columns)
 
     # Expand list of years_open into one row for each account-site-year
     # https://mikulskibartosz.name/how-to-split-a-list-inside-a-dataframe-cell-into-rows-in-pandas-9849d8ff2401
@@ -104,22 +94,16 @@ def reshape_and_create_label(input_df):
         .dropna() \
         .sort_values(by=['account_site', 'YEAR'])
 
-    # print(100, df.columns)
-
     # Split account_site back into ACCOUNT NUMBER, SITE NUMBER
     df['ACCOUNT NUMBER'], df['SITE NUMBER'] = df['account_site'].str.split('-', 1).str
     df['ACCOUNT NUMBER'] = df['ACCOUNT NUMBER'].astype('int')
     df['SITE NUMBER'] = df['SITE NUMBER'].astype('int')
-
-    # print(107, df.columns)
 
     # reorder columns
     df['YEAR'] = df['YEAR'].astype('int')
     df = df[['ACCOUNT NUMBER', 'SITE NUMBER', 'account_site', 'YEAR',
              'min_license_date', 'max_license_date', 'expiry']] \
         .sort_values(by=['ACCOUNT NUMBER', 'SITE NUMBER'])
-
-    # print(115, df.columns)
 
     # Assume buffer period is last 2 years of input data
     threshold_year = input_df['DATE ISSUED'].dt.year.max() - 1
@@ -142,16 +126,12 @@ def reshape_and_create_label(input_df):
             )
         )
 
-    # print(138, df.columns)
-
     # Drop unnecessary columns
     # Drop all years that we can't predict on, i.e. buffer years onwards
     df = df.drop(labels=['account_site', 'min_license_date','max_license_date',
                          'expiry'], axis=1) \
         .loc[df['YEAR'] < threshold_year] \
         .reset_index(drop=True)
-
-    # print(147, df.columns)
 
     return df
 
