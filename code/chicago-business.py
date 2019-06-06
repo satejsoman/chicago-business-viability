@@ -6,6 +6,7 @@ from pathlib import Path
 from types import MethodType
 
 import matplotlib
+matplotlib.use('TkAgg')
 import matplotlib2tikz
 import matplotlib.pyplot as plt
 import numpy as np
@@ -61,7 +62,7 @@ def make_chicago_business_features(self):
 
 
 def get_pipeline(config_path):
-    try: 
+    try:
         script_dir = Path(__file__).parent
     except NameError:
         script_dir = Path(os.path.abspath(''))
@@ -90,7 +91,7 @@ def get_pipeline(config_path):
             to_datetime("DATE ISSUED")
         ],
         feature_generators=[
-            count_by_zip_year,
+            # count_by_zip_year,
             make_dummy_vars
         ])
 

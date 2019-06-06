@@ -17,8 +17,12 @@ def make_features(input_df, feature_generators):
 
     base = reshape_and_create_label(input_df) # business-year data
 
+    if not feature_generators:
+        return base
+
     generated_features = base.copy(deep=True) # accumulate features
     for feature_generator in feature_generators:
+        print("        Applying function:", feature_generator.__name__)
         feature = feature_generator(base, input_df)
         generated_features = generated_features.merge(feature,
             how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR'])
@@ -279,16 +283,18 @@ def make_dummy_vars(base, license_data):
     Output: new_df - pandas DataFrame with new variables named "[var]_[value]"
     '''
     VARS_TO_DUMMIFY = ['CITY', 'STATE']
+    base_cols = base.columns.tolist()
 
     # Get locations from license data and merge onto business-year data
     addresses = get_locations(license_data)
-    df = base.copy(deep=True) \
-        .merge(addresses, how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER'])
+    df = base.merge(addresses, how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER'])
 
     # Select only relevant features to dummify
-    df = df[base.columns.tolist() + VARS_TO_DUMMIFY]
-
-    new_df = pd.get_dummies(df, columns=VARS_TO_DUMMIFY, dtype=np.int64)
+    # ACCOUNT NUM, SITE NUM, YEAR, not_renewed_2yrs, CITY, STATE
+    df = df[base_cols + VARS_TO_DUMMIFY]
+    new_df = pd.get_dummies(df, columns=VARS_TO_DUMMIFY, dtype=np.int64) \
+        .drop(labels=['not_renewed_2yrs'], axis=1)
+    print(new_df.columns.tolist())
 
     return new_df
 

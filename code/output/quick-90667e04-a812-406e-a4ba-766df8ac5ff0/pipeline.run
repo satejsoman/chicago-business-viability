@@ -1,0 +1,47 @@
+Starting pipeline quick (90667e04-a812-406e-a4ba-766df8ac5ff0) at 2019-06-06 17:13:57.340187
+Input data: /Users/jonathantan/github/chicago-business-viability/data/joined_table.csv (SHA-256: 53f0450315e137c32bb8286b0fc6d6861bfb95995b54cc9d78ff777ebb6baff9)
+Pipeline library version: 866990a
+
+Pipeline settings:
+    summarize: False
+    data_preprocessors: None
+    feature_generators: [<function make_dummy_vars at 0x11acdc7b8>]
+    models: {'LogisticRegression-C0.01': LogisticRegression(C=0.01, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=None, penalty='l2',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False), 'DecisionTreeClassifier-max_depthNone': DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=None,
+                       max_features=None, max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, presort=False,
+                       random_state=None, splitter='best'), 'DecisionTreeClassifier-max_depth1': DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=1,
+                       max_features=None, max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, presort=False,
+                       random_state=None, splitter='best'), 'DecisionTreeClassifier-max_depth5': DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=5,
+                       max_features=None, max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, presort=False,
+                       random_state=None, splitter='best')}
+    name: quick
+    output_root_dir: /Users/jonathantan/github/chicago-business-viability/code/output
+
+Loading data
+
+Running transformations for cleaning
+    Applying transformation (1/2): convert-LICENSE TERM EXPIRATION DATE-to-datetime 
+    LICENSE TERM EXPIRATION DATE -> LICENSE TERM EXPIRATION DATE
+    Applying transformation (2/2): convert-DATE ISSUED-to-datetime 
+    DATE ISSUED -> DATE ISSUED
+
+    Creating 1 features on test-train set 1
+    Creating 1 features on test-train set 1
+    Balancing features for test-train set 1
+Training models.
+Features: ['CITY_MCCOOK', 'CITY_WHEELING', 'CITY_BURBANK', 'CITY_HAZEL CREST', 'CITY_STAMFORD', 'CITY_SKOKIE', 'CITY_WHITING', 'CITY_SCHAUMBURG', 'CITY_CARY', 'CITY_WESTMONT', 'CITY_AURORA', 'CITY_FORT WAYNE', 'CITY_OAK LAWN', 'CITY_MUNSTER', 'CITY_DES PLAINES', 'STATE_MO', 'CITY_GLENDALE HEIGHTS', 'CITY_VILLA PARK', 'num_renewals', 'CITY_RIVERDALE', 'STATE_CT', 'CITY_BROADVIEW', 'CITY_UNIVERSITY PARK', 'CITY_HAMMOND', 'CITY_HOFFMAN ESTATES', 'CITY_MADISON', 'CITY_SUMMIT', 'CITY_ITASCA', 'CITY_GURNEE', 'CITY_FOREST VIEW', 'CITY_CHICAGO RIDGE', 'CITY_DOWNERS GROVE', 'STATE_NY', 'CITY_DECATUR', 'CITY_HARWOOD HEIGHTS', 'CITY_EVERGREEN PARK', 'CITY_GARY', 'Cook_U3_ann_avg', 'CITY_STONE PARK', 'CITY_CHICAGO HEIGHTS', 'CITY_DARIEN', 'CITY_BLUE ISLAND', 'CITY_CICERO', 'CITY_ALSIP', 'CITY_LAGRANGE', 'CITY_GLENWOOD', 'CITY_GLENVIEW', 'CITY_ELK GROVE VILLAGE', 'CITY_TINLEY PARK', 'in_ssa', 'CITY_CALUMET CITY', 'CITY_BENSENVILLE', 'CITY_NILES', 'not_renewed_2yrs_y', 'CITY_SCHILLER PARK', 'CITY_PARK RIDGE', 'CITY_LINCOLNWOOD', 'CITY_OAKBROOK', 'CITY_ELGIN', 'CITY_ELMWOOD PARK', 'CITY_BELLWOOD', 'CITY_LANSING', 'CITY_HIGHLAND PARK', 'CITY_WAUKEGAN', 'STATE_IL', 'CITY_OAK PARK', 'a35to64_share', 'CITY_VERNON HILLS', 'CITY_BEDFORD PARK', 'CITY_LAKE FOREST', 'CITY_MERRILLVILLE', 'CITY_ROSELLE', 'num_sites', 'CITY_WOOD DALE', 'metro_GDP', 'CITY_BROOKFIELD', 'CITY_BERWYN', 'STATE_KS', 'CITY_ELK GROVE', 'CITY_ADDISON', 'STATE_IN', 'STATE_WI', 'CITY_RIVERSIDE', 'CITY_GRAYSLAKE', 'CITY_OAK BROOK', 'CITY_EAST CHICAGO', 'CITY_LOMBARD', 'CITY_HAMPSHIRE', 'CITY_NORRIDGE', 'CITY_WILLOW SPRINGS', 'which_ssa', 'CITY_MCHENRY', 'CITY_MOUNT PROSPECT', 'CITY_CHICAGO', 'CITY_STREAMWOOD', 'CITY_NAPERVILLE', 'share_BA+', 'CITY_LIBERTYVILLE', 'CITY_PALATINE', 'CITY_FOREST PARK', 'CITY_HOMEWOOD', 'CITY_ROBBINS', 'CITY_ST LOUIS', 'CITY_NEW YORK', 'CITY_MELROSE PARK', 'CITY_SPRINGFIELD', 'CITY_FRANKLIN PARK', 'CITY_MAYWOOD', 'total_pop', 'CITY_EVANSTON', 'medhhinc', 'CITY_ELMHURST', 'not_renewed_2yrs_x', 'CITY_ROSEMONT', 'CITY_WEST CHICAGO', 'CITY_LAKE VILLA', 'CITY_STRATFORD', 'CITY_ARLINGTON HEIGHTS', 'CITY_TULSA', 'STATE_OK', 'CITY_SOUTHBEND', 'CITY_CAROL STREAM', 'CITY_MORTON GROVE', 'CITY_NORTHBROOK', 'CITY_NORTHLAKE', 'CITY_ROCKFORD']
+Fitting: not_renewed_2yrs
+    Training model LogisticRegression-C0.01
+        Training on training set "exists as of 12/31/2008" (1/1)
