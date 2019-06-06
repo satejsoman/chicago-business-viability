@@ -25,6 +25,7 @@ from feature_generation import (balance_features, count_by_dist_radius,
 from pipeline.core import Pipeline
 from pipeline.grid import Grid
 from pipeline.transformation import Transformation, to_datetime
+from pipeline.splitter import Splitter
 
 
 def clean_chicago_business_data(self):
@@ -53,7 +54,7 @@ def make_chicago_business_features(self):
 
     # Add newly-generated features to self.features
     new_cols = set(self.test_sets[0].columns)
-    self.features = list(new_cols - old_cols) # set difference
+    self.features += list(new_cols - old_cols) # set difference
 
     return self
 
@@ -72,6 +73,7 @@ def get_pipeline(config_path):
     target        = config["pipeline"]["target"]
     pipeline_name = config["pipeline"]["name"]
     model_grid    = Grid.from_config(config["models"])
+    splitter      = Splitter.from_config(config["pipeline"]["test_train"])
 
     pipeline = Pipeline(
         input_source    = input_path,
@@ -79,6 +81,7 @@ def get_pipeline(config_path):
         name            = pipeline_name,
         output_root_dir = output_dir,
         model_grid      = model_grid,
+        splitter        = splitter,
         data_cleaning   = [
             to_datetime("LICENSE TERM EXPIRATION DATE"),
             to_datetime("DATE ISSUED"),
@@ -86,8 +89,14 @@ def get_pipeline(config_path):
         ],
         feature_generators = [
             count_by_zip_year,      # num_not_renewed_zip
-            count_by_dist_radius,   # num_not_renewed_1km
+            #count_by_dist_radius,   # num_not_renewed_1km
             make_dummy_vars         # CITY, STATE, APPLICATION TYPE
+        ], 
+        features = [
+            'which_ssa', 
+            'in_ssa', 
+            'num_sites', 
+            'num_renewals'
         ])
 
     # pipeline.clean_data        = MethodType(clean_chicago_business_data, pipeline)
@@ -97,3 +106,10 @@ def get_pipeline(config_path):
 if __name__ == "__main__":
     pipeline = get_pipeline("config.yml")
     pipeline.run()
+    # pipeline = (get_pipeline("config.yml")
+    #             .load_data()
+    #             .clean_data()
+    #             .summarize_data()
+    #             .generate_test_train()
+    #             .preprocess_data()
+    #             .generate_features())

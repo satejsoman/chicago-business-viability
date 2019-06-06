@@ -45,7 +45,7 @@ def make_dummy_vars(base, input_df):
     VARS_TO_DUMMIFY = ['CITY', 'STATE', 'APPLICATION TYPE']
     new_df = pd.get_dummies(input_df, columns=VARS_TO_DUMMIFY, dtype=np.int64)
 
-    return new_df
+    return new_df.fillna(0)
 
 
 # Reshape license data to business-year data, create label
