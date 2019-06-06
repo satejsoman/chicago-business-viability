@@ -36,6 +36,7 @@ def clean_chicago_business_data(self):
 
 def make_chicago_business_features(self):
 
+    original_features = self.features[:]
     old_cols = set(self.test_sets[0].columns)
 
     # Make features for each dataset in train_sets, test_sets
@@ -44,7 +45,7 @@ def make_chicago_business_features(self):
         for i in range(len(df_list)):
             self.logger.info("    Creating %s features on test-train set %s", n, i+1)
 
-            df_list[i] = make_features(df_list[i], self.feature_generators)
+            df_list[i] = make_features(df_list[i], self.feature_generators, original_features)
 
     # Check for feature balance on each test-train pair
     for i in range(len(self.test_sets)):
