@@ -20,20 +20,20 @@ pipeline:
   test_train:
     split_column: "DATE ISSUED"
     splits:
-      - name: exists as of 12/31/2008
-        train:
-          start: 01/01/2002
-          end:   12/31/2004
-        test:
-          start: 01/01/2002
-          end:   12/31/2006
-#      - name: exists as of 12/31/2010
+#      - name: exists as of 12/31/2008
 #        train:
 #          start: 01/01/2002
-#          end:   12/31/2006
+#          end:   12/31/2004
 #        test:
 #          start: 01/01/2002
-#          end:   12/31/2008
+#          end:   12/31/2006
+      - name: exists as of 12/31/2010
+        train:
+          start: 01/01/2002
+          end:   12/31/2006
+        test:
+          start: 01/01/2002
+          end:   12/31/2008
 #      - name: exists as of 12/31/2012
 #        train:
 #          start: 01/01/2002
