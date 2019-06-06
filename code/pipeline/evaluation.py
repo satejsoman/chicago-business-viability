@@ -42,3 +42,22 @@ def evaluate(positive_label, k_values, y_true, y_score):
         evaluation["f1-at-"        + str(k)] = f1_score(       y_true, preds_at_k, pos_label=positive_label)
     
     return (evaluation, precision_recall_curve(y_true, y_score, positive_label))
+
+def find_best_model(model_evaluations, metric_type, k, num_results = 5):
+    ''' idea: 
+        concatenate argument to find column name
+        return top 5 models in that split
+        return the associated model name and the stat
+    '''
+
+    metric = metric_type + "-at-" + str(k)
+    cols = ['name', metric]
+
+    if model_evaluations.name.nunique() == 1:
+        return model_evaluations.mean()[cols]
+
+    else:
+        return model_evaluations.groupby('name')[cols] \
+                                    .mean() \
+                                        .sort_values(metric, ascending = False) \
+                                            .iloc[0:num_results-1]

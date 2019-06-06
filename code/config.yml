@@ -1,11 +1,13 @@
 data:
-  #input_path: "../data/joined_table.csv"
-  input_path: "../data/joined_table100.csv"
+  input_path: "../data/joined_table_33pct_sample.csv"
+  # input_path: "../data/joined_table100.csv"
+
+description: "cmm-eval-test"
 
 pipeline:
   target: "not_renewed_2yrs"
   test_train:
-    split_column: "license_date"
+    split_column: "DATE ISSUED"
     splits:
       - name: exists as of 12/31/2008
         train:
@@ -50,7 +52,6 @@ pipeline:
           start: 01/01/2002
           end:   12/31/2016
 
-description: "cmm-test"
 
 models:
   LogisticRegression:
@@ -60,8 +61,8 @@ models:
   # KNeighborsClassifier:
   #   n_neighbors: [10, 50, 100]
 
-  # DecisionTreeClassifier:
-  #   max_depth: [null, 1, 5, 10]
+  DecisionTreeClassifier:
+    max_depth: [null, 1, 5]
 
   # GradientBoostingClassifier:
   #   learning_rate: [0.1, 0.5]

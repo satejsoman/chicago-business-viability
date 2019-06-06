@@ -15,7 +15,7 @@ matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 
 from .utils import get_git_hash, get_sha256_sum
-from .evaluation import evaluate, score_function_overrides
+from .evaluation import evaluate, score_function_overrides, find_best_model
 
 DEFAULT_K_VALUES = [_/100.0 for _ in [1, 2, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90]]
 
@@ -208,7 +208,9 @@ class Pipeline:
         self.logger.info("Testing models.")
         for (description, models) in self.trained_models.items():
             self.evaluate_models(description, models)
-        pd.DataFrame(self.model_evaluations).to_csv(self.output_dir/"evaluations.csv")
+        eval_results = pd.DataFrame(self.model_evaluations)
+        eval_results.to_csv(self.output_dir/"evaluations.csv")
+        best_model = find_best_model(eval_results, "precision", "0.1").to_csv(self.output_dir/"best_models.csv") # TO DO: put these in config
         return self
 
     def run(self):
