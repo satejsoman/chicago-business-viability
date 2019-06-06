@@ -72,6 +72,7 @@ def get_pipeline(config_path):
     output_dir    = script_dir/config["data"]["output_dir"]
     target        = config["pipeline"]["target"]
     pipeline_name = config["pipeline"]["name"]
+    features      = config["pipeline"]["precomputed_features"]
     model_grid    = Grid.from_config(config["models"])
     splitter      = Splitter.from_config(config["pipeline"]["test_train"])
 
@@ -82,6 +83,7 @@ def get_pipeline(config_path):
         output_root_dir = output_dir,
         model_grid      = model_grid,
         splitter        = splitter,
+        features        = features,
         data_cleaning   = [
             to_datetime("LICENSE TERM EXPIRATION DATE"),
             to_datetime("DATE ISSUED"),
@@ -90,14 +92,9 @@ def get_pipeline(config_path):
         feature_generators = [
             count_by_zip_year,      # num_not_renewed_zip
             #count_by_dist_radius,   # num_not_renewed_1km
-            make_dummy_vars         # CITY, STATE, APPLICATION TYPE
+            #make_dummy_vars         # CITY, STATE, APPLICATION TYPE
         ], 
-        features = [
-            'which_ssa', 
-            'in_ssa', 
-            'num_sites', 
-            'num_renewals'
-        ])
+        )
 
     # pipeline.clean_data        = MethodType(clean_chicago_business_data, pipeline)
     pipeline.generate_features = MethodType(make_chicago_business_features, pipeline)

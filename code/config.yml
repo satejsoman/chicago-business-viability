@@ -1,10 +1,22 @@
 data:
-  input_path: "../data/joined_table.csv"
+  # "../data/joined_table_33pct_sample.csv"
+  input_path: "../data/joined_table.csv" 
   output_dir: "output/"
 
 pipeline:
   name: "quick"
   target: "not_renewed_2yrs"
+  precomputed_features: 
+    - which_ssa 
+    - in_ssa 
+    - num_sites 
+    - num_renewals
+    - total_pop 
+    - medhhinc 
+    - share_BA+
+    - a35to64_share
+    - metro_GDP
+    - Cook_U3_ann_avg
   test_train:
     split_column: "DATE ISSUED"
     splits:
@@ -66,8 +78,8 @@ models:
   # KNeighborsClassifier:
   #   n_neighbors: [10, 50, 100]
 
-  # DecisionTreeClassifier:
-  #   max_depth: [null, 1, 5, 10]
+  DecisionTreeClassifier:
+    max_depth: [null, 1, 5]
 
   # GradientBoostingClassifier:
   #   learning_rate: [0.1, 0.5]
