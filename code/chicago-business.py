@@ -92,7 +92,7 @@ def get_pipeline(config_path):
             to_datetime("DATE ISSUED")
         ],
         feature_generators=[
-            # count_by_zip_year,
+            count_by_zip_year,
             make_dummy_vars
         ])
 

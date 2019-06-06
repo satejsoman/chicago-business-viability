@@ -119,7 +119,7 @@ def reshape_and_create_label(input_df):
              'min_license_date', 'max_license_date', 'expiry']] \
         .sort_values(by=['ACCOUNT NUMBER', 'SITE NUMBER'])
 
-    # print(115, df.columns)    
+    # print(115, df.columns)
 
     # Assume buffer period is last 2 years of input data
     threshold_year = input_df['DATE ISSUED'].dt.year.max() - 1
@@ -318,7 +318,6 @@ def make_dummy_vars(base, license_data):
     df = df[base_cols + VARS_TO_DUMMIFY]
     new_df = pd.get_dummies(df, columns=VARS_TO_DUMMIFY, dtype=np.int64) \
         .drop(labels=['not_renewed_2yrs'], axis=1)
-    print(new_df.columns.tolist())
 
     return new_df
 
