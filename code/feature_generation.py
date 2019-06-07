@@ -128,9 +128,6 @@ def reshape_and_create_label(input_df):
             np.where(df['YEAR'] >= df['max_license_date'].dt.year + 1, 1, 0)
             )
         )
-
-    print(df)
-
     # Drop unnecessary columns
     # Drop all years that we can't predict on, i.e. buffer years onwards
     df = df.drop(labels=['account_site', 'min_license_date','max_license_date',
