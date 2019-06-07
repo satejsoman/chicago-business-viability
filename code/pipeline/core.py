@@ -164,13 +164,14 @@ class Pipeline:
         n = len(self.test_sets)
         for (index, (model, split_name, test_set)) in enumerate(zip(models, self.split_names, self.test_sets)):
             self.logger.info("        Evaluating on testing set \"%s\" (%s/%s):", split_name, index + 1, n)
-            score = model.score(X=test_set[X], y=test_set[y])
-            y_true = test_set[y]
+            # score = model.score(X=test_set[X], y=test_set[y])
+            valid_set = test_set[~test_set.isna().apply(any, axis=1)]
+            y_true = valid_set[y]
             if type(model) in score_function_overrides.keys():
                 score_function = score_function_overrides[type(model)]
-                y_score = score_function(self=model, X=test_set[X])
+                y_score = score_function(self=model, X=valid_set[X])
             else:
-                y_score = np.array([_[self.positive_label] for _ in model.predict_proba(test_set[X])])
+                y_score = np.array([_[self.positive_label] for _ in model.predict_proba(valid_set[X])])
 
             evaluation, (precision, recall, _) = evaluate(self.positive_label, self.k_values, y_true, y_score)
             evaluation["name"] = description

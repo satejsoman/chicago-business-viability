@@ -34,7 +34,10 @@ def make_features(input_df, feature_generators, existing_features):
         .drop(labels=['not_renewed_2yrs'], axis=1) \
         .merge(generated_features, how='left', on=MERGE_KEYS)
 
-    full_result = result_df.merge(input_df[MERGE_KEYS + existing_features], how='left', on=MERGE_KEYS)
+    result_df["JOIN_YEAR"] = result_df["YEAR"] - 1
+
+    full_result = result_df.merge(input_df[MERGE_KEYS + existing_features], how='left', right_on=MERGE_KEYS, left_on=['ACCOUNT NUMBER', 'SITE NUMBER', 'JOIN_YEAR'])
+
     return full_result
 
 
@@ -125,6 +128,8 @@ def reshape_and_create_label(input_df):
             np.where(df['YEAR'] >= df['max_license_date'].dt.year + 1, 1, 0)
             )
         )
+
+    print(df)
 
     # Drop unnecessary columns
     # Drop all years that we can't predict on, i.e. buffer years onwards

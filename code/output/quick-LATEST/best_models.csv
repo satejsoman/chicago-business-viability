@@ -1,0 +1,5 @@
+name,precision-at-0.1
+DecisionTreeClassifier-max_depth1,0.14791288566243194
+DecisionTreeClassifier-max_depth5,0.14791288566243194
+DecisionTreeClassifier-max_depthNone,0.14791288566243194
+LogisticRegression-C0.01,0.14791288566243194
