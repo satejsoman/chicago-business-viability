@@ -293,7 +293,7 @@ def balance_features(train_df, test_df):
 
     # Add cols in train but not test as 0s
     for i in in_train_not_test:
-        new_test_df[i] = np.zeros(len(df))
+        new_test_df[i] = np.zeros(len(test_df))
 
     return train_df, new_test_df
 

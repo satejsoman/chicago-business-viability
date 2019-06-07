@@ -115,5 +115,7 @@ def main(config_path):
     pipeline.generate_features = MethodType(make_chicago_business_features, pipeline)
     pipeline.run()
 
+    return pipeline
+
 if __name__ == "__main__":
-    main("config.yml")
+    pipeline  = main("config.yml")

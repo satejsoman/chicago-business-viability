@@ -1,11 +1,11 @@
 data:
-  input_path: "../data/joined_table_33pct_sample.csv"
+  input_path: "../data/small-input.csv"
   # input_path: "../data/joined_table100.csv"
 
 description: "cmm-eval-test"
 
 pipeline:
-  target: "not_renewed_2yrs"
+  target: "not_renewed_2yrs_y"
   test_train:
     split_column: "DATE ISSUED"
     splits:
