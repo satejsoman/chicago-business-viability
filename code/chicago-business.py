@@ -46,6 +46,8 @@ def make_chicago_business_features(self):
         for i in range(len(df_list)):
             self.logger.info("    Creating %s features on test-train set %s", n, i+1)
 
+            # Filter out licenses for Jan 1, 2019 onwards
+            df_list[i] = df_list[i].loc[df_list[i]['DATE ISSUED'] <= pd.to_datetime('12/31/2018')]
             df_list[i] = make_features(df_list[i], self.feature_generators, original_features)
 
     # Check for feature balance on each test-train pair
