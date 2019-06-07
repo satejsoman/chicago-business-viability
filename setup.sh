@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Make and load environment
+module load python/3.6.1+intel-16.0
+python3 -mvenv env
 source env/bin/activate
 
 # Install requirements
