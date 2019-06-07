@@ -1,18 +1,18 @@
 data:
   # "../data/joined_table_33pct_sample.csv"
-  input_path: "../data/joined_table.csv" 
+  input_path: "../data/joined_table.csv"
   output_dir: "output/"
 
 pipeline:
-  name: "quick"
+  name: "full"
   target: "not_renewed_2yrs"
-  precomputed_features: 
-    - which_ssa 
-    - in_ssa 
-    - num_sites 
+  precomputed_features:
+    - which_ssa
+    - in_ssa
+    - num_sites
     - num_renewals
-    - total_pop 
-    - medhhinc 
+    - total_pop
+    - medhhinc
     - share_BA+
     - a35to64_share
     - metro_GDP
@@ -20,13 +20,13 @@ pipeline:
   test_train:
     split_column: "DATE ISSUED"
     splits:
-#      - name: exists as of 12/31/2008
-#        train:
-#          start: 01/01/2002
-#          end:   12/31/2004
-#        test:
-#          start: 01/01/2002
-#          end:   12/31/2006
+      - name: exists as of 12/31/2008
+        train:
+          start: 01/01/2002
+          end:   12/31/2004
+        test:
+          start: 01/01/2002
+          end:   12/31/2006
       - name: exists as of 12/31/2010
         train:
           start: 01/01/2002
@@ -34,57 +34,57 @@ pipeline:
         test:
           start: 01/01/2002
           end:   12/31/2008
-#      - name: exists as of 12/31/2012
-#        train:
-#          start: 01/01/2002
-#          end:   12/31/2008
-#        test:
-#          start: 01/01/2002
-#          end:   12/31/2010
-#      - name: exists as of 12/31/2014
-#        train:
-#          start: 01/01/2002
-#          end:   12/31/2010
-#        test:
-#          start: 01/01/2002
-#          end:   12/31/2012
-#      - name: exists as of 12/31/2016
-#        train:
-#          start: 01/01/2002
-#          end:   12/31/2012
-#        test:
-#          start: 01/01/2002
-#          end:   12/31/2014
-#      - name: exists as of 12/31/2018
-#        train:
-#          start: 01/01/2002
-#          end:   12/31/2014
-#        test:
-#          start: 01/01/2002
-#          end:   12/31/2016
-#      - name: exists as of 12/31/2014
-#        train:
-#          start: 01/01/2014
-#          end:   12/31/2014
-#        test:
-#          start: 01/01/2017
-#          end:   12/31/2017
+      - name: exists as of 12/31/2012
+        train:
+          start: 01/01/2002
+          end:   12/31/2008
+        test:
+          start: 01/01/2002
+          end:   12/31/2010
+      - name: exists as of 12/31/2014
+        train:
+          start: 01/01/2002
+          end:   12/31/2010
+        test:
+          start: 01/01/2002
+          end:   12/31/2012
+      - name: exists as of 12/31/2016
+        train:
+          start: 01/01/2002
+          end:   12/31/2012
+        test:
+          start: 01/01/2002
+          end:   12/31/2014
+      - name: exists as of 12/31/2018
+        train:
+          start: 01/01/2002
+          end:   12/31/2014
+        test:
+          start: 01/01/2002
+          end:   12/31/2016
+      - name: exists as of 12/31/2014
+        train:
+          start: 01/01/2014
+          end:   12/31/2014
+        test:
+          start: 01/01/2017
+          end:   12/31/2017
 
 models:
   LogisticRegression:
     C: [0.01]
-    # penalty: ["l1", "l2"]
+    penalty: ["l1", "l2"]
 
-  # KNeighborsClassifier:
-  #   n_neighbors: [10, 50, 100]
+  KNeighborsClassifier:
+    n_neighbors: [10, 50, 100]
 
   DecisionTreeClassifier:
     max_depth: [null, 1, 5]
 
-  # GradientBoostingClassifier:
-  #   learning_rate: [0.1, 0.5]
+  GradientBoostingClassifier:
+    learning_rate: [0.1, 0.5]
 
-  # BaggingClassifier:
-  #   max_samples: [0.1, 0.5]
+  BaggingClassifier:
+    max_samples: [0.1, 0.5]
 
-  # RandomForestClassifier: {}
+  RandomForestClassifier: {}
