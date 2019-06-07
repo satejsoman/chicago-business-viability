@@ -19,9 +19,6 @@ def make_features(input_df, feature_generators, existing_features):
 
     base = reshape_and_create_label(input_df) # business-year data
 
-    if not feature_generators:
-        return base
-
     generated_features = base.copy(deep=True) # accumulate features
     for feature_generator in feature_generators:
         print("        Applying function:", feature_generator.__name__)
@@ -32,7 +29,9 @@ def make_features(input_df, feature_generators, existing_features):
     # Finally, merge on all generated feature onto the base and overwrite df
     result_df = base \
         .drop(labels=['not_renewed_2yrs'], axis=1) \
-        .merge(generated_features, how='left', on=MERGE_KEYS)
+        .merge(generated_features,
+               how='left',
+               on=MERGE_KEYS)
 
     result_df["JOIN_YEAR"] = result_df["YEAR"] - 1
 

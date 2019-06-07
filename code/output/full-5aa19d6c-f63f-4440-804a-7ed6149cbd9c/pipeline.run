@@ -1,11 +1,11 @@
-Starting pipeline full (467efe7e-215d-4673-9ac4-443f6e569e8c) at 2019-06-06 22:18:18.011244
+Starting pipeline full (5aa19d6c-f63f-4440-804a-7ed6149cbd9c) at 2019-06-06 22:48:32.728523
 Input data: /Users/jonathantan/github/chicago-business-viability/data/joined_table.csv (SHA-256: 53f0450315e137c32bb8286b0fc6d6861bfb95995b54cc9d78ff777ebb6baff9)
-Pipeline library version: 3012af5
+Pipeline library version: a925a65
 
 Pipeline settings:
     summarize: False
     data_preprocessors: None
-    feature_generators: [<function count_by_zip_year at 0x121ba41e0>, <function make_dummy_vars at 0x121ba42f0>]
+    feature_generators: [<function count_by_zip_year at 0x121b721e0>, <function make_dummy_vars at 0x121b722f0>]
     models: {'LinearSVC-C0.01-penaltyl2': LinearSVC(C=0.01, class_weight=None, dual=True, fit_intercept=True,
           intercept_scaling=1, loss='squared_hinge', max_iter=1000,
           multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
@@ -275,24 +275,3 @@ Running transformations for cleaning
 
     Creating 2 features on test-train set 1
     Creating 2 features on test-train set 2
-    Creating 2 features on test-train set 3
-    Creating 2 features on test-train set 4
-    Creating 2 features on test-train set 5
-    Creating 2 features on test-train set 6
-    Creating 2 features on test-train set 1
-    Creating 2 features on test-train set 2
-    Creating 2 features on test-train set 3
-    Creating 2 features on test-train set 4
-    Creating 2 features on test-train set 5
-    Creating 2 features on test-train set 6
-    Balancing features for test-train set 1
-    Balancing features for test-train set 2
-    Balancing features for test-train set 3
-    Balancing features for test-train set 4
-    Balancing features for test-train set 5
-    Balancing features for test-train set 6
-Training models.
-Features: ['CITY_BURBANK', 'CITY_LANSING', 'CITY_SKOKIE', 'CITY_HAMPSHIRE', 'CITY_WOOD DALE', 'CITY_LOMBARD', 'CITY_OAK PARK', 'CITY_ELMWOOD PARK', 'CITY_MERRILLVILLE', 'CITY_UNIVERSITY PARK', 'CITY_GARY', 'STATE_NY', 'STATE_IN', 'CITY_ARLINGTON HEIGHTS', 'CITY_ELK GROVE', 'CITY_OAK BROOK', 'CITY_SPRINGFIELD', 'CITY_NORTHLAKE', 'CITY_BLUE ISLAND', 'CITY_BROOKFIELD', 'CITY_HAMMOND', 'num_renewals', 'CITY_CHICAGO', 'CITY_CALUMET CITY', 'CITY_HOFFMAN ESTATES', 'CITY_DES PLAINES', 'CITY_GURNEE', 'CITY_MOUNT PROSPECT', 'STATE_OK', 'num_sites', 'CITY_BERWYN', 'CITY_SCHAUMBURG', 'STATE_CT', 'CITY_WILLOW SPRINGS', 'CITY_AURORA', 'CITY_ROSEMONT', 'CITY_FORT WAYNE', 'which_ssa', 'in_ssa', 'CITY_WAUKEGAN', 'STATE_WI', 'CITY_LINCOLNWOOD', 'CITY_WHITING', 'CITY_NAPERVILLE', 'CITY_GLENWOOD', 'CITY_ITASCA', 'CITY_TULSA', 'CITY_FOREST VIEW', 'total_pop', 'CITY_MORTON GROVE', 'CITY_ELGIN', 'CITY_DOWNERS GROVE', 'CITY_STRATFORD', 'CITY_RIVERSIDE', 'CITY_LAGRANGE', 'CITY_CHICAGO RIDGE', 'CITY_OAKBROOK', 'CITY_RIVERDALE', 'CITY_STONE PARK', 'CITY_STREAMWOOD', 'CITY_LIBERTYVILLE', 'CITY_MAYWOOD', 'CITY_BELLWOOD', 'CITY_ROSELLE', 'CITY_TINLEY PARK', 'CITY_ELK GROVE VILLAGE', 'CITY_ALSIP', 'CITY_CHICAGO HEIGHTS', 'CITY_NILES', 'CITY_ROBBINS', 'CITY_NEW YORK', 'CITY_SCHILLER PARK', 'CITY_OAK LAWN', 'num_not_renewed_zip', 'CITY_LAKE FOREST', 'CITY_ELMHURST', 'CITY_ADDISON', 'CITY_GLENDALE HEIGHTS', 'CITY_CAROL STREAM', 'CITY_DECATUR', 'CITY_MCHENRY', 'CITY_HAZEL CREST', 'CITY_NORRIDGE', 'STATE_MO', 'CITY_ST LOUIS', 'CITY_EVANSTON', 'CITY_MUNSTER', 'CITY_HIGHLAND PARK', 'JOIN_YEAR', 'STATE_KS', 'CITY_STAMFORD', 'CITY_CARY', 'STATE_IL', 'CITY_PALATINE', 'CITY_WHEELING', 'CITY_VERNON HILLS', 'CITY_MCCOOK', 'CITY_BENSENVILLE', 'CITY_DARIEN', 'CITY_HARWOOD HEIGHTS', 'CITY_MADISON', 'CITY_ROCKFORD', 'CITY_FOREST PARK', 'CITY_BEDFORD PARK', 'CITY_EVERGREEN PARK', 'CITY_EAST CHICAGO', 'CITY_BROADVIEW', 'CITY_NORTHBROOK', 'CITY_GLENVIEW', 'CITY_SUMMIT', 'CITY_MELROSE PARK', 'CITY_HOMEWOOD', 'CITY_CICERO', 'medhhinc', 'a35to64_share', 'CITY_WESTMONT', 'metro_GDP', 'Cook_U3_ann_avg', 'CITY_PARK RIDGE', 'share_BA+', 'CITY_FRANKLIN PARK', 'CITY_LAKE VILLA', 'CITY_WEST CHICAGO', 'CITY_SOUTHBEND', 'CITY_VILLA PARK', 'CITY_GRAYSLAKE']
-Fitting: not_renewed_2yrs
-    Training model LinearSVC-C0.01-penaltyl2
-        Training on training set "exists as of 12/31/2008" (1/6)

@@ -2,7 +2,7 @@
 #SBATCH --job-name=full_pipeline
 #SBATCH --output=code/output/full_pipeline.out
 #SBATCH --error=code/output/full_pipeline.err
-#SBATCH --time=06:00:00
+#SBATCH --time=04:00:00
 #SBATCH --partition=broadwl
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=28
