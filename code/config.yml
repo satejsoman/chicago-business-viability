@@ -1,10 +1,10 @@
 data:
-  # "../data/joined_table_33pct_sample.csv"
+  # input_path: "../data/joined_table5000.csv"
   input_path: "../data/joined_table.csv"
   output_dir: "output/"
 
 pipeline:
-  name: "full"
+  name: "all-data-LR"
   target: "not_renewed_2yrs"
   precomputed_features:
     - which_ssa
@@ -20,21 +20,21 @@ pipeline:
   test_train:
     split_column: "DATE ISSUED"
     splits:
-      - name: exists as of 12/31/2008
-        train:
-          start: 01/01/2002
-          end:   12/31/2004
-        test:
-          start: 01/01/2002
-          end:   12/31/2006
-      - name: exists as of 12/31/2010
-        train:
-          start: 01/01/2002
-          end:   12/31/2006
-        test:
-          start: 01/01/2002
-          end:   12/31/2008
-      - name: exists as of 12/31/2012
+      # - name: exists as of 12/31/2008
+      #   train:
+      #     start: 01/01/2002
+      #     end:   12/31/2006
+      #   test:
+      #     start: 01/01/2002
+      #     end:   12/31/2008
+      # - name: exists as of 12/31/2010
+      #   train:
+      #     start: 01/01/2002
+      #     end:   12/31/2006
+      #   test:
+      #     start: 01/01/2002
+      #     end:   12/31/2008
+      # - name: exists as of 12/31/2012
         train:
           start: 01/01/2002
           end:   12/31/2008
@@ -71,30 +71,31 @@ pipeline:
       #     end:   12/31/2017
 
 models:
-  LinearSVC:
-    C: [0.01, 0.1, 1, 10, 100]
-    penalty: ["l2"]
 
   LogisticRegression:
     C: [0.01, 0.1, 1, 10, 100]
     penalty: ["l1", "l2"]
     n_jobs: [-1]
 
-  KNeighborsClassifier:
-    n_neighbors: [10, 50, 100]
-    n_jobs: [-1]
+  # LinearSVC:
+  #   C: [0.01, 0.1, 1, 10, 100]
+  #   penalty: ["l2"]
 
-  DecisionTreeClassifier:
-    max_depth: [null, 1, 5, 10, 50, 100]
+  # KNeighborsClassifier:
+  #   n_neighbors: [10, 50, 100]
+  #   n_jobs: [-1]
 
-  GradientBoostingClassifier:
-    learning_rate: [0.1, 0.5, 2.0]
+  # DecisionTreeClassifier:
+  #   max_depth: [null, 1, 5, 10, 50, 100]
 
-  BaggingClassifier:
-    max_samples: [0.1, 0.5, 1.0]
-    n_jobs: [-1]
+  # GradientBoostingClassifier:
+  #   learning_rate: [0.1, 0.5, 2.0]
 
-  RandomForestClassifier:
-    n_estimators: [10, 100, 1000]
-    max_depth: [null, 1, 5, 10, 50, 100]
-    n_jobs: [-1]
+  # BaggingClassifier:
+  #   max_samples: [0.1, 0.5, 1.0]
+  #   n_jobs: [-1]
+
+  # RandomForestClassifier:
+  #   n_estimators: [10, 100, 1000]
+  #   max_depth: [null, 1, 5, 10, 50, 100]
+  #   n_jobs: [-1]

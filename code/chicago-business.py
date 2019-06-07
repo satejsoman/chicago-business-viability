@@ -6,7 +6,7 @@ from pathlib import Path
 from types import MethodType
 
 import matplotlib
-matplotlib.use('TkAgg')
+# matplotlib.use('TkAgg')
 import matplotlib2tikz
 import matplotlib.pyplot as plt
 import numpy as np
