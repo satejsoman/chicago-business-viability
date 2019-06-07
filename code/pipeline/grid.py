@@ -46,7 +46,7 @@ class Grid():
         return iter(self.models.items())
 
 if __name__ == "__main__":
-    with open('config.yaml') as config_file:
+    with open('config.yml') as config_file:
         config = yaml.safe_load(config_file)
     for each in Grid.from_config(config["models"]).models.items():
         print(each)

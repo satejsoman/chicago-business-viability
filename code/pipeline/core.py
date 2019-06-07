@@ -7,15 +7,18 @@ import uuid
 import warnings
 from collections import OrderedDict
 from pathlib import Path
+import json
 
+import matplotlib
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib
-matplotlib.use('TkAgg')
-import matplotlib.pyplot as plt
 
+from .evaluation import evaluate, find_best_model, score_function_overrides
 from .utils import get_git_hash, get_sha256_sum
-from .evaluation import evaluate, score_function_overrides, find_best_model
+
+matplotlib.use('TkAgg')
+
 
 DEFAULT_K_VALUES = [_/100.0 for _ in [1, 2, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90]]
 
@@ -173,12 +176,16 @@ class Pipeline:
             else:
                 y_score = np.array([_[self.positive_label] for _ in model.predict_proba(valid_set[X])])
 
+            # print(y_score)
             evaluation, (precision, recall, _) = evaluate(self.positive_label, self.k_values, y_true, y_score)
             evaluation["name"] = description
             evaluation["test_train_index"] = index + 1
 
             # save raw PR data
             pd.DataFrame({"precision": precision, "recall": recall}).to_csv(self.output_dir/(description+"_pr-data_" + str(index + 1) + ".csv"))
+            print(evaluation)
+            with open(self.output_dir/(description+"_eval" + str(index + 1) + ".json"), 'w') as eval_file:
+                json.dump(evaluation, eval_file)
             self.model_evaluations.append(evaluation)
 
             # save PR curve for model as a figure

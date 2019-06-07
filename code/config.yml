@@ -71,15 +71,15 @@ pipeline:
 #          end:   12/31/2017
 
 models:
-  LogisticRegression:
-    C: [0.01]
+  #LogisticRegression:
+    #C: [0.01]
     # penalty: ["l1", "l2"]
 
   # KNeighborsClassifier:
   #   n_neighbors: [10, 50, 100]
 
   DecisionTreeClassifier:
-    max_depth: [null, 1, 5]
+    max_depth: [10, 20]
 
   # GradientBoostingClassifier:
   #   learning_rate: [0.1, 0.5]
