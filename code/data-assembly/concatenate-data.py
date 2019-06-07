@@ -28,7 +28,7 @@ FIPS_VARS = ["GEOID_2000", "GEOID_2010"]
 BEA_COLS = ['DataValue', 'TimePeriod']
 
 INDEX_VARS = ['LICENSE NUMBER', 'ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR']
-FINAL_FEATURE_COLS = ['total_pop', 'medhhinc', 'share_BA+', 'a35to64_share', 'metro_GDP', 'Cook_U3_ann_avg']
+FINAL_FEATURE_COLS = ['total_pop', 'medhhinc', 'share_BA+', 'a35to64_share', 'metro_GDP', 'Cook_U3_ann_avg', "GEOID_2010"]
 
 def compute_population_density():
     '''Compute population per square mile '''
