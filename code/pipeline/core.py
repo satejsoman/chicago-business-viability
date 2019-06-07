@@ -148,9 +148,9 @@ class Pipeline:
         n = len(self.train_sets)
         for (index, (split_name, train_set)) in enumerate(zip(self.split_names, self.train_sets)):
             self.logger.info("        Training on training set \"%s\" (%s/%s)", split_name, index + 1, n)
-            print("non-na pre-valid", train_set["not_renewed_2yrs"].value_counts())
+            # print("non-na pre-valid", train_set["not_renewed_2yrs"].value_counts())
             valid_set = train_set[~train_set.isnull().apply(any, axis=1)]
-            print("non-na post-valid", valid_set["not_renewed_2yrs"].value_counts())
+            # print("non-na post-valid", valid_set["not_renewed_2yrs"].value_counts())
             if description in self.trained_models.keys():
                 self.trained_models[description]+= [model.fit(X=valid_set[self.features].dropna(), y=valid_set[self.target].dropna())]
             else:

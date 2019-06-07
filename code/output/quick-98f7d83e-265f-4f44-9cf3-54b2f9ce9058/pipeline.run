@@ -61,3 +61,4 @@ Testing models.
     Evaluating model DecisionTreeClassifier-max_depth5
         Evaluating on testing set "exists as of 12/31/2010" (1/1):
 Copying artifacts to stable path
+Finished at 2019-06-06 20:09:52.887316

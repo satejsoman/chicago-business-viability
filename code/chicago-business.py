@@ -55,6 +55,11 @@ def make_chicago_business_features(self):
         self.logger.info("    Balancing features for test-train set %s", i+1)
         self.train_sets[i], self.test_sets[i] = balance_features(self.train_sets[i], self.test_sets[i])
 
+        # Filter only for business-years in 1 year test window
+        self.test_sets[i] = self.test_sets[i].loc[
+            self.test_sets[i]['YEAR'] == self.test_sets[i]['YEAR'].max()
+        ]
+
     # Add newly-generated features to self.features
     new_cols = set(self.test_sets[0].columns)
     self.features += list(new_cols - old_cols) # set difference
