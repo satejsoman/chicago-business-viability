@@ -110,7 +110,7 @@ def get_pipeline(config_path):
             replace_missing_with_mean('num_renewals')
         ],
         feature_generators=[
-            count_by_zip_year
+            count_by_zip_year,
             make_dummy_vars
         ])
 
