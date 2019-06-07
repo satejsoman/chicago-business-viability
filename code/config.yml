@@ -62,29 +62,39 @@ pipeline:
         test:
           start: 01/01/2002
           end:   12/31/2016
-      - name: exists as of 12/31/2014
-        train:
-          start: 01/01/2014
-          end:   12/31/2014
-        test:
-          start: 01/01/2017
-          end:   12/31/2017
+      # - name: exists as of 12/31/2014
+      #   train:
+      #     start: 01/01/2014
+      #     end:   12/31/2014
+      #   test:
+      #     start: 01/01/2017
+      #     end:   12/31/2017
 
 models:
+  LinearSVC:
+    C: [0.01, 0.1, 1, 10, 100]
+    penalty: ["l2"]
+
   LogisticRegression:
-    C: [0.01]
+    C: [0.01, 0.1, 1, 10, 100]
     penalty: ["l1", "l2"]
+    n_jobs: [-1]
 
   KNeighborsClassifier:
     n_neighbors: [10, 50, 100]
+    n_jobs: [-1]
 
   DecisionTreeClassifier:
-    max_depth: [null, 1, 5]
+    max_depth: [null, 1, 5, 10, 50, 100]
 
   GradientBoostingClassifier:
-    learning_rate: [0.1, 0.5]
+    learning_rate: [0.1, 0.5, 2.0]
 
   BaggingClassifier:
-    max_samples: [0.1, 0.5]
+    max_samples: [0.1, 0.5, 1.0]
+    n_jobs: [-1]
 
-  RandomForestClassifier: {}
+  RandomForestClassifier:
+    n_estimators: [10, 100, 1000]
+    max_depth: [null, 1, 5, 10, 50, 100]
+    n_jobs: [-1]

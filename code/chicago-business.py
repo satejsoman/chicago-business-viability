@@ -16,7 +16,7 @@ from sklearn.ensemble import (BaggingClassifier, GradientBoostingClassifier,
                               RandomForestClassifier)
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.svm import SVC
+from sklearn.svm import LinearSVC
 from sklearn.tree import DecisionTreeClassifier
 
 from data_cleaning import clean_data, filter_out_2019_data
@@ -25,7 +25,8 @@ from feature_generation import (balance_features, count_by_dist_radius,
                                 make_features, reshape_and_create_label)
 from pipeline.core import Pipeline
 from pipeline.grid import Grid
-from pipeline.transformation import Transformation, to_datetime
+from pipeline.transformation import (Transformation, to_datetime,
+                                     replace_missing_with_mean)
 from pipeline.splitter import Splitter
 
 
@@ -96,7 +97,17 @@ def get_pipeline(config_path):
         features        = features,
         data_cleaning   = [
             to_datetime("LICENSE TERM EXPIRATION DATE"),
-            to_datetime("DATE ISSUED")
+            to_datetime("DATE ISSUED"),
+            replace_missing_with_mean('medhhinc'),
+            replace_missing_with_mean('a35to64_share'),
+            replace_missing_with_mean('share_BA+'),
+            replace_missing_with_mean('total_pop'),
+            replace_missing_with_mean('metro_GDP'),
+            replace_missing_with_mean('Cook_U3_ann_avg'),
+            replace_missing_with_mean('num_sites'),
+            replace_missing_with_mean('in_ssa'),
+            replace_missing_with_mean('which_ssa'),
+            replace_missing_with_mean('num_renewals')
         ],
         feature_generators=[
             count_by_zip_year,

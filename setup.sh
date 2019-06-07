@@ -14,8 +14,10 @@ pip3 install -r code/requirements.txt
 
 # Assemble data
 echo "Assembling data"
+gunzip data/licenses_joined.csv.gz
 gunzip data/Business_Licenses.csv.gz
 gunzip data/merged_business_govtdata.csv.gz
-python3 code/data-assembly/glue.py
+cd code
+python3 data-assembly/glue.py
 
 deactivate

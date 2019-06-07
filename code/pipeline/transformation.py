@@ -69,7 +69,7 @@ def scale_by_max(column):
 
 def replace_missing_with_mean(column):
     input_col  = column
-    output_col = column+"_clean"
+    output_col = column #+"_clean"
     def replace(dataframe):
         avg = dataframe[input_col].mean()
         return dataframe[input_col].fillna(avg)

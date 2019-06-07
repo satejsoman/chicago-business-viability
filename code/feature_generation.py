@@ -196,7 +196,8 @@ def count_by_zip_year(input_df, license_data):
         .groupby(['ZIP CODE', 'YEAR']).size().reset_index() \
         .set_index(['ZIP CODE', 'YEAR']) \
         .reindex(pd.MultiIndex.from_tuples(
-            itertools.product(df['ZIP CODE'].unique(), df['YEAR'].unique()))) \
+            itertools.product(df['ZIP CODE'].unique(), df['YEAR'].unique())
+        )) \
         .reset_index() \
         .rename(columns={'level_0': 'ZIP CODE',
                          'level_1': 'YEAR',

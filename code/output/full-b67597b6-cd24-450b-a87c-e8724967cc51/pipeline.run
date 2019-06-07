@@ -1,0 +1,102 @@
+Starting pipeline full (b67597b6-cd24-450b-a87c-e8724967cc51) at 2019-06-06 21:39:47.812710
+Input data: /Users/jonathantan/github/chicago-business-viability/data/joined_table.csv (SHA-256: 53f0450315e137c32bb8286b0fc6d6861bfb95995b54cc9d78ff777ebb6baff9)
+Pipeline library version: 3012af5
+
+Pipeline settings:
+    summarize: False
+    data_preprocessors: None
+    feature_generators: [<function count_by_zip_year at 0x114a701e0>, <function make_dummy_vars at 0x114a702f0>]
+    models: {'LogisticRegression-C0.01-penaltyl1': LogisticRegression(C=0.01, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=None, penalty='l1',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False), 'LogisticRegression-C0.01-penaltyl2': LogisticRegression(C=0.01, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=None, penalty='l2',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False), 'KNeighborsClassifier-n_neighbors10': KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='minkowski',
+                     metric_params=None, n_jobs=None, n_neighbors=10, p=2,
+                     weights='uniform'), 'KNeighborsClassifier-n_neighbors50': KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='minkowski',
+                     metric_params=None, n_jobs=None, n_neighbors=50, p=2,
+                     weights='uniform'), 'KNeighborsClassifier-n_neighbors100': KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='minkowski',
+                     metric_params=None, n_jobs=None, n_neighbors=100, p=2,
+                     weights='uniform'), 'DecisionTreeClassifier-max_depthNone': DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=None,
+                       max_features=None, max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, presort=False,
+                       random_state=None, splitter='best'), 'DecisionTreeClassifier-max_depth1': DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=1,
+                       max_features=None, max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, presort=False,
+                       random_state=None, splitter='best'), 'DecisionTreeClassifier-max_depth5': DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=5,
+                       max_features=None, max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, presort=False,
+                       random_state=None, splitter='best'), 'GradientBoostingClassifier-learning_rate0.1': GradientBoostingClassifier(criterion='friedman_mse', init=None,
+                           learning_rate=0.1, loss='deviance', max_depth=3,
+                           max_features=None, max_leaf_nodes=None,
+                           min_impurity_decrease=0.0, min_impurity_split=None,
+                           min_samples_leaf=1, min_samples_split=2,
+                           min_weight_fraction_leaf=0.0, n_estimators=100,
+                           n_iter_no_change=None, presort='auto',
+                           random_state=None, subsample=1.0, tol=0.0001,
+                           validation_fraction=0.1, verbose=0,
+                           warm_start=False), 'GradientBoostingClassifier-learning_rate0.5': GradientBoostingClassifier(criterion='friedman_mse', init=None,
+                           learning_rate=0.5, loss='deviance', max_depth=3,
+                           max_features=None, max_leaf_nodes=None,
+                           min_impurity_decrease=0.0, min_impurity_split=None,
+                           min_samples_leaf=1, min_samples_split=2,
+                           min_weight_fraction_leaf=0.0, n_estimators=100,
+                           n_iter_no_change=None, presort='auto',
+                           random_state=None, subsample=1.0, tol=0.0001,
+                           validation_fraction=0.1, verbose=0,
+                           warm_start=False), 'BaggingClassifier-max_samples0.1': BaggingClassifier(base_estimator=None, bootstrap=True, bootstrap_features=False,
+                  max_features=1.0, max_samples=0.1, n_estimators=10,
+                  n_jobs=None, oob_score=False, random_state=None, verbose=0,
+                  warm_start=False), 'BaggingClassifier-max_samples0.5': BaggingClassifier(base_estimator=None, bootstrap=True, bootstrap_features=False,
+                  max_features=1.0, max_samples=0.5, n_estimators=10,
+                  n_jobs=None, oob_score=False, random_state=None, verbose=0,
+                  warm_start=False), 'RandomForestClassifier': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=None, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators='warn',
+                       n_jobs=None, oob_score=False, random_state=None,
+                       verbose=0, warm_start=False)}
+    name: full
+    output_root_dir: /Users/jonathantan/github/chicago-business-viability/code/output
+
+Loading data
+
+Running transformations for cleaning
+    Applying transformation (1/2): convert-LICENSE TERM EXPIRATION DATE-to-datetime 
+    LICENSE TERM EXPIRATION DATE -> LICENSE TERM EXPIRATION DATE
+    Applying transformation (2/2): convert-DATE ISSUED-to-datetime 
+    DATE ISSUED -> DATE ISSUED
+
+    Creating 2 features on test-train set 1
+    Creating 2 features on test-train set 2
+    Creating 2 features on test-train set 3
+    Creating 2 features on test-train set 4
+    Creating 2 features on test-train set 5
+    Creating 2 features on test-train set 6
+    Creating 2 features on test-train set 1
+    Creating 2 features on test-train set 2
+    Creating 2 features on test-train set 3
+    Creating 2 features on test-train set 4
+    Creating 2 features on test-train set 5
+    Creating 2 features on test-train set 6
+    Balancing features for test-train set 1
+    Balancing features for test-train set 2
+    Balancing features for test-train set 3
+    Balancing features for test-train set 4
+    Balancing features for test-train set 5
+    Balancing features for test-train set 6
+Training models.
+Features: ['CITY_VERNON HILLS', 'CITY_DARIEN', 'CITY_HAZEL CREST', 'CITY_PARK RIDGE', 'CITY_NORRIDGE', 'CITY_NAPERVILLE', 'CITY_RIVERDALE', 'CITY_STREAMWOOD', 'CITY_MADISON', 'CITY_STONE PARK', 'CITY_HAMMOND', 'CITY_ELK GROVE VILLAGE', 'CITY_NORTHBROOK', 'CITY_WILLOW SPRINGS', 'a35to64_share', 'CITY_SKOKIE', 'CITY_ROSEMONT', 'STATE_NY', 'CITY_ELMHURST', 'total_pop', 'CITY_PALATINE', 'CITY_MCCOOK', 'CITY_CHICAGO', 'CITY_CICERO', 'share_BA+', 'CITY_FRANKLIN PARK', 'CITY_MAYWOOD', 'CITY_BURBANK', 'CITY_HOFFMAN ESTATES', 'STATE_KS', 'CITY_ITASCA', 'CITY_LIBERTYVILLE', 'CITY_VILLA PARK', 'CITY_MELROSE PARK', 'CITY_BERWYN', 'num_renewals', 'CITY_ARLINGTON HEIGHTS', 'CITY_FOREST PARK', 'CITY_ADDISON', 'CITY_SPRINGFIELD', 'CITY_ELMWOOD PARK', 'CITY_FOREST VIEW', 'CITY_HAMPSHIRE', 'CITY_DOWNERS GROVE', 'CITY_OAK LAWN', 'CITY_WHITING', 'CITY_RIVERSIDE', 'CITY_GURNEE', 'CITY_SCHAUMBURG', 'num_sites', 'CITY_WEST CHICAGO', 'CITY_BLUE ISLAND', 'CITY_NILES', 'CITY_WHEELING', 'STATE_MO', 'medhhinc', 'CITY_HARWOOD HEIGHTS', 'CITY_GRAYSLAKE', 'CITY_MERRILLVILLE', 'STATE_IN', 'CITY_AURORA', 'CITY_EVANSTON', 'CITY_HOMEWOOD', 'STATE_OK', 'CITY_NEW YORK', 'CITY_MUNSTER', 'CITY_OAK BROOK', 'CITY_CALUMET CITY', 'CITY_BROADVIEW', 'in_ssa', 'CITY_ELK GROVE', 'CITY_MOUNT PROSPECT', 'CITY_LANSING', 'CITY_LAGRANGE', 'JOIN_YEAR', 'CITY_BEDFORD PARK', 'CITY_ALSIP', 'CITY_SOUTHBEND', 'CITY_GLENVIEW', 'Cook_U3_ann_avg', 'CITY_LAKE VILLA', 'CITY_FORT WAYNE', 'CITY_MORTON GROVE', 'STATE_IL', 'CITY_BROOKFIELD', 'which_ssa', 'CITY_BELLWOOD', 'CITY_DECATUR', 'CITY_CHICAGO RIDGE', 'CITY_EVERGREEN PARK', 'CITY_CAROL STREAM', 'CITY_WOOD DALE', 'CITY_CHICAGO HEIGHTS', 'CITY_ELGIN', 'CITY_OAK PARK', 'CITY_WAUKEGAN', 'CITY_LAKE FOREST', 'CITY_ROCKFORD', 'metro_GDP', 'CITY_LOMBARD', 'CITY_STRATFORD', 'CITY_DES PLAINES', 'CITY_WESTMONT', 'CITY_SUMMIT', 'CITY_GLENDALE HEIGHTS', 'CITY_STAMFORD', 'CITY_NORTHLAKE', 'CITY_SCHILLER PARK', 'CITY_ROSELLE', 'CITY_ROBBINS', 'CITY_ST LOUIS', 'CITY_BENSENVILLE', 'CITY_CARY', 'CITY_UNIVERSITY PARK', 'CITY_LINCOLNWOOD', 'num_not_renewed_zip', 'CITY_TINLEY PARK', 'CITY_TULSA', 'CITY_MCHENRY', 'STATE_CT', 'CITY_HIGHLAND PARK', 'STATE_WI', 'CITY_OAKBROOK', 'CITY_GLENWOOD', 'CITY_EAST CHICAGO', 'CITY_GARY']
+Fitting: not_renewed_2yrs
+    Training model LogisticRegression-C0.01-penaltyl1
+        Training on training set "exists as of 12/31/2008" (1/6)
