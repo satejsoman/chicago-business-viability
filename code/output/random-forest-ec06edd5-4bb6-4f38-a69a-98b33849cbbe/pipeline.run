@@ -1,0 +1,212 @@
+Starting pipeline random-forest (ec06edd5-4bb6-4f38-a69a-98b33849cbbe) at 2019-06-07 11:15:32.888663
+Input data: /Users/satej/Documents/workspace/classwork/machine-learning/chicago-business-viability/data/joined_table.csv (SHA-256: d2cd198dc228aa11cee4245b41fcd001eafea7250263af0a20882e7ad6f2c9ca)
+Pipeline library version: 61654ef
+
+Pipeline settings:
+    summarize: False
+    data_preprocessors: None
+    feature_generators: [<function count_by_zip_year at 0x1292489d8>, <function make_dummy_vars at 0x129248ae8>]
+    models: {'RandomForestClassifier-n_estimators10-max_depthNone-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=None, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
+                       oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators10-max_depth1-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=1, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
+                       oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators10-max_depth5-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=5, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
+                       oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators10-max_depth10-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=10, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
+                       oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators10-max_depth50-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=50, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
+                       oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators10-max_depth100-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=100, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
+                       oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators100-max_depthNone-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=None, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=100,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators100-max_depth1-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=1, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=100,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators100-max_depth5-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=5, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=100,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators100-max_depth10-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=10, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=100,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators100-max_depth50-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=50, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=100,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators100-max_depth100-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=100, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=100,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators1000-max_depthNone-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=None, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=1000,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators1000-max_depth1-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=1, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=1000,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators1000-max_depth5-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=5, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=1000,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators1000-max_depth10-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=10, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=1000,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators1000-max_depth50-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=50, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=1000,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators1000-max_depth100-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=100, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=1000,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False)}
+    name: random-forest
+    output_root_dir: /Users/satej/Documents/workspace/classwork/machine-learning/chicago-business-viability/code/output
+
+Loading data
+
+Running transformations for cleaning
+    Applying transformation (1/12): convert-LICENSE TERM EXPIRATION DATE-to-datetime 
+    LICENSE TERM EXPIRATION DATE -> LICENSE TERM EXPIRATION DATE
+    Applying transformation (2/12): convert-DATE ISSUED-to-datetime 
+    DATE ISSUED -> DATE ISSUED
+    Applying transformation (3/12): replace-missing-values-with-mean(medhhinc) 
+    ['medhhinc'] -> medhhinc
+    Applying transformation (4/12): replace-missing-values-with-mean(a35to64_share) 
+    ['a35to64_share'] -> a35to64_share
+    Applying transformation (5/12): replace-missing-values-with-mean(share_BA+) 
+    ['share_BA+'] -> share_BA+
+    Applying transformation (6/12): replace-missing-values-with-mean(total_pop) 
+    ['total_pop'] -> total_pop
+    Applying transformation (7/12): replace-missing-values-with-mean(metro_GDP) 
+    ['metro_GDP'] -> metro_GDP
+    Applying transformation (8/12): replace-missing-values-with-mean(Cook_U3_ann_avg) 
+    ['Cook_U3_ann_avg'] -> Cook_U3_ann_avg
+    Applying transformation (9/12): replace-missing-values-with-mean(num_sites) 
+    ['num_sites'] -> num_sites
+    Applying transformation (10/12): replace-missing-values-with-mean(in_ssa) 
+    ['in_ssa'] -> in_ssa
+    Applying transformation (11/12): replace-missing-values-with-mean(which_ssa) 
+    ['which_ssa'] -> which_ssa
+    Applying transformation (12/12): replace-missing-values-with-mean(num_renewals) 
+    ['num_renewals'] -> num_renewals
+
+    Creating 2 features on test-train set 1
+    Creating 2 features on test-train set 2
+    Creating 2 features on test-train set 3
+    Creating 2 features on test-train set 4
+    Creating 2 features on test-train set 5
+    Creating 2 features on test-train set 6
+    Creating 2 features on test-train set 7
+    Creating 2 features on test-train set 1
+    Creating 2 features on test-train set 2
+    Creating 2 features on test-train set 3
+    Creating 2 features on test-train set 4
+    Creating 2 features on test-train set 5
+    Creating 2 features on test-train set 6
+    Creating 2 features on test-train set 7
+    Balancing features for test-train set 1
+    Balancing features for test-train set 2
+    Balancing features for test-train set 3
+    Balancing features for test-train set 4
+    Balancing features for test-train set 5
+    Balancing features for test-train set 6
+    Balancing features for test-train set 7
+Training models.
+Features: ['CITY_HAZEL CREST', 'CITY_RIVERDALE', 'CITY_GURNEE', 'CITY_ARLINGTON', 'CITY_EAST CHICAGO', 'CITY_MOUNT PROSPECT', 'CITY_WAUKEGAN', 'CITY_CICERO', 'CITY_RIVERSIDE', 'CITY_PARK FOREST', 'STATE_KS', 'CITY_MANTENO', 'CITY_OVERLAND PARK', 'CITY_NORTH RIVERSIDE', 'CITY_HAMPSHIRE', 'CITY_WILMETTE', 'CITY_ADDISON', 'CITY_SERENA', 'CITY_TINLEY PARK', 'CITY_HAMMOND', 'CITY_BATAVIA', 'CITY_DOLTON', 'CITY_HIGHLAND PARK', 'CITY_OAK PARK', 'CITY_EDMOND', 'STATE_IN', 'CITY_DARIEN', 'CITY_VERNON HILLS', 'CITY_ERIE', 'CITY_LOS ANGELES', 'CITY_HARTFORD CITY', 'STATE_IA', 'CITY_ELMWOOD', 'CITY_MAYWOOD', 'CITY_CENTRAL STICKNEY', 'CITY_SOUTHBEND', 'CITY_SKOKIE', 'CITY_RICHTON PARK', 'CITY_CHICAGO', 'CITY_CARY', 'CITY_BENSENVILLE', 'CITY_UNIVERSITY PARK', 'CITY_GARY', 'CITY_DEERFIELD', 'CITY_GLEN ELLYN', 'CITY_WILLOWBROOK', 'CITY_WEST CHICAGO', 'CITY_MINNEAPOLIS', 'STATE_WI', 'CITY_LISLE', 'CITY_AURORA', 'STATE_UT', 'STATE_TX', 'CITY_CAROL STREAM', 'CITY_PHILADELPHIA', 'CITY_MCCOOK', 'num_renewals', 'CITY_STREAMWOOD', 'CITY_FOREST VIEW', 'CITY_SPRINGFIELD', 'CITY_JOLIET', 'CITY_BEDFORD PARK', 'CITY_BERWYN', 'medhhinc', 'CITY_GRIFFITH', 'CITY_SOUTH ELGIN', 'CITY_CHICAGO RIDGE', 'CITY_ROSELLE', 'CITY_URBANA', 'CITY_WESTMONT', 'CITY_ROUND LAKE PARK', 'CITY_MASON', 'in_ssa', 'CITY_EVANSTON', 'CITY_ROBBINS', 'CITY_STONE PARK', 'CITY_HINSDALE', 'metro_GDP', 'CITY_DAVENPORT', 'STATE_CA', 'CITY_GRAYSLAKE', 'CITY_MONEE', 'STATE_MT', 'CITY_CALUMENT', 'CITY_LA GRANGE HIGHLANDS', 'CITY_CARPENTERSVILLE', 'CITY_HILLSIDE', 'CITY_LOMBARD', 'CITY_MADISON', 'STATE_OH', 'CITY_FORT WAYNE', 'CITY_OAK FOREST', 'CITY_HYDE PARK', 'CITY_HOMEWOOD', 'CITY_INDIANAPOLIS', 'CITY_LAKE GENEVA', 'CITY_WHEELING', 'CITY_NORRIDGE', 'CITY_SOUTH BEND', 'CITY_CHICAGO HEIGHTS', 'STATE_OK', 'CITY_ST LOUIS', 'CITY_STRATFORD', 'STATE_CT', 'STATE_IL', 'CITY_A', 'CITY_ALGONQUIN', 'CITY_BROOKFIELD', 'CITY_NILES', 'CITY_BURBANK', 'CITY_OAK LAWN', 'CITY_LA GRANGE PARK', 'CITY_PEOTONE', 'CITY_STEGER', 'STATE_MO', 'CITY_BELOIT', 'CITY_NORTH AURORA', 'STATE_PA', 'CITY_LAKE VILLA', 'CITY_NEW YORK', 'CITY_SCHILLER PARK', 'CITY_MELROSE PARK', 'which_ssa', 'CITY_ELK GROVE', 'CITY_TULSA', 'CITY_DALLAS', 'CITY_ELGIN', 'CITY_GLENWOOD', 'CITY_STAMFORD', 'CITY_BLUE ISLAND', 'CITY_WESTCHESTER', 'num_sites', 'CITY_LIBERTYVILLE', 'CITY_ALSIP', 'CITY_MISSOULA', 'CITY_WICHITA', 'CITY_CLARENDON HILLS', 'CITY_HOFFMAN ESTATES', 'Cook_U3_ann_avg', 'STATE_MN', 'total_pop', 'CITY_ARLINGTON HEIGHTS', 'CITY_RIVER FOREST', 'CITY_CALUMET CITY', 'CITY_PALATINE', 'CITY_LAGRANGE', 'CITY_GLENVIEW', 'CITY_ROCKTON', 'CITY_CHESTER', 'CITY_GLENDALE HEIGHTS', 'CITY_WINNETKA', 'CITY_LAKE BLUFF', 'a35to64_share', 'CITY_ELK GROVE VILLAGE', 'CITY_MCHENRY', 'CITY_MORTON GROVE', 'CITY_DIXMOOR', 'CITY_LAKE FOREST', 'CITY_SCHAUMBURG', 'CITY_JANESVILLE', 'CITY_ST.  LOUIS', 'CITY_MUNSTER', 'CITY_DOWNERS GROVE', 'CITY_BELLWOOD', 'CITY_FORD HEIGHTS', 'CITY_FAIRFIELD', 'num_not_renewed_zip', 'CITY_DECATUR', 'CITY_PARK CITY', 'CITY_OAK BROOK', 'CITY_MERRILLVILLE', 'CITY_ELMHURST', 'CITY_ELMWOOD PARK', 'CITY_WHEATON', 'CITY_VILLA PARK', 'CITY_BROADVIEW', 'CITY_NEW LENOX', 'CITY_WOOD DALE', 'CITY_ROLLING MEADOWS', 'STATE_NY', 'CITY_FOREST PARK', 'CITY_ROCKFORD', 'CITY_WILLOW SPRINGS', 'CITY_EVERGREEN PARK', 'STATE_MA', 'CITY_PARK RIDGE', 'CITY_NAPERVILLE', 'JOIN_YEAR', 'CITY_FRANKLIN PARK', 'CITY_MILWAUKEE', 'CITY_FREEPORT', 'CITY_LANSING', 'CITY_LINCOLNWOOD', 'CITY_LOCKPORT', 'CITY_DES PLAINES', 'CITY_BURR RIDGE', 'share_BA+', 'CITY_WHITING', 'CITY_LYONS', 'CITY_NORTHLAKE', 'CITY_ITASCA', 'CITY_OAKBROOK', 'CITY_PHOENIX', 'STATE_AZ', 'CITY_NEWTON', 'CITY_ROSEMONT', 'CITY_FLOSSMOOR', 'CITY_HARWOOD HEIGHTS', 'CITY_NORTH CANTON', 'CITY_PROVO', 'CITY_SUMMIT', 'CITY_NORTHBROOK', 'CITY_LINCOLNSHIRE', 'CITY_CRANDON']
+Fitting: not_renewed_2yrs
+    Training model RandomForestClassifier-n_estimators10-max_depthNone-n_jobs-1
+        Training on training set "exists as of 12/31/2012" (1/7)
+        Training on training set "exists as of 12/31/2013" (2/7)
+        Training on training set "exists as of 12/31/2014" (3/7)
+        Training on training set "exists as of 12/31/2015" (4/7)
+        Training on training set "exists as of 12/31/2016" (5/7)
+        Training on training set "exists as of 12/31/2017" (6/7)
+        Training on training set "exists as of 12/31/2018" (7/7)
+    Training model RandomForestClassifier-n_estimators10-max_depth1-n_jobs-1
+        Training on training set "exists as of 12/31/2012" (1/7)
+        Training on training set "exists as of 12/31/2013" (2/7)
+        Training on training set "exists as of 12/31/2014" (3/7)
+        Training on training set "exists as of 12/31/2015" (4/7)
+        Training on training set "exists as of 12/31/2016" (5/7)
+        Training on training set "exists as of 12/31/2017" (6/7)
+        Training on training set "exists as of 12/31/2018" (7/7)
+    Training model RandomForestClassifier-n_estimators10-max_depth5-n_jobs-1
+        Training on training set "exists as of 12/31/2012" (1/7)
+        Training on training set "exists as of 12/31/2013" (2/7)
+        Training on training set "exists as of 12/31/2014" (3/7)
+        Training on training set "exists as of 12/31/2015" (4/7)
+        Training on training set "exists as of 12/31/2016" (5/7)
+        Training on training set "exists as of 12/31/2017" (6/7)
+        Training on training set "exists as of 12/31/2018" (7/7)
+    Training model RandomForestClassifier-n_estimators10-max_depth10-n_jobs-1
+        Training on training set "exists as of 12/31/2012" (1/7)
+        Training on training set "exists as of 12/31/2013" (2/7)
+        Training on training set "exists as of 12/31/2014" (3/7)
+        Training on training set "exists as of 12/31/2015" (4/7)
+        Training on training set "exists as of 12/31/2016" (5/7)
+        Training on training set "exists as of 12/31/2017" (6/7)
+        Training on training set "exists as of 12/31/2018" (7/7)
+    Training model RandomForestClassifier-n_estimators10-max_depth50-n_jobs-1
+        Training on training set "exists as of 12/31/2012" (1/7)
+        Training on training set "exists as of 12/31/2013" (2/7)
+        Training on training set "exists as of 12/31/2014" (3/7)
+        Training on training set "exists as of 12/31/2015" (4/7)
+        Training on training set "exists as of 12/31/2016" (5/7)
+        Training on training set "exists as of 12/31/2017" (6/7)
+        Training on training set "exists as of 12/31/2018" (7/7)

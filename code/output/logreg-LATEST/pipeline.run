@@ -1,0 +1,88 @@
+Starting pipeline logreg (d801c7e2-1940-4808-9a79-6079466d98de) at 2019-06-07 13:05:03.586710
+Input data: /Users/satej/Documents/workspace/classwork/machine-learning/chicago-business-viability/data/joined_table.csv (SHA-256: d2cd198dc228aa11cee4245b41fcd001eafea7250263af0a20882e7ad6f2c9ca)
+Pipeline library version: 61654ef
+
+Pipeline settings:
+    summarize: False
+    data_preprocessors: None
+    feature_generators: [<function count_by_zip_year at 0x122e3f598>, <function make_dummy_vars at 0x122e3f6a8>]
+    models: {'LogisticRegression-C0.01-penaltyl2-n_jobs-1': LogisticRegression(C=0.01, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=-1, penalty='l2',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False), 'LogisticRegression-C0.1-penaltyl2-n_jobs-1': LogisticRegression(C=0.1, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=-1, penalty='l2',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False), 'LogisticRegression-C1-penaltyl2-n_jobs-1': LogisticRegression(C=1, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=-1, penalty='l2',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False), 'LogisticRegression-C10-penaltyl2-n_jobs-1': LogisticRegression(C=10, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=-1, penalty='l2',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False), 'LogisticRegression-C100-penaltyl2-n_jobs-1': LogisticRegression(C=100, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=-1, penalty='l2',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False)}
+    name: logreg
+    output_root_dir: /Users/satej/Documents/workspace/classwork/machine-learning/chicago-business-viability/code/output
+
+Loading data
+
+Running transformations for cleaning
+    Applying transformation (1/12): convert-LICENSE TERM EXPIRATION DATE-to-datetime 
+    LICENSE TERM EXPIRATION DATE -> LICENSE TERM EXPIRATION DATE
+    Applying transformation (2/12): convert-DATE ISSUED-to-datetime 
+    DATE ISSUED -> DATE ISSUED
+    Applying transformation (3/12): replace-missing-values-with-mean(medhhinc) 
+    ['medhhinc'] -> medhhinc
+    Applying transformation (4/12): replace-missing-values-with-mean(a35to64_share) 
+    ['a35to64_share'] -> a35to64_share
+    Applying transformation (5/12): replace-missing-values-with-mean(share_BA+) 
+    ['share_BA+'] -> share_BA+
+    Applying transformation (6/12): replace-missing-values-with-mean(total_pop) 
+    ['total_pop'] -> total_pop
+    Applying transformation (7/12): replace-missing-values-with-mean(metro_GDP) 
+    ['metro_GDP'] -> metro_GDP
+    Applying transformation (8/12): replace-missing-values-with-mean(Cook_U3_ann_avg) 
+    ['Cook_U3_ann_avg'] -> Cook_U3_ann_avg
+    Applying transformation (9/12): replace-missing-values-with-mean(num_sites) 
+    ['num_sites'] -> num_sites
+    Applying transformation (10/12): replace-missing-values-with-mean(in_ssa) 
+    ['in_ssa'] -> in_ssa
+    Applying transformation (11/12): replace-missing-values-with-mean(which_ssa) 
+    ['which_ssa'] -> which_ssa
+    Applying transformation (12/12): replace-missing-values-with-mean(num_renewals) 
+    ['num_renewals'] -> num_renewals
+
+    Creating 2 features on test-train set 1
+    Creating 2 features on test-train set 1
+    Balancing features for test-train set 1
+Training models.
+Features: ['CITY_LAKE IN THE HILLS', 'CITY_VILLA PARK', 'CITY_JEFFERSONVILLE', 'CITY_LA GRANGE PARK', 'CITY_DES MOINES', 'CITY_BELOIT', 'CITY_ROSELLE', 'CITY_WAUKEGAN', 'STATE_FL', 'JOIN_YEAR', 'CITY_WATERLOO', 'CITY_OAKPARK', 'CITY_CLAYTON', 'CITY_CARMEL', 'CITY_MICHIGAN CITY', 'total_pop', 'CITY_ARLINGTON HEIGHTS', 'CITY_CHICAGO RIDGE', 'CITY_MT PROSPECT', 'CITY_MILWAUKEE', 'STATE_CA', 'CITY_HARWOOD HEIGHTS', 'CITY_PARK FOREST', 'CITY_CHICAGO HEIGHTS', 'CITY_ELMWOOD PARK', 'CITY_SUMMITT ARGO', 'CITY_GURNEE', 'CITY_LA GRANGE HIGHLANDS', 'CITY_OAK FOREST', 'CITY_NORTHLAKE', 'STATE_TX', 'CITY_DOLTON', 'CITY_WINNETKA', 'metro_GDP', 'STATE_MA', 'CITY_GREEN BAY', 'STATE_MS', 'CITY_DES PLAINES', 'CITY_MONEE', 'num_renewals', 'num_not_renewed_zip', 'CITY_EAST CHICAGO', 'CITY_ROCKTON', 'STATE_IN', 'CITY_HYDE PARK', 'CITY_PROSPECT HEIGHTS', 'CITY_FRANKLIN PARK', 'CITY_VERNON HILLS', 'CITY_BERWYN', 'CITY_NAPERVILLE', 'CITY_NEW LENOX', 'CITY_SOUTH BEND', 'CITY_ELMWOOD', 'CITY_CHESTERTON', 'CITY_GLENVIEW', 'CITY_SCOTTSDALE', 'CITY_SKOKIE', 'CITY_WHITING', 'CITY_GLENWOOD', 'CITY_DIXMOOR', 'CITY_NILES', 'CITY_LEMONT', 'which_ssa', 'CITY_OAK PARK', 'CITY_LAKE BLUFF', 'CITY_LAKE FOREST', 'CITY_JANESVILLE', 'CITY_DAVENPORT', 'CITY_STONE PARK', 'CITY_DYER', 'CITY_MORTON GROVE', 'CITY_ELGIN', 'CITY_ELK GROVE VILLAGE', 'CITY_MCHENRY', 'CITY_TUPELO', 'CITY_ROCKFORD', 'CITY_PROVIDENCE', 'CITY_HOFFMAN ESTATES', 'STATE_AZ', "CITY_O'FALLON", 'CITY_JUSTICE', 'CITY_CABERY', 'CITY_FREEPORT', 'CITY_HOUSTON', 'CITY_ST. LOUIS', 'STATE_PA', 'CITY_OVERLAND PARK', 'CITY_NORTH RIVERSIDE', 'CITY_OAK BROOK', 'CITY_OLDSMAR', 'CITY_DES PLAINE', 'CITY_HIGHLAND PARK', 'STATE_NY', 'CITY_HOMEWOOD', 'CITY_ROLLING MEADOWS', 'STATE_NJ', 'CITY_LANSING', 'CITY_HAMMOND', 'CITY_DALLAS', 'CITY_SPRINGFIELD', 'CITY_CLARENDON HILLS', 'CITY_STEGER', 'CITY_SUMMIT', 'CITY_CICERO', 'CITY_NORTHBROOK', 'CITY_INDIANAPOLIS', 'CITY_MINNEAPOLIS', 'CITY_CRANDON', 'share_BA+', 'CITY_LINCOLNWOOD', 'CITY_CERTREVILLE', 'CITY_STAMFORD', 'CITY_BUFFALO GROVE', 'CITY_ROSEMONT', 'CITY_BLUE ISLAND', 'CITY_MELROSE PARK', 'CITY_WHEATON', 'CITY_PEOTONE', 'CITY_BROOKFIELD', 'CITY_SCHAUMBURG', 'in_ssa', 'CITY_RIVER FOREST', 'CITY_ALGONQUIN', 'CITY_WICHITA', 'CITY_FORD HEIGHTS', 'STATE_UT', 'CITY_LAGRANGE', 'CITY_DELPHI', 'CITY_NORTH CANTON', 'CITY_ROBBINS', 'CITY_CHICAGO', 'CITY_CARY', 'CITY_LA GRANGE', 'CITY_MASON', 'CITY_SYRACUSE', 'STATE_VA', 'CITY_TINLEY PARK', 'CITY_CARPENTERSVILLE', 'CITY_COLUMBIA', 'STATE_AL', 'STATE_OH', 'CITY_MAYWOOD', 'CITY_PARK RIDGE', 'STATE_OK', 'CITY_EVERGREEN PARK', 'STATE_MN', 'CITY_A', 'CITY_SCHILLER PARK', 'CITY_CAROL STREAM', 'CITY_LIBERTYVILLE', 'CITY_WOOD DALE', 'CITY_STREAMWOOD', 'STATE_SC', 'CITY_BEDFORD PARK', 'CITY_MOOSEHEART', 'CITY_ARLINGTON', 'CITY_GRAYSLAKE', 'CITY_JOLIET', 'CITY_NORTHPORT', 'CITY_AURORA', 'CITY_ALSIP', 'CITY_BELLWOOD', 'CITY_HILLSIDE', 'CITY_LAGRANGE HIGHLANDS', 'CITY_HAZEL CREST', 'CITY_SOUTHBEND', 'CITY_MCCOOK', 'CITY_HIGHLAND', 'CITY_MISSOULA', 'CITY_ADA', 'CITY_ERIE', 'CITY_ST LOUIS', 'STATE_KS', 'CITY_CROWNPOINT', 'CITY_LINCOLNSHIRE', 'CITY_BRIDGEVIEW', 'CITY_LAKE ZURICH', 'CITY_ROMEOVILLE', 'STATE_MT', 'CITY_ADDISON', 'STATE_WI', 'CITY_GLENDALE HEIGHTS', 'CITY_LAKE GENEVA', 'CITY_NEWTON', 'CITY_BRYAN', 'CITY_BENSENVILLE', 'CITY_NEW YORK', 'CITY_STICKNEY', 'CITY_FAIRFIELD', 'CITY_TEMPE', 'CITY_LYNWOOD', 'CITY_GLEN ELLYN', 'CITY_ITASCA', 'CITY_LYONS', 'CITY_MUNDELEIN', 'CITY_LOMBARD', 'CITY_NORTH CHARLESTON', 'CITY_OAK LAWN', 'CITY_ST.  LOUIS', 'CITY_PARK CITY', 'CITY_URBANA', 'CITY_PHILADELPHIA', 'STATE_CT', 'CITY_AMBOY', 'CITY_DARIEN', 'CITY_DOWNERS GROVE', 'CITY_CALUMET CITY', 'CITY_RIVERSIDE', 'CITY_HINSDALE', 'CITY_HARTFORD CITY', 'CITY_LAKE VILLA', 'CITY_LISLE', 'CITY_ELK GROVE', 'CITY_OKLAHOMA CITY', 'CITY_ESCONDIDO', 'CITY_PALATINE', 'CITY_ROANOKE', 'CITY_TULSA', 'CITY_FORT WAYNE', 'CITY_WILMETTE', 'CITY_DEER PARK', 'CITY_BATAVIA', 'CITY_MOUNT PROSPECT', 'CITY_WEST CHICAGO', 'CITY_FLOSSMOOR', 'CITY_MUNSTER', 'Cook_U3_ann_avg', 'CITY_LOS ANGELES', 'CITY_WESTMONT', 'CITY_EVANSTON', 'CITY_HAMPSHIRE', 'CITY_STRATFORD', 'CITY_GARY', 'CITY_NORRIDGE', 'CITY_SUMMER', 'CITY_GOLDEN VALLEY', 'CITY_CENTRAL STICKNEY', 'CITY_FOREST VIEW', 'CITY_ROUND LAKE PARK', 'CITY_MANTENO', 'CITY_ST. JOHN', 'CITY_LOCKPORT', 'STATE_IA', 'CITY_RICHTON PARK', 'CITY_HURST', 'CITY_BURBANK', 'CITY_PROVO', 'CITY_WILLOW SPRINGS', 'CITY_PLAINFIELD', 'CITY_WILLOWBROOK', 'CITY_OAKBROOK', 'STATE_IL', 'CITY_SUMMIT ARGO', 'CITY_CHESTER', 'CITY_UNIVERSITY PARK', 'CITY_DEERFIELD', 'CITY_SOUTH ELGIN', 'CITY_DECATUR', 'CITY_GRIFFITH', 'num_sites', 'CITY_GARRETT', 'CITY_RIVERWOODS', 'CITY_WESTERN SPRINGS', 'CITY_KNOXVILLE', 'CITY_ELMHURST', 'CITY_WAUKESHA', 'CITY_WESTCHESTER', 'medhhinc', 'CITY_MOUNT LAUREL', 'CITY_ROSEVILLE', 'CITY_PERU', 'CITY_PHOENIX', 'CITY_FOREST PARK', 'CITY_MERRILLVILLE', 'STATE_TN', 'CITY_EDMOND', 'CITY_SERENA', 'CITY_BURR RIDGE', 'CITY_MADISON', 'STATE_MI', 'STATE_MO', 'CITY_BROADVIEW', 'CITY_HINCKLEY', 'STATE_RI', 'CITY_NORTH AURORA', 'CITY_WHEELING', 'CITY_CALUMENT', 'CITY_LAGRANGE PARK', 'CITY_RIVERDALE', 'a35to64_share']
+Fitting: not_renewed_2yrs
+    Training model LogisticRegression-C0.01-penaltyl2-n_jobs-1
+        Training on training set "exists as of 12/31/2018" (1/1)
+    Training model LogisticRegression-C0.1-penaltyl2-n_jobs-1
+        Training on training set "exists as of 12/31/2018" (1/1)
+    Training model LogisticRegression-C1-penaltyl2-n_jobs-1
+        Training on training set "exists as of 12/31/2018" (1/1)
+    Training model LogisticRegression-C10-penaltyl2-n_jobs-1
+        Training on training set "exists as of 12/31/2018" (1/1)
+    Training model LogisticRegression-C100-penaltyl2-n_jobs-1
+        Training on training set "exists as of 12/31/2018" (1/1)
+Testing models.
+    Evaluating model LogisticRegression-C0.01-penaltyl2-n_jobs-1
+        Evaluating on testing set "exists as of 12/31/2018" (1/1):
+    Evaluating model LogisticRegression-C0.1-penaltyl2-n_jobs-1
+        Evaluating on testing set "exists as of 12/31/2018" (1/1):
+    Evaluating model LogisticRegression-C1-penaltyl2-n_jobs-1
+        Evaluating on testing set "exists as of 12/31/2018" (1/1):
+    Evaluating model LogisticRegression-C10-penaltyl2-n_jobs-1
+        Evaluating on testing set "exists as of 12/31/2018" (1/1):
+    Evaluating model LogisticRegression-C100-penaltyl2-n_jobs-1
+        Evaluating on testing set "exists as of 12/31/2018" (1/1):
+Copying artifacts to stable path

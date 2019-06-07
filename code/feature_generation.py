@@ -153,7 +153,7 @@ def get_locations(input_df):
     '''
     # Columns to return
     LOCATION_COLS = ['ACCOUNT NUMBER', 'SITE NUMBER', 'ADDRESS', 'CITY',
-                     'STATE', 'ZIP CODE', 'LATITUDE', 'LONGITUDE']
+                     'STATE', 'ZIP CODE', 'LATITUDE', 'LONGITUDE', "which_ssa"]
 
     # Drop rows if these columns have NA
     NA_COLS = ['LATITUDE', 'LONGITUDE']
@@ -293,7 +293,7 @@ def make_dummy_vars(base, license_data):
     Inputs: df - pandas DataFrame
     Output: new_df - pandas DataFrame with new variables named "[var]_[value]"
     '''
-    VARS_TO_DUMMIFY = ['CITY', 'STATE']
+    VARS_TO_DUMMIFY = ['CITY', 'STATE', "which_ssa"]
     base_cols = base.columns.tolist()
 
     # Get locations from license data and merge onto business-year data

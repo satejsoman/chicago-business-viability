@@ -1,0 +1,18 @@
+Starting pipeline logreg (4fbeed25-56ff-4928-8f49-8337db26a74d) at 2019-06-07 13:11:19.742228
+Input data: /Users/satej/Documents/workspace/classwork/machine-learning/chicago-business-viability/data/joined_table.csv (SHA-256: d2cd198dc228aa11cee4245b41fcd001eafea7250263af0a20882e7ad6f2c9ca)
+Pipeline library version: 61654ef
+
+Pipeline settings:
+    summarize: False
+    data_preprocessors: None
+    feature_generators: [<function count_by_zip_year at 0x11fffb598>, <function make_dummy_vars at 0x11fffb6a8>]
+    models: {'DecisionTreeClassifier-max_depth1': DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=1,
+                       max_features=None, max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, presort=False,
+                       random_state=None, splitter='best')}
+    name: logreg
+    output_root_dir: /Users/satej/Documents/workspace/classwork/machine-learning/chicago-business-viability/code/output
+
+Loading data
