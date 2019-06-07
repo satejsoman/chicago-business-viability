@@ -1,7 +1,7 @@
 import itertools
 import numpy as np
 import pandas as pd
-from sklearn.metrics.pairwise import haversine_distances
+# from sklearn.metrics.pairwise import haversine_distances
 
 def make_features(input_df, feature_generators):
     '''

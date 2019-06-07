@@ -1,16 +1,15 @@
 import yaml
 import pandas as pd 
+import geopandas as gpd
+import matplotlib.pyplot as plt
 from pathlib import Path
 from types import MethodType
-
-
 from pipeline.core import Pipeline
 from pipeline.transformation import (Transformation, binarize, categorize,
                                      hash_string, replace_missing_with_value,
                                      scale_by_max, to_datetime)
 from pipeline.grid import Grid
 from pipeline.splitter import Splitter
-
 from data_cleaning import (clean_data, filter_out_2019_data)
 from feature_generation import (make_features, reshape_and_create_label,
                                 count_by_zip_year, count_by_dist_radius,
@@ -18,9 +17,10 @@ from feature_generation import (make_features, reshape_and_create_label,
 
 from pipeline.evaluation import *
 
-
+TRACT_SHAPEFILE = "../data/Cook_tract_2010.geojson"
 BUSINESS_LOCATION_DF = "../data/business_licenses_with_tracts.csv"
 INDEX_VARS = ['ACCOUNT NUMBER', 'SITE NUMBER']
+
 
 def clean_chicago_business_data(self):
     self.logger.info("    Running cleaning steps on raw data")
@@ -109,26 +109,48 @@ def predict_failures(pipeline, k):
     return rv
 
 
-def join_to_tracts(results):
+def join_to_tracts(results, config):
     ''' takes results, joins to dataframe with tract location
         Returns: count of business failures by tract
     '''
 
     tracts = pd.read_csv(BUSINESS_LOCATION_DF).drop(columns = "Unnamed: 0")
     tracts['DATE ISSUED'] = pd.to_datetime(tracts['DATE ISSUED'], format="%m/%d/%Y")
+    tracts["GEOID"] = tracts["GEOID_2010"].astype(str)
     predict_start_date = pd.to_datetime(config["pipeline"]["test_train"]["splits"][0]["test"]["start"])
 
     tracts = tracts.loc[tracts['DATE ISSUED'] > predict_start_date]
-    tracts = tracts.drop(columns = list(set(tracts.columns).difference(set(INDEX_VARS + ["GEOID_2010"])))) 
+    tracts = tracts.drop(columns = list(set(tracts.columns).difference(set(INDEX_VARS + ["GEOID"])))) 
     
     df = pd.merge(results, tracts, on=INDEX_VARS, how = "left")
 
-    return df.groupby("GEOID_2010").sum()
+    return df.groupby("GEOID").sum()
 
 
 def get_top_tracts(df, num_tracts):
 
     return df.sort_values("label", ascending = False).iloc[0:num_tracts]
+
+
+def map_top_tracts(geo_results, shp):
+
+    tract_map = shp.merge(geo_results, how="left")
+    
+    # drop tract that is all water
+    tract_map = tract_map.loc[tract_map["GEOID"] != "17031990000"]
+
+    # Plot the map
+    ax3 = tract_map.plot(column = "label",
+                        edgecolor='white',
+                        figsize=(12, 10),
+                        legend=True)
+
+    # Some visual tweaks
+    plt.title('Predicted business failures by tract')
+    plt.axis('off')
+    plt.show()
+
+    return 
 
 
 
@@ -140,6 +162,10 @@ if __name__ == "__main__":
     pipeline = create_classifer(config)
 
     results = predict_failures(pipeline, config['k'])
-    geo_results = join_to_tracts(results)
+    geo_results = join_to_tracts(results).reset_index()
 
     top_k_tracts = get_top_tracts(geo_results, config['num_tracts'])
+
+    Cook_tracts_shp = gpd.read_file(TRACT_SHAPEFILE)
+
+    gdf = map_top_tracts(Cook_tracts_shp, geo_results)
