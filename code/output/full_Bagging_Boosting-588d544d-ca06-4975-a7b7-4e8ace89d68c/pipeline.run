@@ -1,0 +1,106 @@
+Starting pipeline full_Bagging_Boosting (588d544d-ca06-4975-a7b7-4e8ace89d68c) at 2019-06-07 11:05:58.241132
+Input data: /Users/jonathantan/github/chicago-business-viability/data/joined_table.csv (SHA-256: 53f0450315e137c32bb8286b0fc6d6861bfb95995b54cc9d78ff777ebb6baff9)
+Pipeline library version: 61654ef
+
+Pipeline settings:
+    summarize: False
+    data_preprocessors: None
+    feature_generators: [<function count_by_zip_year at 0x1189131e0>, <function make_dummy_vars at 0x1189132f0>]
+    models: {'GradientBoostingClassifier-learning_rate0.1': GradientBoostingClassifier(criterion='friedman_mse', init=None,
+                           learning_rate=0.1, loss='deviance', max_depth=3,
+                           max_features=None, max_leaf_nodes=None,
+                           min_impurity_decrease=0.0, min_impurity_split=None,
+                           min_samples_leaf=1, min_samples_split=2,
+                           min_weight_fraction_leaf=0.0, n_estimators=100,
+                           n_iter_no_change=None, presort='auto',
+                           random_state=None, subsample=1.0, tol=0.0001,
+                           validation_fraction=0.1, verbose=0,
+                           warm_start=False), 'GradientBoostingClassifier-learning_rate0.5': GradientBoostingClassifier(criterion='friedman_mse', init=None,
+                           learning_rate=0.5, loss='deviance', max_depth=3,
+                           max_features=None, max_leaf_nodes=None,
+                           min_impurity_decrease=0.0, min_impurity_split=None,
+                           min_samples_leaf=1, min_samples_split=2,
+                           min_weight_fraction_leaf=0.0, n_estimators=100,
+                           n_iter_no_change=None, presort='auto',
+                           random_state=None, subsample=1.0, tol=0.0001,
+                           validation_fraction=0.1, verbose=0,
+                           warm_start=False), 'GradientBoostingClassifier-learning_rate2.0': GradientBoostingClassifier(criterion='friedman_mse', init=None,
+                           learning_rate=2.0, loss='deviance', max_depth=3,
+                           max_features=None, max_leaf_nodes=None,
+                           min_impurity_decrease=0.0, min_impurity_split=None,
+                           min_samples_leaf=1, min_samples_split=2,
+                           min_weight_fraction_leaf=0.0, n_estimators=100,
+                           n_iter_no_change=None, presort='auto',
+                           random_state=None, subsample=1.0, tol=0.0001,
+                           validation_fraction=0.1, verbose=0,
+                           warm_start=False), 'BaggingClassifier-max_samples0.1-n_jobs-1': BaggingClassifier(base_estimator=None, bootstrap=True, bootstrap_features=False,
+                  max_features=1.0, max_samples=0.1, n_estimators=10, n_jobs=-1,
+                  oob_score=False, random_state=None, verbose=0,
+                  warm_start=False), 'BaggingClassifier-max_samples0.5-n_jobs-1': BaggingClassifier(base_estimator=None, bootstrap=True, bootstrap_features=False,
+                  max_features=1.0, max_samples=0.5, n_estimators=10, n_jobs=-1,
+                  oob_score=False, random_state=None, verbose=0,
+                  warm_start=False), 'BaggingClassifier-max_samples1.0-n_jobs-1': BaggingClassifier(base_estimator=None, bootstrap=True, bootstrap_features=False,
+                  max_features=1.0, max_samples=1.0, n_estimators=10, n_jobs=-1,
+                  oob_score=False, random_state=None, verbose=0,
+                  warm_start=False)}
+    name: full_Bagging_Boosting
+    output_root_dir: /Users/jonathantan/github/chicago-business-viability/code/output
+
+Loading data
+
+Running transformations for cleaning
+    Applying transformation (1/12): convert-LICENSE TERM EXPIRATION DATE-to-datetime 
+    LICENSE TERM EXPIRATION DATE -> LICENSE TERM EXPIRATION DATE
+    Applying transformation (2/12): convert-DATE ISSUED-to-datetime 
+    DATE ISSUED -> DATE ISSUED
+    Applying transformation (3/12): replace-missing-values-with-mean(medhhinc) 
+    ['medhhinc'] -> medhhinc
+    Applying transformation (4/12): replace-missing-values-with-mean(a35to64_share) 
+    ['a35to64_share'] -> a35to64_share
+    Applying transformation (5/12): replace-missing-values-with-mean(share_BA+) 
+    ['share_BA+'] -> share_BA+
+    Applying transformation (6/12): replace-missing-values-with-mean(total_pop) 
+    ['total_pop'] -> total_pop
+    Applying transformation (7/12): replace-missing-values-with-mean(metro_GDP) 
+    ['metro_GDP'] -> metro_GDP
+    Applying transformation (8/12): replace-missing-values-with-mean(Cook_U3_ann_avg) 
+    ['Cook_U3_ann_avg'] -> Cook_U3_ann_avg
+    Applying transformation (9/12): replace-missing-values-with-mean(num_sites) 
+    ['num_sites'] -> num_sites
+    Applying transformation (10/12): replace-missing-values-with-mean(in_ssa) 
+    ['in_ssa'] -> in_ssa
+    Applying transformation (11/12): replace-missing-values-with-mean(which_ssa) 
+    ['which_ssa'] -> which_ssa
+    Applying transformation (12/12): replace-missing-values-with-mean(num_renewals) 
+    ['num_renewals'] -> num_renewals
+
+    Creating 2 features on test-train set 1
+    Creating 2 features on test-train set 2
+    Creating 2 features on test-train set 3
+    Creating 2 features on test-train set 4
+    Creating 2 features on test-train set 5
+    Creating 2 features on test-train set 6
+    Creating 2 features on test-train set 7
+    Creating 2 features on test-train set 1
+    Creating 2 features on test-train set 2
+    Creating 2 features on test-train set 3
+    Creating 2 features on test-train set 4
+    Creating 2 features on test-train set 5
+    Creating 2 features on test-train set 6
+    Creating 2 features on test-train set 7
+    Balancing features for test-train set 1
+    Balancing features for test-train set 2
+    Balancing features for test-train set 3
+    Balancing features for test-train set 4
+    Balancing features for test-train set 5
+    Balancing features for test-train set 6
+    Balancing features for test-train set 7
+Training models.
+Features: ['CITY_FORT WAYNE', 'CITY_LAGRANGE', 'CITY_TULSA', 'CITY_BEDFORD PARK', 'CITY_ELK GROVE', 'CITY_ROSEMONT', 'CITY_LISLE', 'CITY_RIVERDALE', 'CITY_CENTRAL STICKNEY', 'CITY_CHICAGO HEIGHTS', 'CITY_EAST CHICAGO', 'CITY_MADISON', 'CITY_PEOTONE', 'CITY_JOLIET', 'CITY_STREAMWOOD', 'CITY_STRATFORD', 'CITY_WINNETKA', 'num_not_renewed_zip', 'CITY_CALUMET CITY', 'CITY_A', 'CITY_NORTHLAKE', 'CITY_RIVER FOREST', 'CITY_JANESVILLE', 'CITY_HINSDALE', 'CITY_NORRIDGE', 'CITY_PHILADELPHIA', 'STATE_IL', 'CITY_MCCOOK', 'CITY_HAMPSHIRE', 'STATE_KS', 'CITY_LOCKPORT', 'CITY_HAZEL CREST', 'CITY_SOUTHBEND', 'CITY_WEST CHICAGO', 'CITY_ALSIP', 'CITY_NILES', 'CITY_OVERLAND PARK', 'CITY_DECATUR', 'CITY_WAUKEGAN', 'CITY_WILLOWBROOK', 'CITY_PARK FOREST', 'CITY_FOREST VIEW', 'CITY_GLENDALE HEIGHTS', 'CITY_CARPENTERSVILLE', 'CITY_SCHILLER PARK', 'CITY_ELMHURST', 'CITY_HARTFORD CITY', 'CITY_DEERFIELD', 'CITY_FLOSSMOOR', 'CITY_LAKE BLUFF', 'CITY_GRAYSLAKE', 'CITY_NEW YORK', 'share_BA+', 'CITY_ADDISON', 'CITY_MAYWOOD', 'CITY_GRIFFITH', 'CITY_GARY', 'CITY_GURNEE', 'CITY_ERIE', 'STATE_CT', 'CITY_ROCKFORD', 'CITY_RICHTON PARK', 'CITY_LINCOLNSHIRE', 'CITY_HILLSIDE', 'CITY_EDMOND', 'CITY_MERRILLVILLE', 'CITY_ARLINGTON HEIGHTS', 'STATE_NY', 'CITY_MASON', 'CITY_CHESTER', 'CITY_NEWTON', 'STATE_MO', 'CITY_BLUE ISLAND', 'CITY_ST.  LOUIS', 'CITY_WILMETTE', 'CITY_DIXMOOR', 'CITY_MILWAUKEE', 'STATE_PA', 'CITY_FAIRFIELD', 'CITY_OAK LAWN', 'STATE_OK', 'CITY_ROBBINS', 'CITY_LA GRANGE PARK', 'STATE_IA', 'CITY_FORD HEIGHTS', 'CITY_WESTCHESTER', 'CITY_LANSING', 'CITY_ITASCA', 'JOIN_YEAR', 'CITY_ROLLING MEADOWS', 'CITY_BROOKFIELD', 'STATE_WI', 'CITY_PARK CITY', 'CITY_MOUNT PROSPECT', 'CITY_CARY', 'CITY_EVERGREEN PARK', 'CITY_SPRINGFIELD', 'CITY_MANTENO', 'STATE_MN', 'CITY_MINNEAPOLIS', 'CITY_LAKE GENEVA', 'CITY_BERWYN', 'CITY_URBANA', 'CITY_BROADVIEW', 'CITY_GLENVIEW', 'CITY_PARK RIDGE', 'CITY_CRANDON', 'STATE_OH', 'CITY_WHEATON', 'CITY_BELOIT', 'CITY_NAPERVILLE', 'CITY_WESTMONT', 'CITY_INDIANAPOLIS', 'CITY_MONEE', 'which_ssa', 'CITY_AURORA', 'CITY_DALLAS', 'metro_GDP', 'CITY_NORTH RIVERSIDE', 'STATE_TX', 'CITY_CLARENDON HILLS', 'CITY_ROCKTON', 'CITY_SOUTH ELGIN', 'CITY_MORTON GROVE', 'CITY_CAROL STREAM', 'CITY_DARIEN', 'CITY_BURBANK', 'CITY_MUNSTER', 'CITY_FREEPORT', 'CITY_GLEN ELLYN', 'CITY_ARLINGTON', 'CITY_MISSOULA', 'CITY_BURR RIDGE', 'CITY_RIVERSIDE', 'CITY_CALUMENT', 'STATE_MT', 'CITY_BELLWOOD', 'CITY_TINLEY PARK', 'CITY_LOMBARD', 'CITY_ELGIN', 'CITY_DES PLAINES', 'STATE_IN', 'CITY_LA GRANGE HIGHLANDS', 'a35to64_share', 'in_ssa', 'CITY_HOMEWOOD', 'CITY_PALATINE', 'CITY_NORTH CANTON', 'CITY_WHEELING', 'CITY_CHICAGO RIDGE', 'CITY_ELK GROVE VILLAGE', 'CITY_HIGHLAND PARK', 'CITY_OAK FOREST', 'CITY_FRANKLIN PARK', 'CITY_LAKE FOREST', 'CITY_OAKBROOK', 'CITY_ELMWOOD PARK', 'CITY_NEW LENOX', 'CITY_DOWNERS GROVE', 'CITY_HARWOOD HEIGHTS', 'CITY_OAK PARK', 'CITY_DOLTON', 'CITY_LINCOLNWOOD', 'num_renewals', 'CITY_WICHITA', 'CITY_STONE PARK', 'STATE_MA', 'CITY_HYDE PARK', 'CITY_MELROSE PARK', 'CITY_BATAVIA', 'CITY_MCHENRY', 'CITY_BENSENVILLE', 'CITY_CHICAGO', 'CITY_NORTH AURORA', 'total_pop', 'medhhinc', 'Cook_U3_ann_avg', 'CITY_VILLA PARK', 'CITY_ROSELLE', 'CITY_WILLOW SPRINGS', 'CITY_HOFFMAN ESTATES', 'CITY_VERNON HILLS', 'num_sites', 'CITY_WOOD DALE', 'CITY_SCHAUMBURG', 'CITY_DAVENPORT', 'CITY_GLENWOOD', 'CITY_ROUND LAKE PARK', 'CITY_ALGONQUIN', 'CITY_EVANSTON', 'CITY_LOS ANGELES', 'CITY_HAMMOND', 'CITY_SOUTH BEND', 'CITY_SERENA', 'CITY_OAK BROOK', 'CITY_LAKE VILLA', 'STATE_AZ', 'CITY_ELMWOOD', 'CITY_UNIVERSITY PARK', 'CITY_SUMMIT', 'CITY_CICERO', 'CITY_LYONS', 'STATE_UT', 'CITY_FOREST PARK', 'CITY_LIBERTYVILLE', 'CITY_SKOKIE', 'CITY_PROVO', 'CITY_WHITING', 'CITY_PHOENIX', 'CITY_NORTHBROOK', 'CITY_ST LOUIS', 'STATE_CA', 'CITY_STEGER', 'CITY_STAMFORD']
+Fitting: not_renewed_2yrs
+    Training model GradientBoostingClassifier-learning_rate0.1
+        Training on training set "exists as of 12/31/2012" (1/7)
+        Training on training set "exists as of 12/31/2013" (2/7)
+        Training on training set "exists as of 12/31/2014" (3/7)
+        Training on training set "exists as of 12/31/2015" (4/7)
+        Training on training set "exists as of 12/31/2016" (5/7)

@@ -1,0 +1,87 @@
+Starting pipeline full_Boosting (d7655e5d-a3b6-48b6-b571-48a87282b0f8) at 2019-06-07 12:36:57.695511
+Input data: /Users/jonathantan/github/chicago-business-viability/data/joined_table.csv (SHA-256: 53f0450315e137c32bb8286b0fc6d6861bfb95995b54cc9d78ff777ebb6baff9)
+Pipeline library version: 61654ef
+
+Pipeline settings:
+    summarize: False
+    data_preprocessors: None
+    feature_generators: [<function count_by_zip_year at 0x123db41e0>, <function make_dummy_vars at 0x123db42f0>]
+    models: {'GradientBoostingClassifier-learning_rate0.1': GradientBoostingClassifier(criterion='friedman_mse', init=None,
+                           learning_rate=0.1, loss='deviance', max_depth=3,
+                           max_features=None, max_leaf_nodes=None,
+                           min_impurity_decrease=0.0, min_impurity_split=None,
+                           min_samples_leaf=1, min_samples_split=2,
+                           min_weight_fraction_leaf=0.0, n_estimators=100,
+                           n_iter_no_change=None, presort='auto',
+                           random_state=None, subsample=1.0, tol=0.0001,
+                           validation_fraction=0.1, verbose=0,
+                           warm_start=False), 'GradientBoostingClassifier-learning_rate0.5': GradientBoostingClassifier(criterion='friedman_mse', init=None,
+                           learning_rate=0.5, loss='deviance', max_depth=3,
+                           max_features=None, max_leaf_nodes=None,
+                           min_impurity_decrease=0.0, min_impurity_split=None,
+                           min_samples_leaf=1, min_samples_split=2,
+                           min_weight_fraction_leaf=0.0, n_estimators=100,
+                           n_iter_no_change=None, presort='auto',
+                           random_state=None, subsample=1.0, tol=0.0001,
+                           validation_fraction=0.1, verbose=0,
+                           warm_start=False), 'GradientBoostingClassifier-learning_rate2.0': GradientBoostingClassifier(criterion='friedman_mse', init=None,
+                           learning_rate=2.0, loss='deviance', max_depth=3,
+                           max_features=None, max_leaf_nodes=None,
+                           min_impurity_decrease=0.0, min_impurity_split=None,
+                           min_samples_leaf=1, min_samples_split=2,
+                           min_weight_fraction_leaf=0.0, n_estimators=100,
+                           n_iter_no_change=None, presort='auto',
+                           random_state=None, subsample=1.0, tol=0.0001,
+                           validation_fraction=0.1, verbose=0,
+                           warm_start=False)}
+    name: full_Boosting
+    output_root_dir: /Users/jonathantan/github/chicago-business-viability/code/output
+
+Loading data
+
+Running transformations for cleaning
+    Applying transformation (1/12): convert-LICENSE TERM EXPIRATION DATE-to-datetime 
+    LICENSE TERM EXPIRATION DATE -> LICENSE TERM EXPIRATION DATE
+    Applying transformation (2/12): convert-DATE ISSUED-to-datetime 
+    DATE ISSUED -> DATE ISSUED
+    Applying transformation (3/12): replace-missing-values-with-mean(medhhinc) 
+    ['medhhinc'] -> medhhinc
+    Applying transformation (4/12): replace-missing-values-with-mean(a35to64_share) 
+    ['a35to64_share'] -> a35to64_share
+    Applying transformation (5/12): replace-missing-values-with-mean(share_BA+) 
+    ['share_BA+'] -> share_BA+
+    Applying transformation (6/12): replace-missing-values-with-mean(total_pop) 
+    ['total_pop'] -> total_pop
+    Applying transformation (7/12): replace-missing-values-with-mean(metro_GDP) 
+    ['metro_GDP'] -> metro_GDP
+    Applying transformation (8/12): replace-missing-values-with-mean(Cook_U3_ann_avg) 
+    ['Cook_U3_ann_avg'] -> Cook_U3_ann_avg
+    Applying transformation (9/12): replace-missing-values-with-mean(num_sites) 
+    ['num_sites'] -> num_sites
+    Applying transformation (10/12): replace-missing-values-with-mean(in_ssa) 
+    ['in_ssa'] -> in_ssa
+    Applying transformation (11/12): replace-missing-values-with-mean(which_ssa) 
+    ['which_ssa'] -> which_ssa
+    Applying transformation (12/12): replace-missing-values-with-mean(num_renewals) 
+    ['num_renewals'] -> num_renewals
+
+    Creating 2 features on test-train set 1
+    Creating 2 features on test-train set 1
+    Balancing features for test-train set 1
+Training models.
+Features: ['CITY_ST. LOUIS', 'CITY_STEGER', 'CITY_GREEN BAY', 'CITY_WESTCHESTER', 'CITY_GRIFFITH', 'CITY_LAKE VILLA', 'CITY_ESCONDIDO', 'STATE_MA', 'CITY_MADISON', 'CITY_CARY', 'CITY_ST.  LOUIS', 'CITY_LOCKPORT', 'which_ssa', 'CITY_CHICAGO', 'CITY_FREEPORT', 'STATE_FL', 'CITY_CARPENTERSVILLE', 'CITY_ELMHURST', 'CITY_LA GRANGE', 'CITY_ROSEMONT', 'CITY_MOOSEHEART', 'CITY_ELGIN', 'CITY_WATERLOO', 'STATE_CA', 'CITY_WESTMONT', 'STATE_TN', 'CITY_ROSELLE', 'CITY_FORD HEIGHTS', 'CITY_CHICAGO RIDGE', 'CITY_OAKBROOK', 'CITY_DES MOINES', 'CITY_WAUKEGAN', 'CITY_WAUKESHA', 'CITY_EVERGREEN PARK', 'CITY_CERTREVILLE', 'CITY_BRIDGEVIEW', 'CITY_ROANOKE', 'CITY_SUMMIT ARGO', 'CITY_STRATFORD', 'metro_GDP', 'STATE_CT', 'share_BA+', 'CITY_NORTH RIVERSIDE', 'CITY_ELMWOOD', 'JOIN_YEAR', 'CITY_PHILADELPHIA', 'CITY_MORTON GROVE', 'CITY_LOS ANGELES', 'CITY_HINCKLEY', 'CITY_TULSA', 'CITY_BUFFALO GROVE', 'CITY_MONEE', 'CITY_ALGONQUIN', 'STATE_IN', 'CITY_LAKE ZURICH', 'CITY_PROSPECT HEIGHTS', 'CITY_WESTERN SPRINGS', 'CITY_MERRILLVILLE', 'CITY_OAKPARK', 'CITY_ARLINGTON', 'CITY_LEMONT', 'CITY_STAMFORD', 'CITY_WILMETTE', 'STATE_IA', 'CITY_OKLAHOMA CITY', 'CITY_SPRINGFIELD', 'CITY_CARMEL', 'CITY_BROOKFIELD', 'CITY_GARY', 'CITY_OVERLAND PARK', 'STATE_RI', 'CITY_CLARENDON HILLS', 'total_pop', 'CITY_SOUTH ELGIN', 'CITY_VILLA PARK', 'STATE_MO', 'CITY_DECATUR', 'CITY_BENSENVILLE', 'CITY_MILWAUKEE', 'CITY_SKOKIE', 'CITY_JUSTICE', 'CITY_ADA', 'CITY_FOREST VIEW', 'CITY_SCOTTSDALE', 'CITY_FORT WAYNE', 'CITY_GRAYSLAKE', 'STATE_NJ', 'CITY_DEERFIELD', 'CITY_LINCOLNWOOD', 'CITY_RIVERWOODS', 'CITY_MANTENO', 'CITY_MUNDELEIN', 'CITY_JEFFERSONVILLE', 'CITY_DEER PARK', 'CITY_ADDISON', 'CITY_ELK GROVE VILLAGE', 'CITY_LA GRANGE PARK', 'CITY_CHESTER', 'CITY_CAROL STREAM', 'CITY_PHOENIX', 'CITY_MT PROSPECT', 'STATE_MS', 'CITY_DIXMOOR', 'STATE_NY', 'CITY_SUMMER', 'CITY_VERNON HILLS', 'CITY_GURNEE', 'CITY_LAGRANGE PARK', 'CITY_DALLAS', 'CITY_HURST', 'CITY_EDMOND', 'STATE_OH', 'CITY_GLENDALE HEIGHTS', 'CITY_SYRACUSE', 'CITY_ST LOUIS', 'CITY_MCCOOK', 'CITY_ELMWOOD PARK', 'CITY_BATAVIA', 'CITY_SUMMIT', 'CITY_FLOSSMOOR', 'CITY_TUPELO', 'CITY_BLUE ISLAND', 'CITY_WICHITA', 'CITY_DAVENPORT', 'CITY_OAK LAWN', 'CITY_WHEELING', 'CITY_LYNWOOD', 'CITY_LISLE', 'CITY_NAPERVILLE', 'CITY_TEMPE', 'CITY_WINNETKA', 'CITY_HAMMOND', 'CITY_WOOD DALE', 'STATE_OK', 'CITY_GLEN ELLYN', 'CITY_SOUTHBEND', 'CITY_AURORA', 'CITY_LINCOLNSHIRE', 'CITY_HYDE PARK', 'CITY_CRANDON', 'CITY_NORTHBROOK', 'CITY_PERU', "CITY_O'FALLON", 'CITY_PARK FOREST', 'CITY_CHESTERTON', 'CITY_JOLIET', 'CITY_ERIE', 'CITY_NEWTON', 'CITY_ROCKTON', 'medhhinc', 'STATE_TX', 'CITY_PROVO', 'CITY_SERENA', 'CITY_NORRIDGE', 'CITY_SCHILLER PARK', 'CITY_ST. JOHN', 'num_sites', 'CITY_WILLOWBROOK', 'CITY_WEST CHICAGO', 'CITY_LIBERTYVILLE', 'CITY_URBANA', 'CITY_ARLINGTON HEIGHTS', 'CITY_KNOXVILLE', 'CITY_BELLWOOD', 'CITY_JANESVILLE', 'CITY_MUNSTER', 'CITY_CALUMENT', 'CITY_OAK FOREST', 'CITY_FRANKLIN PARK', 'a35to64_share', 'CITY_PEOTONE', 'CITY_FOREST PARK', 'CITY_GLENWOOD', 'STATE_UT', 'CITY_LYONS', 'CITY_MINNEAPOLIS', 'CITY_NORTH CANTON', 'CITY_ROCKFORD', 'CITY_ROSEVILLE', 'CITY_LAKE GENEVA', 'CITY_PLAINFIELD', 'CITY_LAKE IN THE HILLS', 'CITY_MOUNT LAUREL', 'CITY_HAZEL CREST', 'CITY_NILES', 'CITY_MCHENRY', 'CITY_HIGHLAND', 'CITY_EVANSTON', 'CITY_CALUMET CITY', 'CITY_BELOIT', 'CITY_ALSIP', 'CITY_STICKNEY', 'CITY_MELROSE PARK', 'CITY_WHITING', 'STATE_IL', 'STATE_MN', 'CITY_RIVERSIDE', 'CITY_MASON', 'CITY_ROUND LAKE PARK', 'CITY_DARIEN', 'CITY_HOUSTON', 'CITY_OLDSMAR', 'CITY_BURR RIDGE', 'CITY_CABERY', 'CITY_HILLSIDE', 'CITY_DES PLAINES', 'CITY_TINLEY PARK', 'CITY_CENTRAL STICKNEY', 'CITY_NEW LENOX', 'CITY_HOFFMAN ESTATES', 'STATE_VA', 'CITY_OAK PARK', 'CITY_DES PLAINE', 'CITY_ROMEOVILLE', 'CITY_FAIRFIELD', 'CITY_MICHIGAN CITY', 'CITY_ROLLING MEADOWS', 'CITY_NORTHLAKE', 'CITY_CICERO', 'CITY_PROVIDENCE', 'CITY_HARTFORD CITY', 'CITY_CHICAGO HEIGHTS', 'Cook_U3_ann_avg', 'CITY_CROWNPOINT', 'CITY_NEW YORK', 'CITY_MISSOULA', 'CITY_CLAYTON', 'CITY_SCHAUMBURG', 'num_not_renewed_zip', 'CITY_LAGRANGE', 'STATE_MT', 'CITY_NORTHPORT', 'CITY_PARK RIDGE', 'CITY_NORTH CHARLESTON', 'CITY_HOMEWOOD', 'CITY_MAYWOOD', 'CITY_DYER', 'CITY_STONE PARK', 'in_ssa', 'CITY_RIVERDALE', 'CITY_ROBBINS', 'CITY_DOLTON', 'CITY_GOLDEN VALLEY', 'CITY_RIVER FOREST', 'STATE_MI', 'CITY_EAST CHICAGO', 'CITY_ITASCA', 'CITY_STREAMWOOD', 'CITY_A', 'CITY_UNIVERSITY PARK', 'STATE_PA', 'CITY_GLENVIEW', 'CITY_AMBOY', 'CITY_SUMMITT ARGO', 'CITY_LAGRANGE HIGHLANDS', 'CITY_DELPHI', 'CITY_LAKE FOREST', 'num_renewals', 'STATE_SC', 'CITY_PALATINE', 'CITY_LOMBARD', 'STATE_AL', 'CITY_SOUTH BEND', 'CITY_BEDFORD PARK', 'CITY_RICHTON PARK', 'CITY_HARWOOD HEIGHTS', 'CITY_NORTH AURORA', 'CITY_PARK CITY', 'CITY_BROADVIEW', 'CITY_LAKE BLUFF', 'CITY_HINSDALE', 'CITY_BRYAN', 'CITY_BERWYN', 'CITY_BURBANK', 'CITY_MOUNT PROSPECT', 'STATE_WI', 'CITY_INDIANAPOLIS', 'CITY_WILLOW SPRINGS', 'CITY_OAK BROOK', 'STATE_KS', 'CITY_COLUMBIA', 'CITY_ELK GROVE', 'CITY_GARRETT', 'CITY_HAMPSHIRE', 'CITY_HIGHLAND PARK', 'CITY_LANSING', 'CITY_DOWNERS GROVE', 'CITY_WHEATON', 'CITY_LA GRANGE HIGHLANDS', 'STATE_AZ']
+Fitting: not_renewed_2yrs
+    Training model GradientBoostingClassifier-learning_rate0.1
+        Training on training set "exists as of 12/31/2018" (1/1)
+    Training model GradientBoostingClassifier-learning_rate0.5
+        Training on training set "exists as of 12/31/2018" (1/1)
+    Training model GradientBoostingClassifier-learning_rate2.0
+        Training on training set "exists as of 12/31/2018" (1/1)
+Testing models.
+    Evaluating model GradientBoostingClassifier-learning_rate0.1
+        Evaluating on testing set "exists as of 12/31/2018" (1/1):
+    Evaluating model GradientBoostingClassifier-learning_rate0.5
+        Evaluating on testing set "exists as of 12/31/2018" (1/1):
+    Evaluating model GradientBoostingClassifier-learning_rate2.0
+        Evaluating on testing set "exists as of 12/31/2018" (1/1):
+Copying artifacts to stable path

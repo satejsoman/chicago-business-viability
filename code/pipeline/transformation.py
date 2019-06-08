@@ -71,7 +71,7 @@ def replace_missing_with_mean(column):
     input_col  = column
     output_col = column #+"_clean"
     def replace(dataframe):
-        avg = dataframe[input_col].mean()
+        avg = dataframe[input_col].mean(skipna=True)
         return dataframe[input_col].fillna(avg)
 
     return Transformation(

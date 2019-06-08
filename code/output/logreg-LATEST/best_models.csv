@@ -1,0 +1,5 @@
+name,precision-at-0.1
+LogisticRegression-C0.01-penaltyl2-n_jobs-1,0.07272727272727272
+LogisticRegression-C0.1-penaltyl2-n_jobs-1,0.07272727272727272
+LogisticRegression-C1-penaltyl2-n_jobs-1,0.07272727272727272
+LogisticRegression-C10-penaltyl2-n_jobs-1,0.07272727272727272

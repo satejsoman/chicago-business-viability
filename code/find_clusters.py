@@ -30,6 +30,7 @@ def clean_chicago_business_data(self):
 
 def make_chicago_business_features(self):
 
+    original_features = self.features[:]
     old_cols = set(self.test_sets[0].columns)
 
     # Make features for each dataset in train_sets, test_sets
@@ -38,21 +39,28 @@ def make_chicago_business_features(self):
         for i in range(len(df_list)):
             self.logger.info("    Creating %s features on test-train set %s", n, i+1)
 
-            df_list[i] = make_features(df_list[i], self.feature_generators)
+            # Filter out licenses for Jan 1, 2019 onwards
+            df_list[i] = df_list[i].loc[df_list[i]['DATE ISSUED'] <= pd.to_datetime('12/31/2018')]
+            df_list[i] = make_features(df_list[i], self.feature_generators, original_features)
 
     # Check for feature balance on each test-train pair
     for i in range(len(self.test_sets)):
         self.logger.info("    Balancing features for test-train set %s", i+1)
-        self.train_sets[i], self.test_sets[i] = balance_features(
-            self.train_sets[i], self.test_sets[i]
-        )
+        self.train_sets[i], self.test_sets[i] = balance_features(self.train_sets[i], self.test_sets[i])
+
+        # Filter only for business-years in 1 year test window
+        self.test_sets[i] = self.test_sets[i].loc[
+            self.test_sets[i]['YEAR'] == self.test_sets[i]['YEAR'].max()
+        ]
 
     # Add newly-generated features to self.features
     new_cols = set(self.test_sets[0].columns)
     self.features += list(new_cols - old_cols) # set difference
-    print(self.features)
+
+    self.features = list(set(self.features) - set([self.target]))
 
     return self
+
 
 def create_classifer(config):
 
@@ -162,10 +170,13 @@ if __name__ == "__main__":
     pipeline = create_classifer(config)
 
     results = predict_failures(pipeline, config['k'])
-    geo_results = join_to_tracts(results).reset_index()
+    geo_results = join_to_tracts(results, config).reset_index()
+
+    results.to_csv("results.csv")
+    geo_results.to_csv("geo_results.csv")
 
     top_k_tracts = get_top_tracts(geo_results, config['num_tracts'])
 
     Cook_tracts_shp = gpd.read_file(TRACT_SHAPEFILE)
 
-    gdf = map_top_tracts(Cook_tracts_shp, geo_results)
+    # gdf = map_top_tracts(Cook_tracts_shp, geo_results)

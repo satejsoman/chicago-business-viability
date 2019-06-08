@@ -19,9 +19,6 @@ def make_features(input_df, feature_generators, existing_features):
 
     base = reshape_and_create_label(input_df) # business-year data
 
-    if not feature_generators:
-        return base
-
     generated_features = base.copy(deep=True) # accumulate features
     for feature_generator in feature_generators:
         print("        Applying function:", feature_generator.__name__)
@@ -34,7 +31,9 @@ def make_features(input_df, feature_generators, existing_features):
     # Finally, merge on all generated feature onto the base and overwrite df
     result_df = base \
         .drop(labels=['not_renewed_2yrs'], axis=1) \
-        .merge(generated_features, how='left', on=MERGE_KEYS)
+        .merge(generated_features,
+               how='left',
+               on=MERGE_KEYS)
 
     result_df["JOIN_YEAR"] = result_df["YEAR"] - 1
 
@@ -160,7 +159,7 @@ def get_locations(input_df):
     '''
     # Columns to return
     LOCATION_COLS = ['ACCOUNT NUMBER', 'SITE NUMBER', 'ADDRESS', 'CITY',
-                     'STATE', 'ZIP CODE', 'LATITUDE', 'LONGITUDE']
+                     'STATE', 'ZIP CODE', 'LATITUDE', 'LONGITUDE', "which_ssa"]
 
     # Drop rows if these columns have NA
     NA_COLS = ['LATITUDE', 'LONGITUDE']
@@ -300,7 +299,7 @@ def make_dummy_vars(base, license_data):
     Inputs: df - pandas DataFrame
     Output: new_df - pandas DataFrame with new variables named "[var]_[value]"
     '''
-    VARS_TO_DUMMIFY = ['CITY', 'STATE', 'which_ssa']
+    VARS_TO_DUMMIFY = ['CITY', 'STATE', "which_ssa"]
     base_cols = base.columns.tolist()
 
     # Get locations from license data and merge onto business-year data
