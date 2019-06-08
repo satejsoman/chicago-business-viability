@@ -1,0 +1,4 @@
+name,precision-at-0.1
+GradientBoostingClassifier-learning_rate0.1,0.07272727272727272
+GradientBoostingClassifier-learning_rate0.5,0.07272727272727272
+GradientBoostingClassifier-learning_rate2.0,0.07272727272727272
