@@ -217,7 +217,7 @@ class Pipeline:
         for (description, models) in self.trained_models.items():
             self.evaluate_models(description, models)
         eval_results = pd.DataFrame(self.model_evaluations)
-        eval_results.to_csv(self.output_dir/"evaluations.csv")
+        eval_results.to_csv(self.output_dir/"evaluations.csv", mode = 'a')
         best_model = find_best_model(eval_results, "precision", "0.1").to_csv(self.output_dir/"best_models.csv") # TO DO: put these in config
         return self
 
