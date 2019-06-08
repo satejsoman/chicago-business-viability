@@ -4,7 +4,7 @@ import os
 from itertools import cycle
 from pathlib import Path
 from types import MethodType
-
+import argparse
 import matplotlib
 # matplotlib.use('TkAgg')
 import matplotlib2tikz
@@ -28,6 +28,7 @@ from pipeline.grid import Grid
 from pipeline.transformation import (Transformation, to_datetime,
                                      replace_missing_with_mean)
 from pipeline.splitter import Splitter
+from joblib import dump, load
 
 
 def clean_chicago_business_data(self):
@@ -119,8 +120,19 @@ def get_pipeline(config_path):
     return pipeline
 
 if __name__ == "__main__":
-    pipeline = get_pipeline("config.yml")
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--config", help = "config file path")
+    args = parser.parse_args()
+
+    pipeline = get_pipeline(args.config)
     pipeline.run()
+
+    try:
+        for (description, model) in pipeline.trained_models.items():
+            dump(model, "models/" + args.config["description"] + "_" + description + ".joblib" )
+    except Exception as e:
+        print(e)
     # pipeline = (get_pipeline("config.yml")
     #              .load_data()
     #              .clean_data()

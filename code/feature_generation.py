@@ -26,8 +26,6 @@ def make_features(input_df, feature_generators, existing_features):
         generated_features = generated_features.merge(feature,
             how='left', on=MERGE_KEYS)
 
-    print("base is ", base.head())
-
     # Finally, merge on all generated feature onto the base and overwrite df
     result_df = base \
         .drop(labels=['not_renewed_2yrs'], axis=1) \
@@ -37,8 +35,6 @@ def make_features(input_df, feature_generators, existing_features):
 
     result_df["JOIN_YEAR"] = result_df["YEAR"] - 1
 
-    print("result_df is ", result_df.head())
-
     full_result = result_df \
         .drop(labels=['YEAR'], axis=1) \
         .merge(input_df[MERGE_KEYS + existing_features],
@@ -46,8 +42,6 @@ def make_features(input_df, feature_generators, existing_features):
             right_on=MERGE_KEYS,
             left_on=['ACCOUNT NUMBER', 'SITE NUMBER', 'JOIN_YEAR'])
     
-    print("full_results is ", full_result.head())
-
     return full_result
 
 

@@ -1,0 +1,94 @@
+data:
+  input_path: "../data/joined_table.csv"
+  output_dir: "output/"
+
+pipeline:
+  name: "SVM-3"
+  target: "not_renewed_2yrs"
+  precomputed_features:
+#    - which_ssa
+    - in_ssa
+    - num_sites
+    - num_renewals
+    - total_pop
+    - medhhinc
+    - share_BA+
+    - a35to64_share
+    - metro_GDP
+    - Cook_U3_ann_avg
+  test_train:
+    split_column: "DATE ISSUED"
+    splits:
+      # - name: exists as of 12/31/2012
+      #   train:
+      #     start: 01/01/2002
+      #     end:   12/31/2010
+      #   test:
+      #     start: 01/01/2002
+      #     end:   12/31/2012
+      # - name: exists as of 12/31/2013
+      #   train:
+      #     start: 01/01/2002
+      #     end:   12/31/2011
+      #   test:
+      #     start: 01/01/2002
+      #     end:   12/31/2013
+      # - name: exists as of 12/31/2014
+      #   train:
+      #     start: 01/01/2002
+      #     end:   12/31/2012
+      #   test:
+      #     start: 01/01/2002
+      #     end:   12/31/2014
+      - name: exists as of 12/31/2015
+        train:
+          start: 01/01/2002
+          end:   12/31/2013
+        test:
+          start: 01/01/2002
+          end:   12/31/2015
+      # - name: exists as of 12/31/2016
+      #   train:
+      #     start: 01/01/2002
+      #     end:   12/31/2014
+      #   test:
+      #     start: 01/01/2002
+      #     end:   12/31/2016
+      # - name: exists as of 12/31/2017
+      #   train:
+      #     start: 01/01/2002
+      #     end:   12/31/2015
+      #   test:
+      #     start: 01/01/2002
+      #     end:   12/31/2017
+
+
+models:
+
+  # LogisticRegression:
+  #   C: [0.01, 0.1, 1, 10, 100]
+  #   penalty: ["l1", "l2"]
+  #   n_jobs: [-1]
+
+  LinearSVC:
+    C: [0.01, 0.1, 1, 10, 100]
+    penalty: ["l2"]
+
+  # KNeighborsClassifier:
+  #   n_neighbors: [10, 50, 100]
+  #   n_jobs: [-1]
+
+  # DecisionTreeClassifier:
+  #   max_depth: [null, 1, 5, 10, 50, 100]
+
+  # GradientBoostingClassifier:
+  #   learning_rate: [0.1, 0.5, 2.0]
+
+  # BaggingClassifier:
+  #   max_samples: [0.1, 0.5, 1.0]
+  #   n_jobs: [-1]
+
+  # RandomForestClassifier:
+  #   n_estimators: [10, 100, 1000]
+  #   max_depth: [null, 1, 5, 10, 50, 100]
+  #   n_jobs: [-1]
