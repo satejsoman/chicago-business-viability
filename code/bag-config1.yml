@@ -1,5 +1,5 @@
 data:
-  input_path: "../data/joined_table5000.csv"
+  input_path: "../data/joined_table.csv"
   output_dir: "output/"
 
 pipeline:

@@ -126,20 +126,11 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     pipeline = get_pipeline(args.config)
-    pipeline.run()
-
-    with open(args.config, 'rb') as config_file:
-        config = yaml.safe_load(config_file.read())
-
-    try:
-        for (description, model) in pipeline.trained_models.items():
-            dump(model, "models/" + config["pipeline"]["name"] + "_" + description + ".joblib" )
-    except Exception as e:
-        print(e)
-    # pipeline = (get_pipeline("config.yml")
-    #              .load_data()
-    #              .clean_data()
-    #              .summarize_data()
-    #              .generate_test_train()
-    #              .preprocess_data()
-    #              .generate_features())
+    
+    pipeline = (get_pipeline("config.yml")
+                 .load_data()
+                 .clean_data()
+                 .summarize_data()
+                 .generate_test_train()
+                 .preprocess_data()
+                 .generate_features())
