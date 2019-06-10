@@ -1,0 +1,294 @@
+Starting pipeline full_KNN_DT_Boost (7e614e80-3a49-41f8-b11b-525871970f5c) at 2019-06-07 23:53:46.114470
+Input data: /Users/jonathantan/github/chicago-business-viability/data/joined_table.csv (SHA-256: 53f0450315e137c32bb8286b0fc6d6861bfb95995b54cc9d78ff777ebb6baff9)
+Pipeline library version: c4682ad
+
+Pipeline settings:
+    summarize: False
+    data_preprocessors: None
+    feature_generators: [<function count_by_zip_year at 0x114799158>, <function make_dummy_vars at 0x114799268>]
+    models: {'KNeighborsClassifier-n_neighbors10-n_jobs-1': KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='minkowski',
+                     metric_params=None, n_jobs=-1, n_neighbors=10, p=2,
+                     weights='uniform'), 'KNeighborsClassifier-n_neighbors50-n_jobs-1': KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='minkowski',
+                     metric_params=None, n_jobs=-1, n_neighbors=50, p=2,
+                     weights='uniform'), 'KNeighborsClassifier-n_neighbors100-n_jobs-1': KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='minkowski',
+                     metric_params=None, n_jobs=-1, n_neighbors=100, p=2,
+                     weights='uniform'), 'DecisionTreeClassifier-max_depthNone': DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=None,
+                       max_features=None, max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, presort=False,
+                       random_state=None, splitter='best'), 'DecisionTreeClassifier-max_depth1': DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=1,
+                       max_features=None, max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, presort=False,
+                       random_state=None, splitter='best'), 'DecisionTreeClassifier-max_depth5': DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=5,
+                       max_features=None, max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, presort=False,
+                       random_state=None, splitter='best'), 'DecisionTreeClassifier-max_depth10': DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=10,
+                       max_features=None, max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, presort=False,
+                       random_state=None, splitter='best'), 'DecisionTreeClassifier-max_depth50': DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=50,
+                       max_features=None, max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, presort=False,
+                       random_state=None, splitter='best'), 'DecisionTreeClassifier-max_depth100': DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=100,
+                       max_features=None, max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, presort=False,
+                       random_state=None, splitter='best'), 'GradientBoostingClassifier-learning_rate0.1': GradientBoostingClassifier(criterion='friedman_mse', init=None,
+                           learning_rate=0.1, loss='deviance', max_depth=3,
+                           max_features=None, max_leaf_nodes=None,
+                           min_impurity_decrease=0.0, min_impurity_split=None,
+                           min_samples_leaf=1, min_samples_split=2,
+                           min_weight_fraction_leaf=0.0, n_estimators=100,
+                           n_iter_no_change=None, presort='auto',
+                           random_state=None, subsample=1.0, tol=0.0001,
+                           validation_fraction=0.1, verbose=0,
+                           warm_start=False), 'GradientBoostingClassifier-learning_rate0.5': GradientBoostingClassifier(criterion='friedman_mse', init=None,
+                           learning_rate=0.5, loss='deviance', max_depth=3,
+                           max_features=None, max_leaf_nodes=None,
+                           min_impurity_decrease=0.0, min_impurity_split=None,
+                           min_samples_leaf=1, min_samples_split=2,
+                           min_weight_fraction_leaf=0.0, n_estimators=100,
+                           n_iter_no_change=None, presort='auto',
+                           random_state=None, subsample=1.0, tol=0.0001,
+                           validation_fraction=0.1, verbose=0,
+                           warm_start=False), 'GradientBoostingClassifier-learning_rate2.0': GradientBoostingClassifier(criterion='friedman_mse', init=None,
+                           learning_rate=2.0, loss='deviance', max_depth=3,
+                           max_features=None, max_leaf_nodes=None,
+                           min_impurity_decrease=0.0, min_impurity_split=None,
+                           min_samples_leaf=1, min_samples_split=2,
+                           min_weight_fraction_leaf=0.0, n_estimators=100,
+                           n_iter_no_change=None, presort='auto',
+                           random_state=None, subsample=1.0, tol=0.0001,
+                           validation_fraction=0.1, verbose=0,
+                           warm_start=False)}
+    name: full_KNN_DT_Boost
+    output_root_dir: /Users/jonathantan/github/chicago-business-viability/code/output
+
+Loading data
+
+Running transformations for cleaning
+    Applying transformation (1/12): convert-LICENSE TERM EXPIRATION DATE-to-datetime 
+    LICENSE TERM EXPIRATION DATE -> LICENSE TERM EXPIRATION DATE
+    Applying transformation (2/12): convert-DATE ISSUED-to-datetime 
+    DATE ISSUED -> DATE ISSUED
+    Applying transformation (3/12): replace-missing-values-with-mean(medhhinc) 
+    ['medhhinc'] -> medhhinc
+    Applying transformation (4/12): replace-missing-values-with-mean(a35to64_share) 
+    ['a35to64_share'] -> a35to64_share
+    Applying transformation (5/12): replace-missing-values-with-mean(share_BA+) 
+    ['share_BA+'] -> share_BA+
+    Applying transformation (6/12): replace-missing-values-with-mean(total_pop) 
+    ['total_pop'] -> total_pop
+    Applying transformation (7/12): replace-missing-values-with-mean(metro_GDP) 
+    ['metro_GDP'] -> metro_GDP
+    Applying transformation (8/12): replace-missing-values-with-mean(Cook_U3_ann_avg) 
+    ['Cook_U3_ann_avg'] -> Cook_U3_ann_avg
+    Applying transformation (9/12): replace-missing-values-with-mean(num_sites) 
+    ['num_sites'] -> num_sites
+    Applying transformation (10/12): replace-missing-values-with-mean(in_ssa) 
+    ['in_ssa'] -> in_ssa
+    Applying transformation (11/12): replace-missing-values-with-mean(which_ssa) 
+    ['which_ssa'] -> which_ssa
+    Applying transformation (12/12): replace-missing-values-with-mean(num_renewals) 
+    ['num_renewals'] -> num_renewals
+
+    Creating 2 features on test-train set 1
+    Creating 2 features on test-train set 2
+    Creating 2 features on test-train set 3
+    Creating 2 features on test-train set 4
+    Creating 2 features on test-train set 5
+    Creating 2 features on test-train set 6
+    Creating 2 features on test-train set 1
+    Creating 2 features on test-train set 2
+    Creating 2 features on test-train set 3
+    Creating 2 features on test-train set 4
+    Creating 2 features on test-train set 5
+    Creating 2 features on test-train set 6
+    Balancing features for test-train set 1
+    Balancing features for test-train set 2
+    Balancing features for test-train set 3
+    Balancing features for test-train set 4
+    Balancing features for test-train set 5
+    Balancing features for test-train set 6
+Training models.
+Features: ['which_ssa_42.0', 'which_ssa_32.0', 'CITY_STONE PARK', 'CITY_BEDFORD PARK', 'CITY_MONEE', 'which_ssa_17.0', 'which_ssa_62.0', 'which_ssa_27.0', 'CITY_SCHAUMBURG', 'CITY_BLUE ISLAND', 'CITY_INDIANAPOLIS', 'CITY_OAK FOREST', 'CITY_HILLSIDE', 'CITY_ELMWOOD PARK', 'STATE_NY', 'STATE_CA', 'CITY_VERNON HILLS', 'CITY_MILWAUKEE', 'which_ssa_3.0', 'CITY_HARWOOD HEIGHTS', 'CITY_RIVERDALE', 'CITY_MADISON', 'CITY_LINCOLNSHIRE', 'which_ssa_2.0', 'STATE_UT', 'CITY_BERWYN', 'CITY_MCCOOK', 'which_ssa_43.0', 'num_renewals', 'which_ssa_41.0', 'CITY_JOLIET', 'CITY_LIBERTYVILLE', 'CITY_HAZEL CREST', 'CITY_WESTCHESTER', 'CITY_FLOSSMOOR', 'CITY_ALGONQUIN', 'CITY_ROCKTON', 'CITY_ROLLING MEADOWS', 'CITY_WILLOWBROOK', 'num_not_renewed_zip', 'STATE_IN', 'a35to64_share', 'CITY_LAKE VILLA', 'which_ssa_47.0', 'which_ssa_55.0', 'CITY_ALSIP', 'CITY_WHITING', 'which_ssa_21.0', 'which_ssa_25.0', 'CITY_URBANA', 'CITY_GLENWOOD', 'which_ssa_61.0', 'which_ssa_7.736401031244397', 'CITY_FOREST VIEW', 'which_ssa_31.0', 'CITY_LOMBARD', 'STATE_MA', 'CITY_ROBBINS', 'CITY_HAMMOND', 'CITY_GURNEE', 'STATE_KS', 'CITY_WOOD DALE', 'STATE_WI', 'CITY_HIGHLAND PARK', 'which_ssa_48.0', 'CITY_SKOKIE', 'STATE_CT', 'which_ssa_14.0', 'CITY_ST LOUIS', 'CITY_SOUTHBEND', 'CITY_FRANKLIN PARK', 'which_ssa_34.0', 'CITY_NORTH CANTON', 'CITY_EVANSTON', 'which_ssa_51.0', 'which_ssa_19.0', 'which_ssa_50.0', 'CITY_CARY', 'CITY_DIXMOOR', 'CITY_ELMHURST', 'CITY_UNIVERSITY PARK', 'CITY_PARK CITY', 'which_ssa_29.0', 'CITY_DOWNERS GROVE', 'CITY_BURR RIDGE', 'CITY_CHESTER', 'CITY_HARTFORD CITY', 'which_ssa_63.0', 'CITY_ROUND LAKE PARK', 'CITY_ELK GROVE VILLAGE', 'CITY_LAKE FOREST', 'CITY_NEW YORK', 'CITY_ROSEMONT', 'STATE_PA', 'CITY_DOLTON', 'CITY_WAUKEGAN', 'CITY_PHILADELPHIA', 'which_ssa_5.0', 'CITY_RICHTON PARK', 'CITY_CAROL STREAM', 'which_ssa_7.0', 'CITY_EAST CHICAGO', 'CITY_SPRINGFIELD', 'CITY_WHEATON', 'which_ssa_1.0', 'CITY_HOMEWOOD', 'CITY_SERENA', 'which_ssa_60.0', 'which_ssa_54.0', 'which_ssa_24.0', 'CITY_OAK PARK', 'CITY_LAKE GENEVA', 'CITY_CICERO', 'which_ssa_18.0', 'CITY_FREEPORT', 'CITY_ARLINGTON', 'STATE_IA', 'STATE_TX', 'CITY_STREAMWOOD', 'CITY_NILES', 'CITY_ELGIN', 'CITY_LYONS', 'STATE_AZ', 'CITY_BURBANK', 'CITY_LA GRANGE PARK', 'CITY_HINSDALE', 'CITY_FAIRFIELD', 'CITY_ROCKFORD', 'CITY_ELMWOOD', 'CITY_WILMETTE', 'STATE_MT', 'which_ssa_35.0', 'CITY_CHICAGO RIDGE', 'CITY_AURORA', 'which_ssa_33.0', 'CITY_NEW LENOX', 'CITY_NORTH RIVERSIDE', 'CITY_MISSOULA', 'which_ssa_28.0', 'CITY_GRIFFITH', 'CITY_DARIEN', 'STATE_MN', 'CITY_GRAYSLAKE', 'CITY_GLEN ELLYN', 'JOIN_YEAR', 'CITY_MASON', 'CITY_PROVO', 'STATE_OK', 'CITY_MUNSTER', 'CITY_MERRILLVILLE', 'CITY_TINLEY PARK', 'which_ssa_56.0', 'CITY_CHICAGO HEIGHTS', 'CITY_CRANDON', 'CITY_EVERGREEN PARK', 'CITY_PARK RIDGE', 'CITY_DAVENPORT', 'Cook_U3_ann_avg', 'CITY_CHICAGO', 'which_ssa_38.0', 'CITY_OAK BROOK', 'CITY_WESTMONT', 'CITY_DECATUR', 'total_pop', 'CITY_SUMMIT', 'CITY_NORTHLAKE', 'CITY_HYDE PARK', 'CITY_ERIE', 'CITY_CLARENDON HILLS', 'CITY_WICHITA', 'num_sites', 'CITY_ADDISON', 'CITY_NORTH AURORA', 'CITY_LISLE', 'CITY_CENTRAL STICKNEY', 'CITY_FORD HEIGHTS', 'share_BA+', 'CITY_STEGER', 'CITY_RIVER FOREST', 'CITY_WINNETKA', 'CITY_JANESVILLE', 'which_ssa_59.0', 'CITY_ARLINGTON HEIGHTS', 'CITY_ROSELLE', 'CITY_OVERLAND PARK', 'CITY_LOS ANGELES', 'CITY_SOUTH ELGIN', 'which_ssa_8.0', 'STATE_IL', 'STATE_MO', 'which_ssa_16.0', 'CITY_BELLWOOD', 'CITY_NAPERVILLE', 'CITY_LAGRANGE', 'which_ssa_69.0', 'CITY_LANSING', 'metro_GDP', 'CITY_MORTON GROVE', 'CITY_WEST CHICAGO', 'CITY_ST.  LOUIS', 'CITY_DALLAS', 'CITY_GLENVIEW', 'in_ssa', 'CITY_HAMPSHIRE', 'CITY_BROOKFIELD', 'CITY_EDMOND', 'which_ssa_39.0', 'CITY_PHOENIX', 'which_ssa_20.0', 'CITY_A', 'which_ssa_64.0', 'CITY_DES PLAINES', 'CITY_NORRIDGE', 'which_ssa_13.0', 'CITY_CALUMENT', 'CITY_PARK FOREST', 'CITY_LA GRANGE HIGHLANDS', 'CITY_WHEELING', 'CITY_VILLA PARK', 'CITY_MAYWOOD', 'which_ssa_44.0', 'CITY_FORT WAYNE', 'CITY_PALATINE', 'CITY_OAK LAWN', 'CITY_FOREST PARK', 'CITY_BATAVIA', 'CITY_LINCOLNWOOD', 'CITY_RIVERSIDE', 'CITY_NEWTON', 'which_ssa_40.0', 'CITY_MCHENRY', 'CITY_GARY', 'CITY_SCHILLER PARK', 'which_ssa_52.0', 'which_ssa_0.0', 'CITY_SOUTH BEND', 'CITY_ELK GROVE', 'which_ssa_49.0', 'CITY_MOUNT PROSPECT', 'CITY_STAMFORD', 'CITY_WILLOW SPRINGS', 'CITY_NORTHBROOK', 'which_ssa_22.0', 'CITY_STRATFORD', 'CITY_BELOIT', 'CITY_TULSA', 'CITY_BENSENVILLE', 'CITY_MINNEAPOLIS', 'which_ssa_4.0', 'CITY_CARPENTERSVILLE', 'CITY_OAKBROOK', 'CITY_DEERFIELD', 'which_ssa_10.0', 'CITY_MELROSE PARK', 'medhhinc', 'which_ssa_26.0', 'CITY_HOFFMAN ESTATES', 'CITY_LAKE BLUFF', 'CITY_ITASCA', 'CITY_CALUMET CITY', 'CITY_LOCKPORT', 'CITY_MANTENO', 'which_ssa_45.0', 'CITY_BROADVIEW', 'CITY_GLENDALE HEIGHTS', 'STATE_OH', 'CITY_PEOTONE', 'which_ssa_23.0']
+Fitting: not_renewed_2yrs
+    Training model KNeighborsClassifier-n_neighbors10-n_jobs-1
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model KNeighborsClassifier-n_neighbors50-n_jobs-1
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model KNeighborsClassifier-n_neighbors100-n_jobs-1
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model DecisionTreeClassifier-max_depthNone
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model DecisionTreeClassifier-max_depth1
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model DecisionTreeClassifier-max_depth5
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model DecisionTreeClassifier-max_depth10
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model DecisionTreeClassifier-max_depth50
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model DecisionTreeClassifier-max_depth100
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model GradientBoostingClassifier-learning_rate0.1
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model GradientBoostingClassifier-learning_rate0.5
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model GradientBoostingClassifier-learning_rate2.0
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+Testing models.
+    Evaluating model KNeighborsClassifier-n_neighbors10-n_jobs-1
+        Evaluating on testing set "exists as of 12/31/2012" (1/6):
+        Evaluating on testing set "exists as of 12/31/2013" (2/6):
+        Evaluating on testing set "exists as of 12/31/2014" (3/6):
+        Evaluating on testing set "exists as of 12/31/2015" (4/6):
+        Evaluating on testing set "exists as of 12/31/2016" (5/6):
+        Evaluating on testing set "exists as of 12/31/2017" (6/6):
+    Evaluating model KNeighborsClassifier-n_neighbors50-n_jobs-1
+        Evaluating on testing set "exists as of 12/31/2012" (1/6):
+        Evaluating on testing set "exists as of 12/31/2013" (2/6):
+        Evaluating on testing set "exists as of 12/31/2014" (3/6):
+        Evaluating on testing set "exists as of 12/31/2015" (4/6):
+        Evaluating on testing set "exists as of 12/31/2016" (5/6):
+        Evaluating on testing set "exists as of 12/31/2017" (6/6):
+    Evaluating model KNeighborsClassifier-n_neighbors100-n_jobs-1
+        Evaluating on testing set "exists as of 12/31/2012" (1/6):
+        Evaluating on testing set "exists as of 12/31/2013" (2/6):
+        Evaluating on testing set "exists as of 12/31/2014" (3/6):
+        Evaluating on testing set "exists as of 12/31/2015" (4/6):
+        Evaluating on testing set "exists as of 12/31/2016" (5/6):
+        Evaluating on testing set "exists as of 12/31/2017" (6/6):
+    Evaluating model DecisionTreeClassifier-max_depthNone
+        Evaluating on testing set "exists as of 12/31/2012" (1/6):
+        Evaluating on testing set "exists as of 12/31/2013" (2/6):
+        Evaluating on testing set "exists as of 12/31/2014" (3/6):
+        Evaluating on testing set "exists as of 12/31/2015" (4/6):
+        Evaluating on testing set "exists as of 12/31/2016" (5/6):
+        Evaluating on testing set "exists as of 12/31/2017" (6/6):
+    Evaluating model DecisionTreeClassifier-max_depth1
+        Evaluating on testing set "exists as of 12/31/2012" (1/6):
+        Evaluating on testing set "exists as of 12/31/2013" (2/6):
+        Evaluating on testing set "exists as of 12/31/2014" (3/6):
+        Evaluating on testing set "exists as of 12/31/2015" (4/6):
+        Evaluating on testing set "exists as of 12/31/2016" (5/6):
+        Evaluating on testing set "exists as of 12/31/2017" (6/6):
+    Evaluating model DecisionTreeClassifier-max_depth5
+        Evaluating on testing set "exists as of 12/31/2012" (1/6):
+        Evaluating on testing set "exists as of 12/31/2013" (2/6):
+        Evaluating on testing set "exists as of 12/31/2014" (3/6):
+        Evaluating on testing set "exists as of 12/31/2015" (4/6):
+        Evaluating on testing set "exists as of 12/31/2016" (5/6):
+        Evaluating on testing set "exists as of 12/31/2017" (6/6):
+    Evaluating model DecisionTreeClassifier-max_depth10
+        Evaluating on testing set "exists as of 12/31/2012" (1/6):
+        Evaluating on testing set "exists as of 12/31/2013" (2/6):
+        Evaluating on testing set "exists as of 12/31/2014" (3/6):
+        Evaluating on testing set "exists as of 12/31/2015" (4/6):
+        Evaluating on testing set "exists as of 12/31/2016" (5/6):
+        Evaluating on testing set "exists as of 12/31/2017" (6/6):
+    Evaluating model DecisionTreeClassifier-max_depth50
+        Evaluating on testing set "exists as of 12/31/2012" (1/6):
+        Evaluating on testing set "exists as of 12/31/2013" (2/6):
+        Evaluating on testing set "exists as of 12/31/2014" (3/6):
+        Evaluating on testing set "exists as of 12/31/2015" (4/6):
+        Evaluating on testing set "exists as of 12/31/2016" (5/6):
+        Evaluating on testing set "exists as of 12/31/2017" (6/6):
+    Evaluating model DecisionTreeClassifier-max_depth100
+        Evaluating on testing set "exists as of 12/31/2012" (1/6):
+        Evaluating on testing set "exists as of 12/31/2013" (2/6):
+        Evaluating on testing set "exists as of 12/31/2014" (3/6):
+        Evaluating on testing set "exists as of 12/31/2015" (4/6):
+        Evaluating on testing set "exists as of 12/31/2016" (5/6):
+        Evaluating on testing set "exists as of 12/31/2017" (6/6):
+    Evaluating model GradientBoostingClassifier-learning_rate0.1
+        Evaluating on testing set "exists as of 12/31/2012" (1/6):
+        Evaluating on testing set "exists as of 12/31/2013" (2/6):
+        Evaluating on testing set "exists as of 12/31/2014" (3/6):
+        Evaluating on testing set "exists as of 12/31/2015" (4/6):
+        Evaluating on testing set "exists as of 12/31/2016" (5/6):
+        Evaluating on testing set "exists as of 12/31/2017" (6/6):
+    Evaluating model GradientBoostingClassifier-learning_rate0.5
+        Evaluating on testing set "exists as of 12/31/2012" (1/6):
+        Evaluating on testing set "exists as of 12/31/2013" (2/6):
+        Evaluating on testing set "exists as of 12/31/2014" (3/6):
+        Evaluating on testing set "exists as of 12/31/2015" (4/6):
+        Evaluating on testing set "exists as of 12/31/2016" (5/6):
+        Evaluating on testing set "exists as of 12/31/2017" (6/6):
+    Evaluating model GradientBoostingClassifier-learning_rate2.0
+        Evaluating on testing set "exists as of 12/31/2012" (1/6):
+        Evaluating on testing set "exists as of 12/31/2013" (2/6):
+        Evaluating on testing set "exists as of 12/31/2014" (3/6):
+        Evaluating on testing set "exists as of 12/31/2015" (4/6):
+        Evaluating on testing set "exists as of 12/31/2016" (5/6):
+        Evaluating on testing set "exists as of 12/31/2017" (6/6):
+Copying artifacts to stable path
