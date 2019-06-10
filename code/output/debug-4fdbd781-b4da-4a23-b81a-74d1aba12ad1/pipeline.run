@@ -1,0 +1,59 @@
+Starting pipeline debug (4fdbd781-b4da-4a23-b81a-74d1aba12ad1) at 2019-06-10 16:29:39.422923
+Input data: /Users/jonathantan/github/chicago-business-viability/data/joined_table.csv (SHA-256: 53f0450315e137c32bb8286b0fc6d6861bfb95995b54cc9d78ff777ebb6baff9)
+Pipeline library version: 4abb8e4
+
+Pipeline settings:
+    summarize: False
+    data_preprocessors: None
+    feature_generators: [<function count_by_zip_year at 0x11b047158>, <function make_dummy_vars at 0x11b047268>]
+    models: {'LogisticRegression-C0.01-penaltyl2-n_jobs-1': LogisticRegression(C=0.01, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=-1, penalty='l2',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False)}
+    name: debug
+    output_root_dir: /Users/jonathantan/github/chicago-business-viability/code/output
+
+Loading data
+
+Running transformations for cleaning
+    Applying transformation (1/13): convert-LICENSE TERM EXPIRATION DATE-to-datetime 
+    LICENSE TERM EXPIRATION DATE -> LICENSE TERM EXPIRATION DATE
+    Applying transformation (2/13): convert-DATE ISSUED-to-datetime 
+    DATE ISSUED -> DATE ISSUED
+    Applying transformation (3/13): convert-ZIP CODE-to-string 
+    ZIP CODE -> ZIP CODE
+    Applying transformation (4/13): replace-missing-values-with-mean(medhhinc) 
+    ['medhhinc'] -> medhhinc
+    Applying transformation (5/13): replace-missing-values-with-mean(a35to64_share) 
+    ['a35to64_share'] -> a35to64_share
+    Applying transformation (6/13): replace-missing-values-with-mean(share_BA+) 
+    ['share_BA+'] -> share_BA+
+    Applying transformation (7/13): replace-missing-values-with-mean(total_pop) 
+    ['total_pop'] -> total_pop
+    Applying transformation (8/13): replace-missing-values-with-mean(metro_GDP) 
+    ['metro_GDP'] -> metro_GDP
+    Applying transformation (9/13): replace-missing-values-with-mean(Cook_U3_ann_avg) 
+    ['Cook_U3_ann_avg'] -> Cook_U3_ann_avg
+    Applying transformation (10/13): replace-missing-values-with-mean(num_sites) 
+    ['num_sites'] -> num_sites
+    Applying transformation (11/13): replace-missing-values-with-mean(in_ssa) 
+    ['in_ssa'] -> in_ssa
+    Applying transformation (12/13): replace-missing-values-with-mean(which_ssa) 
+    ['which_ssa'] -> which_ssa
+    Applying transformation (13/13): replace-missing-values-with-mean(num_renewals) 
+    ['num_renewals'] -> num_renewals
+
+    Creating 2 features on test-train set 1
+    Creating 2 features on test-train set 1
+    Balancing features for test-train set 1
+Training models.
+Features: ['STATE_UT', 'CITY_LINCOLNSHIRE', 'STATE_CT', 'which_ssa_55.0', 'CITY_ESCONDIDO', 'STATE_FL', 'which_ssa_32.0', 'CITY_NILES', 'which_ssa_47.0', 'which_ssa_40.0', 'CITY_HOUSTON', 'CITY_DALLAS', 'CITY_CRANDON', 'share_BA+', 'CITY_ST. LOUIS', 'CITY_STRATFORD', 'CITY_HIGHLAND', 'CITY_A', 'CITY_OLDSMAR', 'CITY_HAMMOND', 'CITY_ROLLING MEADOWS', 'CITY_SOUTH BEND', 'CITY_PARK RIDGE', 'CITY_ARLINGTON', 'CITY_ELGIN', 'CITY_CARY', 'CITY_ADDISON', 'CITY_LOS ANGELES', 'CITY_HILLSIDE', 'CITY_FRANKLIN PARK', 'CITY_OAKBROOK', 'which_ssa_51.0', 'CITY_PARK CITY', 'CITY_SYRACUSE', 'CITY_NORTH CANTON', 'CITY_LA GRANGE HIGHLANDS', 'CITY_DES MOINES', 'which_ssa_4.0', 'CITY_ALSIP', 'CITY_MINNEAPOLIS', 'CITY_FOREST VIEW', 'STATE_IA', 'CITY_MOUNT PROSPECT', 'CITY_BENSENVILLE', 'CITY_CICERO', 'STATE_OK', 'total_pop', 'CITY_ELK GROVE', 'which_ssa_8.0', 'CITY_SPRINGFIELD', 'CITY_LISLE', 'CITY_DOLTON', 'CITY_INDIANAPOLIS', 'CITY_MICHIGAN CITY', 'CITY_WHITING', 'CITY_DAVENPORT', 'CITY_PARK FOREST', 'STATE_MS', 'CITY_ELMHURST', 'which_ssa_16.0', 'which_ssa_17.0', 'CITY_SUMMER', 'which_ssa_22.0', 'CITY_NORRIDGE', 'CITY_GOLDEN VALLEY', 'CITY_LAKE ZURICH', 'CITY_MUNDELEIN', 'CITY_STREAMWOOD', 'CITY_BRYAN', 'CITY_BELOIT', 'CITY_WHEELING', 'a35to64_share', 'CITY_HYDE PARK', 'which_ssa_23.0', 'which_ssa_10.0', 'which_ssa_61.0', 'STATE_TX', 'CITY_ROBBINS', 'CITY_MOUNT LAUREL', 'CITY_OAK FOREST', 'CITY_BATAVIA', 'CITY_LAKE VILLA', 'CITY_BRIDGEVIEW', 'CITY_WILLOW SPRINGS', 'which_ssa_13.0', 'CITY_NORTHPORT', 'CITY_FLOSSMOOR', 'CITY_SKOKIE', 'which_ssa_54.0', 'CITY_GRIFFITH', 'CITY_NEW YORK', 'CITY_BEDFORD PARK', 'CITY_SUMMIT ARGO', 'CITY_GLEN ELLYN', 'CITY_CROWNPOINT', 'STATE_CA', 'CITY_LOMBARD', 'STATE_IN', 'which_ssa_60.0', 'CITY_CLARENDON HILLS', 'CITY_SUMMIT', 'CITY_STICKNEY', 'CITY_CHESTERTON', 'num_renewals', 'CITY_WOOD DALE', 'CITY_LAKE IN THE HILLS', 'CITY_MAYWOOD', 'CITY_GLENVIEW', 'CITY_GARY', 'STATE_PA', 'CITY_HARWOOD HEIGHTS', 'which_ssa_39.0', 'STATE_MT', 'metro_GDP', 'CITY_WICHITA', 'which_ssa_14.0', 'CITY_MELROSE PARK', 'which_ssa_56.0', 'which_ssa_69.0', 'CITY_MADISON', 'which_ssa_31.0', 'CITY_ADA', 'which_ssa_2.0', 'which_ssa_59.0', 'CITY_WESTERN SPRINGS', 'CITY_DES PLAINE', 'CITY_ELMWOOD', 'CITY_PHOENIX', 'CITY_SUMMITT ARGO', 'CITY_BURR RIDGE', 'CITY_DOWNERS GROVE', 'CITY_BELLWOOD', 'CITY_MANTENO', 'CITY_BERWYN', 'CITY_EVANSTON', 'CITY_HARTFORD CITY', 'num_not_renewed_zip', 'CITY_MASON', 'STATE_VA', 'CITY_LOCKPORT', 'CITY_MONEE', 'CITY_ROMEOVILLE', 'CITY_TEMPE', 'CITY_DEERFIELD', 'CITY_LAGRANGE', 'CITY_WESTCHESTER', 'CITY_CARPENTERSVILLE', 'CITY_LAKE BLUFF', 'CITY_DARIEN', 'CITY_ST.  LOUIS', 'CITY_WEST CHICAGO', 'CITY_GURNEE', 'CITY_ITASCA', 'CITY_NEWTON', 'CITY_HINSDALE', 'STATE_AL', 'which_ssa_42.0', "CITY_O'FALLON", 'CITY_ST LOUIS', 'CITY_CLAYTON', 'CITY_MILWAUKEE', 'CITY_OAK BROOK', 'which_ssa_19.0', 'CITY_MORTON GROVE', 'CITY_ROCKFORD', 'CITY_BURBANK', 'CITY_CARMEL', 'CITY_AURORA', 'which_ssa_0.0', 'CITY_WATERLOO', 'STATE_KS', 'CITY_FORD HEIGHTS', 'CITY_LAKE GENEVA', 'which_ssa_50.0', 'CITY_RIVERWOODS', 'CITY_MT PROSPECT', 'which_ssa_33.0', 'which_ssa_45.0', 'CITY_WHEATON', 'CITY_JEFFERSONVILLE', 'CITY_HAMPSHIRE', 'CITY_NORTH CHARLESTON', 'which_ssa_43.0', 'STATE_RI', 'STATE_MN', 'CITY_ARLINGTON HEIGHTS', 'CITY_LAKE FOREST', 'CITY_MUNSTER', 'CITY_WILMETTE', 'CITY_RIVERSIDE', 'CITY_VILLA PARK', 'CITY_FORT WAYNE', 'STATE_AZ', 'CITY_CHICAGO HEIGHTS', 'CITY_MOOSEHEART', 'CITY_STAMFORD', 'CITY_GREEN BAY', 'CITY_NORTHLAKE', 'which_ssa_41.0', 'CITY_LYONS', 'which_ssa_21.0', 'which_ssa_27.0', 'CITY_GARRETT', 'CITY_LA GRANGE PARK', 'CITY_ELMWOOD PARK', 'CITY_EAST CHICAGO', 'STATE_MI', 'which_ssa_1.0', 'CITY_BUFFALO GROVE', 'CITY_ROUND LAKE PARK', 'medhhinc', 'CITY_DEER PARK', 'CITY_LANSING', 'CITY_GLENWOOD', 'CITY_OAK LAWN', 'CITY_ALGONQUIN', 'CITY_LINCOLNWOOD', 'CITY_STEGER', 'CITY_STONE PARK', 'which_ssa_25.0', 'CITY_SCHILLER PARK', 'which_ssa_28.0', 'which_ssa_5.0', 'CITY_ROSELLE', 'CITY_SCHAUMBURG', 'CITY_PEOTONE', 'STATE_WI', 'CITY_RIVER FOREST', 'CITY_AMBOY', 'CITY_PROVIDENCE', 'STATE_OH', 'CITY_LEMONT', 'which_ssa_44.0', 'which_ssa_62.0', 'which_ssa_7.736401031244397', 'CITY_CHESTER', 'CITY_BROOKFIELD', 'CITY_CAROL STREAM', 'CITY_NORTHBROOK', 'CITY_FAIRFIELD', 'CITY_LAGRANGE PARK', 'STATE_MA', 'CITY_CALUMENT', 'CITY_MERRILLVILLE', 'CITY_UNIVERSITY PARK', 'CITY_OKLAHOMA CITY', 'CITY_NAPERVILLE', 'which_ssa_18.0', 'in_ssa', 'STATE_NJ', 'CITY_SOUTH ELGIN', 'which_ssa_49.0', 'CITY_MCHENRY', 'CITY_HURST', 'CITY_NORTH RIVERSIDE', 'CITY_ELK GROVE VILLAGE', 'CITY_WESTMONT', 'num_sites', 'CITY_OVERLAND PARK', 'CITY_HINCKLEY', 'CITY_SOUTHBEND', 'CITY_LYNWOOD', 'CITY_NORTH AURORA', 'CITY_HAZEL CREST', 'which_ssa_26.0', 'CITY_JANESVILLE', 'CITY_SERENA', 'CITY_TULSA', 'CITY_WAUKEGAN', 'CITY_EVERGREEN PARK', 'CITY_WILLOWBROOK', 'CITY_KNOXVILLE', 'CITY_RICHTON PARK', 'STATE_IL', 'CITY_FOREST PARK', 'STATE_TN', 'CITY_SCOTTSDALE', 'CITY_BLUE ISLAND', 'CITY_DES PLAINES', 'CITY_VERNON HILLS', 'which_ssa_7.0', 'CITY_ST. JOHN', 'CITY_FREEPORT', 'CITY_ROSEMONT', 'which_ssa_34.0', 'CITY_CENTRAL STICKNEY', 'CITY_HOMEWOOD', 'CITY_NEW LENOX', 'which_ssa_20.0', 'CITY_ROSEVILLE', 'CITY_DIXMOOR', 'CITY_PALATINE', 'CITY_TINLEY PARK', 'which_ssa_35.0', 'CITY_GLENDALE HEIGHTS', 'which_ssa_29.0', 'which_ssa_63.0', 'CITY_PROVO', 'CITY_OAK PARK', 'CITY_DECATUR', 'CITY_ERIE', 'STATE_MO', 'CITY_PHILADELPHIA', 'STATE_NY', 'CITY_ROCKTON', 'CITY_JOLIET', 'STATE_SC', 'which_ssa_64.0', 'CITY_HIGHLAND PARK', 'CITY_MCCOOK', 'CITY_DYER', 'CITY_COLUMBIA', 'CITY_JUSTICE', 'which_ssa_3.0', 'CITY_CHICAGO', 'CITY_CALUMET CITY', 'CITY_LIBERTYVILLE', 'CITY_PLAINFIELD', 'CITY_EDMOND', 'CITY_BROADVIEW', 'CITY_CABERY', 'CITY_PROSPECT HEIGHTS', 'CITY_GRAYSLAKE', 'CITY_LA GRANGE', 'CITY_WINNETKA', 'CITY_TUPELO', 'CITY_CHICAGO RIDGE', 'CITY_HOFFMAN ESTATES', 'CITY_MISSOULA', 'which_ssa_52.0', 'CITY_URBANA', 'which_ssa_38.0', 'Cook_U3_ann_avg', 'CITY_PERU', 'which_ssa_24.0', 'CITY_RIVERDALE', 'which_ssa_48.0']
+Fitting: not_renewed_2yrs
+    Training model LogisticRegression-C0.01-penaltyl2-n_jobs-1
+        Training on training set "exists as of 12/31/2017" (1/1)
+Testing models.
+    Evaluating model LogisticRegression-C0.01-penaltyl2-n_jobs-1
+        Evaluating on testing set "exists as of 12/31/2017" (1/1):
+Copying artifacts to stable path
+Finished at 2019-06-10 16:34:20.425380

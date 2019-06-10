@@ -25,7 +25,7 @@ from feature_generation import (balance_features, count_by_dist_radius,
                                 make_features, reshape_and_create_label)
 from pipeline.core import Pipeline
 from pipeline.grid import Grid
-from pipeline.transformation import (Transformation, to_datetime,
+from pipeline.transformation import (Transformation, to_datetime, to_string,
                                      replace_missing_with_mean)
 from pipeline.splitter import Splitter
 
@@ -98,6 +98,7 @@ def get_pipeline(config_path):
         data_cleaning   = [
             to_datetime("LICENSE TERM EXPIRATION DATE"),
             to_datetime("DATE ISSUED"),
+            to_string("ZIP CODE"),
             replace_missing_with_mean('medhhinc'),
             replace_missing_with_mean('a35to64_share'),
             replace_missing_with_mean('share_BA+'),
@@ -126,5 +127,5 @@ if __name__ == "__main__":
     #              .clean_data()
     #              .summarize_data()
     #              .generate_test_train()
-    #              .preprocess_data())
+    #              .preprocess_data()
     #              .generate_features())

@@ -3,7 +3,7 @@ data:
   output_dir: "output/"
 
 pipeline:
-  name: "explore"
+  name: "full"
   target: "not_renewed_2yrs"
   precomputed_features:
 #    - which_ssa

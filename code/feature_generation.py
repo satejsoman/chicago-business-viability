@@ -26,16 +26,12 @@ def make_features(input_df, feature_generators, existing_features):
         generated_features = generated_features.merge(feature,
             how='left', on=MERGE_KEYS)
 
-    print("Base", base.shape)
-
     # Merge on all generated feature onto the base
     result_df = base \
         .drop(labels=['not_renewed_2yrs'], axis=1) \
         .merge(generated_features,
                how='left',
                on=MERGE_KEYS)
-
-    print("result_df", result_df.shape)
 
     # Merge on existing features
     result_df["JOIN_YEAR"] = result_df["YEAR"] - 1
@@ -194,14 +190,14 @@ def count_by_zip_year(input_df, license_data):
     Output: results_df - input_df with num_not_renewed_zip appended.
     '''
 
-    print("Before address merge", input_df.shape)
+    # print("Before address merge", input_df.shape)
 
     # Get locations from license data and merge onto business-year data
     addresses = get_locations(license_data)
     df = input_df.copy(deep=True) \
         .merge(addresses, how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER'])
 
-    print("After address merge", df.shape)
+    # print("After address merge", df.shape)
 
     # Setting and resetting index serves the purpose of expanding rows to all
     #   years for each zipcode in the data, then filling the "missing" rows
