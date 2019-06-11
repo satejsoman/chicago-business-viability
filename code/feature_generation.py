@@ -1,6 +1,7 @@
 import itertools
 import numpy as np
 import pandas as pd
+import re
 from sklearn.metrics.pairwise import haversine_distances
 
 MERGE_KEYS = ['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR']
@@ -160,8 +161,9 @@ def get_locations(input_df):
     Output: df - unique addresses for each account-site.
     '''
     # Columns to return
-    LOCATION_COLS = ['ACCOUNT NUMBER', 'SITE NUMBER', 'ADDRESS', 'CITY', 'GEOID',
-                     'STATE', 'ZIP CODE', 'LATITUDE', 'LONGITUDE', "which_ssa"]
+    LOCATION_COLS = ['ACCOUNT NUMBER', 'SITE NUMBER', 'ADDRESS', 'CITY', 
+                     'STATE', 'ZIP CODE', 'LATITUDE', 'LONGITUDE', "which_ssa", 
+                     'GEOID_2010']
 
     # Drop rows if these columns have NA
     NA_COLS = ['LATITUDE', 'LONGITUDE']
@@ -176,7 +178,7 @@ def get_locations(input_df):
 
 
 # Count nonrenewals by geographic area
-def count_by_geo_year(input_df, license_data, geo_col):
+def count_by_geo_year(input_df, license_data, geo_col = "GEOID_2010"):
     '''
     Takes business-year-level data from reshape_and_create_label(), counts the
     number of nonrenewals in the same geographic area-year, and returns the 
@@ -229,6 +231,62 @@ def count_by_geo_year(input_df, license_data, geo_col):
         .sort_values(by=MERGE_KEYS)
 
     return results_df
+
+
+# Get unique business activities
+def get_activities(input_df):
+    '''
+    Takes license-level data and returns a dataframe with activity attributes
+        for each account-site.
+
+    Input:  input_df - license-level data with specified activity columns.
+    Output: df - unique business activities for each account-site.
+    '''
+    # Columns to return
+    ACT_COLS = ['ACCOUNT NUMBER', 'SITE NUMBER', 'BUSINESS ACTIVITY']
+
+    # Drop rows if these columns have NA
+    NA_COLS = ['BUSINESS ACTIVITY']
+
+    df = input_df.copy(deep=True)[ACT_COLS] \
+        .dropna(subset=NA_COLS) \
+        .drop_duplicates() \
+        .sort_values(by=['ACCOUNT NUMBER', 'SITE NUMBER']) \
+        .reset_index(drop=True)
+
+    return df
+
+
+def classify_business_activity(input_df, license_data):
+    '''
+    Crude classifications of business activity type from searching key strings
+    in the BUSINESS ACTIVITY descriptive field
+
+    Takes: input_df - business-year level data with label.
+            license_data - licence-level data that provides business activities 
+    Returns: input_df with business activity columns appended
+    '''
+
+    # get unique activity sets
+    activities = get_activities(license_data)
+
+    search_terms = ['food', 'tobacco', 'liquor', 'fuel', 'hair', 'clothing', 'tax',
+                    'event', 'home repair', 'vehicle', 'nail', 'health club']
+    for term in search_terms:
+        activities['has_' + term] = activities['BUSINESS ACTIVITY'].str \
+                                            .contains(term, flags = re.IGNORECASE)
+
+    # flag business-site as having item if any of its appearances match that
+    activities = activities.drop(columns = "BUSINESS ACTIVITY") \
+                            .groupby(['ACCOUNT NUMBER', 'SITE NUMBER']) \
+                            .any() 
+    
+    # merge back into input data frame, janky way to avoid duplicating target
+    df = input_df.copy(deep=True) \
+            .drop(columns = "not_renewed_2yrs") \
+            .merge(activities, how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER'])
+        
+    return df
 
 
 # Count nonrenewals by distance radius

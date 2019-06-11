@@ -21,8 +21,9 @@ from sklearn.tree import DecisionTreeClassifier
 
 from data_cleaning import clean_data, filter_out_2019_data
 from feature_generation import (balance_features, count_by_dist_radius,
-                                count_by_zip_year, make_dummy_vars,
-                                make_features, reshape_and_create_label)
+                                count_by_geo_year, make_dummy_vars,
+                                make_features, reshape_and_create_label,
+                                classify_business_activity)
 from pipeline.core import Pipeline
 from pipeline.grid import Grid
 from pipeline.transformation import (Transformation, to_datetime, to_string,
@@ -71,14 +72,7 @@ def make_chicago_business_features(self):
     return self
 
 
-def get_pipeline(config_path):
-    try:
-        script_dir = Path(__file__).parent
-    except NameError:
-        script_dir = Path(os.path.abspath(''))
-
-    with open(script_dir.resolve()/config_path, 'rb') as config_file:
-        config = yaml.safe_load(config_file.read())
+def get_pipeline(config, script_dir):
 
     input_path    = script_dir/config["data"]["input_path"]
     output_dir    = script_dir/config["data"]["output_dir"]
@@ -112,35 +106,50 @@ def get_pipeline(config_path):
             replace_missing_with_mean('num_renewals')
         ],
         feature_generators=[
-            count_by_zip_year,
-            make_dummy_vars
+            count_by_geo_year,
+            make_dummy_vars,
+            classify_business_activity
         ])
 
     # pipeline.clean_data        = MethodType(clean_chicago_business_data, pipeline)
     pipeline.generate_features = MethodType(make_chicago_business_features, pipeline)
     return pipeline
 
-if __name__ == "__main__":
+def get_config(config_path):
 
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--config", help = "config file path")
-    args = parser.parse_args()
-
-    pipeline = get_pipeline(args.config)
-    pipeline.run()
+    try:
+        script_dir = Path(__file__).parent
+    except NameError:
+        script_dir = Path(os.path.abspath(''))
 
     with open(args.config, 'rb') as config_file:
         config = yaml.safe_load(config_file.read())
 
-    try:
-        for (description, model) in pipeline.trained_models.items():
-            dump(model, "models/" + config["pipeline"]["name"] + "_" + description + ".joblib" )
-    except Exception as e:
-        print(e)
-    # pipeline = (get_pipeline("config.yml")
-    #              .load_data()
-    #              .clean_data()
-    #              .summarize_data()
-    #              .generate_test_train()
-    #              .preprocess_data()
-    #              .generate_features())
+    return config, script_dir
+
+
+if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--config", help = "config file path", default = "config.yml")
+    args = parser.parse_args()
+
+    config, script_dir = get_config(args.config)
+    # pipeline = get_pipeline(config)
+    # pipeline.run()
+            
+    pipeline = (get_pipeline(config, script_dir)
+                 .load_data()
+                 .clean_data()
+                 .summarize_data()
+                 .generate_test_train()
+                 .preprocess_data()
+                 .generate_features())
+
+
+    # # save models after pipeline runs
+    # try:
+    #     for (description, model) in pipeline.trained_models.items():
+    #         dump(model, "models/" + config["pipeline"]["name"] + "_" + description + ".joblib" )
+    # except Exception as e:
+    #     print(e)
