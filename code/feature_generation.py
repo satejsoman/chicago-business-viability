@@ -160,7 +160,7 @@ def get_locations(input_df):
     Output: df - unique addresses for each account-site.
     '''
     # Columns to return
-    LOCATION_COLS = ['ACCOUNT NUMBER', 'SITE NUMBER', 'ADDRESS', 'CITY',
+    LOCATION_COLS = ['ACCOUNT NUMBER', 'SITE NUMBER', 'ADDRESS', 'CITY', 'GEOID',
                      'STATE', 'ZIP CODE', 'LATITUDE', 'LONGITUDE', "which_ssa"]
 
     # Drop rows if these columns have NA
@@ -175,19 +175,20 @@ def get_locations(input_df):
     return df
 
 
-# Count nonrenewals by zipcode
-def count_by_zip_year(input_df, license_data):
+# Count nonrenewals by geographic area
+def count_by_geo_year(input_df, license_data, geo_col):
     '''
     Takes business-year-level data from reshape_and_create_label(), counts the
-    number of nonrenewals in the same zipcode-year, and returns the original
-    df with num_not_renewed_zip.
+    number of nonrenewals in the same geographic area-year, and returns the 
+    original df with num_not_renewed_geo.
 
     Currently hardcoded to require columns for ACCOUNT NUMBER, SITE NUMBER,
-     YEAR, and ZIP CODE.
+     YEAR.
 
     Input:  input_df - business-year level data with label.
             license_data - licence-level data that provides locational info
-    Output: results_df - input_df with num_not_renewed_zip appended.
+            geo_col -  name of column with geographic area 
+    Output: results_df - input_df with num_not_renewed_geo appended.
     '''
 
     # print("Before address merge", input_df.shape)
@@ -200,30 +201,30 @@ def count_by_zip_year(input_df, license_data):
     # print("After address merge", df.shape)
 
     # Setting and resetting index serves the purpose of expanding rows to all
-    #   years for each zipcode in the data, then filling the "missing" rows
+    #   years for each geo in the data, then filling the "missing" rows
     #   with a count of 0. This lets us handle implicit imputation here, then
     #   merge it onto the original data without introducing NAs at that stage.
-    counts_by_zip = df.loc[df['not_renewed_2yrs'] == 1] \
-        .groupby(['ZIP CODE', 'YEAR']).size().reset_index() \
-        .set_index(['ZIP CODE', 'YEAR']) \
+    counts_by_geo = df.loc[df['not_renewed_2yrs'] == 1] \
+        .groupby([geo_col, 'YEAR']).size().reset_index() \
+        .set_index([geo_col, 'YEAR']) \
         .reindex(pd.MultiIndex.from_tuples(
-            itertools.product(df['ZIP CODE'].unique(), df['YEAR'].unique())
+            itertools.product(df[geo_col].unique(), df['YEAR'].unique())
         )) \
         .reset_index() \
-        .rename(columns={'level_0': 'ZIP CODE',
+        .rename(columns={'level_0': geo_col,
                          'level_1': 'YEAR',
-                         0: 'num_not_renewed_zip'}) \
+                         0: 'num_not_renewed_geo'}) \
         .fillna(0) \
-        .sort_values(by=['ZIP CODE', 'YEAR'])
+        .sort_values(by=[geo_col, 'YEAR'])
 
     # Change from float to int
-    counts_by_zip['num_not_renewed_zip'] = \
-        counts_by_zip['num_not_renewed_zip'].astype('int')
+    counts_by_geo['num_not_renewed_geo'] = \
+        counts_by_geo['num_not_renewed_geo'].astype('int')
 
-    # Merge zip-year level data onto base
-    results_df = df[['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR', 'ZIP CODE']] \
-        .merge(counts_by_zip, how='left', on=['ZIP CODE', 'YEAR']) \
-        .drop(labels=['ZIP CODE'], axis=1) \
+    # Merge geo-year level data onto base
+    results_df = df[['ACCOUNT NUMBER', 'SITE NUMBER', 'YEAR', geo_col]] \
+        .merge(counts_by_geo, how='left', on=[geo_col, 'YEAR']) \
+        .drop(labels=[geo_col], axis=1) \
         .fillna(0) \
         .sort_values(by=MERGE_KEYS)
 

@@ -1,9 +1,9 @@
 data:
-  input_path: "../data/joined_table5000.csv"
+  input_path: "../data/joined_table.csv"
   output_dir: "output/"
 
 pipeline:
-  name: "bagging-1"
+  name: "license-code-dev"
   target: "not_renewed_2yrs"
   precomputed_features:
 #    - which_ssa

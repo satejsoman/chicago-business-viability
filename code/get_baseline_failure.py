@@ -119,13 +119,17 @@ def get_pipeline(config_path):
     pipeline.generate_features = MethodType(make_chicago_business_features, pipeline)
     return pipeline
 
+
+def compute_annual_failure_rate(self):
+    pass
+
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", help = "config file path")
     args = parser.parse_args()
 
-    pipeline = get_pipeline(args.config)
+    # pipeline = get_pipeline(args.config)
     
     pipeline = (get_pipeline("config.yml")
                  .load_data()
@@ -134,3 +138,5 @@ if __name__ == "__main__":
                  .generate_test_train()
                  .preprocess_data()
                  .generate_features())
+    
+
