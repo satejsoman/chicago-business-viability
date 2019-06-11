@@ -31,8 +31,9 @@ def make_features(input_df, feature_generators, existing_features):
         .drop(labels=['not_renewed_2yrs'], axis=1) \
         .merge(generated_features,
                how='left',
-               on=MERGE_KEYS)
-
+               on=MERGE_KEYS) \
+        .drop(columns = ["num_sites_x"]) \
+        .rename(columns = {"num_sites_y": "num_sites"})
     # Merge on existing features
     result_df["JOIN_YEAR"] = result_df["YEAR"] - 1
 
@@ -45,7 +46,6 @@ def make_features(input_df, feature_generators, existing_features):
             right_on=MERGE_KEYS,
             left_on=['ACCOUNT NUMBER', 'SITE NUMBER', 'JOIN_YEAR']) \
         .drop(labels=['YEAR'], axis=1)
-
     # Fix year indexing
     full_result['YEAR'] = full_result["JOIN_YEAR"] + 1
     full_result = full_result.drop(labels=['JOIN_YEAR'], axis=1)
@@ -102,9 +102,7 @@ def reshape_and_create_label(input_df):
         .apply(pd.Series) \
         .merge(df, left_index=True, right_index=True) \
         .drop(labels=['years_open'], axis=1) \
-        .melt(id_vars=['account_site', 'min_license_date', 'max_license_date',
-                       'expiry'],
-              value_name='YEAR') \
+        .melt(id_vars=['account_site', 'min_license_date', 'max_license_date', 'expiry'], value_name='YEAR') \
         .drop(labels=['variable'], axis=1) \
         .dropna() \
         .sort_values(by=['account_site', 'YEAR'])
@@ -119,6 +117,9 @@ def reshape_and_create_label(input_df):
     df = df[['ACCOUNT NUMBER', 'SITE NUMBER', 'account_site', 'YEAR',
              'min_license_date', 'max_license_date', 'expiry']] \
         .sort_values(by=['ACCOUNT NUMBER', 'SITE NUMBER'])
+
+    grouping = df.groupby(["ACCOUNT NUMBER", "YEAR"])["SITE NUMBER"].count()
+    df["num_sites"] = df.apply(lambda row: grouping[row["ACCOUNT NUMBER"], row["YEAR"]], axis=1)
 
     # Assume buffer period is last 2 years of input data
     threshold_year = input_df['DATE ISSUED'].dt.year.max() - 1
@@ -146,7 +147,6 @@ def reshape_and_create_label(input_df):
                          'expiry'], axis=1) \
         .loc[df['YEAR'] < threshold_year] \
         .reset_index(drop=True)
-
     return df
 
 
@@ -190,14 +190,14 @@ def count_by_zip_year(input_df, license_data):
     Output: results_df - input_df with num_not_renewed_zip appended.
     '''
 
-    # print("Before address merge", input_df.shape)
+    
 
     # Get locations from license data and merge onto business-year data
     addresses = get_locations(license_data)
     df = input_df.copy(deep=True) \
         .merge(addresses, how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER'])
 
-    # print("After address merge", df.shape)
+    
 
     # Setting and resetting index serves the purpose of expanding rows to all
     #   years for each zipcode in the data, then filling the "missing" rows
@@ -316,7 +316,8 @@ def make_dummy_vars(base, license_data):
     # ACCOUNT NUM, SITE NUM, YEAR, not_renewed_2yrs, CITY, STATE
     df = df[base_cols + VARS_TO_DUMMIFY]
     new_df = pd.get_dummies(df, columns=VARS_TO_DUMMIFY, dtype=np.int64) \
-        .drop(labels=['not_renewed_2yrs'], axis=1)
+        .drop(labels=['not_renewed_2yrs'], axis=1) \
+        .drop(columns=["num_sites"])
 
     return new_df
 
