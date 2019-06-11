@@ -3,7 +3,7 @@ data:
   output_dir: "output/"
 
 pipeline:
-  name: "full"
+  name: "jonathan_knn_dt_boost"
   target: "not_renewed_2yrs"
   precomputed_features:
     - in_ssa
@@ -65,7 +65,7 @@ models:
   LinearSVC:
     C: [0.01, 0.1, 1, 10, 100]
     penalty: ["l2"]
-
+  
   LogisticRegression:
     C: [0.01, 0.1, 1, 10, 100]
     penalty: ["l1", "l2"]
