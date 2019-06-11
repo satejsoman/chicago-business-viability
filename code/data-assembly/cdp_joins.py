@@ -39,7 +39,7 @@ def get_num_renewals_map(df):
 def non_join_transformations(df):
     df["which_ssa"] = df.SSA.fillna(0)
     df["in_ssa"] = (df["which_ssa"] > 0).astype(int)
-    df["num_sites"] = df.groupby("ACCOUNT NUMBER")["SITE NUMBER"].transform('count')
+    # df["num_sites"] = df.groupby("ACCOUNT NUMBER")["SITE NUMBER"].transform('count')
     df["license_site"] = df["LICENSE NUMBER"].astype(str) + "-" + df["SITE NUMBER"].astype(str)
 
     return df 
@@ -56,7 +56,7 @@ def main(data_path, licenses, owners):
     # lmerge = licenses.merge(tif_relevant_columns, on="LOCATION")
     # licenses[['tif_approved_amount', 'tif_total_cost']] = tif[['APPROVED AMOUNT', 'TOTAL PROJECT COST']].fillna(0)
     
-    licenses[["ACCOUNT NUMBER", "SITE NUMBER", "YEAR",'which_ssa', 'in_ssa', 'num_sites', 'num_renewals']].to_csv(data_path/'licenses_joined.csv')
+    licenses[["ACCOUNT NUMBER", "SITE NUMBER", "YEAR",'which_ssa', 'in_ssa', 'num_renewals']].to_csv(data_path/'licenses_joined.csv')
 
 if __name__ == "__main__":
     data = Path("./data")

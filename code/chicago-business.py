@@ -105,7 +105,6 @@ def get_pipeline(config_path):
             replace_missing_with_mean('total_pop'),
             replace_missing_with_mean('metro_GDP'),
             replace_missing_with_mean('Cook_U3_ann_avg'),
-            replace_missing_with_mean('num_sites'),
             replace_missing_with_mean('in_ssa'),
             replace_missing_with_mean('which_ssa'),
             replace_missing_with_mean('num_renewals')

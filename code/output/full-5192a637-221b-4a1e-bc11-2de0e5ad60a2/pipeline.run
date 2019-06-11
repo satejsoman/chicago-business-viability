@@ -1,0 +1,530 @@
+Starting pipeline full (5192a637-221b-4a1e-bc11-2de0e5ad60a2) at 2019-06-10 19:10:03.355991
+Input data: /Users/satej/Documents/workspace/classwork/machine-learning/chicago-business-viability/data/joined_table100.csv (SHA-256: df309642b32d14245f515a4c3ce9f773ff4921b509cd4e454f82c1f6e9a1a4d9)
+Pipeline library version: 51d9302
+
+Pipeline settings:
+    summarize: False
+    data_preprocessors: None
+    feature_generators: [<function count_by_zip_year at 0x12b1b8400>, <function make_dummy_vars at 0x12b1b8510>]
+    models: {'LinearSVC-C0.01-penaltyl2': LinearSVC(C=0.01, class_weight=None, dual=True, fit_intercept=True,
+          intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+          multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
+          verbose=0), 'LinearSVC-C0.1-penaltyl2': LinearSVC(C=0.1, class_weight=None, dual=True, fit_intercept=True,
+          intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+          multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
+          verbose=0), 'LinearSVC-C1-penaltyl2': LinearSVC(C=1, class_weight=None, dual=True, fit_intercept=True,
+          intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+          multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
+          verbose=0), 'LinearSVC-C10-penaltyl2': LinearSVC(C=10, class_weight=None, dual=True, fit_intercept=True,
+          intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+          multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
+          verbose=0), 'LinearSVC-C100-penaltyl2': LinearSVC(C=100, class_weight=None, dual=True, fit_intercept=True,
+          intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+          multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
+          verbose=0), 'LogisticRegression-C0.01-penaltyl1-n_jobs-1': LogisticRegression(C=0.01, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=-1, penalty='l1',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False), 'LogisticRegression-C0.01-penaltyl2-n_jobs-1': LogisticRegression(C=0.01, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=-1, penalty='l2',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False), 'LogisticRegression-C0.1-penaltyl1-n_jobs-1': LogisticRegression(C=0.1, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=-1, penalty='l1',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False), 'LogisticRegression-C0.1-penaltyl2-n_jobs-1': LogisticRegression(C=0.1, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=-1, penalty='l2',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False), 'LogisticRegression-C1-penaltyl1-n_jobs-1': LogisticRegression(C=1, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=-1, penalty='l1',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False), 'LogisticRegression-C1-penaltyl2-n_jobs-1': LogisticRegression(C=1, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=-1, penalty='l2',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False), 'LogisticRegression-C10-penaltyl1-n_jobs-1': LogisticRegression(C=10, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=-1, penalty='l1',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False), 'LogisticRegression-C10-penaltyl2-n_jobs-1': LogisticRegression(C=10, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=-1, penalty='l2',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False), 'LogisticRegression-C100-penaltyl1-n_jobs-1': LogisticRegression(C=100, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=-1, penalty='l1',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False), 'LogisticRegression-C100-penaltyl2-n_jobs-1': LogisticRegression(C=100, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=-1, penalty='l2',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False), 'KNeighborsClassifier-n_neighbors10-n_jobs-1': KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='minkowski',
+                     metric_params=None, n_jobs=-1, n_neighbors=10, p=2,
+                     weights='uniform'), 'KNeighborsClassifier-n_neighbors50-n_jobs-1': KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='minkowski',
+                     metric_params=None, n_jobs=-1, n_neighbors=50, p=2,
+                     weights='uniform'), 'KNeighborsClassifier-n_neighbors100-n_jobs-1': KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='minkowski',
+                     metric_params=None, n_jobs=-1, n_neighbors=100, p=2,
+                     weights='uniform'), 'DecisionTreeClassifier-max_depthNone': DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=None,
+                       max_features=None, max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, presort=False,
+                       random_state=None, splitter='best'), 'DecisionTreeClassifier-max_depth1': DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=1,
+                       max_features=None, max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, presort=False,
+                       random_state=None, splitter='best'), 'DecisionTreeClassifier-max_depth5': DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=5,
+                       max_features=None, max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, presort=False,
+                       random_state=None, splitter='best'), 'DecisionTreeClassifier-max_depth10': DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=10,
+                       max_features=None, max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, presort=False,
+                       random_state=None, splitter='best'), 'DecisionTreeClassifier-max_depth50': DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=50,
+                       max_features=None, max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, presort=False,
+                       random_state=None, splitter='best'), 'DecisionTreeClassifier-max_depth100': DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=100,
+                       max_features=None, max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, presort=False,
+                       random_state=None, splitter='best'), 'GradientBoostingClassifier-learning_rate0.1': GradientBoostingClassifier(criterion='friedman_mse', init=None,
+                           learning_rate=0.1, loss='deviance', max_depth=3,
+                           max_features=None, max_leaf_nodes=None,
+                           min_impurity_decrease=0.0, min_impurity_split=None,
+                           min_samples_leaf=1, min_samples_split=2,
+                           min_weight_fraction_leaf=0.0, n_estimators=100,
+                           n_iter_no_change=None, presort='auto',
+                           random_state=None, subsample=1.0, tol=0.0001,
+                           validation_fraction=0.1, verbose=0,
+                           warm_start=False), 'GradientBoostingClassifier-learning_rate0.5': GradientBoostingClassifier(criterion='friedman_mse', init=None,
+                           learning_rate=0.5, loss='deviance', max_depth=3,
+                           max_features=None, max_leaf_nodes=None,
+                           min_impurity_decrease=0.0, min_impurity_split=None,
+                           min_samples_leaf=1, min_samples_split=2,
+                           min_weight_fraction_leaf=0.0, n_estimators=100,
+                           n_iter_no_change=None, presort='auto',
+                           random_state=None, subsample=1.0, tol=0.0001,
+                           validation_fraction=0.1, verbose=0,
+                           warm_start=False), 'GradientBoostingClassifier-learning_rate2.0': GradientBoostingClassifier(criterion='friedman_mse', init=None,
+                           learning_rate=2.0, loss='deviance', max_depth=3,
+                           max_features=None, max_leaf_nodes=None,
+                           min_impurity_decrease=0.0, min_impurity_split=None,
+                           min_samples_leaf=1, min_samples_split=2,
+                           min_weight_fraction_leaf=0.0, n_estimators=100,
+                           n_iter_no_change=None, presort='auto',
+                           random_state=None, subsample=1.0, tol=0.0001,
+                           validation_fraction=0.1, verbose=0,
+                           warm_start=False), 'BaggingClassifier-max_samples0.1-n_jobs-1': BaggingClassifier(base_estimator=None, bootstrap=True, bootstrap_features=False,
+                  max_features=1.0, max_samples=0.1, n_estimators=10, n_jobs=-1,
+                  oob_score=False, random_state=None, verbose=0,
+                  warm_start=False), 'BaggingClassifier-max_samples0.5-n_jobs-1': BaggingClassifier(base_estimator=None, bootstrap=True, bootstrap_features=False,
+                  max_features=1.0, max_samples=0.5, n_estimators=10, n_jobs=-1,
+                  oob_score=False, random_state=None, verbose=0,
+                  warm_start=False), 'BaggingClassifier-max_samples1.0-n_jobs-1': BaggingClassifier(base_estimator=None, bootstrap=True, bootstrap_features=False,
+                  max_features=1.0, max_samples=1.0, n_estimators=10, n_jobs=-1,
+                  oob_score=False, random_state=None, verbose=0,
+                  warm_start=False), 'RandomForestClassifier-n_estimators100-max_depthNone-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=None, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=100,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators100-max_depth10-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=10, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=100,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators100-max_depth50-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=50, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=100,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators100-max_depth100-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=100, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=100,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators200-max_depthNone-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=None, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=200,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators200-max_depth10-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=10, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=200,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators200-max_depth50-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=50, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=200,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators200-max_depth100-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=100, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=200,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators500-max_depthNone-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=None, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=500,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators500-max_depth10-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=10, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=500,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators500-max_depth50-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=50, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=500,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators500-max_depth100-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=100, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=500,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators1000-max_depthNone-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=None, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=1000,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators1000-max_depth10-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=10, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=1000,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators1000-max_depth50-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=50, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=1000,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators1000-max_depth100-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=100, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=1000,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators2000-max_depthNone-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=None, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=2000,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators2000-max_depth10-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=10, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=2000,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators2000-max_depth50-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=50, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=2000,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False), 'RandomForestClassifier-n_estimators2000-max_depth100-n_jobs-1': RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=100, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=2000,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False)}
+    name: full
+    output_root_dir: /Users/satej/Documents/workspace/classwork/machine-learning/chicago-business-viability/code/output
+
+Loading data
+
+Running transformations for cleaning
+    Applying transformation (1/12): convert-LICENSE TERM EXPIRATION DATE-to-datetime 
+    LICENSE TERM EXPIRATION DATE -> LICENSE TERM EXPIRATION DATE
+    Applying transformation (2/12): convert-DATE ISSUED-to-datetime 
+    DATE ISSUED -> DATE ISSUED
+    Applying transformation (3/12): convert-ZIP CODE-to-string 
+    ZIP CODE -> ZIP CODE
+    Applying transformation (4/12): replace-missing-values-with-mean(medhhinc) 
+    ['medhhinc'] -> medhhinc
+    Applying transformation (5/12): replace-missing-values-with-mean(a35to64_share) 
+    ['a35to64_share'] -> a35to64_share
+    Applying transformation (6/12): replace-missing-values-with-mean(share_BA+) 
+    ['share_BA+'] -> share_BA+
+    Applying transformation (7/12): replace-missing-values-with-mean(total_pop) 
+    ['total_pop'] -> total_pop
+    Applying transformation (8/12): replace-missing-values-with-mean(metro_GDP) 
+    ['metro_GDP'] -> metro_GDP
+    Applying transformation (9/12): replace-missing-values-with-mean(Cook_U3_ann_avg) 
+    ['Cook_U3_ann_avg'] -> Cook_U3_ann_avg
+    Applying transformation (10/12): replace-missing-values-with-mean(in_ssa) 
+    ['in_ssa'] -> in_ssa
+    Applying transformation (11/12): replace-missing-values-with-mean(which_ssa) 
+    ['which_ssa'] -> which_ssa
+    Applying transformation (12/12): replace-missing-values-with-mean(num_renewals) 
+    ['num_renewals'] -> num_renewals
+
+    Creating 2 features on test-train set 1
+    Creating 2 features on test-train set 2
+    Creating 2 features on test-train set 3
+    Creating 2 features on test-train set 4
+    Creating 2 features on test-train set 5
+    Creating 2 features on test-train set 6
+    Creating 2 features on test-train set 1
+    Creating 2 features on test-train set 2
+    Creating 2 features on test-train set 3
+    Creating 2 features on test-train set 4
+    Creating 2 features on test-train set 5
+    Creating 2 features on test-train set 6
+    Balancing features for test-train set 1
+    Balancing features for test-train set 2
+    Balancing features for test-train set 3
+    Balancing features for test-train set 4
+    Balancing features for test-train set 5
+    Balancing features for test-train set 6
+Training models.
+Features: ['which_ssa_5.0', 'num_renewals', 'share_BA+', 'medhhinc', 'Cook_U3_ann_avg', 'which_ssa_42.0', 'which_ssa_39.0', 'total_pop', 'metro_GDP', 'CITY_CHICAGO', 'a35to64_share', 'STATE_IL', 'which_ssa_0.0', 'num_not_renewed_zip', 'which_ssa_33.0', 'in_ssa', 'which_ssa_49.0']
+Fitting: not_renewed_2yrs
+    Training model LinearSVC-C0.01-penaltyl2
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model LinearSVC-C0.1-penaltyl2
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model LinearSVC-C1-penaltyl2
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model LinearSVC-C10-penaltyl2
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model LinearSVC-C100-penaltyl2
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model LogisticRegression-C0.01-penaltyl1-n_jobs-1
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model LogisticRegression-C0.01-penaltyl2-n_jobs-1
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model LogisticRegression-C0.1-penaltyl1-n_jobs-1
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model LogisticRegression-C0.1-penaltyl2-n_jobs-1
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model LogisticRegression-C1-penaltyl1-n_jobs-1
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model LogisticRegression-C1-penaltyl2-n_jobs-1
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model LogisticRegression-C10-penaltyl1-n_jobs-1
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model LogisticRegression-C10-penaltyl2-n_jobs-1
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model LogisticRegression-C100-penaltyl1-n_jobs-1
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model LogisticRegression-C100-penaltyl2-n_jobs-1
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model KNeighborsClassifier-n_neighbors10-n_jobs-1
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model KNeighborsClassifier-n_neighbors50-n_jobs-1
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model KNeighborsClassifier-n_neighbors100-n_jobs-1
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model DecisionTreeClassifier-max_depthNone
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model DecisionTreeClassifier-max_depth1
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model DecisionTreeClassifier-max_depth5
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model DecisionTreeClassifier-max_depth10
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model DecisionTreeClassifier-max_depth50
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model DecisionTreeClassifier-max_depth100
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model GradientBoostingClassifier-learning_rate0.1
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model GradientBoostingClassifier-learning_rate0.5
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model GradientBoostingClassifier-learning_rate2.0
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model BaggingClassifier-max_samples0.1-n_jobs-1
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model BaggingClassifier-max_samples0.5-n_jobs-1
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model BaggingClassifier-max_samples1.0-n_jobs-1
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model RandomForestClassifier-n_estimators100-max_depthNone-n_jobs-1
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)
+        Training on training set "exists as of 12/31/2016" (5/6)
+        Training on training set "exists as of 12/31/2017" (6/6)
+    Training model RandomForestClassifier-n_estimators100-max_depth10-n_jobs-1
+        Training on training set "exists as of 12/31/2012" (1/6)
+        Training on training set "exists as of 12/31/2013" (2/6)
+        Training on training set "exists as of 12/31/2014" (3/6)
+        Training on training set "exists as of 12/31/2015" (4/6)

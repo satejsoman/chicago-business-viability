@@ -102,9 +102,7 @@ def reshape_and_create_label(input_df):
         .apply(pd.Series) \
         .merge(df, left_index=True, right_index=True) \
         .drop(labels=['years_open'], axis=1) \
-        .melt(id_vars=['account_site', 'min_license_date', 'max_license_date',
-                       'expiry'],
-              value_name='YEAR') \
+        .melt(id_vars=['account_site', 'min_license_date', 'max_license_date', 'expiry'], value_name='YEAR') \
         .drop(labels=['variable'], axis=1) \
         .dropna() \
         .sort_values(by=['account_site', 'YEAR'])
@@ -119,6 +117,9 @@ def reshape_and_create_label(input_df):
     df = df[['ACCOUNT NUMBER', 'SITE NUMBER', 'account_site', 'YEAR',
              'min_license_date', 'max_license_date', 'expiry']] \
         .sort_values(by=['ACCOUNT NUMBER', 'SITE NUMBER'])
+
+    grouping = df.groupby(["ACCOUNT NUMBER", "YEAR"])["SITE NUMBER"].count()
+    df["num_sites"] = df.apply(lambda row: grouping[row["ACCOUNT NUMBER"], row["YEAR"]], axis=1)
 
     # Assume buffer period is last 2 years of input data
     threshold_year = input_df['DATE ISSUED'].dt.year.max() - 1
@@ -146,7 +147,6 @@ def reshape_and_create_label(input_df):
                          'expiry'], axis=1) \
         .loc[df['YEAR'] < threshold_year] \
         .reset_index(drop=True)
-
     return df
 
 
