@@ -1,0 +1,92 @@
+Starting pipeline debug (36308cea-c4e2-47f4-a458-9995bbf2d804) at 2019-06-10 16:20:39.427319
+Input data: /Users/jonathantan/github/chicago-business-viability/data/joined_table.csv (SHA-256: 53f0450315e137c32bb8286b0fc6d6861bfb95995b54cc9d78ff777ebb6baff9)
+Pipeline library version: 4abb8e4
+
+Pipeline settings:
+    summarize: False
+    data_preprocessors: None
+    feature_generators: [<function count_by_zip_year at 0x11a955158>, <function make_dummy_vars at 0x11a955268>]
+    models: {'LogisticRegression-C0.01-penaltyl1-n_jobs-1': LogisticRegression(C=0.01, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=-1, penalty='l1',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False), 'LogisticRegression-C0.01-penaltyl2-n_jobs-1': LogisticRegression(C=0.01, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=-1, penalty='l2',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False), 'LogisticRegression-C0.1-penaltyl1-n_jobs-1': LogisticRegression(C=0.1, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=-1, penalty='l1',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False), 'LogisticRegression-C0.1-penaltyl2-n_jobs-1': LogisticRegression(C=0.1, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=-1, penalty='l2',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False), 'LogisticRegression-C1-penaltyl1-n_jobs-1': LogisticRegression(C=1, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=-1, penalty='l1',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False), 'LogisticRegression-C1-penaltyl2-n_jobs-1': LogisticRegression(C=1, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=-1, penalty='l2',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False), 'LogisticRegression-C10-penaltyl1-n_jobs-1': LogisticRegression(C=10, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=-1, penalty='l1',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False), 'LogisticRegression-C10-penaltyl2-n_jobs-1': LogisticRegression(C=10, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=-1, penalty='l2',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False), 'LogisticRegression-C100-penaltyl1-n_jobs-1': LogisticRegression(C=100, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=-1, penalty='l1',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False), 'LogisticRegression-C100-penaltyl2-n_jobs-1': LogisticRegression(C=100, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=-1, penalty='l2',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False)}
+    name: debug
+    output_root_dir: /Users/jonathantan/github/chicago-business-viability/code/output
+
+Loading data
+
+Running transformations for cleaning
+    Applying transformation (1/13): convert-LICENSE TERM EXPIRATION DATE-to-datetime 
+    LICENSE TERM EXPIRATION DATE -> LICENSE TERM EXPIRATION DATE
+    Applying transformation (2/13): convert-DATE ISSUED-to-datetime 
+    DATE ISSUED -> DATE ISSUED
+    Applying transformation (3/13): convert-ZIP CODE-to-string 
+    ZIP CODE -> ZIP CODE
+    Applying transformation (4/13): replace-missing-values-with-mean(medhhinc) 
+    ['medhhinc'] -> medhhinc
+    Applying transformation (5/13): replace-missing-values-with-mean(a35to64_share) 
+    ['a35to64_share'] -> a35to64_share
+    Applying transformation (6/13): replace-missing-values-with-mean(share_BA+) 
+    ['share_BA+'] -> share_BA+
+    Applying transformation (7/13): replace-missing-values-with-mean(total_pop) 
+    ['total_pop'] -> total_pop
+    Applying transformation (8/13): replace-missing-values-with-mean(metro_GDP) 
+    ['metro_GDP'] -> metro_GDP
+    Applying transformation (9/13): replace-missing-values-with-mean(Cook_U3_ann_avg) 
+    ['Cook_U3_ann_avg'] -> Cook_U3_ann_avg
+    Applying transformation (10/13): replace-missing-values-with-mean(num_sites) 
+    ['num_sites'] -> num_sites
+    Applying transformation (11/13): replace-missing-values-with-mean(in_ssa) 
+    ['in_ssa'] -> in_ssa
+    Applying transformation (12/13): replace-missing-values-with-mean(which_ssa) 
+    ['which_ssa'] -> which_ssa
+    Applying transformation (13/13): replace-missing-values-with-mean(num_renewals) 
+    ['num_renewals'] -> num_renewals
+
+    Creating 2 features on test-train set 1
+    Creating 2 features on test-train set 1
+    Balancing features for test-train set 1
+Training models.
+Features: ['CITY_ST.  LOUIS', 'CITY_SERENA', 'CITY_STREAMWOOD', 'CITY_STICKNEY', 'CITY_MAYWOOD', 'CITY_FORT WAYNE', 'CITY_OAKBROOK', 'STATE_WI', 'CITY_ROBBINS', 'CITY_HINSDALE', 'CITY_AMBOY', 'CITY_CAROL STREAM', 'CITY_ELK GROVE', 'CITY_LAKE VILLA', 'CITY_ARLINGTON HEIGHTS', 'which_ssa_29.0', 'CITY_GRIFFITH', 'STATE_NY', 'CITY_ROUND LAKE PARK', 'CITY_ITASCA', 'CITY_PLAINFIELD', 'CITY_STRATFORD', 'CITY_LAKE IN THE HILLS', 'CITY_PEOTONE', 'which_ssa_59.0', 'CITY_PERU', 'CITY_CARY', 'which_ssa_22.0', 'CITY_HINCKLEY', 'CITY_LAKE FOREST', 'which_ssa_20.0', 'CITY_MUNDELEIN', 'CITY_NORTH RIVERSIDE', 'CITY_MOOSEHEART', 'STATE_IN', 'CITY_EDMOND', 'CITY_PROVIDENCE', 'CITY_PHILADELPHIA', 'CITY_SOUTHBEND', 'which_ssa_41.0', 'CITY_OLDSMAR', 'CITY_GARY', 'CITY_HYDE PARK', 'CITY_SCHILLER PARK', 'CITY_DAVENPORT', 'which_ssa_32.0', 'CITY_HOUSTON', 'CITY_PARK RIDGE', 'CITY_FOREST VIEW', 'CITY_GLENVIEW', 'CITY_NORTH AURORA', 'STATE_OK', 'CITY_DES MOINES', 'CITY_MANTENO', 'CITY_LAKE BLUFF', 'CITY_RIVERDALE', 'CITY_CARMEL', 'which_ssa_10.0', 'CITY_NORTH CHARLESTON', 'CITY_SKOKIE', 'CITY_DECATUR', 'CITY_LIBERTYVILLE', 'which_ssa_39.0', 'CITY_RICHTON PARK', 'CITY_GOLDEN VALLEY', 'CITY_KNOXVILLE', 'which_ssa_4.0', 'CITY_MOUNT PROSPECT', 'CITY_LINCOLNSHIRE', 'CITY_OAK BROOK', 'num_not_renewed_zip', 'CITY_JUSTICE', 'medhhinc', 'CITY_TULSA', 'CITY_ERIE', 'CITY_WESTCHESTER', 'CITY_RIVERSIDE', 'CITY_EVANSTON', 'CITY_LOCKPORT', 'which_ssa_24.0', 'CITY_OAK FOREST', 'CITY_VERNON HILLS', 'CITY_LAKE GENEVA', 'CITY_LINCOLNWOOD', 'CITY_LA GRANGE HIGHLANDS', 'CITY_SUMMER', 'CITY_LA GRANGE PARK', 'CITY_COLUMBIA', 'CITY_TINLEY PARK', 'CITY_FRANKLIN PARK', 'CITY_DYER', 'CITY_CARPENTERSVILLE', 'CITY_FOREST PARK', 'STATE_MS', 'CITY_WESTERN SPRINGS', 'CITY_GLEN ELLYN', 'CITY_HOFFMAN ESTATES', 'CITY_ROSEMONT', 'which_ssa_52.0', 'STATE_SC', 'which_ssa_64.0', 'CITY_GARRETT', 'CITY_SOUTH BEND', 'CITY_ADDISON', 'num_sites', 'CITY_MADISON', 'CITY_CHESTER', 'CITY_HARTFORD CITY', 'CITY_MINNEAPOLIS', 'CITY_WESTMONT', 'CITY_BELLWOOD', 'CITY_LISLE', 'CITY_FORD HEIGHTS', 'which_ssa_61.0', 'which_ssa_54.0', 'CITY_MCCOOK', 'CITY_EVERGREEN PARK', 'CITY_LYONS', 'STATE_MN', 'CITY_MELROSE PARK', 'which_ssa_56.0', 'CITY_NORRIDGE', 'STATE_IL', 'CITY_BRIDGEVIEW', 'CITY_HIGHLAND PARK', 'STATE_NJ', 'CITY_WHITING', 'CITY_CABERY', 'CITY_HAZEL CREST', 'CITY_ROMEOVILLE', 'STATE_AL', 'CITY_OKLAHOMA CITY', 'CITY_MORTON GROVE', 'CITY_CHICAGO RIDGE', 'CITY_TUPELO', 'which_ssa_47.0', 'CITY_HOMEWOOD', 'CITY_OAK LAWN', 'CITY_SCHAUMBURG', 'CITY_SUMMIT ARGO', 'CITY_LAGRANGE PARK', 'STATE_IA', 'CITY_FREEPORT', 'CITY_ELMWOOD', 'CITY_NORTHBROOK', 'CITY_CRANDON', 'CITY_RIVERWOODS', 'CITY_PHOENIX', 'num_renewals', 'metro_GDP', 'CITY_DES PLAINE', 'which_ssa_0.0', 'CITY_HILLSIDE', 'CITY_GREEN BAY', 'CITY_BURBANK', 'CITY_CHICAGO', 'total_pop', 'which_ssa_62.0', 'CITY_BELOIT', 'CITY_GURNEE', 'STATE_AZ', 'CITY_LOMBARD', 'CITY_DIXMOOR', 'CITY_DOWNERS GROVE', 'CITY_EAST CHICAGO', 'CITY_SPRINGFIELD', 'CITY_ELK GROVE VILLAGE', 'CITY_GLENDALE HEIGHTS', 'CITY_CHESTERTON', 'CITY_AURORA', 'CITY_HIGHLAND', 'CITY_HAMMOND', 'CITY_BROOKFIELD', 'which_ssa_1.0', 'CITY_NEW LENOX', 'CITY_ST. LOUIS', 'CITY_LAKE ZURICH', 'STATE_FL', 'CITY_URBANA', 'which_ssa_43.0', 'CITY_WILMETTE', 'which_ssa_14.0', 'CITY_PARK FOREST', 'which_ssa_69.0', 'CITY_WILLOWBROOK', 'CITY_MERRILLVILLE', 'CITY_ELMHURST', 'CITY_OVERLAND PARK', 'which_ssa_38.0', 'STATE_MO', 'CITY_CALUMET CITY', 'STATE_UT', 'CITY_ALSIP', 'STATE_TN', 'CITY_DEER PARK', 'which_ssa_60.0', 'CITY_BROADVIEW', 'CITY_BRYAN', 'which_ssa_5.0', 'which_ssa_27.0', 'CITY_WEST CHICAGO', 'CITY_MOUNT LAUREL', 'CITY_PROSPECT HEIGHTS', 'CITY_SUMMIT', 'CITY_WAUKEGAN', 'CITY_ESCONDIDO', 'CITY_BUFFALO GROVE', 'CITY_INDIANAPOLIS', 'which_ssa_40.0', 'CITY_NORTHPORT', 'which_ssa_35.0', 'CITY_HURST', 'CITY_WINNETKA', 'CITY_DES PLAINES', 'CITY_MUNSTER', 'STATE_MA', 'which_ssa_45.0', 'CITY_PROVO', 'CITY_BATAVIA', 'CITY_MONEE', 'CITY_ELMWOOD PARK', 'which_ssa_48.0', 'CITY_LOS ANGELES', 'STATE_VA', 'which_ssa_31.0', 'CITY_GRAYSLAKE', 'CITY_ROLLING MEADOWS', 'which_ssa_49.0', 'STATE_OH', 'CITY_BEDFORD PARK', 'CITY_ELGIN', 'CITY_STAMFORD', 'CITY_LAGRANGE', 'CITY_STEGER', 'CITY_MISSOULA', 'CITY_FAIRFIELD', 'which_ssa_44.0', 'CITY_PALATINE', 'CITY_CHICAGO HEIGHTS', 'CITY_MT PROSPECT', 'STATE_MI', 'CITY_WHEELING', 'CITY_ST. JOHN', 'CITY_UNIVERSITY PARK', 'CITY_OAK PARK', 'which_ssa_26.0', 'which_ssa_42.0', 'CITY_CICERO', 'STATE_CA', 'CITY_BERWYN', 'STATE_MT', 'CITY_MASON', 'CITY_LEMONT', 'CITY_FLOSSMOOR', 'CITY_ADA', 'CITY_DOLTON', 'STATE_RI', 'CITY_BURR RIDGE', 'a35to64_share', 'CITY_CENTRAL STICKNEY', 'CITY_NORTHLAKE', 'CITY_PARK CITY', 'CITY_BLUE ISLAND', 'CITY_WATERLOO', 'which_ssa_51.0', 'CITY_HAMPSHIRE', 'STATE_TX', 'which_ssa_7.0', 'CITY_ROSELLE', 'which_ssa_13.0', 'CITY_MCHENRY', 'CITY_ARLINGTON', 'CITY_HARWOOD HEIGHTS', 'which_ssa_17.0', 'STATE_KS', 'CITY_MILWAUKEE', 'CITY_WICHITA', 'CITY_CALUMENT', 'which_ssa_34.0', 'CITY_RIVER FOREST', 'STATE_PA', 'in_ssa', 'CITY_NEWTON', 'CITY_DALLAS', "CITY_O'FALLON", 'which_ssa_23.0', 'CITY_CLARENDON HILLS', 'CITY_ST LOUIS', 'CITY_WHEATON', 'CITY_NAPERVILLE', 'CITY_VILLA PARK', 'CITY_SYRACUSE', 'which_ssa_3.0', 'CITY_LYNWOOD', 'CITY_MICHIGAN CITY', 'share_BA+', 'CITY_NILES', 'which_ssa_18.0', 'CITY_LA GRANGE', 'CITY_LANSING', 'Cook_U3_ann_avg', 'CITY_ROCKFORD', 'which_ssa_50.0', 'which_ssa_25.0', 'which_ssa_7.736401031244397', 'which_ssa_8.0', 'CITY_NEW YORK', 'CITY_ROCKTON', 'which_ssa_21.0', 'which_ssa_16.0', 'CITY_BENSENVILLE', 'CITY_SUMMITT ARGO', 'CITY_SCOTTSDALE', 'CITY_JOLIET', 'CITY_SOUTH ELGIN', 'CITY_DARIEN', 'which_ssa_33.0', 'STATE_CT', 'CITY_DEERFIELD', 'which_ssa_28.0', 'which_ssa_63.0', 'CITY_A', 'which_ssa_19.0', 'CITY_ALGONQUIN', 'CITY_WILLOW SPRINGS', 'CITY_CROWNPOINT', 'CITY_WOOD DALE', 'CITY_NORTH CANTON', 'CITY_GLENWOOD', 'CITY_JEFFERSONVILLE', 'CITY_STONE PARK', 'which_ssa_55.0', 'which_ssa_2.0', 'CITY_ROSEVILLE', 'CITY_JANESVILLE', 'CITY_TEMPE', 'CITY_CLAYTON']
+Fitting: not_renewed_2yrs
+    Training model LogisticRegression-C0.01-penaltyl1-n_jobs-1
+        Training on training set "exists as of 12/31/2017" (1/1)
+    Training model LogisticRegression-C0.01-penaltyl2-n_jobs-1
+        Training on training set "exists as of 12/31/2017" (1/1)

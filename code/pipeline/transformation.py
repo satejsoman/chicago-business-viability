@@ -89,6 +89,15 @@ def to_datetime(column):
        function = lambda df: pd.to_datetime(df, format="%m/%d/%Y"))
 
 
+def to_string(column):
+    return Transformation(
+       name = "convert-" + column + "-to-string",
+       input_column_names=column,
+       output_column_name=column,
+       # some zip codes are being stored as floats (e.g. 60637.0)
+       function = lambda df: df.astype('str').str.replace('.0', '', regex=False))
+
+
 def standardize(columns):
     def standardize(dataframe):
         return scale(dataframe[column])
