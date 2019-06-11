@@ -27,7 +27,7 @@ from feature_generation import (balance_features, count_by_dist_radius,
 from pipeline.core import Pipeline
 from pipeline.grid import Grid
 from pipeline.transformation import (Transformation, to_datetime, to_string,
-                                     replace_missing_with_mean)
+                                     replace_missing_with_mean, replace_missing_with_value)
 from pipeline.splitter import Splitter
 from joblib import dump, load
 
@@ -134,7 +134,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     config, script_dir = get_config(args.config)
-    pipeline = get_pipeline(config)
+    pipeline = get_pipeline(config, script_dir)
     pipeline.run()
             
     # pipeline = (get_pipeline(config, script_dir)

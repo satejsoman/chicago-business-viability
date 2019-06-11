@@ -193,14 +193,11 @@ def count_by_geo_year(input_df, license_data, geo_col = "GEOID_2010"):
     Output: results_df - input_df with num_not_renewed_geo appended.
     '''
 
-    
-
     # Get locations from license data and merge onto business-year data
     addresses = get_locations(license_data)
     df = input_df.copy(deep=True) \
         .merge(addresses, how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER'])
 
-    
 
     # Setting and resetting index serves the purpose of expanding rows to all
     #   years for each geo in the data, then filling the "missing" rows
