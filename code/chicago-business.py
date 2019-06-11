@@ -105,8 +105,8 @@ def get_pipeline(config_path):
             replace_missing_with_mean('total_pop'),
             replace_missing_with_mean('metro_GDP'),
             replace_missing_with_mean('Cook_U3_ann_avg'),
-            replace_missing_with_mean('in_ssa'),
-            replace_missing_with_mean('which_ssa'),
+            replace_missing_with_value('in_ssa', 0),
+            replace_missing_with_value('which_ssa', 0),
             replace_missing_with_mean('num_renewals')
         ],
         feature_generators=[
@@ -120,11 +120,11 @@ def get_pipeline(config_path):
 
 if __name__ == "__main__":
     pipeline = get_pipeline("config.yml")
-    pipeline.run()
-    # pipeline = (get_pipeline("config.yml")
-    #              .load_data()
-    #              .clean_data()
-    #              .summarize_data()
-    #              .generate_test_train()
-    #              .preprocess_data()
-    #              .generate_features())
+    #pipeline.run()
+    pipeline = (get_pipeline("config.yml")
+                  .load_data()
+                  .clean_data()
+                  .summarize_data()
+                  .generate_test_train()
+                  .preprocess_data()
+                  .generate_features())
