@@ -19,7 +19,7 @@ tqdm.pandas()
 def process_datetimes(df):
     dt_cols = ['LICENSE APPROVED FOR ISSUANCE', 'DATE ISSUED']
     for col in dt_cols:
-        df[col] = df[col].progress_apply(lambda row: pd.to_datetime(row, errors="coerce"))
+        df[col] = df[col].progress_apply(lambda row: pd.to_datetime(row, errors="coerce", format="%m/%d/%Y"))
     df["YEAR"] = df["DATE ISSUED"].dt.year
     df["days_between_approval_issuance"] = (df['DATE ISSUED'] - df['LICENSE APPROVED FOR ISSUANCE']).dt.days.fillna(0).astype(int)
     return df
@@ -41,7 +41,6 @@ def non_join_transformations(df):
     df["in_ssa"] = (df["which_ssa"] > 0).astype(int)
     # df["num_sites"] = df.groupby("ACCOUNT NUMBER")["SITE NUMBER"].transform('count')
     df["license_site"] = df["LICENSE NUMBER"].astype(str) + "-" + df["SITE NUMBER"].astype(str)
-
     return df 
 
 def main(data_path, licenses, owners):

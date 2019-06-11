@@ -11,7 +11,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import matplotlib
-matplotlib.use('TkAgg')
+# matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 
 from .utils import get_git_hash, get_sha256_sum
@@ -149,11 +149,14 @@ class Pipeline:
         for (index, (split_name, train_set)) in enumerate(zip(self.split_names, self.train_sets)):
             self.logger.info("        Training on training set \"%s\" (%s/%s)", split_name, index + 1, n)
             # print("non-na pre-valid", train_set["not_renewed_2yrs"].value_counts())
+            # print("before dropping nulls, valid set looks like: ", train_set)
             valid_set = train_set[~train_set.isnull().apply(any, axis=1)]
             # print("non-na post-valid", valid_set["not_renewed_2yrs"].value_counts())
             if description in self.trained_models.keys():
+                print("True branch: valid set of features is ", valid_set[self.features])
                 self.trained_models[description]+= [model.fit(X=valid_set[self.features].dropna(), y=valid_set[self.target].dropna())]
             else:
+                print("False branch: valid set of features is ", valid_set[self.features])
                 self.trained_models[description] = [model.fit(X=valid_set[self.features].dropna(), y=valid_set[self.target].dropna())]
         return self
 
@@ -202,6 +205,7 @@ class Pipeline:
         self.logger.info("Training models.")
         self.logger.info("Features: %s", self.features)
         self.logger.info("Fitting: %s", self.target)
+        print("train sets are \n", self.train_sets)
         for (description, model) in self.model_grid:
             self.run_model(description, model)
         return self
@@ -213,7 +217,7 @@ class Pipeline:
         for (description, models) in self.trained_models.items():
             self.evaluate_models(description, models)
         eval_results = pd.DataFrame(self.model_evaluations)
-        eval_results.to_csv(self.output_dir/"evaluations.csv")
+        eval_results.to_csv(self.output_dir/"evaluations.csv", mode = 'a')
         best_model = find_best_model(eval_results, "precision", "0.1").to_csv(self.output_dir/"best_models.csv") # TO DO: put these in config
         return self
 
