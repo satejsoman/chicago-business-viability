@@ -6,9 +6,7 @@ pipeline:
   name: "license-type-dev"
   target: "not_renewed_2yrs"
   precomputed_features:
-#    - which_ssa
     - in_ssa
-    - num_sites
     - num_renewals
     - total_pop
     - medhhinc
