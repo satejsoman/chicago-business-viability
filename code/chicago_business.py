@@ -90,7 +90,7 @@ def get_pipeline(config, script_dir):
         model_grid      = model_grid,
         splitter        = splitter,
         features        = features,
-        data_cleaning   = [
+        data_cleaning = [
             to_datetime("LICENSE TERM EXPIRATION DATE"),
             to_datetime("DATE ISSUED"),
             to_string("ZIP CODE"),
@@ -110,7 +110,6 @@ def get_pipeline(config, script_dir):
             classify_business_activity
         ])
 
-    # pipeline.clean_data        = MethodType(clean_chicago_business_data, pipeline)
     pipeline.generate_features = MethodType(make_chicago_business_features, pipeline)
     return pipeline
 
@@ -121,16 +120,15 @@ def get_config(config_path):
     except NameError:
         script_dir = Path(os.path.abspath(''))
 
-    with open(args.config, 'rb') as config_file:
+    with open(config_path, 'rb') as config_file:
         config = yaml.safe_load(config_file.read())
 
     return config, script_dir
 
 
 if __name__ == "__main__":
-
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config", help = "config file path", default = "config.yml")
+    parser.add_argument("--config", help = "config file path", default = "code/config.yml")
     args = parser.parse_args()
 
     config, script_dir = get_config(args.config)
