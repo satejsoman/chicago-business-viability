@@ -9,7 +9,7 @@
     - `code/output` holds evaluation files and charts for each of our model runs.
     - `code/pipeline` holds the library implementation and unit tests.
     - `chicago_business.py` is the primary script for running our pipeline.
-    - `config.yml` holds hardcoded parameters for the pipeline to be run.
+    - `config.yml` holds specified parameters for the pipeline to be run.
     - `data_cleaning.py` holds project-specific data cleaning methods.
     - `feature_generation.py` holds project-specific feature generation methods.
     - `requirements.txt` holds required libraries to run the project code.
