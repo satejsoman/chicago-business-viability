@@ -50,8 +50,8 @@ From a pipeline, save a model (using `joblib`) and its associated test or train 
 
 ## other actions
 
-### run unit tests and end-to-end smoketest:
-from the root directory, with the virtual environment activated
+### run unit tests and end-to-end smoketest
+from the root directory, with the virtual environment activated, run:
 ```
 pytest
 ```
