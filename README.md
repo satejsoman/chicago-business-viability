@@ -44,3 +44,6 @@ python3 chicago_business.py
 ### 5/ view results in /code/output
 
 The evaluation file and precision-recall curves for the classifiers and hyperparameters specified in `config.yml` will be in the folder marked `LATEST`.
+
+### 6/ run bias/fairness audit
+From a pipeline, save a model (using `joblib`) and its associated test or train set (using `pd.to_csv(..)`). Point the paths of `code/aequitas_audit.py` to the locations of the saved artifacts and run the script to see the cross-tabulations by `num_renewals`.
