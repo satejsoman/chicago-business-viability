@@ -95,17 +95,11 @@ class TestTemporalSplits(unittest.TestCase):
         df = pipeline.dataframe
         datasets = pipeline.train_sets + pipeline.test_sets
 
-        # make sure columns generated in test/train sets
-        for dataset in datasets:
-            self.assertIn("raw1_clean", dataset.columns)
-            self.assertIn("raw2_clean", dataset.columns)
-
         # make sure value imputation occurred per-set
         for col in ("raw1", "raw2"):
             missing_index = df[col].isna()
-            col_clean = col+"_clean"
             for (dataset, sl) in zip(datasets, slices):
-                imputed_values = dataset[missing_index][col_clean].unique()
+                imputed_values = dataset[missing_index][col].unique()
                 if len(imputed_values) > 0:
                     # some roundoff error during imputation
                     self.assertAlmostEqual(imputed_values[0], df[col][sl][df[col][sl].notna()].mean())
