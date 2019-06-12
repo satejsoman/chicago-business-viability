@@ -1,0 +1,34 @@
+data:
+  input_path: "../data/joined_table.csv"
+  output_dir: "output/"
+  # input_path: "../data/joined_table100.csv"
+
+pipeline:
+  name: "audit"
+  target: "not_renewed_2yrs_y"
+  precomputed_features:
+  - in_ssa
+  - num_renewals
+  - total_pop
+  - medhhinc
+  - share_BA+
+  - a35to64_share
+  - metro_GDP
+  - Cook_U3_ann_avg
+  test_train:
+    split_column: "DATE ISSUED"
+    splits:
+      - name: exists as of 12/31/2012
+        train:
+          start: 01/01/2002
+          end:   12/31/2010
+        test:
+          start: 01/01/2002
+          end:   12/31/2012
+  
+
+models:
+  DecisionTreeClassifier:
+    max_depth: [1]
+
+k: 2
