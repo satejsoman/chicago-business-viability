@@ -37,7 +37,10 @@ pip3 install -r code/requirements.txt
 - Then, from `code`, run `python3 data-assembly/glue.py`.
 - This creates `joined_table.csv` in the `data` folder, which the pipeline takes as input.
 
-### 4/ execute pipeline from /ode
+### 4/ execute pipeline from /code
 ```
 python3 chicago_business.py
-``
+```
+### 5/ view results in /code/output
+
+The evaluation file and precision-recall curves for the classifiers and hyperparameters specified in `config.yml` will be in the folder marked `LATEST`.
