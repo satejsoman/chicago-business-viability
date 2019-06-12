@@ -280,7 +280,7 @@ def classify_business_activity(input_df, license_data):
     
     # merge back into input data frame, janky way to avoid duplicating target
     df = input_df.copy(deep=True) \
-            .drop(columns = "not_renewed_2yrs") \
+            .drop(columns = "not_renewed_2yrs", errors="ignore") \
             .merge(activities, how='left', on=['ACCOUNT NUMBER', 'SITE NUMBER'])
         
     return df
@@ -372,8 +372,8 @@ def make_dummy_vars(base, license_data):
     # ACCOUNT NUM, SITE NUM, YEAR, not_renewed_2yrs, CITY, STATE
     df = df[base_cols + VARS_TO_DUMMIFY]
     new_df = pd.get_dummies(df, columns=VARS_TO_DUMMIFY, dtype=np.int64) \
-        .drop(labels=['not_renewed_2yrs'], axis=1) \
-        .drop(columns=["num_sites"])
+        .drop(labels=['not_renewed_2yrs'], axis=1, errors="ignore") \
+        .drop(columns=["num_sites"], errors="ignore")
 
     return new_df
 

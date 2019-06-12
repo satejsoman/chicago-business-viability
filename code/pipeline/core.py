@@ -153,10 +153,10 @@ class Pipeline:
             valid_set = train_set[~train_set.isnull().apply(any, axis=1)]
             # print("non-na post-valid", valid_set["not_renewed_2yrs"].value_counts())
             if description in self.trained_models.keys():
-                print("True branch: valid set of features is ", valid_set[self.features])
+                # print("True branch: valid set of features is ", valid_set[self.features])
                 self.trained_models[description]+= [model.fit(X=valid_set[self.features].dropna(), y=valid_set[self.target].dropna())]
             else:
-                print("False branch: valid set of features is ", valid_set[self.features])
+                # print("False branch: valid set of features is ", valid_set[self.features])
                 self.trained_models[description] = [model.fit(X=valid_set[self.features].dropna(), y=valid_set[self.target].dropna())]
         return self
 
@@ -176,7 +176,7 @@ class Pipeline:
             else:
                 y_score = np.array([_[self.positive_label] for _ in model.predict_proba(valid_set[X])])
 
-            evaluation, (precision, recall, _) = evaluate(self.positive_label, self.k_values, y_true, y_score)
+            evaluation, (precision, recall, _) = evaluate(self.poslitive_label, self.k_values, y_true, y_score)
             evaluation["name"] = description
             evaluation["test_train_index"] = index + 1
 
@@ -205,7 +205,6 @@ class Pipeline:
         self.logger.info("Training models.")
         self.logger.info("Features: %s", self.features)
         self.logger.info("Fitting: %s", self.target)
-        print("train sets are \n", self.train_sets)
         for (description, model) in self.model_grid:
             self.run_model(description, model)
         return self

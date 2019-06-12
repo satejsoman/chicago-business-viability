@@ -121,7 +121,7 @@ def get_config(config_path):
     except NameError:
         script_dir = Path(os.path.abspath(''))
 
-    with open(args.config, 'rb') as config_file:
+    with open(config_path, 'rb') as config_file:
         config = yaml.safe_load(config_file.read())
 
     return config, script_dir
