@@ -176,7 +176,7 @@ class Pipeline:
             else:
                 y_score = np.array([_[self.positive_label] for _ in model.predict_proba(valid_set[X])])
 
-            evaluation, (precision, recall, _) = evaluate(self.poslitive_label, self.k_values, y_true, y_score)
+            evaluation, (precision, recall, _) = evaluate(self.positive_label, self.k_values, y_true, y_score)
             evaluation["name"] = description
             evaluation["test_train_index"] = index + 1
 

@@ -182,20 +182,25 @@ if __name__ == "__main__":
                  .summarize_data()
                  .generate_test_train()
                  .preprocess_data()
-                 .generate_features())
+                 .generate_features()
+                 .run_model_grid())
     
-    # grab the feature list and preprocssed data from that pipeline
-
+    # grab the preprocessed data from that pipeline
     df = pipeline.dataframe
 
-    # now make feature on the new df
+    # now make features on the df containing just 1/1/2018-12/31/2018
     df = make_business_features_for_prediction(pipeline, df, original_features)
 
-    # pipeline = pipeline.generate_features()
-    dt = load("models/DTree_last_DecisionTreeClassifier-max_depth1.joblib")[0]
+    # extract trained model from the pipeline
+    dt = pipeline.trained_models['DecisionTreeClassifier-max_depth1'][0]
+    
+    scores = dt2.predict_proba(df.fillna(0)[pipeline.features])
+    ranks = pd.DataFrame(scores[:,1]).rank(method="first")
+    k = math.floor(ranks.count() * 0.02)
+    predictions = np.where(ranks < k, 1, 0)
 
-    try:
-        dt.predict_proba(df[pipeline.features])
-    except Exception as e:
-        print(e)
-        dt.predict_proba(df.fillna(0)[pipeline.features])
+    cols = ['ACCOUNT NUMBER', 'SITE NUMBER', 'LEGAL NAME', 'DOING BUSINESS AS NAME']
+    result = pd.merge(predicted_failures,
+                        pipeline.dataframe[cols].drop_duplicates(),
+                        on=["ACCOUNT NUMBER", 'SITE NUMBER'],
+                        how="left")
