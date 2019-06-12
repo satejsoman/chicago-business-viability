@@ -16,6 +16,7 @@
 - `data` holds all the raw data file that are accessed by `glue.py` to assemble the final processed datasets.
 - `explorations` holds ad-hoc and one-off files for data exploration conducted while completing this project.
 - `predicted_failures_final.csv` is our final target list for businesses predicted to faiil in the next 2 years as of 2018.
+- `all_evaluations.csv`is the table of evaluation metrics across all classifiers and hyperparameters in the grid.
 
 Instructions for running the pipeline are listed below.
 
