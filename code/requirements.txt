@@ -39,7 +39,7 @@ Pillow==6.0.0
 pluggy==0.12.0
 prompt-toolkit==2.0.9
 ptyprocess==0.6.0
-py==1.8.0
+py==1.10.0
 pybea==0.7.0a0
 Pygments==2.4.1
 pylint==2.3.1
